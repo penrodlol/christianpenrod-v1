@@ -1,0 +1,25 @@
+@import '@fontsource/poppins';
+
+:root {
+  --background: hsl(235, 23%, 9%);
+  --text: hsl(0, 0%, 94%);
+  --accent: hsl(235, 41%, 69%);
+  --font-family: 'Poppins';
+  --letter-spacing: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-family, serif);
+  letter-spacing: var(--letter-spacing);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
