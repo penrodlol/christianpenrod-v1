@@ -1,5 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import styled from 'styled-components';
+import { Welcome } from '../components/Welcome';
+
+const HomeWrapper = styled.div`
+  width: max-content;
+  margin: 0 auto;
+  margin-top: 100px;
+`;
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +18,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main></main>
+      <main>
+        <HomeWrapper>
+          <Welcome />
+        </HomeWrapper>
+      </main>
     </div>
   );
 };
