@@ -1,5 +1,4 @@
-import { BREAKPOINTS_MAX, BREAKPOINTS_MIN } from '@Constants/breakpoints';
-import MediaQuery from 'react-responsive';
+import { MediaQuery } from '@Components/MediaQuery';
 import styled from 'styled-components';
 import { HeaderInline } from './HeaderInline';
 import { HeaderMenu } from './HeaderMenu';
@@ -28,11 +27,11 @@ export const Header = () => (
   <HeaderWrapper>
     <HeaderContent>
       <Title>Christian Penrod</Title>
-      <MediaQuery minWidth={BREAKPOINTS_MAX.lg}>
-        <HeaderInline routes={HEADER_ROUTES}></HeaderInline>
+      <MediaQuery at="min-md">
+        <HeaderInline routes={HEADER_ROUTES} />
       </MediaQuery>
-      <MediaQuery maxWidth={BREAKPOINTS_MIN.lg}>
-        <HeaderMenu routes={HEADER_ROUTES}></HeaderMenu>
+      <MediaQuery at="max-md">
+        <HeaderMenu routes={HEADER_ROUTES} />
       </MediaQuery>
     </HeaderContent>
   </HeaderWrapper>
