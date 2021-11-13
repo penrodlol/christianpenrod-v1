@@ -1,6 +1,7 @@
 import { GradientText } from '@Components/GradientText';
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from './Button';
 
 const WelcomeTitle = styled.h1`
   font-size: 60px;
@@ -11,6 +12,7 @@ const WelcomeDescription = styled.p`
   font-size: 30px;
   line-height: 2.8rem;
   margin-top: 20px;
+  margin-bottom: 40px;
 `;
 
 export const Welcome = () => (
@@ -22,5 +24,21 @@ export const Welcome = () => (
       Full-Stack Web Developer from Pittsburgh, Pennsylvania. I specialize in
       developing performant/responsive websites.
     </WelcomeDescription>
+    <Button>Click Me</Button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <Button status="outline">Click Me</Button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <Button status="cta">Click Me</Button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <Button status="basic">Click Me</Button>
   </div>
 );

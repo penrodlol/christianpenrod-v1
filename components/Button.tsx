@@ -38,21 +38,33 @@ const Wrapper = styled.button<ButtonProps>`
       case 'basic':
         return `
           background: transparent;
-          color: var(--accent);
+          color: var(--accent-100);
+          &:hover:not([disabled]):not(:active) {
+            background: var(--dark-100);
+          }
         `;
       case 'cta':
         return `
-          background: var(--accent);
+          background: var(--accent-100);
+          &:hover:not([disabled]):not(:active) {
+            background: var(--accent-200);
+          }
         `;
       case 'outline':
         return `
           background: transparent;
-          color: var(--text);
-          box-shadow:inset 0px 0px 0px 0.2rem var(--text);
+          color: var(--light-100);
+          box-shadow:inset 0px 0px 0px 0.2rem var(--light-100);
+          &:hover:not([disabled]):not(:active) {
+            background: var(--dark-100);
+          }
         `;
       default:
         return `
-          background: var(--text);
+          background: var(--light-100);
+          &:hover:not([disabled]):not(:active) {
+            background: var(--light-200);
+          }
         `;
     }
   }};
