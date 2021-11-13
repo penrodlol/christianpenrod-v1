@@ -19,6 +19,8 @@ const HeaderContent = styled.div`
 
 const Title = styled.h3`
   font-size: 25px;
+  cursor: pointer;
+  border-radius: 0.1rem;
 `;
 
 export const HEADER_ROUTES = ['Projects', 'Blog'];
@@ -26,7 +28,9 @@ export const HEADER_ROUTES = ['Projects', 'Blog'];
 export const Header = () => (
   <HeaderWrapper>
     <HeaderContent>
-      <Title>Christian Penrod</Title>
+      <Title tabIndex={0} aria-label="Navigate to home">
+        Christian Penrod
+      </Title>
       <MediaQuery at="min-md">
         <HeaderInline routes={HEADER_ROUTES} />
       </MediaQuery>

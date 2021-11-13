@@ -14,13 +14,6 @@ const Wrapper = styled.button<ButtonProps>`
   cursor: pointer;
   border-radius: 0.5rem;
   font-weight: bold;
-  &:focus {
-    outline: none;
-  }
-  &:focus-visible {
-    outline: solid 2px var(--accent-100);
-    outline-offset: 5px;
-  }
   ${(props) => {
     return props.size === 'sm'
       ? `

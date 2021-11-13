@@ -1,7 +1,12 @@
-import { FC } from 'react';
+import { Hamburger } from '@Components/Hamburger';
+import { PropsWithChildren } from 'react';
 
-interface HeaderMenuProps {
+export interface HeaderMenuProps {
   routes: Array<string>;
 }
 
-export const HeaderMenu: FC<HeaderMenuProps> = () => <div>Hamburger</div>;
+export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => (
+  <div>
+    <Hamburger type="button" aria-label="Toggle navigation menu" />
+  </div>
+);
