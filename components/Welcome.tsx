@@ -22,7 +22,7 @@ const WelcomeButtonWrapper = styled.div`
 `;
 
 export const Welcome = () => (
-  <div>
+  <section>
     <GradientText>
       <WelcomeTitle>Hi, I&apos;m Christian Penrod.</WelcomeTitle>
     </GradientText>
@@ -38,5 +38,5 @@ export const Welcome = () => (
         Blog
       </Button>
     </WelcomeButtonWrapper>
-  </div>
+  </section>
 );

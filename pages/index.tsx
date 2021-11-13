@@ -1,12 +1,13 @@
+import { Header } from '@Components/Header/Header';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { Welcome } from '../components/Welcome';
 
-const HomeWrapper = styled.div`
+const HomeContent = styled.div`
   width: max-content;
   margin: 0 auto;
-  margin-top: 100px;
+  padding-top: 60px;
 `;
 
 const Home: NextPage = () => {
@@ -19,9 +20,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <HomeWrapper>
+        <Header></Header>
+        <HomeContent>
           <Welcome />
-        </HomeWrapper>
+        </HomeContent>
       </main>
     </div>
   );

@@ -7,6 +7,6 @@ const Wrapper = styled.div`
   -webkit-text-fill-color: transparent;
 `;
 
-export const GradientText = ({ children }: PropsWithChildren<{}>) => (
-  <Wrapper>{children}</Wrapper>
+export const GradientText = (props: PropsWithChildren<{}>) => (
+  <Wrapper>{props.children}</Wrapper>
 );
