@@ -31,8 +31,12 @@ export const Welcome = () => (
       developing performant/responsive websites.
     </WelcomeDescription>
     <WelcomeButtonWrapper>
-      <Button>Projects</Button>
-      <Button status="outline">Blog</Button>
+      <Button type="button" aria-label="Navigate to projects">
+        Projects
+      </Button>
+      <Button status="outline" type="button" aria-label="Navigate to blog">
+        Blog
+      </Button>
     </WelcomeButtonWrapper>
   </div>
 );
