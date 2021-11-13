@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = 'sm' | 'lg';
 export type ButtonStatus = 'primary' | 'outline' | 'cta' | 'basic';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,23 +15,17 @@ const Wrapper = styled.button<ButtonProps>`
   border-radius: 0.5rem;
   font-weight: bold;
   ${(props) => {
-    switch (props.size) {
-      case 'sm':
-        return `
-          font-size: 20px;
-          padding: 0.8rem 1.8rem;
-        `;
-      case 'lg':
-        return `
-          font-size: 30px;
-          padding: 1.5rem 3.5rem;
-        `;
-      default:
-        return `
-          font-size: 25px;
-          padding: 1rem 2.3rem;
-        `;
-    }
+    return props.size === 'sm'
+      ? `
+        font-size: 16px;
+        padding: 0.8rem 1.5rem;
+        min-width: 7rem;
+      `
+      : `
+        font-size: 18px;
+        padding: 1rem 2.5rem;
+        min-width: 9rem;
+      `;
   }};
   ${(props) => {
     switch (props.status) {
@@ -54,7 +48,7 @@ const Wrapper = styled.button<ButtonProps>`
         return `
           background: transparent;
           color: var(--light-100);
-          box-shadow:inset 0px 0px 0px 0.2rem var(--light-100);
+          box-shadow:inset 0px 0px 0px 0.15rem var(--light-100);
           &:hover:not([disabled]):not(:active) {
             background: var(--dark-100);
           }

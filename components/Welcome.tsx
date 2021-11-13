@@ -12,7 +12,13 @@ const WelcomeDescription = styled.p`
   font-size: 30px;
   line-height: 2.8rem;
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+`;
+
+const WelcomeButtonWrapper = styled.div`
+  display: flex;
+  gap: 30px;
+  align-items: center;
 `;
 
 export const Welcome = () => (
@@ -24,21 +30,9 @@ export const Welcome = () => (
       Full-Stack Web Developer from Pittsburgh, Pennsylvania. I specialize in
       developing performant/responsive websites.
     </WelcomeDescription>
-    <Button>Click Me</Button>
-    <br />
-    <br />
-    <br />
-    <br />
-    <Button status="outline">Click Me</Button>
-    <br />
-    <br />
-    <br />
-    <br />
-    <Button status="cta">Click Me</Button>
-    <br />
-    <br />
-    <br />
-    <br />
-    <Button status="basic">Click Me</Button>
+    <WelcomeButtonWrapper>
+      <Button>Projects</Button>
+      <Button status="outline">Blog</Button>
+    </WelcomeButtonWrapper>
   </div>
 );
