@@ -6,6 +6,7 @@ import { Welcome } from '../components/Welcome';
 
 const HomeContent = styled.div`
   width: max-content;
+  min-height: 100vh;
   margin: 0 auto;
   padding-top: 60px;
 `;

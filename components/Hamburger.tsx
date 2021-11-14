@@ -3,8 +3,6 @@ import { ButtonHTMLAttributes, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  position: relative;
-  z-index: 9999999999;
   cursor: pointer;
   border-radius: 0.1rem;
 `;
@@ -43,7 +41,7 @@ export const Hamburger = (props: ButtonHTMLAttributes<HTMLDivElement>) => {
   }
 
   return (
-    <Wrapper className="ring" tabIndex={0} {...props} onClick={animate}>
+    <Wrapper tabIndex={0} {...props} onClick={animate}>
       {['top', 'bottom'].map((item, index) => (
         <HamburgerItem key={item} ref={index === 0 ? top : bottom} />
       ))}
