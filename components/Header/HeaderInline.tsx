@@ -1,3 +1,4 @@
+import { ThemeToggle } from '@Components/ThemeToggle';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
@@ -27,5 +28,6 @@ export const HeaderInline = (props: PropsWithChildren<HeaderInlineProps>) => (
         {route}
       </Route>
     ))}
+    <ThemeToggle />
   </RoutesWrapper>
 );

@@ -1,5 +1,6 @@
 import { Hamburger } from '@Components/Hamburger';
 import { Overlay } from '@Components/Overlay';
+import { ThemeToggle } from '@Components/ThemeToggle';
 import gsap from 'gsap';
 import { PropsWithChildren, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -64,6 +65,7 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
             {route}
           </Route>
         ))}
+        <ThemeToggle />
       </Overlay>
     </div>
   );
