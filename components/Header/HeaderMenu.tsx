@@ -1,6 +1,6 @@
-import { Hamburger } from '@Components/Hamburger';
-import { Overlay } from '@Components/Overlay';
-import { ThemeToggle } from '@Components/ThemeToggle';
+import { Hamburger } from '@components/Hamburger';
+import { Overlay } from '@components/Overlay';
+import { ThemeToggle } from '@components/ThemeToggle';
 import gsap from 'gsap';
 import { PropsWithChildren, useRef, useState } from 'react';
 import styled from 'styled-components';

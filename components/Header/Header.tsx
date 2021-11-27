@@ -1,4 +1,4 @@
-import { MediaQuery } from '@Components/MediaQuery';
+import { MediaQuery } from '@components/MediaQuery';
 import styled from 'styled-components';
 import { HeaderInline } from './HeaderInline';
 import { HeaderMenu } from './HeaderMenu';

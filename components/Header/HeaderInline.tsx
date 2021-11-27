@@ -1,4 +1,4 @@
-import { ThemeToggle } from '@Components/ThemeToggle';
+import { ThemeToggle } from '@components/ThemeToggle';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 

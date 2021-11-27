@@ -1,4 +1,4 @@
-import { GradientText } from '@Components/GradientText';
+import { GradientText } from '@components/GradientText';
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from './Button';
