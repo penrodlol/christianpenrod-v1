@@ -25,7 +25,7 @@ const WelcomeDescription = styled.p`
 
   @keyframes welcome-description {
     0%,
-    30% {
+    15% {
       font-size: var(--font-size-xs);
       line-height: 1.75rem;
     }

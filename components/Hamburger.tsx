@@ -4,14 +4,14 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   cursor: pointer;
-  border-radius: 0.1rem;
+  border-radius: var(--rounded-0);
 `;
 
 const HamburgerItem = styled.div`
+  border-radius: var(--rounded-1);
+  background: var(--basic-1);
   height: 0.3rem;
   width: 2.5rem;
-  border-radius: 0.1em;
-  background: var(--light-100);
   &:not(&:last-child) {
     margin-bottom: 0.6rem;
   }

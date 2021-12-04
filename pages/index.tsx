@@ -6,7 +6,8 @@ import styled from 'styled-components';
 
 const HomeContent = styled.div`
   padding: 0 1.5rem;
-  padding-top: 60px;
+  padding-top: 2.5rem;
+  min-width: 15.625rem;
 `;
 
 const Home: NextPage = () => {

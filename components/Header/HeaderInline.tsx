@@ -9,8 +9,8 @@ const RoutesWrapper = styled.div`
 
 const Route = styled.a`
   cursor: pointer;
-  font-size: 20px;
-  border-radius: 0.1rem;
+  font-size: var(--font-size-sm);
+  border-radius: var(--rounded-0);
 `;
 
 export interface HeaderInlineProps {

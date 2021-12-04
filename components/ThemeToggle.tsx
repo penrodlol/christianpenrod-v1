@@ -8,7 +8,7 @@ import { Svg, SvgName } from './Svg';
 
 const Wrapper = styled.button`
   cursor: pointer;
-  border-radius: 0.1rem;
+  border-radius: var(--rounded-0);
   border: none;
   background: transparent;
 `;

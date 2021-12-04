@@ -6,10 +6,10 @@ const OverlayWrapper = styled.div<OverlayProps>`
 `;
 
 const OverlayContent = styled.div`
+  background: var(--overlay);
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: hsla(236, 22%, 15%, 0.663);
   backdrop-filter: blur(9px);
 `;
 

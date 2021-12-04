@@ -11,19 +11,29 @@ const HamburgerWrapper = styled.div`
 `;
 
 const Route = styled.a`
-  font-size: 50px;
+  font-size: var(--font-size-lg);
+  border-radius: var(--rounded-0);
+  color: var(--basic-1);
   cursor: pointer;
   display: block;
   width: max-content;
   margin: 2rem 0;
   font-weight: 600;
-  border-radius: 0.1rem;
   transform: translateX(-15rem);
 
   &:first-child {
     margin-top: 4rem;
   }
 `;
+
+const ThemeToggleWrapper = styled.div`
+  position: absolute;
+  left: 2.5rem;
+  bottom: 2rem;
+  visibility: hidden;
+`;
+
+const tl = gsap.timeline({ paused: true });
 
 export interface HeaderMenuProps {
   routes: Array<string>;
@@ -32,13 +42,11 @@ export interface HeaderMenuProps {
 export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
   const [menu, setMenu] = useState(false);
   const routeRefs = useRef<Array<HTMLAnchorElement>>([]);
+  const themeToggleRef = useRef<HTMLDivElement>(null);
 
   function toggleMenu() {
-    gsap.to(routeRefs.current, {
+    tl.to(routeRefs.current, {
       onStart: () => setMenu(true),
-      onComplete: () => {
-        if (menu) gsap.delayedCall(0.1, () => setMenu(false));
-      },
       opacity: menu ? 0 : 1,
       x: menu ? '-13rem' : '2.5rem',
       ease: `back.${menu ? 'in' : 'out'}(2)`,
@@ -47,7 +55,20 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
         from: menu ? 1 : 0,
       },
       duration: 0.3,
-    });
+    })
+      .to(
+        themeToggleRef.current,
+        {
+          autoAlpha: menu ? 0 : 1,
+          duration: 0.2,
+        },
+        0.1,
+      )
+      .play(0)
+      .eventCallback('onComplete', () => {
+        if (menu) setMenu(false);
+        tl.pause().clear();
+      });
   }
 
   return (
@@ -65,7 +86,9 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
             {route}
           </Route>
         ))}
-        <ThemeToggle />
+        <ThemeToggleWrapper ref={themeToggleRef}>
+          <ThemeToggle />
+        </ThemeToggleWrapper>
       </Overlay>
     </div>
   );

@@ -18,9 +18,9 @@ const HeaderContent = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 25px;
+  font-size: var(--font-size-sm);
+  border-radius: var(--rounded-0);
   cursor: pointer;
-  border-radius: 0.1rem;
 `;
 
 export const HEADER_ROUTES = ['Projects', 'Blog'];
