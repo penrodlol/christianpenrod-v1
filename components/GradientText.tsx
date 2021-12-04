@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -7,6 +7,4 @@ const Wrapper = styled.div`
   -webkit-text-fill-color: transparent;
 `;
 
-export const GradientText = (props: PropsWithChildren<{}>) => (
-  <Wrapper>{props.children}</Wrapper>
-);
+export const GradientText: FC = ({ children }) => <Wrapper>{children}</Wrapper>;

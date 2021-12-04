@@ -1,5 +1,5 @@
 import { darkmodeState } from 'atoms/darkmode.atom';
-import { DARKMODE_KEY } from 'const/theme';
+import { DARKMODE_KEY } from 'const/storage';
 import gsap from 'gsap';
 import React, { createRef, useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';

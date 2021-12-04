@@ -1,4 +1,4 @@
-import { COLORS, DARKMODE_KEY } from 'const/theme';
+import { DARKMODE_KEY } from 'const/storage';
 import { atom } from 'recoil';
 
 export const darkmodeState = atom<boolean | undefined>({
@@ -6,17 +6,14 @@ export const darkmodeState = atom<boolean | undefined>({
   default: undefined,
   effects_UNSTABLE: [
     ({ onSet }) => {
-      onSet((darkmode) => {
-        if (darkmode == null) return;
+      onSet((curr, prev) => {
+        if (prev == null) return;
+
+        const darkmode = curr as boolean;
+        const theme = darkmode ? 'dark' : 'light';
 
         localStorage.setItem(DARKMODE_KEY, darkmode.toString());
-
-        Object.entries(COLORS).forEach(([key, value]) => {
-          const propKey = `--${key}`;
-          const propValue = darkmode ? value.dark : value.light;
-
-          document.documentElement.style.setProperty(propKey, propValue);
-        });
+        document.documentElement.setAttribute('theme', theme);
       });
     },
   ],

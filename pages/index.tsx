@@ -1,13 +1,11 @@
 import { Header } from '@components/Header/Header';
+import { Welcome } from '@components/Welcome';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styled from 'styled-components';
-import { Welcome } from '../components/Welcome';
 
 const HomeContent = styled.div`
-  width: max-content;
-  min-height: 100vh;
-  margin: 0 auto;
+  padding: 0 1.5rem;
   padding-top: 60px;
 `;
 

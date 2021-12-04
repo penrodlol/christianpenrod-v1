@@ -1,25 +1,20 @@
-import { COLORS, DARKMODE_KEY } from 'const/theme';
-import { minify, MinifyOptions } from 'uglify-js';
+import { DARKMODE_KEY } from 'const/storage';
+import { minify } from 'uglify-js';
 
-const evalDarkMode = `
-  const persisted = localStorage.getItem("${DARKMODE_KEY}") === 'true';
+export function evalDarkMode() {
+  const darkmodeKey = '<DARKMODE_KEY>';
+
+  const persisted = localStorage.getItem(darkmodeKey) === 'true';
   const prefers = matchMedia('(prefers-color-scheme: dark)').matches;
   const darkmode = persisted ?? prefers;
 
-  if (!localStorage.getItem("${DARKMODE_KEY}")) {
-    localStorage.setItem("${DARKMODE_KEY}", darkmode.toString());
-  }
+  if (!localStorage.getItem(darkmodeKey))
+    localStorage.setItem(darkmodeKey, darkmode.toString());
 
-  Object.entries(${JSON.stringify(COLORS)}).forEach(([key, value]) => {
-    document.documentElement.style.setProperty(
-      '--' + key,
-      darkmode ? value.dark : value.light,
-    );
-  });
-`;
+  document.documentElement.setAttribute('theme', darkmode ? 'dark' : 'light');
+}
 
-const options: MinifyOptions = {
-  mangle: { toplevel: true },
-};
-
-export const evalDarkModeHTML = minify(evalDarkMode, options).code;
+export const evalDarkModeHTML = minify(
+  `(${String(evalDarkMode).replace('<DARKMODE_KEY>', DARKMODE_KEY)})()`,
+  { mangle: { toplevel: true } },
+).code;

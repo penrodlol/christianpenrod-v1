@@ -17,7 +17,7 @@ const HeaderContent = styled.div`
   justify-content: space-between;
 `;
 
-const Title = styled.h3`
+const Title = styled.span`
   font-size: 25px;
   cursor: pointer;
   border-radius: 0.1rem;

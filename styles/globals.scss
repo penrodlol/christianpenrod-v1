@@ -1,44 +1,17 @@
-@import '@fontsource/poppins';
+@import 'typography';
+@import 'color';
+@import 'breakpoint';
 
-:root {
-  --dark-100: hsl(236, 22%, 15%);
-  --dark-200: hsl(235, 23%, 9%);
-  --light-100: hsl(0, 0%, 94%);
-  --light-200: hsl(0, 0%, 89%);
-  --accent-100: hsl(234, 65%, 72%);
-  --accent-200: hsl(234, 50%, 66%);
-  // =============
-  --font-family: 'Poppins';
-  --letter-spacing: normal;
-  // =============
-  --sm: 640px;
-  --md: 768px;
-  --lg: 1024px;
-  --xl: 1280px;
-  --xl2: 1536px;
-}
-
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--light-100);
-  font-family: var(--font-family, serif);
-  letter-spacing: var(--letter-spacing);
-}
-
-button,
-*[tabIndex*='0'] {
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
-    outline: solid 2px var(--accent-100);
-    outline-offset: 5px;
-  }
+  font-family: var(--font-family);
+  background: var(--basic-9);
+  color: var(--basic-1);
 }
