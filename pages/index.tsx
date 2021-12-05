@@ -5,7 +5,7 @@ import Head from 'next/head';
 import styled from 'styled-components';
 
 const HomeContent = styled.div`
-  padding: 0 1.5rem;
+  padding: 0 1.75rem;
   padding-top: 2.5rem;
   min-width: 15.625rem;
 `;

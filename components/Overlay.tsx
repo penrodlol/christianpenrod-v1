@@ -1,6 +1,10 @@
 import { FC, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
+const OverlayWrapper = styled.div<OverlayProps>`
+  visibility: ${(props) => (props.show ? 'visible' : 'hidden')};
+`;
+
 const OverlayContent = styled.div`
   background: var(--overlay);
   position: fixed;
@@ -22,13 +26,9 @@ export const Overlay: FC<OverlayProps> = (props) => {
   useEffect(() => {}, [props.show]);
 
   return (
-    <>
-      {props.show && (
-        <div onClick={props.onClick}>
-          <RemoveBodyOverflow />
-          <OverlayContent>{props.children}</OverlayContent>
-        </div>
-      )}
-    </>
+    <OverlayWrapper show={props.show} onClick={props.onClick}>
+      <RemoveBodyOverflow />
+      <OverlayContent>{props.children}</OverlayContent>
+    </OverlayWrapper>
   );
 };

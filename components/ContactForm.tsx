@@ -12,7 +12,7 @@ export const ContactForm = () => {
         status="cta"
         aria-label="Click to contact via email."
         style={{ width: '10rem' }}
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen(true)}
       >
         Contact
       </Button>

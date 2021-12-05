@@ -1,6 +1,5 @@
 import React, { createRef } from 'react';
 import styled from 'styled-components';
-import { ContactForm } from './ContactForm';
 import { GradientText } from './GradientText';
 
 const Wrapper = styled.section`
@@ -52,7 +51,6 @@ export const Welcome = () => {
         Full-Stack Web Developer from Pittsburgh, Pennsylvania. I specialize in
         developing performant/responsive websites.
       </WelcomeDescription>
-      <ContactForm />
     </Wrapper>
   );
 };
