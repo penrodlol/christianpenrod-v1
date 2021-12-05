@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import styled from 'styled-components';
+import { GradientText } from './GradientText';
 
 const Wrapper = styled.section`
   margin: 0 auto;
@@ -7,8 +8,9 @@ const Wrapper = styled.section`
 `;
 
 const WelcomeTitle = styled.h2`
-  --tt-key: welcome-title;
   font-weight: bold;
+  letter-spacing: 0.07em;
+  --tt-key: welcome-title;
 
   /* prettier-ignore */
   @keyframes welcome-title {
@@ -40,9 +42,11 @@ export const Welcome = () => {
   const welcomeTitleRef = createRef<HTMLHeadingElement>();
   return (
     <Wrapper>
-      {/* <GradientText> */}
-      <WelcomeTitle ref={welcomeTitleRef}>Hi, I&apos;m Christian.</WelcomeTitle>
-      {/* </GradientText> */}
+      <GradientText>
+        <WelcomeTitle ref={welcomeTitleRef}>
+          Hi, I&apos;m Christian.
+        </WelcomeTitle>
+      </GradientText>
       <WelcomeDescription>
         Full-Stack Web Developer from Pittsburgh, Pennsylvania. I specialize in
         developing performant/responsive websites.

@@ -2,7 +2,11 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: -webkit-linear-gradient(45deg, var(--accent-100), #cab4e6);
+  background: -webkit-linear-gradient(
+    47deg,
+    var(--primary-7),
+    hsl(302deg 100% 40%)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
