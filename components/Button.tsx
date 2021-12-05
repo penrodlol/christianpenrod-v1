@@ -15,6 +15,7 @@ const Wrapper = styled.button<ButtonProps>`
   font-weight: bold;
   letter-spacing: 0.02em;
   padding: 0.8rem 1.8rem;
+  box-shadow: var(--shadow-elevation);
 
   &:disabled {
     cursor: not-allowed;
@@ -25,7 +26,7 @@ const Wrapper = styled.button<ButtonProps>`
       case 'secondary':
         return `
           background: transparent;
-          box-shadow:inset 0px 0px 0px 0.15rem var(--primary-6);
+          box-shadow: inset 0px 0px 0px 0.15rem var(--primary-6);
           color: var(--basic-1);
 
           &:hover:not(:active, :disabled) { background: var(--basic-8); }
