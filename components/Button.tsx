@@ -1,69 +1,59 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 import styled from 'styled-components';
 
-export type ButtonSize = 'sm' | 'lg';
-export type ButtonStatus = 'primary' | 'outline' | 'cta' | 'basic';
+export type ButtonStatus = 'primary' | 'secondary' | 'cta';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: ButtonSize;
   status?: ButtonStatus;
 }
 
 const Wrapper = styled.button<ButtonProps>`
+  font-size: var(--font-size-xs);
+  border-radius: var(--rounded-2);
   border: none;
   cursor: pointer;
-  border-radius: 0.5rem;
   font-weight: bold;
-  ${(props) => {
-    return props.size === 'sm'
-      ? `
-        font-size: 16px;
-        padding: 0.8rem 1.5rem;
-        min-width: 7rem;
-      `
-      : `
-        font-size: 18px;
-        padding: 1rem 2.5rem;
-        min-width: 9rem;
-      `;
-  }};
-  ${(props) => {
-    switch (props.status) {
-      case 'basic':
+  letter-spacing: 0.02em;
+  padding: 0.8rem 1.8rem;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  ${({ status }) => {
+    switch (status) {
+      case 'secondary':
         return `
           background: transparent;
-          color: var(--accent-100);
-          &:hover:not([disabled]):not(:active) {
-            background: var(--dark-100);
+          box-shadow:inset 0px 0px 0px 0.15rem var(--primary-6);
+          color: var(--basic-1);
+
+          &:hover:not(:active, :disabled) { background: var(--basic-8); }
+          &:disabled {
+            box-shadow:inset 0px 0px 0px 0.15rem var(--primary-4);
+            color: var(--basic-6);
           }
         `;
       case 'cta':
         return `
-          background: var(--accent-100);
-          &:hover:not([disabled]):not(:active) {
-            background: var(--accent-200);
-          }
-        `;
-      case 'outline':
-        return `
-          background: transparent;
-          color: var(--light-100);
-          box-shadow:inset 0px 0px 0px 0.15rem var(--light-100);
-          &:hover:not([disabled]):not(:active) {
-            background: var(--dark-100);
-          }
+          background: var(--secondary-6);
+
+          &:hover { background: var(--secondary-5); }
+          &:active { background: var(--secondary-7); }
+          &:disabled { background: var(--secondary-4); }
         `;
       default:
         return `
-          background: var(--light-100);
-          &:hover:not([disabled]):not(:active) {
-            background: var(--light-200);
-          }
+          background: var(--primary-6);
+
+          &:hover { background: var(--primary-5); }
+          &:active { background: var(--primary-7); }
+          &:disabled { background: var(--primary-4); }
         `;
     }
-  }};
+  }}
 `;
 
-export const Button = (props: ButtonProps) => (
+export const Button: FC<ButtonProps> = (props) => (
   <Wrapper {...props}>{props.children}</Wrapper>
 );
