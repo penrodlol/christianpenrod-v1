@@ -38,7 +38,11 @@ export const ContactForm = () => {
       <Dialog
         title="Contact Me"
         closeAria="Cancel email submission"
-        primary={{ label: 'Send Message', aria: 'Submit email' }}
+        primary={{
+          label: 'Send Message',
+          aria: 'Submit email',
+          disabled: true,
+        }}
         open={open}
         onClose={() => setOpen(false)}
         onSubmit={submitEmail}

@@ -26,7 +26,7 @@ const Wrapper = styled.button<ButtonProps>`
         return `
           background: var(--basic);
 
-          &:hover:not(:active) {
+          &:hover:not(:active, :disabled) {
             background: var(--basic-hover);
           }
         `;
@@ -34,7 +34,7 @@ const Wrapper = styled.button<ButtonProps>`
         return `
           background: var(--secondary);
 
-          &:hover:not(:active) {
+          &:hover:not(:active, :disabled) {
             background: var(--secondary-hover);
           }
         `;
@@ -42,7 +42,7 @@ const Wrapper = styled.button<ButtonProps>`
         return `
           background: var(--primary);
 
-          &:hover:not(:active) {
+          &:hover:not(:active, :disabled) {
             background: var(--primary-hover);
           }
         `;

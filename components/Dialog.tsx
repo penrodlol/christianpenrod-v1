@@ -60,6 +60,7 @@ export interface DialogProps {
   primary?: {
     label: string;
     aria: string;
+    disabled?: boolean;
   };
   secondary?: {
     label: string;
@@ -99,6 +100,7 @@ export const Dialog: FC<DialogProps> = (props) => {
             <Button
               status="primary"
               aria-label={props.primary.aria}
+              disabled={props.primary.disabled}
               onClick={props.onSubmit}
             >
               {props.primary?.label}
