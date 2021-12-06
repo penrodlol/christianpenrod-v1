@@ -3,14 +3,14 @@ import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 const RoutesWrapper = styled.div`
-  display: flex;
-  gap: 40px;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 3rem;
 `;
 
 const Route = styled.a`
-  cursor: pointer;
-  font-size: var(--font-size-sm);
-  border-radius: var(--rounded-0);
+  font-size: 1.15em;
 `;
 
 export interface HeaderInlineProps {

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { HeaderInline } from './HeaderInline';
 import { HeaderMenu } from './HeaderMenu';
 
-const HeaderWrapper = styled.nav`
+const Wrapper = styled.nav`
   width: 100vw;
 `;
 
-const HeaderContent = styled.div`
+const InnerWrapper = styled.div`
   max-width: var(--xl2);
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 2rem;
   display: grid;
   grid-auto-flow: column;
   align-items: center;
@@ -18,16 +18,14 @@ const HeaderContent = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: var(--font-size-sm);
-  border-radius: var(--rounded-0);
-  cursor: pointer;
+  font-size: 1.15em;
 `;
 
 export const HEADER_ROUTES = ['Projects', 'Blog'];
 
 export const Header = () => (
-  <HeaderWrapper>
-    <HeaderContent>
+  <Wrapper>
+    <InnerWrapper>
       <Title tabIndex={0} aria-label="Navigate to home">
         Christian Penrod
       </Title>
@@ -37,6 +35,6 @@ export const Header = () => (
       <MediaQuery at="max-md">
         <HeaderMenu routes={HEADER_ROUTES} />
       </MediaQuery>
-    </HeaderContent>
-  </HeaderWrapper>
+    </InnerWrapper>
+  </Wrapper>
 );

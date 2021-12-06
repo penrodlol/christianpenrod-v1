@@ -4,44 +4,50 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   cursor: pointer;
-  border-radius: var(--rounded-0);
 `;
 
 const HamburgerItem = styled.div`
-  border-radius: var(--rounded-1);
-  background: var(--basic-1);
+  border-radius: var(--rounded);
+  background: var(--primary);
   height: 0.3rem;
   width: 2.5rem;
+
   &:not(&:last-child) {
     margin-bottom: 0.6rem;
   }
 `;
 
+const tl = gsap.timeline({
+  defaults: { duration: 0.8, ease: 'elastic' },
+  paused: true,
+});
+
 export const Hamburger = (props: ButtonHTMLAttributes<HTMLDivElement>) => {
   const [status, setStatus] = useState(false);
-  const timeline = gsap.timeline({
-    defaults: { duration: 0.8, ease: 'elastic' },
-  });
   const top = useRef<HTMLDivElement>(null);
   const bottom = useRef<HTMLDivElement>(null);
 
   function animate() {
     // prettier-ignore
-    timeline
+    tl
       .to(top.current, {
         onStart: () => { setStatus(!status) },
         rotate: status ? 0 : '45deg',
         translateY: status ? 0 : '0.125rem',
-      })
+      }, 0)
       .to(bottom.current, {
           rotate: status ? 0 : '-45deg',
           translateY: status ? 0 : '-0.125rem',
-          marginTop: status ? 0 : '-0.6rem'
-      }, 0);
+          marginTop: status ? 0 : '-0.6rem',
+      }, 0)
+      .play(0)
+      .eventCallback('onComplete', () => {
+        tl.pause().clear();
+      });
   }
 
   return (
-    <Wrapper tabIndex={0} {...props} onClick={animate}>
+    <Wrapper id="hamburger" tabIndex={0} {...props} onClick={animate}>
       {['top', 'bottom'].map((item, index) => (
         <HamburgerItem key={item} ref={index === 0 ? top : bottom} />
       ))}

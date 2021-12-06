@@ -11,9 +11,8 @@ const HamburgerWrapper = styled.div`
 `;
 
 const Route = styled.a`
-  font-size: var(--font-size-md);
-  border-radius: var(--rounded-0);
-  color: var(--basic-1);
+  font-size: 2em;
+  color: var(--text-1);
   cursor: pointer;
   display: block;
   width: max-content;

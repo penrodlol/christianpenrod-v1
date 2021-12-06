@@ -1,4 +1,6 @@
-@import 'typography';
+@import '@fontsource/poppins';
+@import 'atropos/scss';
+
 @import 'color';
 @import 'breakpoint';
 @import 'misc';
@@ -12,7 +14,7 @@
 }
 
 body {
-  font-family: var(--font-family);
-  background: var(--basic-9);
-  color: var(--basic-1);
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
+  color: var(--text);
 }

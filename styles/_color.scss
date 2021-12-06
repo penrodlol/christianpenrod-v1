@@ -1,33 +1,40 @@
-@mixin palette($key, $color, $intensity, $darken: true) {
-  @for $i from 0 through 9 {
-    --#{$key}-#{$i}: #{if(
-        $darken,
-        darken($color, $i * $intensity),
-        lighten($color, $i * $intensity)
-      )};
-  }
+@mixin shadow($base) {
+  --shadow: 0.3px 0.5px 0.7px hsl(#{$base} / 0.36),
+    0.8px 1.6px 2px -0.8px hsl(#{$base} / 0.36),
+    2.1px 4.1px 5.2px -1.7px hsl(#{$base} / 0.36),
+    5px 10px 12.6px -2.5px hsl(#{$base} / 0.36);
 }
 
 :root {
   &[theme='dark'] {
-    @include palette('basic', hsl(240, 9%, 98%), 9.5);
-    @include palette('primary', hsl(232, 51%, 91%), 3);
-    @include palette('secondary', hsl(255, 50%, 98%), 3);
+    --background: hsl(222, 30%, 13%);
+    --background-offset: hsl(222, 50%, 8%);
+    --text: hsl(0, 0%, 80%);
+    --text-faded: hsl(0, 0%, 59%);
+    --basic: hsl(233, 7%, 78%);
+    --basic-hover: hsl(230, 3%, 65%);
+    --primary: hsl(229, 42%, 69%);
+    --primary-hover: hsl(229, 35%, 62%);
+    --secondary: hsl(39, 100%, 90%);
+    --secondary-hover: hsl(39, 88%, 84%);
+    --tertiary: hsl(264, 81%, 84%);
 
-    --overlay: hsla(236, 22%, 15%, 0.663);
-    --shadow: 0deg 0% 2%;
+    @include shadow(0deg 0% 2%);
   }
 
   &[theme='light'] {
-    @include palette('basic', hsl(235, 15%, 15%), 9, false);
-    @include palette('primary', hsl(235, 65%, 97%), 3);
-    @include palette('secondary', hsl(260, 38%, 94%), 3);
+    --background: hsl(225, 38%, 94%);
+    --background-offset: hsl(230, 24%, 85%);
+    --text: hsl(0, 0%, 9%);
+    --text-faded: hsl(0, 0%, 37%);
+    --basic: hsl(228, 16%, 70%);
+    --basic-hover: hsl(227, 12%, 61%);
+    --primary: hsl(229, 61%, 69%);
+    --primary-hover: hsl(229, 50%, 62%);
+    --secondary: hsl(39, 88%, 84%);
+    --secondary-hover: hsl(39, 90%, 81%);
+    --tertiary: hsl(265, 80%, 77%);
 
-    --overlay: hsl(236, 22%, 15%, 12%);
-    --shadow: 0deg 0% 63%;
+    @include shadow(0deg 0% 63%);
   }
-
-  --success: hsl(143, 50%, 67%);
-  --warning: hsl(59, 53%, 68%);
-  --error: hsl(354, 49%, 81%);
 }
