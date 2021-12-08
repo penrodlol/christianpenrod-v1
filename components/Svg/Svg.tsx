@@ -23,7 +23,9 @@ const SvgComponent = (
     ref={ref}
     {...props}
   >
-    <path {...SVGS.get(props.name)} />
+    {SVGS.get(props.name)?.map((attrs, i) => (
+      <path key={`${props.name}-${i}`} {...attrs} />
+    ))}
     <title>{props.name}</title>
   </svg>
 );
