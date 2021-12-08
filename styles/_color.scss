@@ -8,7 +8,8 @@
 :root {
   &[theme='dark'] {
     --background: hsl(222, 30%, 13%);
-    --background-offset: hsl(222, 50%, 8%);
+    --background-heavy: hsl(222, 50%, 8%);
+    --background-light: hsl(222, 29%, 16%);
     --text: hsl(0, 0%, 80%);
     --text-faded: hsl(0, 0%, 59%);
     --basic: hsl(233, 7%, 78%);
@@ -18,13 +19,15 @@
     --secondary: hsl(39, 100%, 90%);
     --secondary-hover: hsl(39, 88%, 84%);
     --tertiary: hsl(264, 81%, 84%);
+    --tertiary-hover: hsl(264, 41%, 72%);
 
     @include shadow(0deg 0% 2%);
   }
 
   &[theme='light'] {
     --background: hsl(225, 38%, 94%);
-    --background-offset: hsl(230, 24%, 85%);
+    --background-heavy: hsl(230, 24%, 85%);
+    --background-light: hsl(216, 100%, 99%);
     --text: hsl(0, 0%, 9%);
     --text-faded: hsl(0, 0%, 37%);
     --basic: hsl(228, 16%, 70%);
@@ -33,7 +36,8 @@
     --primary-hover: hsl(229, 50%, 62%);
     --secondary: hsl(39, 88%, 84%);
     --secondary-hover: hsl(39, 90%, 81%);
-    --tertiary: hsl(265, 80%, 77%);
+    --tertiary: hsl(266, 57%, 86%);
+    --tertiary-hover: hsl(266, 30%, 75%);
 
     @include shadow(0deg 0% 63%);
   }

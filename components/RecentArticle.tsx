@@ -1,52 +1,55 @@
 import { Article } from '@interfaces/article.interface';
+import Link from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Divider } from './Divider';
 import { Svg } from './Svg';
 
 const Wrapper = styled.div`
-  height: 20.25rem;
-  background: var(--text-8);
-  border-radius: var(--rounded-1);
+  background: var(--background);
+  border-radius: var(--rounded);
+  height: 22rem;
+  display: grid;
+  grid-template-rows: auto 8rem auto;
   padding: 1.25rem;
   cursor: pointer;
 `;
 
-const Header = styled.div`
-  height: 5rem;
-`;
+const Header = styled.div``;
 
 const Published = styled.span`
-  font-size: 0.85em;
-  color: var(--text-3);
-  display: block;
+  color: var(--text-faded);
 `;
 
-const Title = styled.h3`
-  font-size: var(--font-size-sm);
-  display: block;
+const Tag = styled.div`
+  background: var(--secondary);
+  font-size: 0.8em;
+  font-weight: 600;
+  width: max-content;
+  color: black;
+  padding: 0.3rem 0.8rem;
+  margin: 0.3rem 0;
+  border-radius: 12rem;
+`;
+
+const Title = styled.span`
+  font-size: 1.3em;
+  font-weight: 500;
+  letter-spacing: 0.15rem;
 `;
 
 const Description = styled.p`
-  height: 8rem;
+  font-size: 0.9em;
+  line-height: 1.5rem;
+  padding: 0.5rem 0.5rem;
 `;
 
 const Footer = styled.div`
-  height: 4rem;
   display: grid;
   grid-auto-flow: column;
   gap: 0.5rem;
   align-items: center;
   justify-content: end;
-  padding: 0 1rem;
-`;
-
-const ReadMore = styled.button`
-  background: transparent;
-  border: none;
-  color: var(--secondary-8);
-  font-weight: bold;
-  cursor: pointer;
 `;
 
 export interface RecentArticleProps {
@@ -55,21 +58,20 @@ export interface RecentArticleProps {
 
 export const RecentArticle: FC<RecentArticleProps> = ({ article }) => {
   return (
-    <Wrapper>
-      <Header>
-        <Published>{article.published}</Published>
-        <Title>{article.title}</Title>
-      </Header>
-      <Divider />
-      <Description>
-        Are you working with GraphQL and want to manage your local state? If so,
-        please join me as I show how to approach local state with Apollo Angular
-        and NgRx ComponentStore.
-      </Description>
-      <Footer>
-        <ReadMore>Read More</ReadMore>
-        <Svg name="arrow-right" width="1.7rem" fill="var(--secondary-8)" />
-      </Footer>
-    </Wrapper>
+    <Link href="/" passHref>
+      <Wrapper>
+        <Header>
+          <Published>{article.published}</Published>
+          <Tag>#{article.tag}</Tag>
+          <Title>{article.title}</Title>
+          <Divider />
+        </Header>
+        <Description>{article.description}</Description>
+        <Footer>
+          Read More
+          <Svg name="arrow-right" width={25} />
+        </Footer>
+      </Wrapper>
+    </Link>
   );
 };

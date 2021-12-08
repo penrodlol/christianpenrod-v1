@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   right: 1.25rem;
   margin: 0 auto;
   max-width: var(--sm);
-  background: var(--background-offset);
+  background: var(--background-heavy);
   border-radius: var(--rounded);
   box-shadow: var(--shadow);
 `;
@@ -48,8 +48,6 @@ const Footer = styled.div`
 
 const ActiveDialogStyles = createGlobalStyle`
   #hamburger { display: none; }
-
-  body { overflow: hidden; }
 `;
 
 export interface DialogProps {

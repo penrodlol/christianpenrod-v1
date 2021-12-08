@@ -1,9 +1,11 @@
 @import '@fontsource/poppins';
 @import 'atropos/scss';
 
-@import 'color';
+@import 'anchors';
 @import 'breakpoint';
+@import 'color';
 @import 'misc';
+@import 'scrollbar';
 
 *,
 *::before,

@@ -3,7 +3,7 @@ export interface Article {
   title: string;
   description: string;
   published: string;
-  tags: Array<string>;
+  tag: string;
 }
 
 export type Articles = Array<Article>;

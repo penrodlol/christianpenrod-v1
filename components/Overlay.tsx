@@ -27,7 +27,7 @@ export const Overlay: FC<OverlayProps> = (props) => {
 
   return (
     <OverlayWrapper show={props.show} onClick={props.onClick}>
-      <RemoveBodyOverflow />
+      {props.show && <RemoveBodyOverflow />}
       <OverlayContent>{props.children}</OverlayContent>
     </OverlayWrapper>
   );

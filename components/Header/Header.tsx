@@ -5,6 +5,7 @@ import { HeaderMenu } from './HeaderMenu';
 
 const Wrapper = styled.nav`
   width: 100vw;
+  max-width: 100%;
 `;
 
 const InnerWrapper = styled.div`

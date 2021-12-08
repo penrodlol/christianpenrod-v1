@@ -23,27 +23,21 @@ const Wrapper = styled.button<ButtonProps>`
   ${({ status }) => {
     switch (status) {
       case 'secondary':
+        return `TBD`;
+      case 'cta':
+        return `
+          background: var(--tertiary);
+
+          &:hover:not(:active, :disabled) {
+            background: var(--tertiary-hover);
+          }
+        `;
+      default:
         return `
           background: var(--basic);
 
           &:hover:not(:active, :disabled) {
             background: var(--basic-hover);
-          }
-        `;
-      case 'cta':
-        return `
-          background: var(--secondary);
-
-          &:hover:not(:active, :disabled) {
-            background: var(--secondary-hover);
-          }
-        `;
-      default:
-        return `
-          background: var(--primary);
-
-          &:hover:not(:active, :disabled) {
-            background: var(--primary-hover);
           }
         `;
     }

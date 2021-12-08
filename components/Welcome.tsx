@@ -4,7 +4,7 @@ import { ContactForm } from './ContactForm';
 import { Divider } from './Divider';
 import { GradientText } from './GradientText';
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   margin: 0 auto;
   max-width: var(--md);
 `;
