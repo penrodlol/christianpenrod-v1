@@ -78,7 +78,7 @@ export const Dialog: FC<DialogProps> = (props) => {
   return (
     <Overlay show={open} onClick={props.onClose}>
       {open && <ActiveDialogStyles />}
-      <Wrapper>
+      <Wrapper onClick={(e) => e.stopPropagation()}>
         <Header>
           <Title>{props.title}</Title>
           <Close aria-label={props.closeAria} onClick={props.onClose}>
