@@ -31,8 +31,8 @@ const RecentArticlesWrapper = styled.section`
       padding: 2rem 1.75rem;
     }
     100% {
-      margin-top: 8rem;
-      padding: 5rem 1.75rem;
+      margin-top: 5rem;
+      padding: 4rem 1.75rem;
     }
   }
 `;
