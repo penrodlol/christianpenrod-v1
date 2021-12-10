@@ -1,3 +1,4 @@
+import { AppHead } from '@components/AppHead';
 import { Header } from '@components/Header/Header';
 import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
@@ -5,7 +6,6 @@ import { Articles } from '@interfaces/article.interface';
 import { ARTICLES } from '@stubs/articles.stub';
 import dayjs from 'dayjs';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import Head from 'next/head';
 import styled from 'styled-components';
 
 const Content = styled.div`
@@ -42,12 +42,10 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
-      <Head>
-        <title>Christian Penrod</title>
-        <meta name="description" content="Christian Penrod Personal Website" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <AppHead
+        title="Christian Penrod - Home"
+        description="Home page of website."
+      />
       <main>
         <Header></Header>
         <Content>
@@ -65,9 +63,9 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
 export const getStaticProps: GetStaticProps<{ articles: Articles }> =
   async () => {
-    const articles = ARTICLES.sort((a, b) =>
-      dayjs(a.published) < dayjs(b.published) ? 1 : -1,
-    ).filter((_, index) => index <= 2);
+    const articles = [...ARTICLES]
+      .sort((a, b) => (dayjs(a.published) < dayjs(b.published) ? 1 : -1))
+      .filter((_, index) => index <= 2);
 
     return { props: { articles } };
   };
