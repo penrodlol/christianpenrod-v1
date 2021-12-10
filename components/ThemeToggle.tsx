@@ -1,8 +1,6 @@
-import { darkmodeState } from 'atoms/darkmode.atom';
 import { DARKMODE_KEY } from 'const/storage';
 import gsap from 'gsap';
 import React, { createRef, useEffect, useRef, useState } from 'react';
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { Svg, SvgName } from './Svg';
 
@@ -20,7 +18,7 @@ interface SvgState {
 }
 
 export const ThemeToggle = () => {
-  const [darkmode, setDarkMode] = useRecoilState(darkmodeState);
+  const [darkmode, setDarkMode] = useState<boolean | undefined>(undefined);
   const [initialSvg, setInitialSvg] = useState<SvgState>();
 
   const sunRef = createRef<SVGSVGElement>();
@@ -45,6 +43,9 @@ export const ThemeToggle = () => {
 
   function handleToggleTheme() {
     if (tl.isActive()) return;
+
+    localStorage.setItem(DARKMODE_KEY, (!darkmode).toString());
+    document.documentElement.setAttribute('theme', darkmode ? 'light' : 'dark');
 
     setDarkMode(!darkmode);
 

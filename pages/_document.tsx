@@ -1,17 +1,7 @@
-import Document, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { evalDarkModeHTML } from 'utils/eval-dark-mode';
 
 class AppDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
-    return Document.getInitialProps(ctx);
-  }
-
   render() {
     return (
       <Html>
