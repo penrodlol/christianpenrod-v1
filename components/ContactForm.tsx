@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
   /* prettier-ignore */
   @keyframes contact-form-wrapper {
-    0%, 80% { width: 100%; }
+    0%, 20% { width: 15rem; }
     100% { width: 10rem; }
   }
 `;

@@ -6,7 +6,7 @@ import { GradientText } from './GradientText';
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: var(--md);
+  max-width: ${({ theme }) => theme.breakpoint.sm};
 `;
 
 const InnerWrapper = styled.div`
@@ -25,7 +25,7 @@ const Slogan = styled.h2`
 `;
 
 const Position = styled.h3`
-  color: var(--text-faded);
+  color: ${({ theme }) => theme.text.faded};
   margin-bottom: 1.25rem;
   --tt-key: welcome-position;
 
@@ -37,17 +37,22 @@ const Position = styled.h3`
 `;
 
 const Bio = styled.p`
-  max-width: 40ch;
   margin-top: 1.25rem;
   margin-bottom: 2.25rem;
   font-weight: 600;
   letter-spacing: 0.09em;
   --tt-key: welcome-bio;
 
-  /* prettier-ignore */
   @keyframes welcome-bio {
-    0%, 20% { font-size: 1em; }
-    100% { font-size: 1.25em; }
+    0%,
+    20% {
+      font-size: 1em;
+      max-width: 40ch;
+    }
+    100% {
+      font-size: 1.25em;
+      max-width: 50ch;
+    }
   }
 `;
 

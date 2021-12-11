@@ -18,8 +18,8 @@ const WelcomeWrapper = styled.section`
 `;
 
 const RecentArticlesWrapper = styled.section`
-  background: ${({ theme }) => theme.background.light}
-  border: ${({ theme }) => `solid ${theme.background.heavy}`}
+  background: ${({ theme }) => theme.background.light};
+  border: ${({ theme }) => `solid ${theme.background.heavy}`};
 
   border-width: 0.1rem 0;
   --tt-key: recent-articles-wrapper;
@@ -53,8 +53,8 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Welcome />
           </WelcomeWrapper>
           {/* <RecentArticlesWrapper>
-            <RecentArticles articles={articles} />
-          </RecentArticlesWrapper> */}
+              <RecentArticles articles={articles} />
+            </RecentArticlesWrapper> */}
         </Content>
       </main>
     </>
