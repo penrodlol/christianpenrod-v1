@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^4.5.0",
+    "@fontsource/victor-mono": "^4.5.0",
     "atropos": "^1.0.1",
     "dayjs": "^1.10.7",
     "gsap": "npm:@gsap/shockingly",

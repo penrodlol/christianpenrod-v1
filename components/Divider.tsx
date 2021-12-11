@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: var(--primary);
+  background: ${({ theme }) => theme.primary.base};
+  border-radius: ${({ theme }) => theme.rounded.base};
   height: 0.3rem;
-  border-radius: var(--rounded);
   margin: 0.7rem 0;
 `;
 

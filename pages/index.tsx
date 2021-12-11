@@ -1,6 +1,5 @@
 import { AppHead } from '@components/AppHead';
 import { Header } from '@components/Header/Header';
-import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
 import { Articles } from '@interfaces/article.interface';
 import { ARTICLES } from '@stubs/articles.stub';
@@ -19,8 +18,9 @@ const WelcomeWrapper = styled.section`
 `;
 
 const RecentArticlesWrapper = styled.section`
-  background: var(--background-light);
-  border: solid var(--background-heavy);
+  background: ${({ theme }) => theme.background.light}
+  border: ${({ theme }) => `solid ${theme.background.heavy}`}
+
   border-width: 0.1rem 0;
   --tt-key: recent-articles-wrapper;
 
@@ -52,9 +52,9 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <WelcomeWrapper>
             <Welcome />
           </WelcomeWrapper>
-          <RecentArticlesWrapper>
+          {/* <RecentArticlesWrapper>
             <RecentArticles articles={articles} />
-          </RecentArticlesWrapper>
+          </RecentArticlesWrapper> */}
         </Content>
       </main>
     </>

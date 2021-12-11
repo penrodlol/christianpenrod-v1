@@ -7,11 +7,9 @@ const Wrapper = styled.div`
 `;
 
 const HamburgerItem = styled.div`
-  border-radius: var(--rounded);
+  border-radius: ${({ theme }) => theme.rounded.base};
   background: -webkit-linear-gradient(
-    47deg,
-    var(--primary),
-    hsl(265, 80%, 77%)
+    ${({ theme }) => `47deg, ${theme.primary.base}, hsl(265, 80%, 77%)`}
   );
   height: 0.3rem;
   width: 2.5rem;

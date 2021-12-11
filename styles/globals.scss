@@ -1,11 +1,6 @@
 @import '@fontsource/poppins';
+@import '@fontsource/victor-mono';
 @import 'atropos/scss';
-
-@import 'anchors';
-@import 'breakpoint';
-@import 'color';
-@import 'misc';
-@import 'scrollbar';
 
 *,
 *::before,
@@ -13,10 +8,4 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--background);
-  color: var(--text);
 }

@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@components/Theme/ThemeProvider';
 import { Typetura } from '@components/Typetura';
 import gsap from 'gsap';
 import { MorphSVGPlugin } from 'gsap/dist/MorphSVGPlugin';
@@ -10,7 +11,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Typetura />
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }

@@ -5,15 +5,15 @@ import { Overlay } from './Overlay';
 import { Svg } from './Svg';
 
 const Wrapper = styled.div`
+  max-width: ${({ theme }) => theme.breakpoint.sm};
+  background: ${({ theme }) => theme.background.heavy};
+  border-radius: ${({ theme }) => theme.rounded.base};
+  box-shadow: ${({ theme }) => theme.shadow.base};
   position: absolute;
   top: 25%;
   left: 1.25rem;
   right: 1.25rem;
   margin: 0 auto;
-  max-width: var(--sm);
-  background: var(--background-heavy);
-  border-radius: var(--rounded);
-  box-shadow: var(--shadow);
 `;
 
 const Header = styled.div`
@@ -80,7 +80,7 @@ export const Dialog: FC<DialogProps> = (props) => {
         <Header>
           <Title>{props.title}</Title>
           <Close aria-label={props.closeAria} onClick={props.onClose}>
-            <Svg name="close" fill="var(--text)" />
+            <Svg name="close" fill="var(--text-base)" />
           </Close>
         </Header>
         <Content>{props.children}</Content>

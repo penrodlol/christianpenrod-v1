@@ -19,7 +19,7 @@ const SvgComponent = (
     xmlns="http://www.w3.org/2000/svg"
     width="35"
     height="35"
-    fill="var(--primary)"
+    fill="var(--primary-base)"
     ref={ref}
     {...props}
   >

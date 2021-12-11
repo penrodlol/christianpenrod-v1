@@ -204,6 +204,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.5.0.tgz#a419697b85864afbf8363f5c247b1e9d1f117564"
   integrity sha512-RqgMIQqKHWNH3IUj+a0MAhlb4g5fftsXRTJ2bauefBmfM8Ja5q+qQZjKwyB/iCc+paJD320zFnLJ8G+y1ZyemQ==
 
+"@fontsource/victor-mono@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/victor-mono/-/victor-mono-4.5.0.tgz#c0b3a0e61c243daf99985c385feb32b6594502fa"
+  integrity sha512-NAji1hf93hJK7DxOcMISegZjDDxfp2R3l+4gYdQlQDAjjLap7IEX6J0unR51z87+WMVpFNggMlHIPAK6+UleIg==
+
 "@hapi/accept@5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.2.tgz#ab7043b037e68b722f93f376afb05e85c0699523"

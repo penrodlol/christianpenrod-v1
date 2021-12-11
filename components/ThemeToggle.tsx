@@ -1,8 +1,9 @@
-import { DARKMODE_KEY } from 'const/storage';
+import { THEME_KEY } from '@const/storage';
 import gsap from 'gsap';
 import React, { createRef, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Svg, SvgName } from './Svg';
+import { Theme, ThemeProviderContext } from './Theme/ThemeProvider';
 
 const Wrapper = styled.button`
   cursor: pointer;
@@ -18,8 +19,7 @@ interface SvgState {
 }
 
 export const ThemeToggle = () => {
-  const [darkmode, setDarkMode] = useState<boolean | undefined>(undefined);
-  const [initialSvg, setInitialSvg] = useState<SvgState>();
+  const [svgs, setSvgs] = useState<SvgState>();
 
   const sunRef = createRef<SVGSVGElement>();
   const moonRef = createRef<SVGSVGElement>();
@@ -32,46 +32,47 @@ export const ThemeToggle = () => {
   }, [sunRef, moonRef]);
 
   useEffect(() => {
-    const persisted = localStorage.getItem(DARKMODE_KEY) === 'true';
+    const id = localStorage.getItem(THEME_KEY) as Theme;
 
-    setDarkMode(persisted);
-    setInitialSvg({
-      source: persisted ? 'sun' : 'moon',
-      target: persisted ? 'moon' : 'sun',
+    setSvgs({
+      source: id === 'dark' ? 'moon' : 'sun',
+      target: id === 'dark' ? 'sun' : 'moon',
     });
-  }, [setDarkMode]);
+  }, []);
 
-  function handleToggleTheme() {
-    if (tl.isActive()) return;
-
-    localStorage.setItem(DARKMODE_KEY, (!darkmode).toString());
-    document.documentElement.setAttribute('theme', darkmode ? 'light' : 'dark');
-
-    setDarkMode(!darkmode);
-
-    const source =
-      initialSvg?.source === 'moon' ? moonPath.current : sunPath.current;
-    const target = darkmode ? moonPath.current : sunPath.current;
+  function animateToggle(id: Theme) {
+    const source = svgs?.source === 'moon' ? moonPath.current : sunPath.current;
+    const target = id === 'dark' ? sunPath.current : moonPath.current;
 
     tl.to(source as SVGPathElement, { morphSVG: target });
   }
 
   return (
     <>
-      {initialSvg != null && (
-        <Wrapper onClick={handleToggleTheme}>
-          <Svg
-            name={initialSvg.source}
-            ref={initialSvg.source === 'sun' ? sunRef : moonRef}
-            aria-label={`Toggle ${initialSvg.source} mode`}
-          />
-          <Svg
-            name={initialSvg.target}
-            ref={initialSvg.target === 'moon' ? moonRef : sunRef}
-            aria-label={`Toggle ${initialSvg.target} mode`}
-            display="none"
-          />
-        </Wrapper>
+      {svgs && (
+        <ThemeProviderContext.Consumer>
+          {({ id, toggleTheme }) => (
+            <Wrapper
+              aria-label={`Toggle ${id} mode`}
+              onClick={() => {
+                if (tl.isActive()) return;
+
+                toggleTheme();
+                animateToggle(id);
+              }}
+            >
+              <Svg
+                name={svgs.source}
+                ref={svgs.source === 'sun' ? sunRef : moonRef}
+              />
+              <Svg
+                name={svgs.target}
+                ref={svgs.target === 'moon' ? moonRef : sunRef}
+                display="none"
+              />
+            </Wrapper>
+          )}
+        </ThemeProviderContext.Consumer>
       )}
     </>
   );

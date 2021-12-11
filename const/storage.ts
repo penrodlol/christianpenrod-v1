@@ -1,1 +1,1 @@
-export const DARKMODE_KEY = 'darkmode';
+export const THEME_KEY = 'theme';

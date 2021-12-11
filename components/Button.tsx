@@ -8,40 +8,41 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Wrapper = styled.button<ButtonProps>`
+  border-radius: ${({ theme }) => theme.rounded.base};
+  box-shadow: ${({ theme }) => theme.shadow.base};
   border: none;
   cursor: pointer;
   font-size: 1.15em;
   font-weight: 600;
-  border-radius: var(--rounded);
   padding: 0.65rem 1.6rem;
-  box-shadow: var(--shadow);
 
   &:disabled {
     cursor: not-allowed;
   }
 
-  ${({ status }) => {
+  background: ${({ status, theme }) => {
     switch (status) {
       case 'secondary':
-        return `TBD`;
+        return '';
       case 'cta':
-        return `
-          background: var(--tertiary);
-
-          &:hover:not(:active, :disabled) {
-            background: var(--tertiary-hover);
-          }
-        `;
+        return theme.tertiary.base;
       default:
-        return `
-          background: var(--basic);
-
-          &:hover:not(:active, :disabled) {
-            background: var(--basic-hover);
-          }
-        `;
+        return theme.basic.base;
     }
-  }}
+  }};
+
+  &:hover:not(:active, :disabled) {
+    background: ${({ status, theme }) => {
+      switch (status) {
+        case 'secondary':
+          return '';
+        case 'cta':
+          return theme.tertiary.hover;
+        default:
+          return theme.basic.hover;
+      }
+    }};
+  }
 `;
 
 export const Button: FC<ButtonProps> = (props) => (
