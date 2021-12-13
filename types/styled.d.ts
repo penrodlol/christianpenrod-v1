@@ -25,6 +25,7 @@ export interface Color {
 
 export interface Shadow {
   base: string;
+  hover: string;
 }
 
 export interface Rounded {
