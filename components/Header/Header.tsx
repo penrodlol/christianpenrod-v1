@@ -9,7 +9,7 @@ const Wrapper = styled.nav`
 `;
 
 const InnerWrapper = styled.div`
-  max-width: var(--xl2);
+  max-width: ${({ theme }) => theme.breakpoint.xl};
   margin: 0 auto;
   padding: 1rem 2rem;
   display: grid;

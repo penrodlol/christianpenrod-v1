@@ -9,6 +9,8 @@ import { GradientText } from './GradientText';
 
 const Wrapper = styled.div`
   position: relative;
+  max-width: calc(${({ theme }) => theme.breakpoint.xl} + 15em);
+  margin: 0 auto;
 `;
 
 const InnerWrapper = styled.div`

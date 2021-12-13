@@ -11,7 +11,6 @@ import styled, { css } from 'styled-components';
 
 const Content = styled.div`
   min-width: 15.625rem;
-  overflow-x: hidden;
   --tt-key: home-content;
 
   /* prettier-ignore */

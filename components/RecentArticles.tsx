@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpoint.lg};
   margin: 0 auto;
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
     max-width: ${({ theme }) => theme.breakpoint.xs};
   }
 `;
@@ -23,7 +23,7 @@ const InnerWrapper = styled.div`
     100% { gap: 2rem; }
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
     grid-auto-flow: row;
   }
 `;
