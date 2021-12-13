@@ -4,6 +4,7 @@ import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
 import { Articles } from '@interfaces/article.interface';
 import { ARTICLES } from '@stubs/articles.stub';
+import { generateGridBackground } from '@utils/generate-grid-background';
 import dayjs from 'dayjs';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled, { css } from 'styled-components';
@@ -25,10 +26,11 @@ const WelcomeWrapper = styled.section`
 `;
 
 const RecentArticlesWrapper = styled.section(
-  ({ theme: { background } }) =>
+  ({ theme }) =>
     css`
-      background: ${background.light};
-      border: solid ${background.heavy};
+      background: ${theme.background.light};
+      border: solid ${theme.background.heavy};
+      ${generateGridBackground(theme)};
       border-width: 0.1rem 0;
       position: relative;
       z-index: 1;
