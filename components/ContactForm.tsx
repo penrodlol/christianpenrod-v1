@@ -1,21 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { Button } from './Button';
-import { Dialog } from './Dialog';
-
-const Wrapper = styled.div`
-  --tt-key: contact-form-wrapper;
-
-  .contact-trigger {
-    width: 100%;
-  }
-
-  /* prettier-ignore */
-  @keyframes contact-form-wrapper {
-    0%, 20% { width: 15rem; }
-    100% { width: 10rem; }
-  }
-`;
 
 export const ContactForm = () => {
   const [open, setOpen] = useState(false);
@@ -25,9 +9,8 @@ export const ContactForm = () => {
   }
 
   return (
-    <Wrapper>
+    <>
       <Button
-        className="contact-trigger"
         type="button"
         status="cta"
         aria-label="Click to contact via email."
@@ -35,7 +18,7 @@ export const ContactForm = () => {
       >
         Contact
       </Button>
-      <Dialog
+      {/* <Dialog
         title="Contact Me"
         closeAria="Cancel email submission"
         primary={{
@@ -46,7 +29,7 @@ export const ContactForm = () => {
         open={open}
         onClose={() => setOpen(false)}
         onSubmit={submitEmail}
-      ></Dialog>
-    </Wrapper>
+      ></Dialog> */}
+    </>
   );
 };

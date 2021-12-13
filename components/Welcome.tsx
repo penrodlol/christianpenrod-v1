@@ -1,15 +1,19 @@
-import React, { createRef } from 'react';
+import Image from 'next/image';
+import React from 'react';
 import styled from 'styled-components';
+import { Button } from './Button';
 import { ContactForm } from './ContactForm';
 import { Divider } from './Divider';
+import { ExternalLink } from './ExternalLink';
 import { GradientText } from './GradientText';
 
 const Wrapper = styled.div`
-  margin: 0 auto;
-  max-width: ${({ theme }) => theme.breakpoint.sm};
+  position: relative;
 `;
 
 const InnerWrapper = styled.div`
+  position: relative;
+  z-index: 1;
   margin: 0 auto;
   max-width: max-content;
 `;
@@ -56,13 +60,65 @@ const Bio = styled.p`
   }
 `;
 
+const ContactWrapper = styled.div`
+  display: grid;
+  gap: 2rem;
+
+  > :first-child {
+    width: 100%;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.sm}) {
+    grid-auto-flow: column;
+    gap: 3.5rem;
+    align-items: center;
+    width: max-content;
+
+    > :first-child {
+      width: 10rem;
+    }
+  }
+`;
+
+const ContactIconsWrapper = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2rem;
+  align-items: center;
+  margin: 0 auto;
+
+  > :last-child {
+    transform: translateY(0.1rem);
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    gap: 0;
+    width: 80%;
+    justify-content: space-between;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: absolute;
+  bottom: -10rem;
+  right: 0;
+  transform: rotate(5deg);
+  z-index: 0;
+  --tt-key: welcome-image-wrapper;
+
+  /* prettier-ignore */
+  @keyframes welcome-image-wrapper {
+    0%, 95% { opacity: 0.06; }
+    100% { opacity: 0.5; }
+  }
+`;
+
 export const Welcome = () => {
-  const welcomeTitleRef = createRef<HTMLHeadingElement>();
   return (
     <Wrapper>
       <InnerWrapper>
         <GradientText>
-          <Slogan ref={welcomeTitleRef}>Hi, I&apos;m Christian.</Slogan>
+          <Slogan>Hi, I&apos;m Christian.</Slogan>
         </GradientText>
         <Position>Full-Stack Web Developer</Position>
         <Divider />
@@ -71,8 +127,32 @@ export const Welcome = () => {
           cum assumenda, culpa aliquid porro corporis illo ut quod facere
           reprehenderit quo blanditiis debitis possimus ex labore sunt.
         </Bio>
-        <ContactForm />
+        <ContactWrapper>
+          <ContactForm />
+          <ContactIconsWrapper>
+            <ExternalLink href="https://twitter.com/penrodlol">
+              <Button icon="twitter" aria-label="Navigate to my twitter." />
+            </ExternalLink>
+            <ExternalLink href="https://github.com/penrodlol">
+              <Button icon="github" aria-label="Navigate to my github." />
+            </ExternalLink>
+            <ExternalLink href="https://linkedin.com/in/christian-penrod-07618314b/">
+              <Button icon="linkedin" aria-label="Navigate to my linkedin." />
+            </ExternalLink>
+          </ContactIconsWrapper>
+        </ContactWrapper>
       </InnerWrapper>
+      <ImageWrapper>
+        <Image
+          src="/img/ideas.webp"
+          alt="Mind Exploding!"
+          priority
+          layout="fixed"
+          width={550}
+          height={550}
+          quality={100}
+        />
+      </ImageWrapper>
     </Wrapper>
   );
 };

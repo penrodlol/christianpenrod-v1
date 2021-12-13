@@ -6,23 +6,24 @@ import { Divider } from './Divider';
 import { Svg } from './Svg';
 
 const Wrapper = styled.div`
-  background: var(--background);
-  border-radius: var(--rounded);
-  height: 22rem;
-  display: grid;
-  grid-template-rows: auto 8rem auto;
+  background: ${({ theme }) => theme.background.base};
+  border-radius: ${({ theme }) => theme.rounded.base};
+  box-shadow: ${({ theme }) => theme.shadow.base};
   padding: 1.25rem;
   cursor: pointer;
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadow.hover};
+  }
 `;
 
-const Header = styled.div``;
-
 const Published = styled.span`
-  color: var(--text-faded);
+  color: ${({ theme }) => theme.text.faded};
+  display: block;
 `;
 
 const Tag = styled.div`
-  background: var(--secondary);
+  background: ${({ theme }) => theme.secondary.base};
   font-size: 0.8em;
   font-weight: 600;
   width: max-content;
@@ -33,14 +34,21 @@ const Tag = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 1.3em;
   font-weight: 500;
   letter-spacing: 0.15rem;
+  --tt-key: recent-article-title;
+
+  /* prettier-ignore */
+  @keyframes recent-article-title {
+    0%, 40% { font-size: 1em; }
+    100% { font-size: 1.3em; }
+  }
 `;
 
 const Description = styled.p`
   font-size: 0.9em;
   line-height: 1.5rem;
+  min-height: 6rem;
   padding: 0.5rem 0.5rem;
 `;
 
@@ -59,13 +67,13 @@ export interface RecentArticleProps {
 export const RecentArticle: FC<RecentArticleProps> = ({ article }) => {
   return (
     <Link href="/" passHref>
-      <Wrapper>
-        <Header>
+      <Wrapper tabIndex={0}>
+        <div>
           <Published>{article.published}</Published>
           <Tag>#{article.tag}</Tag>
           <Title>{article.title}</Title>
           <Divider />
-        </Header>
+        </div>
         <Description>{article.description}</Description>
         <Footer>
           Read More

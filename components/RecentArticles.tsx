@@ -1,49 +1,42 @@
 import { Articles } from '@interfaces/article.interface';
-import Atropos from 'atropos/react';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { RecentArticle } from './RecentArticle';
 
 const Wrapper = styled.div`
-  max-width: var(--xl);
+  max-width: ${({ theme }) => theme.breakpoint.lg};
   margin: 0 auto;
-`;
 
-const Title = styled.h3`
-  font-size: 2em;
-  margin-bottom: 1.4rem;
-  margin-left: 1rem;
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    max-width: ${({ theme }) => theme.breakpoint.xs};
+  }
 `;
 
 const InnerWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 5rem;
-  justify-content: center;
+  grid-auto-flow: column;
+  --tt-key: recent-articles-inner-wrapper;
 
-  @media screen and (max-width: 80em) {
-    max-width: var(--md);
-    grid-template-columns: repeat(1, minmax(0, 95%));
+  /* prettier-ignore */
+  @keyframes recent-articles-inner-wrapper {
+    0%, 40% { gap: 1.5rem;}
+    100% { gap: 2rem; }
   }
 
-  @media screen and (max-width: 48em) {
-    gap: 2rem;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    grid-auto-flow: row;
   }
+`;
 
-  .atropos {
-    height: 22rem;
+const Title = styled.h3`
+  margin-bottom: 1rem;
+  // margin-left: 3rem;
+  --tt-key: recent-articles-title;
 
-    &,
-    &-scale,
-    &-rotate,
-    &-inner {
-      border-radius: var(--rounded);
-    }
-
-    &:not(:hover) {
-      box-shadow: var(--shadow);
-    }
+  /* prettier-ignore */
+  @keyframes recent-articles-title {
+    0%, 40% { font-size: 1.4em; margin-left: 1rem; }
+    100% { font-size: 1.7em; margin-left: 3rem; }
   }
 `;
 
@@ -57,9 +50,7 @@ export const RecentArticles: FC<RecentArticlesProps> = ({ articles }) => {
       <Title>Recent Articles</Title>
       <InnerWrapper>
         {articles.map((article) => (
-          <Atropos key={article.id}>
-            <RecentArticle article={article} />
-          </Atropos>
+          <RecentArticle key={article.id} article={article} />
         ))}
       </InnerWrapper>
     </Wrapper>
