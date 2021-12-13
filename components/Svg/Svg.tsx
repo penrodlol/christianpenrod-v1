@@ -13,21 +13,25 @@ export interface SvgProps extends SVGAttributes<SVGElement> {
 const SvgComponent = (
   props: PropsWithChildren<SvgProps>,
   ref: ForwardedRef<SVGSVGElement>,
-) => (
-  <svg
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-    width="35"
-    height="35"
-    fill="var(--primary-base)"
-    ref={ref}
-    {...props}
-  >
-    {SVGS.get(props.name)?.map((attrs, i) => (
-      <path key={`${props.name}-${i}`} {...attrs} />
-    ))}
-    <title>{props.name}</title>
-  </svg>
-);
+) => {
+  const svg = SVGS.get(props.name);
+
+  return (
+    <svg
+      viewBox={svg?.viewBox || '0 0 20 20'}
+      xmlns="http://www.w3.org/2000/svg"
+      width="35"
+      height="35"
+      fill="var(--primary-base)"
+      ref={ref}
+      {...props}
+    >
+      {svg?.pathAttrs?.map((attrs, i) => (
+        <path key={`${props.name}-${i}`} {...attrs} />
+      ))}
+      <title>{props.name}</title>
+    </svg>
+  );
+};
 
 export const Svg = forwardRef(SvgComponent);
