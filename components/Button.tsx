@@ -1,50 +1,75 @@
 import { ButtonHTMLAttributes, FC } from 'react';
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { Svg, SvgName } from './Svg';
 
 export type ButtonStatus = 'primary' | 'secondary' | 'cta';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   status?: ButtonStatus;
+  icon?: SvgName;
+  iconSize?: number;
 }
 
-const Wrapper = styled.button<ButtonProps>`
-  border-radius: ${({ theme }) => theme.rounded.base};
-  box-shadow: ${({ theme }) => theme.shadow.base};
-  border: none;
-  cursor: pointer;
-  font-size: 1.15em;
-  font-weight: 600;
-  padding: 0.65rem 1.6rem;
+const Wrapper = styled.button<ButtonProps>(({ status, theme, icon }) => {
+  let background!: string;
+  let backgroundHover!: string;
+  let iconStyles!: FlattenSimpleInterpolation;
 
-  &:disabled {
-    cursor: not-allowed;
-  }
+  if (icon) {
+    iconStyles = css`
+      display: flex;
+      align-items: center;
 
-  background: ${({ status, theme }) => {
+      &:hover:not(:active, :disabled) {
+        > svg {
+          fill: ${theme.primary.hover};
+        }
+      }
+    `;
+  } else
     switch (status) {
       case 'secondary':
-        return '';
+        background = '';
+        backgroundHover = '';
+        break;
       case 'cta':
-        return theme.tertiary.base;
+        background = theme.tertiary.base;
+        backgroundHover = theme.tertiary.hover;
+        break;
       default:
-        return theme.basic.base;
+        background = theme.basic.base;
+        backgroundHover = theme.basic.hover;
+        break;
     }
-  }};
 
-  &:hover:not(:active, :disabled) {
-    background: ${({ status, theme }) => {
-      switch (status) {
-        case 'secondary':
-          return '';
-        case 'cta':
-          return theme.tertiary.hover;
-        default:
-          return theme.basic.hover;
-      }
-    }};
-  }
-`;
+  return css`
+    border-radius: ${theme.rounded.base};
+    box-shadow: ${icon ? 0 : theme.shadow.base};
+    padding: ${icon ? 0 : '0.65rem 1.6rem'};
+    border: none;
+    cursor: pointer;
+    font-size: 1.15em;
+    font-weight: 600;
+    background: ${background ?? 'transparent'};
+
+    ${iconStyles ?? ''};
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:active, :disabled) {
+      background: ${backgroundHover ?? 'transparent'};
+    }
+  `;
+});
 
 export const Button: FC<ButtonProps> = (props) => (
-  <Wrapper {...props}>{props.children}</Wrapper>
+  <Wrapper {...props}>
+    {props.icon ? (
+      <Svg name={props.icon} width={props.iconSize ?? 30} />
+    ) : (
+      props.children
+    )}
+  </Wrapper>
 );
