@@ -6,11 +6,12 @@ const OverlayWrapper = styled.div<OverlayProps>`
 `;
 
 const OverlayContent = styled.div`
-  background: var(--overlay);
+  background: ${({ theme }) => theme.background.blur};
   position: fixed;
   inset: 0;
+  height: 100vh;
   z-index: 40;
-  backdrop-filter: blur(9px);
+  backdrop-filter: blur(7px) grayscale(0.7);
 `;
 
 const RemoveBodyOverflow = createGlobalStyle`

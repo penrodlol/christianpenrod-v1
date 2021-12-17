@@ -6,6 +6,7 @@ export interface Background {
   base: string;
   heavy: string;
   light: string;
+  blur: string;
 }
 
 export interface Font {

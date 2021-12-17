@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Button } from './Button';
-import { Overlay } from './Overlay';
 import { Svg } from './Svg';
 
 const Wrapper = styled.div`
@@ -74,7 +73,7 @@ export const Dialog: FC<DialogProps> = (props) => {
   useEffect(() => setOpen(props.open), [props.open]);
 
   return (
-    <Overlay show={open} onClick={props.onClose}>
+    <>
       {open && <ActiveDialogStyles />}
       <Wrapper onClick={(e) => e.stopPropagation()}>
         <Header>
@@ -106,6 +105,6 @@ export const Dialog: FC<DialogProps> = (props) => {
           )}
         </Footer>
       </Wrapper>
-    </Overlay>
+    </>
   );
 };

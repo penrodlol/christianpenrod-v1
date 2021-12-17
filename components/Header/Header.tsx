@@ -1,12 +1,19 @@
 import { MediaQuery } from '@components/MediaQuery';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { HeaderInline } from './HeaderInline';
 import { HeaderMenu } from './HeaderMenu';
 
-const Wrapper = styled.nav`
-  width: 100vw;
-  max-width: 100%;
-`;
+const Wrapper = styled.nav(
+  ({ theme }) => css`
+    background: ${theme.background.base};
+    box-shadow: ${theme.shadow.base};
+    width: 100vw;
+    max-width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  `,
+);
 
 const InnerWrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpoint.xl};

@@ -29,20 +29,20 @@ export const ThemeProvider: FC = ({ children }) => {
   const [state, setState] = useState<ThemeProviderState>({
     id: 'base',
     toggleTheme: () =>
-      setState((state) => {
-        const id = state.id === 'dark' ? 'light' : 'dark';
+      setState((snapshot) => {
+        const id = snapshot.id === 'dark' ? 'light' : 'dark';
 
         localStorage.setItem(THEME_KEY, id);
         persistThemeCssVars(ThemeMapper.get(id) as DefaultTheme);
 
-        return { ...state, id };
+        return { ...snapshot, id };
       }),
   });
 
   useEffect(() => {
-    setState((state) => {
+    setState((snapshot) => {
       const id = localStorage.getItem(THEME_KEY) as Theme;
-      return { ...state, id };
+      return { ...snapshot, id };
     });
   }, []);
 
