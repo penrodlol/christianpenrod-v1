@@ -50,7 +50,7 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
       ease: `back.${menu ? 'in' : 'out'}(2)`,
       stagger: {
         each: 0.1,
-        from: menu ? 1 : 0,
+        from: menu ? 2 : 0,
       },
       duration: 0.3,
     })

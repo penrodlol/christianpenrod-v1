@@ -26,13 +26,20 @@ const ScrollbarStyles = css(
       @media screen and (max-width: ${theme.breakpoint.sm}) {
         width: 0.4em;
       }
-    }
-`,
+    }`,
 );
+
+const AnchorTagStyles = css`
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.text.base};
+  }
+`;
 
 const Styles = createGlobalStyle`
   ${BodyStyles}
   ${ScrollbarStyles}
+  ${AnchorTagStyles}
 `;
 
 export const ThemeStyles = () => <Styles />;

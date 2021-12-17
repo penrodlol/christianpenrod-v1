@@ -29,7 +29,7 @@ const Title = styled.span`
   font-size: 1.15em;
 `;
 
-export const HEADER_ROUTES = ['Projects', 'Blog'];
+export const HEADER_ROUTES = ['About', 'Projects', 'Blog'];
 
 export const Header = () => (
   <Wrapper>

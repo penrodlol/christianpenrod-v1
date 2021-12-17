@@ -1,4 +1,5 @@
 import { ThemeToggle } from '@components/ThemeToggle';
+import NextLink from 'next/link';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
@@ -7,9 +8,6 @@ const RoutesWrapper = styled.div`
   grid-auto-flow: column;
   align-items: center;
   gap: 3rem;
-`;
-
-const Route = styled.a`
   font-size: 1.15em;
 `;
 
@@ -20,13 +18,13 @@ export interface HeaderInlineProps {
 export const HeaderInline = (props: PropsWithChildren<HeaderInlineProps>) => (
   <RoutesWrapper>
     {props.routes.map((route) => (
-      <Route
+      <NextLink
         key={route}
-        tabIndex={0}
+        href=""
         aria-label={`Navigate to ${route.toLowerCase()}`}
       >
         {route}
-      </Route>
+      </NextLink>
     ))}
     <ThemeToggle />
   </RoutesWrapper>
