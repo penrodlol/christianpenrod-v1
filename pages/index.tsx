@@ -1,4 +1,5 @@
 import { AppHead } from '@components/AppHead';
+import { Footer } from '@components/Footer';
 import { Header } from '@components/Header/Header';
 import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
@@ -38,11 +39,11 @@ const RecentArticlesWrapper = styled.section(
       @keyframes profile-wrapper {
         0%,
         40% {
-          margin: 2rem 0;
+          margin: 2rem 0 1rem 0;
           padding: 1.75rem 1rem;
         }
         100% {
-          margin: 5rem 0;
+          margin: 5rem 0 2.5rem 0;
           padding: 3rem 4rem;
         }
       }
@@ -68,6 +69,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <RecentArticles articles={articles} />
           </RecentArticlesWrapper>
         </Content>
+        <Footer />
       </main>
     </>
   );

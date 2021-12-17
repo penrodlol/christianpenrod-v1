@@ -3,6 +3,7 @@ export type SvgName =
   | 'sun'
   | 'close'
   | 'arrow-right'
+  | 'arrow-circle-up'
   | 'twitter'
   | 'github'
   | 'linkedin';
@@ -68,6 +69,15 @@ export const SVGS = new Map<SvgName, SvgAttributes>()
     pathAttrs: [
       {
         d: 'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z',
+      },
+    ],
+  })
+  .set('arrow-circle-up', {
+    pathAttrs: [
+      {
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+        d: 'M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z',
       },
     ],
   });

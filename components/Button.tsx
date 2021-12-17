@@ -67,7 +67,11 @@ const Wrapper = styled.button<ButtonProps>(({ status, theme, icon }) => {
 export const Button: FC<ButtonProps> = (props) => (
   <Wrapper {...props}>
     {props.icon ? (
-      <Svg name={props.icon} width={props.iconSize ?? 30} />
+      <Svg
+        name={props.icon}
+        width={props.iconSize ?? 30}
+        height={props.iconSize ?? 30}
+      />
     ) : (
       props.children
     )}
