@@ -1,7 +1,7 @@
 import { Articles } from '@interfaces/article.interface';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { RecentArticle } from './RecentArticle';
+import { ArticleCard } from './ArticleCard';
 
 const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpoint.lg};
@@ -30,13 +30,18 @@ const InnerWrapper = styled.div`
 
 const Title = styled.h3`
   margin-bottom: 1rem;
-  // margin-left: 3rem;
   --tt-key: recent-articles-title;
 
-  /* prettier-ignore */
   @keyframes recent-articles-title {
-    0%, 40% { font-size: 1.4em; margin-left: 1rem; }
-    100% { font-size: 1.7em; margin-left: 3rem; }
+    0%,
+    40% {
+      font-size: 1.4em;
+      margin-left: 1rem;
+    }
+    100% {
+      font-size: 1.7em;
+      margin-left: 3rem;
+    }
   }
 `;
 
@@ -50,7 +55,7 @@ export const RecentArticles: FC<RecentArticlesProps> = ({ articles }) => {
       <Title>Recent Articles</Title>
       <InnerWrapper>
         {articles.map((article) => (
-          <RecentArticle key={article.id} article={article} />
+          <ArticleCard key={article.id} article={article} />
         ))}
       </InnerWrapper>
     </Wrapper>

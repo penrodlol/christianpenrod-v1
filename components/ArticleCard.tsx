@@ -1,21 +1,36 @@
 import { Article } from '@interfaces/article.interface';
 import Link from 'next/link';
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Divider } from './Divider';
+import { LineClamp } from './LineClamp';
 import { Svg } from './Svg';
 
-const Wrapper = styled.div`
-  background: ${({ theme }) => theme.background.base};
-  border-radius: ${({ theme }) => theme.rounded.base};
-  box-shadow: ${({ theme }) => theme.shadow.base};
-  padding: 1.25rem;
-  cursor: pointer;
+const Wrapper = styled.div(
+  ({ theme }) => css`
+    background: ${theme.background.base};
+    border-radius: ${theme.rounded.base};
+    box-shadow: ${theme.shadow.base};
+    padding: 1.25rem;
+    cursor: pointer;
 
-  &:hover {
-    box-shadow: ${({ theme }) => theme.shadow.hover};
-  }
-`;
+    &:hover {
+      box-shadow: ${theme.shadow.hover};
+    }
+
+    @media screen and (min-width: ${theme.breakpoint.md}) {
+      display: grid;
+      grid-template-rows: 10rem 1fr 3rem;
+      height: 23.5rem;
+    }
+
+    @media screen and (min-width: ${theme.breakpoint.lg}) {
+      height: 21.25rem;
+      display: grid;
+      grid-template-rows: 9rem 1fr 3rem;
+    }
+  `,
+);
 
 const Published = styled.span`
   color: ${({ theme }) => theme.text.faded};
@@ -58,20 +73,23 @@ const Footer = styled.div`
   gap: 0.5rem;
   align-items: center;
   justify-content: end;
+  align-self: end;
 `;
 
-export interface RecentArticleProps {
+export interface ArticleProps {
   article: Article;
 }
 
-export const RecentArticle: FC<RecentArticleProps> = ({ article }) => {
+export const ArticleCard: FC<ArticleProps> = ({ article }) => {
   return (
     <Link href="/" passHref>
       <Wrapper tabIndex={0}>
         <div>
           <Published>{article.published}</Published>
           <Tag>#{article.tag}</Tag>
-          <Title>{article.title}</Title>
+          <LineClamp maxLines={2}>
+            <Title>{article.title}</Title>
+          </LineClamp>
           <Divider />
         </div>
         <Description>{article.description}</Description>
