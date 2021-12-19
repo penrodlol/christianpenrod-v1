@@ -27,7 +27,7 @@ const InnerWrapper = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 1.15em;
+  font-size: 1em;
   cursor: pointer;
 `;
 

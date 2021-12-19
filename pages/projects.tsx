@@ -7,7 +7,7 @@ const Wrapper = styled.main``;
 const Projects: NextPage = () => {
   return (
     <>
-      <PageHead title="Projects" />
+      <PageHead page="Projects" />
       <Wrapper></Wrapper>
     </>
   );

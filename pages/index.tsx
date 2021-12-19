@@ -9,11 +9,10 @@ import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled, { css } from 'styled-components';
 
 const Wrapper = styled.main`
-  min-width: 15.625rem;
-  --tt-key: home-content;
+  --tt-key: home-wrapper;
 
   /* prettier-ignore */
-  @keyframes home-content {
+  @keyframes home-wrapper {
     0%, 30% { padding-top: 1rem; }
     100% { padding-top: 2.5rem; }
   }
@@ -37,11 +36,11 @@ const RecentArticlesWrapper = styled.section(
       @keyframes profile-wrapper {
         0%,
         40% {
-          margin: 2rem 0 1rem 0;
+          margin-top: 2rem;
           padding: 1.75rem 1rem;
         }
         100% {
-          margin: 5rem 0 2.5rem 0;
+          margin-top: 5rem;
           padding: 3rem 4rem;
         }
       }

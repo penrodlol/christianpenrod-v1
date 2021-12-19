@@ -4,13 +4,13 @@ import { FC } from 'react';
 const appName = 'Christian Penrod';
 
 export interface PageHeadProps {
-  title?: string;
+  page?: string;
   description?: string;
 }
 
 export const PageHead: FC<PageHeadProps> = (props) => {
-  const title = props.title ? `${appName} - ${props.title}` : appName;
-  const page = props.title || 'Home';
+  const title = props.page ? `${appName} - ${props.page}` : appName;
+  const page = props.page || 'Home';
 
   return (
     <Head>

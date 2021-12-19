@@ -6,9 +6,16 @@ const Wrapper = styled.footer`
   gap: 1rem;
   justify-content: center;
   padding: 0 2rem 1rem 2rem;
+  --tt-key: footer-wrapper;
 
   button {
     margin: 0 auto;
+  }
+
+  /* prettier-ignore */
+  @keyframes footer-wrapper {
+    0%, 40% { margin-top: 1rem; }
+    100% { margin-top: 2.5rem; }
   }
 `;
 

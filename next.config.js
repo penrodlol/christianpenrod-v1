@@ -5,4 +5,7 @@ module.exports = {
   experimental: {
     styledComponents: true,
   },
+  images: {
+    formats: ['image/webp'],
+  },
 };

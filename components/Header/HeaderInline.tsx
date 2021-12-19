@@ -8,7 +8,7 @@ const RoutesWrapper = styled.div`
   grid-auto-flow: column;
   align-items: center;
   gap: 3rem;
-  font-size: 1.15em;
+  font-size: 1em;
 `;
 
 export interface HeaderInlineProps {

@@ -6,6 +6,8 @@ const BodyStyles = css(
       background: ${theme.background.base};
       color: ${theme.text.base};
       font-family: ${theme.font.base};
+      font-weight: 600;
+      letter-spacing: 0.09em;
     }`,
 );
 

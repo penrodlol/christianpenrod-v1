@@ -21,11 +21,11 @@ const Wrapper = styled.div(
     @media screen and (min-width: ${theme.breakpoint.md}) {
       display: grid;
       grid-template-rows: 10rem 1fr 3rem;
-      height: 23.5rem;
+      height: 25rem;
     }
 
     @media screen and (min-width: ${theme.breakpoint.lg}) {
-      height: 21.25rem;
+      height: 22.25rem;
       display: grid;
       grid-template-rows: 9rem 1fr 3rem;
     }
@@ -49,7 +49,6 @@ const Tag = styled.div`
 `;
 
 const Title = styled.span`
-  font-weight: 500;
   letter-spacing: 0.15rem;
   --tt-key: recent-article-title;
 
@@ -62,6 +61,7 @@ const Title = styled.span`
 
 const Description = styled.p`
   font-size: 0.9em;
+  font-weight: 500;
   line-height: 1.5rem;
   min-height: 6rem;
   padding: 0.5rem 0.5rem;
