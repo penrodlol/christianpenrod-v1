@@ -1,3 +1,5 @@
+import { Footer } from '@components/Footer';
+import { Header } from '@components/Header/Header';
 import { ThemeProvider } from '@components/Theme/ThemeProvider';
 import { Typetura } from '@components/Typetura';
 import gsap from 'gsap';
@@ -12,7 +14,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Typetura />
       <ThemeProvider>
+        <Header />
         <Component {...pageProps} />
+        <Footer />
       </ThemeProvider>
     </>
   );

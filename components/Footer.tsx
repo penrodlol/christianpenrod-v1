@@ -17,7 +17,7 @@ const Footnote = styled.div`
 `;
 
 const Copyright = styled.span`
-  color: ${({ theme }) => theme.tertiary.base};
+  color: ${({ theme }) => theme.text.emphasis};
   font-weight: 500;
 `;
 

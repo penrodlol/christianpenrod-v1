@@ -1,4 +1,5 @@
 import { MediaQuery } from '@components/MediaQuery';
+import NextLink from 'next/link';
 import styled, { css } from 'styled-components';
 import { HeaderInline } from './HeaderInline';
 import { HeaderMenu } from './HeaderMenu';
@@ -27,6 +28,7 @@ const InnerWrapper = styled.div`
 
 const Title = styled.span`
   font-size: 1.15em;
+  cursor: pointer;
 `;
 
 export const HEADER_ROUTES = ['About', 'Projects', 'Blog'];
@@ -34,9 +36,9 @@ export const HEADER_ROUTES = ['About', 'Projects', 'Blog'];
 export const Header = () => (
   <Wrapper>
     <InnerWrapper>
-      <Title tabIndex={0} aria-label="Navigate to home">
-        Christian Penrod
-      </Title>
+      <NextLink href="/" aria-label="Navigate to home">
+        <Title>Christian Penrod</Title>
+      </NextLink>
       <MediaQuery at="min-md">
         <HeaderInline routes={HEADER_ROUTES} />
       </MediaQuery>

@@ -1,6 +1,4 @@
-import { AppHead } from '@components/AppHead';
-import { Footer } from '@components/Footer';
-import { Header } from '@components/Header/Header';
+import { PageHead } from '@components/PageHead';
 import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
 import { Articles } from '@interfaces/article.interface';
@@ -10,7 +8,7 @@ import dayjs from 'dayjs';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled, { css } from 'styled-components';
 
-const Content = styled.div`
+const Wrapper = styled.main`
   min-width: 15.625rem;
   --tt-key: home-content;
 
@@ -55,22 +53,15 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
-      <AppHead
-        title="Christian Penrod - Home"
-        description="Home page of website."
-      />
-      <main>
-        <Header></Header>
-        <Content>
-          <WelcomeWrapper>
-            <Welcome />
-          </WelcomeWrapper>
-          <RecentArticlesWrapper>
-            <RecentArticles articles={articles} />
-          </RecentArticlesWrapper>
-        </Content>
-        <Footer />
-      </main>
+      <PageHead />
+      <Wrapper>
+        <WelcomeWrapper>
+          <Welcome />
+        </WelcomeWrapper>
+        <RecentArticlesWrapper>
+          <RecentArticles articles={articles} />
+        </RecentArticlesWrapper>
+      </Wrapper>
     </>
   );
 };

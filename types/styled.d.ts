@@ -17,6 +17,7 @@ export interface Font {
 export interface Text {
   base: string;
   faded: string;
+  emphasis: string;
 }
 
 export interface Color {
