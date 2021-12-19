@@ -1,5 +1,11 @@
 import { gsap } from 'gsap';
-import { ButtonHTMLAttributes, useRef, useState } from 'react';
+import {
+  ButtonHTMLAttributes,
+  ForwardedRef,
+  forwardRef,
+  useRef,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -24,7 +30,10 @@ const tl = gsap.timeline({
   paused: true,
 });
 
-export const Hamburger = (props: ButtonHTMLAttributes<HTMLDivElement>) => {
+const HamburgerComponent = (
+  props: ButtonHTMLAttributes<HTMLDivElement>,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   const [status, setStatus] = useState(false);
   const top = useRef<HTMLDivElement>(null);
   const bottom = useRef<HTMLDivElement>(null);
@@ -49,10 +58,12 @@ export const Hamburger = (props: ButtonHTMLAttributes<HTMLDivElement>) => {
   }
 
   return (
-    <Wrapper id="hamburger" tabIndex={0} {...props} onClick={animate}>
+    <Wrapper id="hamburger" tabIndex={0} ref={ref} {...props} onClick={animate}>
       {['top', 'bottom'].map((item, index) => (
         <HamburgerItem key={item} ref={index === 0 ? top : bottom} />
       ))}
     </Wrapper>
   );
 };
+
+export const Hamburger = forwardRef(HamburgerComponent);

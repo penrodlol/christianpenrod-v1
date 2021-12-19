@@ -2,7 +2,8 @@ import { Hamburger } from '@components/Hamburger';
 import { Overlay } from '@components/Overlay';
 import { ThemeToggle } from '@components/ThemeToggle';
 import gsap from 'gsap';
-import { PropsWithChildren, useRef, useState } from 'react';
+import NextLink from 'next/link';
+import { createRef, PropsWithChildren, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const HamburgerWrapper = styled.div`
@@ -41,6 +42,7 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
   const [menu, setMenu] = useState(false);
   const routeRefs = useRef<Array<HTMLAnchorElement>>([]);
   const themeToggleRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = createRef<HTMLDivElement>();
 
   function toggleMenu() {
     tl.to(routeRefs.current, {
@@ -72,17 +74,22 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
   return (
     <div>
       <HamburgerWrapper onClick={toggleMenu}>
-        <Hamburger type="button" aria-label="Toggle navigation menu" />
+        <Hamburger
+          ref={hamburgerRef}
+          type="button"
+          aria-label="Toggle navigation menu"
+        />
       </HamburgerWrapper>
       <Overlay show={menu}>
         {props.routes.map((route, i) => (
-          <Route
-            key={route}
-            tabIndex={0}
-            ref={(el: HTMLAnchorElement) => (routeRefs.current[i] = el)}
-          >
-            {route}
-          </Route>
+          <NextLink key={route} href={route.toLowerCase()}>
+            <Route
+              ref={(el: HTMLAnchorElement) => (routeRefs.current[i] = el)}
+              onClick={() => hamburgerRef.current?.click()}
+            >
+              {route}
+            </Route>
+          </NextLink>
         ))}
         <ThemeToggleWrapper ref={themeToggleRef}>
           <ThemeToggle />
