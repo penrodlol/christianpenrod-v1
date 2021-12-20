@@ -1,7 +1,10 @@
+import { Carrer } from '@components/Career';
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
+import { Occupations } from '@interfaces/occupation.interface';
+import { OCCUPATIONS } from '@stubs/occupations.stub';
 import { generateGridBackground } from '@utils/generate-grid-background';
-import type { NextPage } from 'next';
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
@@ -11,7 +14,7 @@ const Profile = styled.div(
   ({ theme }) => css`
     max-width: ${theme.breakpoint.sm};
     margin: 0 auto;
-    padding: 2.2rem 1rem 0 1rem;
+    padding: 2.2rem 1.5rem 0 1.5rem;
   `,
 );
 
@@ -43,7 +46,7 @@ const SelfieWrapper = styled.div(
       border-radius: 20%;
 
       img {
-        filter: sepia(80%);
+        filter: sepia(80%) !important;
       }
     }
   `,
@@ -66,24 +69,31 @@ const Bio = styled.p`
   margin: 0 auto;
 `;
 
-const Carrer = styled.div(
+const CareerWrapper = styled.div(
   ({ theme }) => css`
-    height: 10rem;
     background: ${theme.background.light};
     border: solid ${theme.background.heavy};
     ${generateGridBackground(theme)};
     border-width: 0.1rem 0;
     --tt-key: profile-carrer;
 
-    /* prettier-ignore */
     @keyframes profile-carrer {
-      0%, 40% { margin-top: 2rem; }
-      100% { margin-top: 5rem; }
+      0%,
+      40% {
+        margin-top: 2rem;
+        padding: 1.5rem 1.3rem;
+      }
+      100% {
+        margin-top: 5rem;
+        padding: 2.2rem 1.5rem;
+      }
     }
   `,
 );
 
-const About: NextPage = () => {
+const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  occupations,
+}) => {
   const page = 'About';
 
   return (
@@ -98,6 +108,8 @@ const About: NextPage = () => {
                 <Image
                   src="/img/me.webp"
                   alt="Selfie"
+                  placeholder="blur"
+                  blurDataURL="/img/me.webp"
                   priority
                   layout="intrinsic"
                   height={400}
@@ -128,10 +140,17 @@ const About: NextPage = () => {
             </div>
           </ProfileContent>
         </Profile>
-        <Carrer></Carrer>
+        <CareerWrapper>
+          <Carrer occupations={occupations} />
+        </CareerWrapper>
       </Wrapper>
     </>
   );
 };
+
+export const getStaticProps: GetStaticProps<{ occupations: Occupations }> =
+  async () => {
+    return { props: { occupations: OCCUPATIONS } };
+  };
 
 export default About;

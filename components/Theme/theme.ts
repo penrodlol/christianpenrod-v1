@@ -85,7 +85,7 @@ export const light: DefaultTheme = {
   basic: { base: 'hsl(228, 16%, 70%)', hover: 'hsl(227, 12%, 61%)' },
   primary: { base: 'hsl(229, 61%, 69%)', hover: 'hsl(229, 50%, 62%)' },
   secondary: { base: 'hsl(39, 88%, 84%)', hover: 'hsl(39, 90%, 81%)' },
-  tertiary: { base: 'hsl(266, 57%, 86%)', hover: 'hsl(266, 30%, 75%)' },
+  tertiary: { base: 'hsl(266, 62%, 83%)', hover: 'hsl(266, 30%, 75%)' },
   shadow: {
     base: SHADOW_BASE('0deg 0% 63%'),
     hover: SHADOW_HOVER('0deg 0% 63%'),

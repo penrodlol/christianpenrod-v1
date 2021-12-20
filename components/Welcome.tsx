@@ -149,6 +149,8 @@ export const Welcome = () => {
           src="/img/ideas.webp"
           alt="Mind Exploding!"
           priority
+          placeholder="blur"
+          blurDataURL="/img/ideas.webp"
           layout="fixed"
           width={550}
           height={550}
