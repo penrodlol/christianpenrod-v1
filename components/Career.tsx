@@ -1,5 +1,5 @@
 import { Occupations } from '@interfaces/occupation.interface';
-import { FC } from 'react';
+import { useStaticData } from 'hooks/use-static-data';
 import styled from 'styled-components';
 import { OccupationCard } from './OccupationCard';
 
@@ -39,16 +39,14 @@ const OccupationsWrapper = styled.div`
   gap: 2rem;
 `;
 
-export interface CarrerProps {
-  occupations: Occupations;
-}
+export const Carrer = () => {
+  const occupations = useStaticData<Occupations>('api/occupations');
 
-export const Carrer: FC<CarrerProps> = ({ occupations }) => {
   return (
     <Wrapper>
       <Title>Career</Title>
       <OccupationsWrapper>
-        {occupations.map((occupation) => (
+        {occupations?.map((occupation) => (
           <OccupationCard key={occupation.id} occupation={occupation} />
         ))}
       </OccupationsWrapper>

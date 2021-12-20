@@ -1,10 +1,8 @@
 import { Carrer } from '@components/Career';
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
-import { Occupations } from '@interfaces/occupation.interface';
-import { OCCUPATIONS } from '@stubs/occupations.stub';
 import { generateGridBackground } from '@utils/generate-grid-background';
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import type { NextPage } from 'next';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
@@ -91,9 +89,7 @@ const CareerWrapper = styled.div(
   `,
 );
 
-const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  occupations,
-}) => {
+const About: NextPage = () => {
   const page = 'About';
 
   return (
@@ -141,16 +137,11 @@ const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           </ProfileContent>
         </Profile>
         <CareerWrapper>
-          <Carrer occupations={occupations} />
+          <Carrer />
         </CareerWrapper>
       </Wrapper>
     </>
   );
 };
-
-export const getStaticProps: GetStaticProps<{ occupations: Occupations }> =
-  async () => {
-    return { props: { occupations: OCCUPATIONS } };
-  };
 
 export default About;
