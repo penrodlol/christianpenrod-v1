@@ -1,4 +1,4 @@
-import { Occupation } from '@interfaces/occupation.interface';
+import { Occupation } from '@interfaces/occupation';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
 import styled, { css } from 'styled-components';

@@ -1,4 +1,4 @@
-import { Articles } from '@interfaces/article.interface';
+import { Articles } from '@interfaces/article';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { ArticleCard } from './ArticleCard';

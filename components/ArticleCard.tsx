@@ -1,7 +1,8 @@
-import { Article } from '@interfaces/article.interface';
+import { Article } from '@interfaces/article';
 import Link from 'next/link';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
+import { Chip } from './Chip';
 import { Divider } from './Divider';
 import { LineClamp } from './LineClamp';
 import { Svg } from './Svg';
@@ -35,17 +36,6 @@ const Wrapper = styled.div(
 const Published = styled.span`
   color: ${({ theme }) => theme.text.faded};
   display: block;
-`;
-
-const Tag = styled.div`
-  background: ${({ theme }) => theme.secondary.base};
-  font-size: 0.8em;
-  font-weight: 600;
-  width: max-content;
-  color: black;
-  padding: 0.3rem 0.8rem;
-  margin: 0.3rem 0;
-  border-radius: 12rem;
 `;
 
 const Title = styled.span`
@@ -86,7 +76,7 @@ export const ArticleCard: FC<ArticleProps> = ({ article }) => {
       <Wrapper tabIndex={0}>
         <div>
           <Published>{article.published}</Published>
-          <Tag>#{article.tag}</Tag>
+          <Chip>#{article.tag}</Chip>
           <LineClamp maxLines={2}>
             <Title>{article.title}</Title>
           </LineClamp>

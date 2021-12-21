@@ -1,7 +1,7 @@
 import { PageHead } from '@components/PageHead';
 import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
-import { Articles } from '@interfaces/article.interface';
+import { Articles } from '@interfaces/article';
 import { ARTICLES } from '@stubs/articles.stub';
 import { generateGridBackground } from '@utils/generate-grid-background';
 import dayjs from 'dayjs';

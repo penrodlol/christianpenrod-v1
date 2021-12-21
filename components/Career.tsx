@@ -1,4 +1,4 @@
-import { Occupations } from '@interfaces/occupation.interface';
+import { Occupations } from '@interfaces/occupation';
 import { useStaticData } from 'hooks/use-static-data';
 import styled from 'styled-components';
 import { OccupationCard } from './OccupationCard';

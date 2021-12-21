@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { GradientText } from './GradientText';
 
 const Wrapper = styled.div`
-  width: max-content;
   margin-left: 1rem;
 `;
 
 const Page = styled.h1`
-  line-height: 0.8em;
+  line-height: 1.2em;
   --tt-key: pagetitle-page;
 
   /* prettier-ignore */

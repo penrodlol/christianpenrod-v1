@@ -1,4 +1,4 @@
-import { Occupations } from '@interfaces/occupation.interface';
+import { Occupations } from '@interfaces/occupation';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import occupations from '../../public/data/occupations.json';
 

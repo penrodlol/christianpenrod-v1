@@ -1,4 +1,4 @@
-import { Role } from '@interfaces/occupation.interface';
+import { Role } from '@interfaces/occupation';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { formatFrom, formatTo } from './occupation-time-formatter';
