@@ -82,7 +82,7 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
       </HamburgerWrapper>
       <Overlay show={menu}>
         {props.routes.map((route, i) => (
-          <NextLink key={route} href={route.toLowerCase()}>
+          <NextLink key={route} href={`/${route.toLowerCase()}`}>
             <Route
               ref={(el: HTMLAnchorElement) => (routeRefs.current[i] = el)}
               onClick={() => hamburgerRef.current?.click()}

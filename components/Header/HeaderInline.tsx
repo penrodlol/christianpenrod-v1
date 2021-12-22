@@ -20,7 +20,7 @@ export const HeaderInline = (props: PropsWithChildren<HeaderInlineProps>) => (
     {props.routes.map((route) => (
       <NextLink
         key={route}
-        href={route.toLowerCase()}
+        href={`/${route.toLowerCase()}`}
         aria-label={`Navigate to ${route.toLowerCase()}`}
       >
         {route}
