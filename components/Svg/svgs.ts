@@ -6,7 +6,8 @@ export type SvgName =
   | 'arrow-circle-up'
   | 'twitter'
   | 'github'
-  | 'linkedin';
+  | 'linkedin'
+  | 'external';
 
 export interface SvgAttributes {
   pathAttrs: Array<Record<string, string>>;
@@ -78,6 +79,16 @@ export const SVGS = new Map<SvgName, SvgAttributes>()
         fillRule: 'evenodd',
         clipRule: 'evenodd',
         d: 'M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z',
+      },
+    ],
+  })
+  .set('external', {
+    pathAttrs: [
+      {
+        d: 'M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z',
+      },
+      {
+        d: 'M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z',
       },
     ],
   });

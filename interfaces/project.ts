@@ -13,7 +13,6 @@ export type Tools = Array<Tool>;
 export interface External {
   hosted?: string;
   github?: string;
-  stackblitz?: string;
 }
 
 export interface Project {

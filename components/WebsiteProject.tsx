@@ -2,9 +2,11 @@ import { Project } from '@interfaces/project';
 import Image from 'next/image';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
+import { Button } from './Button';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
 import { ExternalLink } from './ExternalLink';
+import { Svg } from './Svg';
 
 const Wrapper = styled.div`
   display: grid;
@@ -36,9 +38,28 @@ export const Description = styled.p`
 export const Tools = styled.div`
   display: flex;
   flex-wrap: wrap;
-  column-gap: 1rem;
+  column-gap: 0.7rem;
   align-items: center;
   font-size: 0.8em;
+`;
+
+const ToolContent = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.2rem;
+  align-items: center;
+
+  svg {
+    transform: translateY(-0.05rem);
+  }
+`;
+
+const Actions = styled.div`
+  font-size: 0.8em;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+  margin-top: 2rem;
 `;
 
 export interface WebsiteProjectProps {
@@ -63,6 +84,22 @@ export const WebsiteProject: FC<WebsiteProjectProps> = ({ project }) => {
       </Preview>
       <Info>
         <h2>{project.title}</h2>
+        <Tools>
+          {project.tools?.map((tool) => (
+            <ExternalLink
+              key={tool.id}
+              href={tool.url}
+              aria-label={`Navigate to external docs for ${tool.name}.`}
+            >
+              <Chip>
+                <ToolContent>
+                  {tool.name}
+                  <Svg name="external" fill="inherit" width={15} height={15} />
+                </ToolContent>
+              </Chip>
+            </ExternalLink>
+          ))}
+        </Tools>
         <Divider />
         <Description>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa soluta
@@ -80,17 +117,24 @@ export const WebsiteProject: FC<WebsiteProjectProps> = ({ project }) => {
           dolorum quas hic aliquid eveniet.
         </Description>
         <Divider />
-        <Tools>
-          {project.tools?.map((tool) => (
-            <ExternalLink
-              key={tool.id}
-              href={tool.url}
-              aria-label={`Navigate to external docs for ${tool.name}.`}
+        <Actions>
+          {project.external?.hosted && (
+            <Button
+              aria-label={`Navigate externally to website for the project: ${project.title}.`}
+              onClick={() => window.open(project.external?.hosted, '_blank')}
             >
-              <Chip>#{tool.name}</Chip>
-            </ExternalLink>
-          ))}
-        </Tools>
+              Check it out
+            </Button>
+          )}
+          {project.external?.github && (
+            <Button
+              aria-label={`Navigate externally to source code for project: ${project.title}.`}
+              onClick={() => window.open(project.external?.github, '_blank')}
+            >
+              Source Code
+            </Button>
+          )}
+        </Actions>
       </Info>
     </Wrapper>
   );

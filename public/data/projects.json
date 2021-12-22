@@ -32,7 +32,10 @@
           "url": "https://cheerio.js.org/"
         }
       ],
-      "external": {}
+      "external": {
+        "hosted": "http://pgh-events.azurewebsites.net/",
+        "github": "https://github.com/penrodlol/pgh-events"
+      }
     },
     {
       "id": "f7c0cd76-3839-4918-81f2-0860faca89ce",
