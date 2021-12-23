@@ -1,8 +1,8 @@
+import { BlogPostHeader } from '@components/BlogPostHeader';
 import { PageHead } from '@components/PageHead';
-import { Svg } from '@components/Svg';
+import { SpacerProps } from '@components/Spacer';
 import { Post } from '@interfaces/post';
 import { getPostSlug, getPostsSlugs } from '@utils/get-post-slugs';
-import dayjs from 'dayjs';
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -11,8 +11,19 @@ import type {
 } from 'next';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
-import styled, { css } from 'styled-components';
-import { ButtonProps } from '../../components/Button';
+import styled, { createGlobalStyle, css } from 'styled-components';
+
+const FooterBackground = createGlobalStyle(
+  ({ theme }) => css`
+    footer {
+      background: ${theme.background.light};
+
+      > :first-child {
+        padding-top: 1rem;
+      }
+    }
+  `,
+);
 
 const Wrapper = styled.main`
   max-width: ${({ theme }) => theme.breakpoint.sm};
@@ -20,71 +31,31 @@ const Wrapper = styled.main`
   padding: 2.2rem 1.5rem 0 1.5rem;
 `;
 
-const Header = styled.div(
-  ({ theme }) => css`
-    background: ${theme.background.heavy};
-    border-radius: ${theme.rounded.base};
-    box-shadow: ${theme.shadow.base};
-    display: grid;
-    align-items: center;
+const BlogPostContent = styled.div`
+  max-width: 60ch;
+  margin: 0 auto;
+  letter-spacing: 0.1em;
+  --tt-key: blog-post-content;
 
-    @media screen and (min-width: ${theme.breakpoint.sm}) {
-      grid-auto-flow: column;
-      gap: 1rem;
-    }
-  `,
-);
-
-const Title = styled.h1`
-  --tt-key: blog-title;
-
-  @keyframes blog-title {
+  @keyframes blog-post-content {
     0%,
     40% {
-      padding: 1rem 1.5rem;
-      font-size: 1.6em;
+      font-size: 0.9em;
+      line-height: 1.75rem;
+      padding: 2rem 0;
     }
     100% {
-      padding: 2.5rem 3rem;
-      font-size: 2em;
+      font-size: 1.125rem;
+      line-height: 2rem;
+      padding: 4rem 0;
     }
   }
 `;
 
-const Stats = styled.div(
-  ({ theme }) => css`
-    background: ${theme.background.light};
-    border-radius: ${theme.rounded.base};
-    padding: 2.5rem 2rem;
-    margin: 0.2rem;
-    display: grid;
-    --tt-key: blog-stats;
-
-    @keyframes blog-stats {
-      0%,
-      40% {
-        padding: 1rem 1.5rem;
-        font-size: 0.9em;
-        gap: 1em;
-      }
-      100% {
-        padding: 2.5rem 2rem;
-        font-size: 1em;
-        gap: 1.5em;
-      }
-    }
-  `,
-);
-
-const StatsItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
 // prettier-ignore
 const components = {
-  Button: dynamic<ButtonProps>(() => import('@components/Button').then((m) => m.Button)),
+  Spacer: dynamic<SpacerProps>(() => import('@components/Spacer').then((m) => m.Spacer)),
+  FancyText: dynamic<unknown>(() => import('@components/FancyText').then((m) => m.FancyText)),
 };
 
 const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
@@ -93,21 +64,12 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <>
       <PageHead page="Blog" />
+      <FooterBackground />
       <Wrapper>
-        <Header>
-          <Title>{post.data.title}</Title>
-          <Stats>
-            <StatsItem>
-              <Svg name="calendar" width={25} height={25} />{' '}
-              {dayjs.utc(post.data.publishedOn).format('MMM Do, YYYY')}
-            </StatsItem>
-            <StatsItem>
-              <Svg name="clock" width={25} height={25} /> {post.data.readTime}{' '}
-              Minute Read
-            </StatsItem>
-          </Stats>
-        </Header>
-        <MDXRemote {...post.source} components={components} />
+        <BlogPostHeader data={post.data} />
+        <BlogPostContent>
+          <MDXRemote {...post.source} components={components} />
+        </BlogPostContent>
       </Wrapper>
     </>
   );

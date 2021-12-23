@@ -26,7 +26,7 @@ export const BREAKPOINTS = {
 
 export const base: DefaultTheme = {
   breakpoint: BREAKPOINTS,
-  font: { base: 'Poppins', fancy: '' },
+  font: { base: 'Poppins', fancy: 'Patrick Hand SC' },
   background: {
     base: 'var(--background-base)',
     heavy: 'var(--background-heavy)',
