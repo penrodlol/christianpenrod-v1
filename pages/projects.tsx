@@ -5,16 +5,13 @@ import { ProjectsDTO } from '@interfaces/project';
 import { generateGridBackground } from '@utils/generate-grid-background';
 import { useStaticData } from 'hooks/use-static-data';
 import type { NextPage } from 'next';
-import styled, { createGlobalStyle, css } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
-const Background = createGlobalStyle(
-  ({ theme }) => css`
-    body {
-      background: ${theme.background.light};
-      ${generateGridBackground(theme)};
-    }
-  `,
-);
+const Background = createGlobalStyle`
+  body {
+    ${generateGridBackground()};
+  }
+`;
 
 const Wrapper = styled.main`
   max-width: ${({ theme }) => theme.breakpoint.lg};

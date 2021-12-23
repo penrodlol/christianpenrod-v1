@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Button } from './Button';
 import { ContactForm } from './ContactForm';
 import { Divider } from './Divider';
-import { ExternalLink } from './ExternalLink';
 import { GradientText } from './GradientText';
 
 const Wrapper = styled.div`
@@ -132,15 +131,30 @@ export const Welcome = () => {
         <ContactWrapper>
           <ContactForm />
           <ContactIconsWrapper>
-            <ExternalLink href="https://twitter.com/penrodlol">
-              <Button icon="twitter" aria-label="Navigate to my twitter." />
-            </ExternalLink>
-            <ExternalLink href="https://github.com/penrodlol">
-              <Button icon="github" aria-label="Navigate to my github." />
-            </ExternalLink>
-            <ExternalLink href="https://linkedin.com/in/christian-penrod-07618314b/">
-              <Button icon="linkedin" aria-label="Navigate to my linkedin." />
-            </ExternalLink>
+            <Button
+              icon="twitter"
+              aria-label="Navigate to my twitter."
+              onClick={() =>
+                window.open('https://twitter.com/penrodlol', '_blank')
+              }
+            />
+            <Button
+              icon="github"
+              aria-label="Navigate to my github."
+              onClick={() =>
+                window.open('ttps://github.com/penrodlol', '_blank')
+              }
+            />
+            <Button
+              icon="linkedin"
+              aria-label="Navigate to my linkedin."
+              onClick={() =>
+                window.open(
+                  'https://linkedin.com/in/christian-penrod-07618314b/',
+                  '_blank',
+                )
+              }
+            />
           </ContactIconsWrapper>
         </ContactWrapper>
       </InnerWrapper>

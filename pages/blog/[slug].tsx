@@ -1,7 +1,10 @@
 import { BlogPostHeader } from '@components/BlogPostHeader';
+import { DividerProps } from '@components/Divider';
+import { ExternalLinkProps } from '@components/ExternalLink';
 import { PageHead } from '@components/PageHead';
 import { SpacerProps } from '@components/Spacer';
-import { Post } from '@interfaces/post';
+import { TableOfContents } from '@components/TableOfContents';
+import { Data, Post } from '@interfaces/post';
 import { getPostSlug, getPostsSlugs } from '@utils/get-post-slugs';
 import type {
   GetStaticPaths,
@@ -25,10 +28,27 @@ const FooterBackground = createGlobalStyle(
   `,
 );
 
-const Wrapper = styled.main`
+const Wrapper = styled.main<{ data: Data }>(
+  ({ theme, data }) => css`
+    position: relative;
+    padding: 2.2rem 1.5rem 0 1.5rem;
+    gap: 5rem;
+
+    ${data.toc &&
+    `
+      @media screen and (min-width: ${theme.breakpoint.lg}) {
+        max-width: calc(${theme.breakpoint.lg} - 5em);
+        margin: 0 auto;
+        display: grid;
+        grid-auto-flow: column;
+      }
+    `}
+  `,
+);
+
+const InnerWrapper = styled.article`
   max-width: ${({ theme }) => theme.breakpoint.sm};
   margin: 0 auto;
-  padding: 2.2rem 1.5rem 0 1.5rem;
 `;
 
 const BlogPostContent = styled.div`
@@ -52,10 +72,21 @@ const BlogPostContent = styled.div`
   }
 `;
 
+const TableOfContentsWrapper = styled.div`
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+    display: none;
+  }
+`;
+
 // prettier-ignore
 const components = {
+  h2: dynamic<unknown>(() => import('@components/BlogPostSectionHeader').then((m) => m.BlogPostSectionHeader)),
   Spacer: dynamic<SpacerProps>(() => import('@components/Spacer').then((m) => m.Spacer)),
   FancyText: dynamic<unknown>(() => import('@components/FancyText').then((m) => m.FancyText)),
+  Disclaimer: dynamic<unknown>(() => import('@components/Disclaimer').then((m) => m.Disclaimer)),
+  ExternalLink: dynamic<ExternalLinkProps>(() => import('@components/ExternalLink').then((m) => m.ExternalLink)),
+  Divider: dynamic<DividerProps>(() => import('@components/Divider').then((m) => m.Divider)),
+  CodeSnippet: dynamic<unknown>(() => import('@components/CodeSnippet').then((m) => m.CodeSnippet)),
 };
 
 const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
@@ -64,13 +95,21 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <>
       <PageHead page="Blog" />
-      <FooterBackground />
-      <Wrapper>
-        <BlogPostHeader data={post.data} />
-        <BlogPostContent>
-          <MDXRemote {...post.source} components={components} />
-        </BlogPostContent>
+      <Wrapper data={post.data}>
+        <InnerWrapper>
+          <BlogPostHeader data={post.data} />
+          <BlogPostContent>
+            <MDXRemote {...post.source} components={components} />
+          </BlogPostContent>
+        </InnerWrapper>
+        {post.data.toc && (
+          <TableOfContentsWrapper>
+            <TableOfContents toc={post.data.toc} />
+          </TableOfContentsWrapper>
+        )}
       </Wrapper>
+
+      <FooterBackground />
     </>
   );
 };

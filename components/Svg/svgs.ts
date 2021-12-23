@@ -9,7 +9,9 @@ export type SvgName =
   | 'linkedin'
   | 'external'
   | 'calendar'
-  | 'clock';
+  | 'clock'
+  | 'warning'
+  | 'link';
 
 export interface SvgAttributes {
   pathAttrs: Array<Record<string, string>>;
@@ -109,6 +111,24 @@ export const SVGS = new Map<SvgName, SvgAttributes>()
         fillRule: 'evenodd',
         clipRule: 'evenodd',
         d: 'M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z',
+      },
+    ],
+  })
+  .set('warning', {
+    pathAttrs: [
+      {
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+        d: 'M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z',
+      },
+    ],
+  })
+  .set('link', {
+    pathAttrs: [
+      {
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+        d: 'M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z',
       },
     ],
   });

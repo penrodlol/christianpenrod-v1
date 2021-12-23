@@ -20,17 +20,16 @@ const Header = styled.div(
 );
 
 const Title = styled.h1`
+  font-size: 1.5em;
   --tt-key: blog-title;
 
   @keyframes blog-title {
     0%,
     40% {
       padding: 1rem 1.5rem;
-      font-size: 1.6em;
     }
     100% {
       padding: 2.5rem 3rem;
-      font-size: 2em;
     }
   }
 `;
