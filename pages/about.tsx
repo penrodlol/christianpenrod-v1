@@ -71,7 +71,7 @@ const CareerWrapper = styled.div(
   ({ theme }) => css`
     background: ${theme.background.light};
     border: solid ${theme.background.heavy};
-    ${generateGridBackground(theme)};
+    ${generateGridBackground()};
     border-width: 0.1rem 0;
     --tt-key: profile-carrer;
 

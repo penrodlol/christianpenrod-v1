@@ -8,10 +8,11 @@ import utcPlugin from 'dayjs/plugin/utc';
 import gsap from 'gsap';
 import { MorphSVGPlugin } from 'gsap/dist/MorphSVGPlugin';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import type { AppProps } from 'next/app';
 import '../styles/globals.scss';
 
-gsap.registerPlugin(MorphSVGPlugin, ScrollToPlugin);
+gsap.registerPlugin(MorphSVGPlugin, ScrollToPlugin, ScrollTrigger);
 
 dayjs.extend(advancedFormatPlugin);
 dayjs.extend(utcPlugin);

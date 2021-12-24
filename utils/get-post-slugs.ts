@@ -15,7 +15,7 @@ export function getPostsSlugs(): Posts {
     return {
       data: {
         ...data,
-        toc: data.toc  ? getTOC(content) : null,
+        toc: data.toc ? getTOC(content) : null,
       } as Data,
       source: content,
       path: path.replace(/.mdx/i, ''),
@@ -33,8 +33,6 @@ export async function getPostSlug(slug: string) {
     },
   });
 
-  console.log(source.compiledSource);
-
   return {
     ...payload,
     source,
@@ -43,8 +41,7 @@ export async function getPostSlug(slug: string) {
 
 export function getTOC(source: string): TOC {
   const pattern = /^###*\s/;
-
-  return source
+  const toc = source
     .split('\n')
     .filter((line) => line.match(pattern))
     .map((line) => {
@@ -55,4 +52,12 @@ export function getTOC(source: string): TOC {
         id: `${label.replace(/ /g, '-').toLowerCase()}`,
       };
     });
+
+  return [
+    {
+      id: 'introduction',
+      label: 'Introduction',
+    },
+    ...toc,
+  ];
 }

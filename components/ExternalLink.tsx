@@ -33,7 +33,7 @@ const Anchor = styled.a<ExternalLinkProps>(
 
 export interface ExternalLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  underline: boolean;
+  underline?: boolean;
 }
 
 export const ExternalLink: FC<ExternalLinkProps> = (props) => (

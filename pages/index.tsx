@@ -27,7 +27,7 @@ const RecentArticlesWrapper = styled.section(
     css`
       background: ${theme.background.light};
       border: solid ${theme.background.heavy};
-      ${generateGridBackground(theme)};
+      ${generateGridBackground()};
       border-width: 0.1rem 0;
       position: relative;
       z-index: 1;

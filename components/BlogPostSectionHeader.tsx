@@ -46,7 +46,11 @@ export const BlogPostSectionHeader: FC = ({ children }) => {
         aria-label={`Blog post section: ${id}`}
         onClick={() =>
           gsap.to(window, {
-            scrollTo: { y: `#${id}-header`, offsetY: 100 },
+            scrollTo: {
+              y: `#${id}-header`,
+              offsetY: 100,
+              autoKill: true,
+            },
             ease: 'power2',
           })
         }
