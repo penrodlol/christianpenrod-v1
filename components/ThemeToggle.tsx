@@ -11,8 +11,6 @@ const Wrapper = styled.button`
   background: transparent;
 `;
 
-const tl = gsap.timeline();
-
 interface SvgState {
   source: SvgName;
   target: SvgName;
@@ -25,6 +23,15 @@ export const ThemeToggle = () => {
   const moonRef = createRef<SVGSVGElement>();
   const sunPath = useRef<SVGPathElement>();
   const moonPath = useRef<SVGPathElement>();
+  const tl = useRef<gsap.core.Timeline>();
+
+  useEffect(() => {
+    tl.current = gsap.timeline();
+
+    return () => {
+      tl.current?.kill();
+    };
+  }, []);
 
   useEffect(() => {
     sunPath.current = sunRef.current?.firstChild as SVGPathElement;
@@ -44,7 +51,7 @@ export const ThemeToggle = () => {
     const source = svgs?.source === 'moon' ? moonPath.current : sunPath.current;
     const target = id === 'dark' ? sunPath.current : moonPath.current;
 
-    tl.to(source as SVGPathElement, { morphSVG: target });
+    tl.current?.to(source as SVGPathElement, { morphSVG: target });
   }
 
   return (
@@ -55,7 +62,7 @@ export const ThemeToggle = () => {
             <Wrapper
               aria-label={`Toggle ${id} mode`}
               onClick={() => {
-                if (tl.isActive()) return;
+                if (tl.current?.isActive()) return;
 
                 toggleTheme();
                 animateToggle(id);

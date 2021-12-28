@@ -3,7 +3,13 @@ import { Overlay } from '@components/Overlay';
 import { ThemeToggle } from '@components/ThemeToggle';
 import gsap from 'gsap';
 import NextLink from 'next/link';
-import { createRef, PropsWithChildren, useRef, useState } from 'react';
+import {
+  createRef,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 
 const HamburgerWrapper = styled.div`
@@ -32,8 +38,6 @@ const ThemeToggleWrapper = styled.div`
   visibility: hidden;
 `;
 
-const tl = gsap.timeline({ paused: true });
-
 export interface HeaderMenuProps {
   routes: Array<string>;
 }
@@ -43,19 +47,29 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
   const routeRefs = useRef<Array<HTMLAnchorElement>>([]);
   const themeToggleRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = createRef<HTMLDivElement>();
+  const tl = useRef<gsap.core.Timeline>();
+
+  useEffect(() => {
+    tl.current = gsap.timeline({ paused: true });
+
+    return () => {
+      tl.current?.kill();
+    };
+  }, []);
 
   function toggleMenu() {
-    tl.to(routeRefs.current, {
-      onStart: () => setMenu(true),
-      opacity: menu ? 0 : 1,
-      x: menu ? '-13rem' : '2.5rem',
-      ease: `back.${menu ? 'in' : 'out'}(2)`,
-      stagger: {
-        each: 0.1,
-        from: menu ? 2 : 0,
-      },
-      duration: 0.3,
-    })
+    tl.current
+      ?.to(routeRefs.current, {
+        onStart: () => setMenu(true),
+        opacity: menu ? 0 : 1,
+        x: menu ? '-13rem' : '2.5rem',
+        ease: `back.${menu ? 'in' : 'out'}(2)`,
+        stagger: {
+          each: 0.1,
+          from: menu ? 2 : 0,
+        },
+        duration: 0.3,
+      })
       .to(
         themeToggleRef.current,
         {
@@ -67,7 +81,7 @@ export const HeaderMenu = (props: PropsWithChildren<HeaderMenuProps>) => {
       .play(0)
       .eventCallback('onComplete', () => {
         if (menu) setMenu(false);
-        tl.pause().clear();
+        tl.current?.pause().clear();
       });
   }
 

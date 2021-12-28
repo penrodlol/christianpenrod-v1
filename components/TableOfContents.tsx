@@ -50,10 +50,9 @@ export const TableOfContents: FC<TableOfContentsProps> = ({ toc }) => {
     gsap.utils
       .selector(contentsRef)<HTMLAnchorElement>('a')
       .forEach((a) => {
-        const trigger = getTrigger(a.id);
         const nextAnchor = a.nextElementSibling as HTMLAnchorElement;
         const baseST: ScrollTrigger.Vars = {
-          trigger,
+          trigger: getTrigger(a.id),
           start: 'top 30%',
           toggleActions: 'restart reset restart reset',
         };
