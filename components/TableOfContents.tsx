@@ -1,7 +1,6 @@
 import { TOC } from '@interfaces/post';
 import gsap from 'gsap';
-import { FC } from 'react';
-import { Tween } from 'react-gsap';
+import { createRef, FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { Divider } from './Divider';
 
@@ -34,53 +33,75 @@ const IntroductionHeader = styled.h2`
   z-index: -1;
 `;
 
+function getTrigger(id: string) {
+  return `#${id}-header`;
+}
+
 export interface TableOfContentsProps {
   toc: TOC;
 }
 
 export const TableOfContents: FC<TableOfContentsProps> = ({ toc }) => {
+  const contentsRef = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    const tweens: Array<gsap.core.Tween> = [];
+
+    gsap.utils
+      .selector(contentsRef)<HTMLAnchorElement>('a')
+      .forEach((a) => {
+        const trigger = getTrigger(a.id);
+        const nextAnchor = a.nextElementSibling as HTMLAnchorElement;
+        const baseST: ScrollTrigger.Vars = {
+          trigger,
+          start: 'top 30%',
+          toggleActions: 'restart reset restart reset',
+        };
+
+        const tween = gsap.to(a, {
+          color: 'var(--text-emphasis)',
+          scrollTrigger: nextAnchor
+            ? {
+                ...baseST,
+                endTrigger: `#${nextAnchor.id}-header`,
+                end: 'top 30%',
+              }
+            : baseST,
+        });
+
+        tweens.push(tween);
+      });
+
+    return () => {
+      tweens.forEach((tween) => tween.kill());
+    };
+  });
+
   return (
     <Wrapper>
       <Title>Table of Contents</Title>
       <Divider gap={1} />
-      <Contents>
-        {toc.map(({ id, label }, index) => {
-          const trigger = `#${id}-header`;
-          const nextId = toc.find((_, target) => target === index + 1)?.id;
-          const endTrigger = `#${nextId}-header`;
-          const baseST: ScrollTrigger.Vars = {
-            trigger,
-            start: 'top 30%',
-            toggleActions: 'restart reset restart reset',
-          };
-
-          return (
-            <Tween
-              key={id}
-              to={{
-                color: 'var(--text-emphasis)',
-                scrollTrigger: nextId
-                  ? { ...baseST, endTrigger, end: 'top 30%' }
-                  : baseST,
-              }}
-            >
-              <Item
-                id={id}
-                aria-label={`Jump to '${label}' section within blog post.`}
-                onClick={() =>
-                  gsap
-                    .to(window, {
-                      scrollTo: { y: index === 0 ? 0 : trigger, offsetY: 100 },
-                      duration: 0,
-                    })
-                    .kill()
-                }
-              >
-                {index + 1}. {label}
-              </Item>
-            </Tween>
-          );
-        })}
+      <Contents ref={contentsRef}>
+        {toc.map((item, index) => (
+          <Item
+            key={item.id}
+            id={item.id}
+            aria-label={`Jump to '${item.label}' section within blog post.`}
+            onClick={() =>
+              gsap
+                .to(window, {
+                  scrollTo: {
+                    y: index === 0 ? 0 : getTrigger(item.id),
+                    offsetY: 100,
+                  },
+                  duration: 0,
+                })
+                .kill()
+            }
+          >
+            {index + 1}. {item.label}
+          </Item>
+        ))}
       </Contents>
       <IntroductionHeader id="introduction-header" />
     </Wrapper>
