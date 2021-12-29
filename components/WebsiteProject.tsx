@@ -6,7 +6,7 @@ import { Button } from './Button';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
 import { ExternalLink } from './ExternalLink';
-import { Media } from './MediaQuery';
+import { Media } from './Media';
 import { Svg } from './Svg';
 
 const Wrapper = styled.div`

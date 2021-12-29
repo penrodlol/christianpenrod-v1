@@ -1,4 +1,4 @@
-import { mediaStyles } from '@components/MediaQuery';
+import { mediaStyles } from '@components/Media';
 import { evalDarkModeHTML } from '@utils/eval-dark-mode';
 import Document, {
   DocumentContext,

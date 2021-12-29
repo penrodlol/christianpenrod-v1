@@ -1,6 +1,6 @@
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header/Header';
-import { MediaContextProvider } from '@components/MediaQuery';
+import { MediaContextProvider } from '@components/Media';
 import { ThemeProvider } from '@components/Theme/ThemeProvider';
 import { Typetura } from '@components/Typetura';
 import dayjs from 'dayjs';

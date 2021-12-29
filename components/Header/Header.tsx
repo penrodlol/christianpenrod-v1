@@ -1,4 +1,4 @@
-import { Media } from '@components/MediaQuery';
+import { Media } from '@components/Media';
 import NextLink from 'next/link';
 import styled, { css } from 'styled-components';
 import { HeaderInline } from './HeaderInline';
