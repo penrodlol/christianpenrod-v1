@@ -1,3 +1,4 @@
+import { mediaStyles } from '@components/MediaQuery';
 import { evalDarkModeHTML } from '@utils/eval-dark-mode';
 import Document, {
   DocumentContext,
@@ -39,7 +40,12 @@ class AppDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <style
+            type="text/css"
+            dangerouslySetInnerHTML={{ __html: mediaStyles }}
+          />
+        </Head>
         <body>
           <script dangerouslySetInnerHTML={{ __html: evalDarkModeHTML }} />
           <Main />

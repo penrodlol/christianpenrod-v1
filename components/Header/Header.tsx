@@ -1,4 +1,4 @@
-import { MediaQuery } from '@components/MediaQuery';
+import { Media } from '@components/MediaQuery';
 import NextLink from 'next/link';
 import styled, { css } from 'styled-components';
 import { HeaderInline } from './HeaderInline';
@@ -39,12 +39,12 @@ export const Header = () => (
       <NextLink href="/" aria-label="Navigate to home">
         <Title>Christian Penrod</Title>
       </NextLink>
-      <MediaQuery at="min-md">
+      <Media greaterThanOrEqual="md">
         <HeaderInline routes={HEADER_ROUTES} />
-      </MediaQuery>
-      <MediaQuery at="max-md">
+      </Media>
+      <Media lessThan="md">
         <HeaderMenu routes={HEADER_ROUTES} />
-      </MediaQuery>
+      </Media>
     </InnerWrapper>
   </Wrapper>
 );

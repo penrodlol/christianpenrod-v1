@@ -25,9 +25,20 @@ const PageTitleWrapper = styled.div`
 `;
 
 const WebsiteProjectsWrapper = styled.div`
-  margin-top: 4rem;
   display: grid;
-  gap: 10rem;
+  --tt-key: projects-website-projects-wrapper;
+
+  @keyframes projects-website-projects-wrapper {
+    0%,
+    60% {
+      gap: 2rem;
+      margin-top: 0;
+    }
+    100% {
+      gap: 8rem;
+      margin-top: 4rem;
+    }
+  }
 `;
 
 const Projects: NextPage = () => {

@@ -42,8 +42,17 @@
       "title": "Pastry liquorice dessert.",
       "description": "Apple pie topping donut powder cupcake. Dessert chocolate bar marshmallow donut sweet dragée chocolate bar.",
       "preview": "/img/devices.webp",
-      "tools": [],
-      "external": {}
+      "tools": [
+        {
+          "id": "b7dedb11-94ed-4296-ba19-ea9de0fa2a6d",
+          "name": "Donuts",
+          "url": "https://angular.io/docs"
+        }
+      ],
+      "external": {
+        "hosted": "http://pgh-events.azurewebsites.net/",
+        "github": "https://github.com/penrodlol/pgh-events"
+      }
     }
   ],
   "misc": [

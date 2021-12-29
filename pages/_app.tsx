@@ -1,5 +1,6 @@
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header/Header';
+import { MediaContextProvider } from '@components/MediaQuery';
 import { ThemeProvider } from '@components/Theme/ThemeProvider';
 import { Typetura } from '@components/Typetura';
 import dayjs from 'dayjs';
@@ -22,9 +23,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Typetura />
       <ThemeProvider>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
+        <MediaContextProvider>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </MediaContextProvider>
       </ThemeProvider>
     </>
   );
