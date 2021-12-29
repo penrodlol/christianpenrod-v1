@@ -27,6 +27,10 @@ const Wrapper = styled.div<ProjectOverviewProps>(
 const Preview = styled.div`
   display: block;
   margin: 0 auto;
+
+  img:not(:hover) {
+    filter: sepia(0.8) !important;
+  }
 `;
 
 const Info = styled.div<ProjectOverviewProps>(
@@ -58,7 +62,8 @@ const EmbeddedPreview = styled.div(
     img {
       border-top-left-radius: ${theme.rounded.base};
       border-top-right-radius: ${theme.rounded.base};
-      opacity: 0.6;
+      opacity: 0.8;
+      filter: sepia(0.8) !important;
     }
 
     svg {
@@ -71,7 +76,7 @@ const EmbeddedPreview = styled.div(
 
     &:hover {
       img {
-        opacity: 0.7;
+        opacity: 0.9;
       }
 
       svg {
