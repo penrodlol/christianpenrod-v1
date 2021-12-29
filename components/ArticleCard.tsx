@@ -1,10 +1,10 @@
-import { Article } from '@interfaces/article';
-import Link from 'next/link';
+import { Post } from '@interfaces/post';
+import dayjs from 'dayjs';
+import NextLink from 'next/link';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
-import { LineClamp } from './LineClamp';
 import { Svg } from './Svg';
 
 const Wrapper = styled.div(
@@ -18,24 +18,26 @@ const Wrapper = styled.div(
     &:hover {
       box-shadow: ${theme.shadow.hover};
     }
-
-    @media screen and (min-width: ${theme.breakpoint.md}) {
-      display: grid;
-      grid-template-rows: 10rem 1fr 3rem;
-      height: 25rem;
-    }
-
-    @media screen and (min-width: ${theme.breakpoint.lg}) {
-      height: 22.25rem;
-      display: grid;
-      grid-template-rows: 9rem 1fr 3rem;
-    }
   `,
 );
+
+const Header = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.lg}) {
+    height: 8rem;
+  }
+`;
 
 const Published = styled.span`
   color: ${({ theme }) => theme.text.faded};
   display: block;
+`;
+
+const TagsWrapper = styled.div`
+  font-size: 0.8em;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.4rem;
+  margin: 0.15rem 0;
 `;
 
 const Title = styled.span`
@@ -44,7 +46,7 @@ const Title = styled.span`
 
   /* prettier-ignore */
   @keyframes recent-article-title {
-    0%, 40% { font-size: 1em; }
+    0%, 60% { font-size: 1em; }
     100% { font-size: 1.3em; }
   }
 `;
@@ -54,7 +56,11 @@ const Description = styled.p`
   font-weight: 500;
   line-height: 1.5rem;
   min-height: 6rem;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.lg}) {
+    height: 10rem;
+  }
 `;
 
 const Footer = styled.div`
@@ -67,27 +73,35 @@ const Footer = styled.div`
 `;
 
 export interface ArticleProps {
-  article: Article;
+  post: Post;
 }
 
-export const ArticleCard: FC<ArticleProps> = ({ article }) => {
+export const ArticleCard: FC<ArticleProps> = ({ post }) => {
   return (
-    <Link href="/" passHref>
+    <NextLink
+      href={`/blog/${post.path}`}
+      passHref
+      aria-label={`Navigate internally to blog post: ${post.data.title}`}
+    >
       <Wrapper tabIndex={0}>
-        <div>
-          <Published>{article.published}</Published>
-          <Chip>#{article.tag}</Chip>
-          <LineClamp maxLines={2}>
-            <Title>{article.title}</Title>
-          </LineClamp>
-          <Divider />
-        </div>
-        <Description>{article.description}</Description>
+        <Header>
+          <Published>
+            {dayjs(post.data.publishedOn).format('YYYY-MM-DD')}
+          </Published>
+          <TagsWrapper>
+            {post.data.tags?.map((tag) => (
+              <Chip key={tag}>#{tag}</Chip>
+            ))}
+          </TagsWrapper>
+          <Title>{post.data.title}</Title>
+        </Header>
+        <Divider />
+        <Description>{post.data.description}</Description>
         <Footer>
           Read More
           <Svg name="arrow-right" width={25} />
         </Footer>
       </Wrapper>
-    </Link>
+    </NextLink>
   );
 };

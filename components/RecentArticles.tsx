@@ -1,4 +1,4 @@
-import { Articles } from '@interfaces/article';
+import { Post, Posts } from '@interfaces/post';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { ArticleCard } from './ArticleCard';
@@ -7,14 +7,14 @@ const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpoint.lg};
   margin: 0 auto;
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     max-width: ${({ theme }) => theme.breakpoint.xs};
   }
 `;
 
 const InnerWrapper = styled.div`
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(3, minmax(0, 33%));
   --tt-key: recent-articles-inner-wrapper;
 
   /* prettier-ignore */
@@ -23,8 +23,9 @@ const InnerWrapper = styled.div`
     100% { gap: 2rem; }
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoint.md}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.lg}) {
     grid-auto-flow: row;
+    grid-template-columns: none;
   }
 `;
 
@@ -46,16 +47,16 @@ const Title = styled.h3`
 `;
 
 export interface RecentArticlesProps {
-  articles: Articles;
+  posts: Posts;
 }
 
-export const RecentArticles: FC<RecentArticlesProps> = ({ articles }) => {
+export const RecentArticles: FC<RecentArticlesProps> = ({ posts }) => {
   return (
     <Wrapper>
       <Title>Recent Articles</Title>
       <InnerWrapper>
-        {articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
+        {posts.map((post: Post) => (
+          <ArticleCard key={post.data.id} post={post} />
         ))}
       </InnerWrapper>
     </Wrapper>

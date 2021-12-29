@@ -1,5 +1,3 @@
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-
 export interface TOCItem {
   id: string;
   label: string;
@@ -11,6 +9,7 @@ export interface Data {
   id: string;
   title: string;
   description: string;
+  tags: Array<string>;
   published: boolean;
   publishedOn: string;
   readTime: number;
@@ -19,7 +18,7 @@ export interface Data {
   stackblitz?: string;
 }
 
-export interface Post<T = MDXRemoteSerializeResult> {
+export interface Post<T = unknown> {
   data: Data;
   path: string;
   source: T;

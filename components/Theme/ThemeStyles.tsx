@@ -13,6 +13,10 @@ const Styles = createGlobalStyle(
     *::-webkit-scrollbar {
       width: 0.6em;
 
+      &:horizontal {
+        height: 0.3em;
+      }
+
       &-track {
         box-shadow: inset 0 0 6px hsla(0, 0%, 0%, 0.3);
       }
@@ -24,6 +28,10 @@ const Styles = createGlobalStyle(
           ${theme.tertiary.base}
         );
         border-radius: 0.25em;
+
+        &:horizontal {
+          background: ${theme.basic.base};
+        }
       }
 
       @media screen and (max-width: ${theme.breakpoint.sm}) {

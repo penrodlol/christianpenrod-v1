@@ -1,9 +1,9 @@
 import { PageHead } from '@components/PageHead';
 import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
-import { Articles } from '@interfaces/article';
-import { ARTICLES } from '@stubs/articles.stub';
+import { Posts } from '@interfaces/post';
 import { generateGridBackground } from '@utils/generate-grid-background';
+import { getPostsSlugs } from '@utils/get-post-slugs';
 import dayjs from 'dayjs';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled, { css } from 'styled-components';
@@ -48,7 +48,7 @@ const RecentArticlesWrapper = styled.section(
 );
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  articles,
+  posts,
 }) => {
   return (
     <>
@@ -58,20 +58,21 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <Welcome />
         </WelcomeWrapper>
         <RecentArticlesWrapper>
-          <RecentArticles articles={articles} />
+          <RecentArticles posts={posts} />
         </RecentArticlesWrapper>
       </Wrapper>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps<{ articles: Articles }> =
-  async () => {
-    const articles = [...ARTICLES]
-      .sort((a, b) => (dayjs(a.published) < dayjs(b.published) ? 1 : -1))
-      .filter((_, index) => index <= 2);
+export const getStaticProps: GetStaticProps<{ posts: Posts }> = async () => {
+  const posts = [...getPostsSlugs()]
+    .sort((a, b) =>
+      dayjs(a.data.publishedOn) < dayjs(b.data.publishedOn) ? 1 : -1,
+    )
+    .filter((_, index) => index <= 2);
 
-    return { props: { articles } };
-  };
+  return { props: { posts } };
+};
 
 export default Home;

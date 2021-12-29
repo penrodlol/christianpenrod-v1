@@ -12,7 +12,7 @@ import type {
   InferGetStaticPropsType,
   NextPage,
 } from 'next';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import styled, { createGlobalStyle, css } from 'styled-components';
 
@@ -98,7 +98,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Wrapper data={post.data}>
         <InnerWrapper>
           <BlogPostHeader data={post.data} />
-          <BlogPostContent>
+          <BlogPostContent id="blog">
             <MDXRemote {...post.source} components={components} />
           </BlogPostContent>
         </InnerWrapper>
@@ -122,10 +122,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<{
-  post: Post;
+  post: Post<MDXRemoteSerializeResult>;
 }> = async (ctx) => {
   return {
-    props: { post: (await getPostSlug(ctx.params?.slug as string)) as Post },
+    props: {
+      post: (await getPostSlug(
+        ctx.params?.slug as string,
+      )) as Post<MDXRemoteSerializeResult>,
+    },
   };
 };
 

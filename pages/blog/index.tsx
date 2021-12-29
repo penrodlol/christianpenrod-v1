@@ -1,9 +1,9 @@
+import { ArticleCard } from '@components/ArticleCard';
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { Posts } from '@interfaces/post';
 import { getPostsSlugs } from '@utils/get-post-slugs';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import NextLink from 'next/link';
 import styled from 'styled-components';
 
 const Wrapper = styled.main`
@@ -38,13 +38,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </PageTitleWrapper>
         <PostsWrapper>
           {posts.map((post) => (
-            <NextLink
-              key={post.data.id}
-              href={`/blog/${post.path}`}
-              aria-label={`Navigate internally to blog post: ${post.data.title}`}
-            >
-              {post.data.title}
-            </NextLink>
+            <ArticleCard key={post.data.id} post={post} />
           ))}
         </PostsWrapper>
       </Wrapper>
