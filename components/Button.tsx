@@ -50,6 +50,7 @@ const Wrapper = styled.button<ButtonProps>(({ status, theme, icon }) => {
     cursor: pointer;
     font-size: 1.15em;
     font-weight: 600;
+    white-space: nowrap;
     background: ${background ?? 'transparent'};
 
     ${iconStyles ?? ''};

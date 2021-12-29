@@ -1,6 +1,6 @@
 import { SvgName } from '@components/Svg';
 
-export type Tag = 'website' | 'script';
+export type Tag = 'website' | 'misc';
 
 export interface Tool {
   id: string;

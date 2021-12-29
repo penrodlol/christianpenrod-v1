@@ -55,11 +55,13 @@ const Description = styled.p`
   font-size: 0.9em;
   font-weight: 500;
   line-height: 1.5rem;
-  min-height: 6rem;
   padding: 0.5rem;
+  --tt-key: recent-article-description;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.lg}) {
-    height: 10rem;
+  /* prettier-ignore */
+  @keyframes recent-article-description {
+    0%, 50% { min-height: 6rem; }
+    100% { min-height: 10rem; }
   }
 `;
 

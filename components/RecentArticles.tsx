@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 
 const InnerWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 33%));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   --tt-key: recent-articles-inner-wrapper;
 
   /* prettier-ignore */

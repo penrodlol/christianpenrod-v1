@@ -44,7 +44,7 @@
       "preview": "/img/devices.webp",
       "tools": [
         {
-          "id": "b7dedb11-94ed-4296-ba19-ea9de0fa2a6d",
+          "id": "1a5d60a7-9c8e-4835-bd9f-eda21b9dc621",
           "name": "Donuts",
           "url": "https://angular.io/docs"
         }
@@ -61,8 +61,48 @@
       "title": "Croissant pastry dragée",
       "description": "Liquorice dragée oat cake liquorice dragée biscuit jelly-o. Muffin fruitcake sweet dessert icing jelly beans.",
       "tag": "script",
-      "tools": [],
-      "external": {}
+      "tools": [
+        {
+          "id": "cf5ec1e0-3f99-4fe6-b3a4-172b7ced4ca0",
+          "name": "Donuts",
+          "url": "https://angular.io/docs"
+        }
+      ],
+      "external": {
+        "github": "https://github.com/penrodlol/pgh-events"
+      }
+    },
+    {
+      "id": "c9125d97-dce7-45d1-a1ce-1275a90d0329",
+      "title": "Muffin fruitcake sweet biscuit jelly-o",
+      "description": "Liquorice dragée oat cake liquorice dragée biscuit jelly-o. Muffin fruitcake sweet dessert icing jelly beans.",
+      "tag": "script",
+      "tools": [
+        {
+          "id": "1f37b106-6b38-47cb-9428-9644fbf1f472",
+          "name": "Bagels",
+          "url": "https://angular.io/docs"
+        }
+      ],
+      "external": {
+        "github": "https://github.com/penrodlol/pgh-events"
+      }
+    },
+    {
+      "id": "3eacda76-7593-4cf2-89be-9b803a1166d0",
+      "title": "Liquorice dragée oat",
+      "description": "Liquorice dragée oat cake liquorice dragée biscuit jelly-o. Muffin fruitcake sweet dessert icing jelly beans.",
+      "tag": "script",
+      "tools": [
+        {
+          "id": "a04d7701-8e28-4e13-a9b6-8b5a5ba7c900",
+          "name": "Sugar",
+          "url": "https://angular.io/docs"
+        }
+      ],
+      "external": {
+        "github": "https://github.com/penrodlol/pgh-events"
+      }
     }
   ]
 }
