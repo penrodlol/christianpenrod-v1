@@ -42,8 +42,17 @@ export const base: DefaultTheme = {
   primary: { base: 'var(--primary-base)', hover: 'var(--primary-hover)' },
   secondary: { base: 'var(--secondary-base)', hover: 'var(--secondary-hover)' },
   tertiary: { base: 'var(--tertiary-base)', hover: 'var(--tertiary-hover)' },
+  success: { base: 'var(--success-base)' },
   shadow: { base: 'var(--shadow-base)', hover: 'var(--shadow-hover)' },
   rounded: { base: '0.25em' },
+  code: {
+    background: 'var(--code-background)',
+    function: 'var(--code-function)',
+    keyword: 'var(--code-keyword)',
+    classname: 'var(--code-classname)',
+    string: 'var(--code-string)',
+    builtin: 'var(--code-builtin)',
+  },
 };
 
 export const dark: DefaultTheme = {
@@ -63,9 +72,18 @@ export const dark: DefaultTheme = {
   primary: { base: 'hsl(229, 42%, 69%)', hover: 'hsl(229, 35%, 62%)' },
   secondary: { base: 'hsl(39, 100%, 90%)', hover: 'hsl(39, 88%, 84%)' },
   tertiary: { base: 'hsl(264, 81%, 84%)', hover: 'hsl(264, 41%, 72%)' },
+  success: { base: 'hsl(120, 63%, 76%)' },
   shadow: {
     base: SHADOW_BASE('0deg 0% 2%'),
     hover: SHADOW_HOVER('0deg 0% 2%'),
+  },
+  code: {
+    background: 'hsl(222, 69%, 6%)',
+    function: 'hsl(265, 79%, 85%)',
+    keyword: ' hsl(238, 84%, 80%)',
+    classname: 'hsl(202, 86%, 83%)',
+    string: 'hsl(0, 0%, 67%)',
+    builtin: 'hsl(262, 43% 73%)',
   },
 };
 
@@ -86,8 +104,17 @@ export const light: DefaultTheme = {
   primary: { base: 'hsl(229, 61%, 69%)', hover: 'hsl(229, 50%, 62%)' },
   secondary: { base: 'hsl(39, 88%, 84%)', hover: 'hsl(39, 90%, 81%)' },
   tertiary: { base: 'hsl(266, 62%, 83%)', hover: 'hsl(266, 30%, 75%)' },
+  success: { base: 'hsl(120, 68%, 31%)' },
   shadow: {
     base: SHADOW_BASE('0deg 0% 63%'),
     hover: SHADOW_HOVER('0deg 0% 63%'),
+  },
+  code: {
+    background: 'hsl(0, 0%, 100%)',
+    function: 'hsl(265, 60%, 58%)',
+    keyword: 'hsl(262, 32%, 63%)',
+    classname: 'hsl(187, 60%, 48%)',
+    string: 'hsl(0, 0%, 51%)',
+    builtin: 'hsl(262, 52%, 58%)',
   },
 };

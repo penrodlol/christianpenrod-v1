@@ -1,15 +1,15 @@
-import { Role } from '@interfaces/occupation';
+import { Roles } from '@interfaces/occupation';
 import dayjs from 'dayjs';
 
-export function getTotalTime(roles: Array<Role>) {
+export function getTotalTime(roles: Roles) {
   let years = 0;
   let months = 0;
 
-  roles?.forEach(({ time }) => {
-    const to = dayjs(time.to || dayjs().valueOf());
+  roles?.forEach((role) => {
+    const to = dayjs(role.to || dayjs().valueOf());
 
-    years += to.diff(time.from, 'year');
-    months += to.month() - dayjs(time.from).month();
+    years += to.diff(role.from, 'year');
+    months += to.month() - dayjs(role.from).month();
   });
 
   let payload = '';

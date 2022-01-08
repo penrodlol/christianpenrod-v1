@@ -1,6 +1,6 @@
 import { SvgName } from '@components/Svg';
 
-export type Tag = 'website' | 'misc';
+export type Tag = 'WEBSITE' | 'MISC';
 
 export interface Tool {
   id: string;
@@ -20,10 +20,9 @@ export interface Project {
   title: string;
   description: string;
   tools: Tools;
+  tag: Tag;
   preview?: string;
   external?: External;
 }
 
 export type Projects = Array<Project>;
-
-export type ProjectsDTO = Record<Tag, Projects>;

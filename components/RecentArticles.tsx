@@ -1,7 +1,7 @@
 import { Post, Posts } from '@interfaces/post';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { ArticleCard } from './ArticleCard';
+import { PostCard } from './PostCard';
 
 const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpoint.lg};
@@ -47,7 +47,7 @@ const Title = styled.h3`
 `;
 
 export interface RecentArticlesProps {
-  posts: Posts;
+  posts: Posts | null;
 }
 
 export const RecentArticles: FC<RecentArticlesProps> = ({ posts }) => {
@@ -55,8 +55,8 @@ export const RecentArticles: FC<RecentArticlesProps> = ({ posts }) => {
     <Wrapper>
       <Title>Recent Articles</Title>
       <InnerWrapper>
-        {posts.map((post: Post) => (
-          <ArticleCard key={post.data.id} post={post} />
+        {posts?.map((post: Post) => (
+          <PostCard key={post.id} post={post} />
         ))}
       </InnerWrapper>
     </Wrapper>

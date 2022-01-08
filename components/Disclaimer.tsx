@@ -20,7 +20,7 @@ const InnerWrapper = styled.div`
   grid-template-columns: max-content 1fr;
   gap: 0.5rem;
 
-  svg {
+  .warning-icon {
     transform: translateY(0.3rem);
   }
 `;
@@ -29,7 +29,13 @@ export const Disclaimer: FC = ({ children }) => {
   return (
     <Wrapper>
       <InnerWrapper>
-        <Svg name="warning" fill="var(--text-base)" height={25} width={25} />
+        <Svg
+          className="warning-icon"
+          name="warning"
+          fill="var(--text-base)"
+          height={25}
+          width={25}
+        />
         <div>{children}</div>
       </InnerWrapper>
     </Wrapper>

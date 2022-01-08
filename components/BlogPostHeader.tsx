@@ -1,4 +1,4 @@
-import { Data } from '@interfaces/post';
+import { Post } from '@interfaces/post';
 import dayjs from 'dayjs';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
@@ -66,20 +66,20 @@ const StatsItem = styled.div`
 `;
 
 export interface BlogPostHeaderProps {
-  data: Data;
+  post: Post;
 }
 
-export const BlogPostHeader: FC<BlogPostHeaderProps> = ({ data }) => {
+export const BlogPostHeader: FC<BlogPostHeaderProps> = ({ post }) => {
   return (
     <Header>
-      <Title>{data.title}</Title>
+      <Title>{post.title}</Title>
       <Stats>
         <StatsItem>
           <Svg name="calendar" width={25} height={25} />{' '}
-          {dayjs.utc(data.publishedOn).format('MMM Do, YYYY')}
+          {dayjs.utc(post.publishedOn).format('MMM Do, YYYY')}
         </StatsItem>
         <StatsItem>
-          <Svg name="clock" width={25} height={25} /> {data.readTime} Minute
+          <Svg name="clock" width={25} height={25} /> {post.readTime} Minute
           Read
         </StatsItem>
       </Stats>

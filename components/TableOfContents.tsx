@@ -1,4 +1,3 @@
-import { TOC } from '@interfaces/post';
 import gsap from 'gsap';
 import { createRef, FC, useEffect } from 'react';
 import styled from 'styled-components';
@@ -38,7 +37,7 @@ function getTrigger(id: string) {
 }
 
 export interface TableOfContentsProps {
-  toc: TOC;
+  toc: Array<string>;
 }
 
 export const TableOfContents: FC<TableOfContentsProps> = ({ toc }) => {
@@ -83,14 +82,14 @@ export const TableOfContents: FC<TableOfContentsProps> = ({ toc }) => {
       <Contents ref={contentsRef}>
         {toc.map((item, index) => (
           <Item
-            key={item.id}
-            id={item.id}
-            aria-label={`Jump to '${item.label}' section within blog post.`}
+            key={item}
+            id={item}
+            aria-label={`Jump to '${item}' section within blog post.`}
             onClick={() =>
               gsap
                 .to(window, {
                   scrollTo: {
-                    y: index === 0 ? 0 : getTrigger(item.id),
+                    y: index === 0 ? 0 : getTrigger(item),
                     offsetY: 100,
                   },
                   duration: 0,
@@ -98,7 +97,7 @@ export const TableOfContents: FC<TableOfContentsProps> = ({ toc }) => {
                 .kill()
             }
           >
-            {index + 1}. {item.label}
+            {index + 1}. {item}
           </Item>
         ))}
       </Contents>

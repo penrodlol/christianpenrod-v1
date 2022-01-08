@@ -1,10 +1,9 @@
 import { PageHead } from '@components/PageHead';
 import { RecentArticles } from '@components/RecentArticles';
 import { Welcome } from '@components/Welcome';
-import { Posts } from '@interfaces/post';
+import { Post, Posts } from '@interfaces/post';
 import { generateGridBackground } from '@utils/generate-grid-background';
-import { getPostsSlugs } from '@utils/get-post-slugs';
-import dayjs from 'dayjs';
+import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled, { css } from 'styled-components';
 
@@ -65,14 +64,16 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   );
 };
 
-export const getStaticProps: GetStaticProps<{ posts: Posts }> = async () => {
-  const posts = [...getPostsSlugs()]
-    .sort((a, b) =>
-      dayjs(a.data.publishedOn) < dayjs(b.data.publishedOn) ? 1 : -1,
-    )
-    .filter((_, index) => index <= 2);
+export const getStaticProps: GetStaticProps<{
+  posts: Posts | null;
+}> = async () => {
+  const { data } = await supabase
+    .from<Post>('posts')
+    .select('*')
+    .order('published', { ascending: false })
+    .limit(3);
 
-  return { props: { posts } };
+  return { props: { posts: data } };
 };
 
 export default Home;

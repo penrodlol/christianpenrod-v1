@@ -1,12 +1,12 @@
 import { Carrer } from '@components/Career';
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
+import { Occupation, Occupations } from '@interfaces/occupation';
 import { generateGridBackground } from '@utils/generate-grid-background';
-import type { NextPage } from 'next';
+import { supabase } from '@utils/supabase';
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
-
-const Wrapper = styled.main``;
 
 const Profile = styled.div(
   ({ theme }) => css`
@@ -89,13 +89,15 @@ const CareerWrapper = styled.div(
   `,
 );
 
-const About: NextPage = () => {
+const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  occupations,
+}) => {
   const page = 'About';
 
   return (
     <>
       <PageHead page={page} />
-      <Wrapper>
+      <main>
         <Profile>
           <PageTitle page={page} title="Who is Christian?" />
           <ProfileContent>
@@ -137,11 +139,21 @@ const About: NextPage = () => {
           </ProfileContent>
         </Profile>
         <CareerWrapper>
-          <Carrer />
+          <Carrer occupations={occupations} />
         </CareerWrapper>
-      </Wrapper>
+      </main>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<{
+  occupations: Occupations | null;
+}> = async () => {
+  const { data } = await supabase
+    .from<Occupation>('occupations')
+    .select('*, roles:occupation_roles(*)');
+
+  return { props: { occupations: data } };
 };
 
 export default About;

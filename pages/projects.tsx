@@ -1,10 +1,10 @@
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { ProjectOverview } from '@components/ProjectOverview';
-import { ProjectsDTO } from '@interfaces/project';
+import { Project, Projects as _Projects, Tag } from '@interfaces/project';
 import { generateGridBackground } from '@utils/generate-grid-background';
-import { useStaticData } from 'hooks/use-static-data';
-import type { NextPage } from 'next';
+import { supabase } from '@utils/supabase';
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled, { createGlobalStyle, css } from 'styled-components';
 
 const FooterStyles = createGlobalStyle(
@@ -79,9 +79,12 @@ const MiscProjectsContent = styled.div`
   }
 `;
 
-const Projects: NextPage = () => {
+type ProjectsState = Record<Tag, _Projects | undefined> | null;
+
+const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  projects,
+}) => {
   const page = 'Projects';
-  const projects = useStaticData<ProjectsDTO>('api/projects');
 
   return (
     <>
@@ -92,7 +95,7 @@ const Projects: NextPage = () => {
             <PageTitle page={page} title="What has Christian done?" />
           </PageTitleWrapper>
           <WebsiteProjectsWrapper>
-            {projects?.website?.map((project) => (
+            {projects?.WEBSITE?.map((project) => (
               <ProjectOverview key={project.id} project={project} />
             ))}
           </WebsiteProjectsWrapper>
@@ -101,7 +104,7 @@ const Projects: NextPage = () => {
         <MiscProjectsWrapper>
           <MiscProjectsTitle>Other Projects</MiscProjectsTitle>
           <MiscProjectsContent>
-            {projects?.misc?.map((project) => (
+            {projects?.MISC?.map((project) => (
               <ProjectOverview key={project.id} project={project} />
             ))}
           </MiscProjectsContent>
@@ -110,6 +113,21 @@ const Projects: NextPage = () => {
       <FooterStyles />
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<{
+  projects: ProjectsState;
+}> = async () => {
+  const { data } = await supabase
+    .from<Project>('projects')
+    .select('*, tools(*)');
+
+  const projects = {
+    WEBSITE: data?.filter(({ tag }) => tag === 'WEBSITE'),
+    MISC: data?.filter(({ tag }) => tag === 'MISC'),
+  };
+
+  return { props: { projects } };
 };
 
 export default Projects;

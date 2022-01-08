@@ -1,27 +1,18 @@
-export interface TOCItem {
-  id: string;
-  label: string;
-}
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-export type TOC = Array<TOCItem>;
-
-export interface Data {
+export interface Post {
   id: string;
   title: string;
   description: string;
   tags: Array<string>;
-  published: boolean;
-  publishedOn: string;
+  published: string;
   readTime: number;
-  toc?: TOC;
+  slug: string;
+  source: MDXRemoteSerializeResult;
+  showToc: boolean;
+  toc: Array<string>;
   github?: string;
   stackblitz?: string;
 }
 
-export interface Post<T = unknown> {
-  data: Data;
-  path: string;
-  source: T;
-}
-
-export type Posts = Array<Post<string>>;
+export type Posts = Array<Post>;

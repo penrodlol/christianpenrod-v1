@@ -12,7 +12,10 @@ export type SvgName =
   | 'clock'
   | 'warning'
   | 'link'
-  | 'arrows-expand';
+  | 'arrows-expand'
+  | 'search'
+  | 'clipboard'
+  | 'check';
 
 export interface SvgAttributes {
   pathAttrs: Array<Record<string, string>>;
@@ -139,6 +142,35 @@ export const SVGS = new Map<SvgName, SvgAttributes>()
         fillRule: 'evenodd',
         clipRule: 'evenodd',
         d: 'M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z',
+      },
+    ],
+  })
+  .set('search', {
+    pathAttrs: [
+      {
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+        d: 'M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z',
+      },
+    ],
+  })
+  .set('clipboard', {
+    viewBox: '0 0 24 24',
+    pathAttrs: [
+      {
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round',
+        strokeWidth: '2',
+        d: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
+      },
+    ],
+  })
+  .set('check', {
+    pathAttrs: [
+      {
+        fillRule: 'evenodd',
+        clipRule: 'evenodd',
+        d: 'M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z',
       },
     ],
   });

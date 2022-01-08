@@ -96,7 +96,7 @@ export const OccupationCardNodes: FC<OccupationCardNodesProps> = ({
         <Content>
           <Title>{role.title}</Title>
           <Time>
-            {formatFrom(role.time.from)} - {formatTo(role.time.to)}
+            {formatFrom(role.from)} - {formatTo(role.to)}
           </Time>
           <Description>{role.description}</Description>
         </Content>

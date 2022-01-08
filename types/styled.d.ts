@@ -34,6 +34,19 @@ export interface Rounded {
   base: string;
 }
 
+export interface Success {
+  base: string;
+}
+
+export interface Code {
+  background: string;
+  function: string;
+  keyword: string;
+  classname: string;
+  string: string;
+  builtin: string;
+}
+
 declare module 'styled-components' {
   export interface DefaultTheme {
     breakpoint: Record<Breakpoint, string>;
@@ -44,7 +57,9 @@ declare module 'styled-components' {
     primary: Color;
     secondary: Color;
     tertiary: Color;
+    success: Success;
     shadow: Shadow;
     rounded: Rounded;
+    code: Code;
   }
 }

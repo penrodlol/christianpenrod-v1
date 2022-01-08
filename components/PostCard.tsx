@@ -74,31 +74,29 @@ const Footer = styled.div`
   align-self: end;
 `;
 
-export interface ArticleProps {
+export interface PostCardProps {
   post: Post;
 }
 
-export const ArticleCard: FC<ArticleProps> = ({ post }) => {
+export const PostCard: FC<PostCardProps> = ({ post }) => {
   return (
     <NextLink
-      href={`/blog/${post.path}`}
+      href={`/blog/${post.slug}`}
       passHref
-      aria-label={`Navigate internally to blog post: ${post.data.title}`}
+      aria-label={`Navigate internally to blog post: ${post.title}`}
     >
       <Wrapper tabIndex={0}>
         <Header>
-          <Published>
-            {dayjs(post.data.publishedOn).format('YYYY-MM-DD')}
-          </Published>
+          <Published>{dayjs(post.published).format('YYYY-MM-DD')}</Published>
           <TagsWrapper>
-            {post.data.tags?.map((tag) => (
+            {post.tags?.map((tag) => (
               <Chip key={tag}>#{tag}</Chip>
             ))}
           </TagsWrapper>
-          <Title>{post.data.title}</Title>
+          <Title>{post.title}</Title>
         </Header>
         <Divider />
-        <Description>{post.data.description}</Description>
+        <Description>{post.description}</Description>
         <Footer>
           Read More
           <Svg name="arrow-right" width={25} />

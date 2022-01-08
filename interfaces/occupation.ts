@@ -1,20 +1,18 @@
-export interface Time {
+export interface Role {
+  id: number;
+  title: string;
   from: number;
   to?: number;
-}
-
-export interface Role {
-  id: string;
-  title: string;
-  time: Time;
   description: string;
 }
 
+export type Roles = Array<Role>;
+
 export interface Occupation {
-  id: string;
+  id: number;
   company: string;
   logo: string;
-  roles: Array<Role>;
+  roles: Roles;
 }
 
 export type Occupations = Array<Occupation>;
