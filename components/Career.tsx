@@ -47,7 +47,6 @@ export const Carrer: FC<CarrerProps> = ({ occupations }) => {
   return (
     <Wrapper>
       <Title>Career</Title>
-      <pre></pre>
       <OccupationsWrapper>
         {occupations?.map((occupation) => (
           <OccupationCard key={occupation.id} occupation={occupation} />

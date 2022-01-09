@@ -76,7 +76,7 @@ export const BlogPostHeader: FC<BlogPostHeaderProps> = ({ post }) => {
       <Stats>
         <StatsItem>
           <Svg name="calendar" width={25} height={25} />{' '}
-          {dayjs.utc(post.publishedOn).format('MMM Do, YYYY')}
+          {dayjs.utc(post.published).format('MMM Do, YYYY')}
         </StatsItem>
         <StatsItem>
           <Svg name="clock" width={25} height={25} /> {post.readTime} Minute
