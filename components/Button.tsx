@@ -1,4 +1,9 @@
-import { ButtonHTMLAttributes, FC } from 'react';
+import {
+  ButtonHTMLAttributes,
+  ForwardedRef,
+  forwardRef,
+  PropsWithChildren,
+} from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Svg, SvgName } from './Svg';
 
@@ -65,8 +70,11 @@ const Wrapper = styled.button<ButtonProps>(({ status, theme, icon }) => {
   `;
 });
 
-export const Button: FC<ButtonProps> = (props) => (
-  <Wrapper {...props}>
+const ButtonComponent = (
+  props: PropsWithChildren<ButtonProps>,
+  ref: ForwardedRef<HTMLButtonElement>,
+) => (
+  <Wrapper {...props} ref={ref}>
     {props.icon ? (
       <Svg
         name={props.icon}
@@ -78,3 +86,5 @@ export const Button: FC<ButtonProps> = (props) => (
     )}
   </Wrapper>
 );
+
+export const Button = forwardRef(ButtonComponent);

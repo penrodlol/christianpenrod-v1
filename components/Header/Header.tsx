@@ -8,10 +8,10 @@ const Wrapper = styled.nav(
   ({ theme }) => css`
     background: ${theme.background.base};
     box-shadow: ${theme.shadow.base};
-    width: 100vw;
-    max-width: 100%;
     position: sticky;
     top: 0;
+    right: 0;
+    left: 0;
     z-index: 50;
   `,
 );

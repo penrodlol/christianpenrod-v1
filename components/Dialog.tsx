@@ -1,22 +1,34 @@
-import { FC, useEffect, useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import gsap from 'gsap';
+import { FC, useEffect, useRef } from 'react';
+import { useRefElement } from 'rooks';
+import styled, { css } from 'styled-components';
 import { Button } from './Button';
-import { Overlay } from './Overlay';
-import { Svg } from './Svg';
 
-const Wrapper = styled.div`
-  max-width: ${({ theme }) => theme.breakpoint.sm};
-  background: ${({ theme }) => theme.background.heavy};
-  border-radius: ${({ theme }) => theme.rounded.base};
-  box-shadow: ${({ theme }) => theme.shadow.base};
-  position: absolute;
-  top: 25%;
-  left: 1.25rem;
-  right: 1.25rem;
-  margin: 0 auto;
+const Overlay = styled(DialogPrimitive.Overlay)`
+  background: ${({ theme }) => theme.background.blur};
+  backdrop-filter: blur(4px);
+  position: fixed;
+  inset: 0;
+  z-index: 50;
 `;
 
-const Header = styled.div`
+const Content = styled(DialogPrimitive.Content)(
+  ({ theme }) => css`
+    max-width: ${theme.breakpoint.sm};
+    background: ${theme.background.light};
+    border-radius: ${theme.rounded.base};
+    box-shadow: ${theme.shadow.base};
+    position: fixed;
+    top: 25%;
+    left: 1.25rem;
+    right: 1.25rem;
+    z-index: 51;
+    margin: 0 auto;
+  `,
+);
+
+const Header = styled(DialogPrimitive.Title)`
   padding: 1rem;
   display: grid;
   grid-auto-flow: column;
@@ -25,15 +37,7 @@ const Header = styled.div`
   justify-items: space-between;
 `;
 
-const Title = styled.h2``;
-
-const Close = styled.button`
-  cursor: pointer;
-  border: none;
-  background: transparent;
-`;
-
-const Content = styled.div`
+const Body = styled.div`
   padding: 1.5rem;
 `;
 
@@ -46,16 +50,8 @@ const Footer = styled.div`
   padding: 1rem;
 `;
 
-const ActiveDialogStyles = createGlobalStyle`
-  #hamburger { display: none; }
-`;
-
-export interface DialogProps {
-  title: string;
-  open: boolean;
-  closeAria: string;
-  onClose: () => void;
-  primary?: {
+export interface DialogContentProps extends DialogPrimitive.DialogContentProps {
+  primary: {
     label: string;
     aria: string;
     disabled?: boolean;
@@ -64,48 +60,80 @@ export interface DialogProps {
     label: string;
     aria: string;
   };
-  onCancel?: () => void;
-  onSubmit?: () => void;
 }
 
-export const Dialog: FC<DialogProps> = (props) => {
-  const [open, setOpen] = useState(false);
+export const Dialog = DialogPrimitive.Root;
+export const DialogTrigger = DialogPrimitive.Trigger;
+export const DialogContent: FC<DialogContentProps> = ({
+  children,
+  ...props
+}) => {
+  const [contentRef, contentEl] = useRefElement<HTMLDivElement>();
+  const [overlayRef, overlayEl] = useRefElement<HTMLDivElement>();
+  const tl = useRef<gsap.core.Timeline>();
 
-  useEffect(() => setOpen(props.open), [props.open]);
+  useEffect(() => {
+    if (!contentEl && !overlayEl) return;
+
+    tl.current = gsap.timeline();
+
+    tl.current
+      ?.from(overlayEl, {
+        autoAlpha: 0,
+        delay: 0.05,
+        duration: 0.2,
+      })
+      .from(
+        contentEl,
+        {
+          autoAlpha: 0,
+          scale: 0.9,
+          duration: 0.5,
+          ease: 'back.out(3)',
+        },
+        0.15,
+      );
+
+    return () => {
+      tl.current?.kill();
+    };
+  });
 
   return (
-    <Overlay show={open} onClick={props.onClose}>
-      {open && <ActiveDialogStyles />}
-      <Wrapper onClick={(e) => e.stopPropagation()}>
+    <DialogPrimitive.Portal>
+      <Overlay ref={overlayRef} />
+      <Content ref={contentRef} {...props}>
         <Header>
-          <Title>{props.title}</Title>
-          <Close aria-label={props.closeAria} onClick={props.onClose}>
-            <Svg name="close" fill="var(--text-base)" />
-          </Close>
+          {props.title}
+          <DialogPrimitive.DialogClose asChild>
+            <Button icon="close" />
+          </DialogPrimitive.DialogClose>
         </Header>
-        <Content>{props.children}</Content>
+        <Body>{children}</Body>
         <Footer>
           {props.secondary && (
-            <Button
-              status="secondary"
-              aria-label={props.secondary.aria}
-              onClick={props.onCancel}
-            >
-              {props.secondary?.label}
-            </Button>
+            <DialogPrimitive.Close asChild>
+              <Button
+                status="secondary"
+                title={props.secondary.label}
+                aria-label={props.secondary.aria}
+              >
+                {props.secondary.label}
+              </Button>
+            </DialogPrimitive.Close>
           )}
-          {props.primary && (
+          <DialogPrimitive.Close asChild>
             <Button
               status="primary"
+              title={props.primary.label}
               aria-label={props.primary.aria}
               disabled={props.primary.disabled}
-              onClick={props.onSubmit}
             >
-              {props.primary?.label}
+              {props.primary.label}
             </Button>
-          )}
+          </DialogPrimitive.Close>
         </Footer>
-      </Wrapper>
-    </Overlay>
+      </Content>
+    </DialogPrimitive.Portal>
   );
 };
