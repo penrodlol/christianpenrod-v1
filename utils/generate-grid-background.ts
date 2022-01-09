@@ -19,7 +19,7 @@ export function generateGridBackground() {
         scale(0.67)'%3E%3Cpath
         data-color='outline'
         fill='none'
-        stroke='hsla(${hsl}, 0.2)'
+        stroke='hsla(${hsl} / 20%)'
         stroke-width='2.25'
         d='M50 0v100M100 50H0'%3E%3C/path%3E%3C/pattern%3E%3C/defs%3E%3Crect
         fill='url(%23p)'
