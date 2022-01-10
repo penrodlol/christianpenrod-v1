@@ -47,7 +47,7 @@ const Footer = styled.div`
   align-items: center;
   justify-content: end;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 1rem 1.5rem 1rem;
 `;
 
 export interface DialogContentProps extends DialogPrimitive.DialogContentProps {

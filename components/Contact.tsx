@@ -12,7 +12,7 @@ const Fields = styled.div`
   grid-row-gap: 1.75rem;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.sm}) {
-    grid-template-columns: repeat(2, [col] 50%);
+    grid-template-columns: repeat(2, [col] 1fr);
     grid-row-gap: 1.25rem;
 
     > {

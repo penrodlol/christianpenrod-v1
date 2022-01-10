@@ -9,10 +9,10 @@ const Wrapper = styled.textarea<TextareaProps & { focus: boolean }>(
     caret-color: ${theme.primary.base};
     color: ${theme.text.base};
     font-family: ${theme.font.base};
+    border: solid 0.15rem
+      ${focus ? theme.tertiary.base : theme.background.heavy};
     resize: vertical;
     ${disableResize && 'resize: none;'}
-    border: none;
-    ${focus && `border: solid 0.1em ${theme.tertiary.base};`}
     padding: 0.5rem 0.75rem;
     outline: none;
     margin: 0 1rem;
