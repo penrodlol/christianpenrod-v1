@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { FC, useEffect, useRef } from 'react';
 import { useRefElement } from 'rooks';
 import styled, { css } from 'styled-components';
-import { Button } from './Button';
+import { Button, ButtonProps } from './Button';
 
 const Overlay = styled(DialogPrimitive.Overlay)`
   background: ${({ theme }) => theme.background.blur};
@@ -20,9 +20,9 @@ const Content = styled(DialogPrimitive.Content)(
     border-radius: ${theme.rounded.base};
     box-shadow: ${theme.shadow.base};
     position: fixed;
-    top: 25%;
-    left: 1.25rem;
-    right: 1.25rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 51;
     margin: 0 auto;
   `,
@@ -51,15 +51,8 @@ const Footer = styled.div`
 `;
 
 export interface DialogContentProps extends DialogPrimitive.DialogContentProps {
-  primary: {
-    label: string;
-    aria: string;
-    disabled?: boolean;
-  };
-  secondary?: {
-    label: string;
-    aria: string;
-  };
+  primary: ButtonProps & { label: string };
+  secondary?: ButtonProps & { label: string };
 }
 
 export const Dialog = DialogPrimitive.Root;
@@ -113,25 +106,14 @@ export const DialogContent: FC<DialogContentProps> = ({
         <Footer>
           {props.secondary && (
             <DialogPrimitive.Close asChild>
-              <Button
-                status="secondary"
-                title={props.secondary.label}
-                aria-label={props.secondary.aria}
-              >
+              <Button status="secondary" {...props.secondary}>
                 {props.secondary.label}
               </Button>
             </DialogPrimitive.Close>
           )}
-          <DialogPrimitive.Close asChild>
-            <Button
-              status="primary"
-              title={props.primary.label}
-              aria-label={props.primary.aria}
-              disabled={props.primary.disabled}
-            >
-              {props.primary.label}
-            </Button>
-          </DialogPrimitive.Close>
+          <Button status="primary" {...props.primary}>
+            {props.primary.label}
+          </Button>
         </Footer>
       </Content>
     </DialogPrimitive.Portal>

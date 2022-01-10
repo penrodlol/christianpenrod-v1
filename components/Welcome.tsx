@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from './Button';
-import { ContactForm } from './ContactForm';
+import { Contact } from './Contact';
 import { Divider } from './Divider';
 import { GradientText } from './GradientText';
 
@@ -129,7 +129,7 @@ export const Welcome = () => {
           reprehenderit quo blanditiis debitis possimus ex labore sunt.
         </Bio>
         <ContactWrapper>
-          <ContactForm />
+          <Contact />
           <ContactIconsWrapper>
             <Button
               icon="twitter"
