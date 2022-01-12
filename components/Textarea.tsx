@@ -20,8 +20,8 @@ const Wrapper = styled.textarea<TextareaProps & { focus: boolean }>(
 
     /* prettier-ignore */
     @keyframes textarea {
-      0% { font-size: 0.8em; }
-      100% { font-size: 1em; }
+      0% { font-size: 1em; }
+      100% { font-size: 1.25em; }
     }
   `,
 );
