@@ -1,5 +1,4 @@
-@import '@fontsource/poppins';
-@import '@fontsource/patrick-hand-sc';
+@import 'theme';
 
 *,
 *::before,
@@ -7,4 +6,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  background: var(--surface2);
+  color: var(--text2);
+  accent-color: var(--brand1);
+  font-weight: var(--font-weight-6);
+  letter-spacing: var(--font-letterspacing-1);
+}
+
+svg {
+  fill: var(--brand2);
 }

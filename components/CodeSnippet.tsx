@@ -1,91 +1,86 @@
-import { FC, useRef } from 'react';
-import styled, { css } from 'styled-components';
+import { FC } from 'react';
+import { useRefElement } from 'rooks';
+import styled from 'styled-components';
 import { CopyToClipboard } from './CopyToClipboard';
 
 const Wrapper = styled.div`
-  margin: 3rem 0;
+  margin: var(--size-7) 0;
 `;
 
-const InnerWrapper = styled.div(
-  ({ theme }) => css`
-    background: ${theme.code.background};
-    border-radius: ${theme.rounded.base};
-    box-shadow: ${theme.shadow.base};
-    border: solid 0.12rem ${theme.background.heavy};
-    border-top-right-radius: 0;
-    position: relative;
-    font-size: 0.9em;
-    letter-spacing: 0;
-  `,
-);
+const InnerWrapper = styled.div`
+  background: var(--code-surface);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+  border: solid 0.12rem var(--surface3);
+  border-top-right-radius: 0;
+  position: relative;
+  font-size: var(--font-size-1);
+  letter-spacing: var(--font-letterspacing-0);
+`;
 
 const CopyToClipboardWrapper = styled.div`
   position: absolute;
-  right: -1.5rem;
+  right: 0;
   top: 0.2rem;
 `;
 
-const Title = styled.div(
-  ({ theme }) => css`
-    background: ${theme.code.background};
-    border-top-right-radius: ${theme.rounded.base};
-    border-top-left-radius: ${theme.rounded.base};
-    box-shadow: ${theme.shadow.base};
-    border: solid 0.12rem ${theme.background.heavy};
-    border-bottom: 0;
-    width: max-content;
-    font-size: 0.8rem;
-    padding: 0 0.7rem;
-    margin-left: auto;
-    margin-right: 0.8rem;
-  `,
-);
+const Title = styled.div`
+  background: var(--code-surface);
+  border-top-right-radius: var(--radius-2);
+  border-top-left-radius: var(--radius-2);
+  box-shadow: var(--shadow-2);
+  border: solid 0.12rem var(--surface3);
+  border-bottom: 0;
+  width: max-content;
+  font-size: 0.8rem;
+  padding: 0 0.7rem;
+  margin-left: auto;
+  margin-right: 0.8rem;
+`;
 
-const CodeWrapper = styled.pre(
-  ({ theme }) => css`
-    overflow-x: auto;
-    padding: 1rem;
+const CodeWrapper = styled.pre`
+  overflow-x: auto;
+  padding: var(--size-3);
 
-    .function {
-      font-style: italic;
-      color: ${theme.code.function};
-    }
+  .function {
+    font-style: italic;
+    color: var(--code-function);
+  }
 
-    .keyword {
-      color: ${theme.code.keyword};
-    }
+  .keyword {
+    color: var(--code-keyword);
+  }
 
-    .class-name {
-      color: ${theme.code.classname};
-    }
+  .class-name {
+    color: var(--code-classname);
+  }
 
-    .string,
-    .template-string {
-      color: ${theme.code.string};
-    }
+  .string,
+  .template-string {
+    color: var(--code-string);
+  }
 
-    .builtin {
-      color: ${theme.code.builtin};
-    }
-  `,
-);
+  .builtin {
+    color: var(--code-builtin);
+  }
+`;
 
 export interface CodeSnippetProps {
   title?: string;
 }
 
 export const CodeSnippet: FC<CodeSnippetProps> = ({ title, children }) => {
-  const codeRef = useRef<HTMLElement>(null);
+  const [ref, el] = useRefElement<HTMLElement>();
 
   return (
     <Wrapper>
       {title && <Title>{title}</Title>}
       <InnerWrapper>
         <CopyToClipboardWrapper>
-          <CopyToClipboard copyTarget={codeRef.current} />
+          <CopyToClipboard copyTarget={el} />
         </CopyToClipboardWrapper>
         <CodeWrapper>
-          <code ref={codeRef}>{children}</code>
+          <code ref={ref}>{children}</code>
         </CodeWrapper>
       </InnerWrapper>
     </Wrapper>

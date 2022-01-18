@@ -1,6 +1,5 @@
 import { AnchorHTMLAttributes, FC } from 'react';
 import styled, { css } from 'styled-components';
-import { Svg } from './Svg';
 
 const Wrapper = styled.div`
   display: inline-block;
@@ -22,10 +21,10 @@ const InnerWrapper = styled.div`
 `;
 
 const Anchor = styled.a<ExternalLinkProps>(
-  ({ theme, underline }) => css`
+  ({ underline }) => css`
     text-decoration: ${underline ? 'underline' : 'none'};
     color: inherit;
-    text-decoration-color: ${theme.primary.base};
+    text-decoration-color: var(--brand1);
     text-decoration-thickness: 0.135em;
     text-underline-offset: 0.175em;
   `,
@@ -42,7 +41,6 @@ export const ExternalLink: FC<ExternalLinkProps> = (props) => (
       <Anchor {...props} target="_blank">
         {props.children}
       </Anchor>
-      <Svg name="external" fill="var(--primary-base)" width={20} height={20} />
     </InnerWrapper>
   </Wrapper>
 );

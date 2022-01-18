@@ -1,23 +1,27 @@
 import { ThemeToggle } from '@components/ThemeToggle';
 import NextLink from 'next/link';
-import { PropsWithChildren } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
-const RoutesWrapper = styled.div`
+const Wrapper = styled.div`
   display: grid;
   grid-auto-flow: column;
   align-items: center;
   gap: 3rem;
-  font-size: 1em;
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+  }
 `;
 
-export interface HeaderInlineProps {
+export interface DesktopHeaderProps {
   routes: Array<string>;
 }
 
-export const HeaderInline = (props: PropsWithChildren<HeaderInlineProps>) => (
-  <RoutesWrapper>
-    {props.routes.map((route) => (
+export const DesktopHeader: FC<DesktopHeaderProps> = ({ routes }) => (
+  <Wrapper>
+    {routes.map((route) => (
       <NextLink
         key={route}
         href={`/${route.toLowerCase()}`}
@@ -27,5 +31,5 @@ export const HeaderInline = (props: PropsWithChildren<HeaderInlineProps>) => (
       </NextLink>
     ))}
     <ThemeToggle />
-  </RoutesWrapper>
+  </Wrapper>
 );

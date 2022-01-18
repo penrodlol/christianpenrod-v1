@@ -1,15 +1,18 @@
 import { createMedia } from '@artsy/fresnel';
-import { emToPx } from '@utils/convert-em-to-px';
-import { BREAKPOINTS } from './Theme/theme';
+import { SIZE } from '@const/breakpoints';
+
+function emToPx(size: string) {
+  return Number(`${size.replace(/em/i, '')}`) * 16;
+}
 
 const AppMedia = createMedia({
   breakpoints: {
     smallest: 0,
-    xs: emToPx(BREAKPOINTS.xs) + 1,
-    sm: emToPx(BREAKPOINTS.sm) + 1,
-    md: emToPx(BREAKPOINTS.md) + 1,
-    lg: emToPx(BREAKPOINTS.lg) + 1,
-    xl: emToPx(BREAKPOINTS.xl) + 1,
+    xs: emToPx(SIZE.XS) + 1,
+    sm: emToPx(SIZE.SM) + 1,
+    md: emToPx(SIZE.MD) + 1,
+    lg: emToPx(SIZE.LG) + 1,
+    xl: emToPx(SIZE.XL) + 1,
   },
 });
 

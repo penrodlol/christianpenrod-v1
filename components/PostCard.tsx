@@ -1,107 +1,101 @@
+import { MIN } from '@const/breakpoints';
 import { Post } from '@interfaces/post';
+import ArrowRight from '@svg/arrow-right.svg';
 import dayjs from 'dayjs';
 import NextLink from 'next/link';
 import { FC } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
-import { Svg } from './Svg';
 
-const Wrapper = styled.div(
-  ({ theme }) => css`
-    background: ${theme.background.base};
-    border-radius: ${theme.rounded.base};
-    box-shadow: ${theme.shadow.base};
-    padding: 1.25rem;
-    cursor: pointer;
+const Wrapper = styled.a`
+  background: var(--surface2);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-4);
+  padding: var(--size-4);
+  color: var(--text2);
+  cursor: pointer;
+  text-decoration: none;
 
-    &:hover {
-      box-shadow: ${theme.shadow.hover};
-    }
-  `,
-);
+  &:hover {
+    box-shadow: var(--shadow-5);
+  }
+`;
 
 const Header = styled.div`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.lg}) {
-    height: 8rem;
+  ${MIN.LG} {
+    height: var(--size-11);
   }
 `;
 
 const Published = styled.span`
-  color: ${({ theme }) => theme.text.faded};
+  color: var(--text1);
   display: block;
 `;
 
 const TagsWrapper = styled.div`
-  font-size: 0.8em;
+  font-size: var(--font-size-0);
   display: flex;
   flex-wrap: wrap;
-  column-gap: 0.4rem;
-  margin: 0.15rem 0;
+  gap: var(--size-2);
+  margin: var(--size-1) 0;
 `;
 
 const Title = styled.span`
-  letter-spacing: 0.15rem;
-  --tt-key: recent-article-title;
+  letter-spacing: var(--font-letterspacing-3);
+  --tt-key: post-card-title;
 
   /* prettier-ignore */
-  @keyframes recent-article-title {
-    0%, 60% { font-size: 1em; }
-    100% { font-size: 1.3em; }
+  @keyframes post-card-title {
+    0%, 60% { font-size: var(--font-size-2); }
+    100% { font-size: var(--font-size-3); }
   }
 `;
 
 const Description = styled.p`
   font-size: 0.9em;
-  font-weight: 500;
-  line-height: 1.5rem;
-  padding: 0.5rem;
-  --tt-key: recent-article-description;
-
-  /* prettier-ignore */
-  @keyframes recent-article-description {
-    0%, 50% { min-height: 6rem; }
-    100% { min-height: 10rem; }
-  }
+  font-weight: var(--font-weight-5);
+  line-height: var(--font-lineheight-4);
+  padding: var(--size);
+  min-height: var(--size-11);
 `;
 
 const Footer = styled.div`
   display: grid;
   grid-auto-flow: column;
-  gap: 0.5rem;
+  gap: var(--size-2);
   align-items: center;
   justify-content: end;
   align-self: end;
+  margin-top: var(--size-3);
 `;
 
 export interface PostCardProps {
   post: Post;
 }
 
-export const PostCard: FC<PostCardProps> = ({ post }) => {
-  return (
-    <NextLink
-      href={`/blog/${post.slug}`}
-      passHref
-      aria-label={`Navigate internally to blog post: ${post.title}`}
-    >
-      <Wrapper tabIndex={0}>
-        <Header>
-          <Published>{dayjs(post.published).format('YYYY-MM-DD')}</Published>
-          <TagsWrapper>
-            {post.tags?.map((tag) => (
-              <Chip key={tag}>#{tag}</Chip>
-            ))}
-          </TagsWrapper>
-          <Title>{post.title}</Title>
-        </Header>
-        <Divider />
-        <Description>{post.description}</Description>
-        <Footer>
-          Read More
-          <Svg name="arrow-right" width={25} />
-        </Footer>
-      </Wrapper>
-    </NextLink>
-  );
-};
+export const PostCard: FC<PostCardProps> = ({ post }) => (
+  <NextLink
+    href={`/blog/${post.slug}`}
+    passHref
+    aria-label={`Navigate internally to blog post: ${post.title}`}
+  >
+    <Wrapper tabIndex={0}>
+      <Header>
+        <Published>{dayjs(post.published).format('YYYY-MM-DD')}</Published>
+        <TagsWrapper>
+          {post.tags?.map((tag) => (
+            <Chip key={tag}>#{tag}</Chip>
+          ))}
+        </TagsWrapper>
+        <Title>{post.title}</Title>
+      </Header>
+      <Divider />
+      <Description>{post.description}</Description>
+      <Footer>
+        Read More
+        <ArrowRight width={25} height={25} />
+      </Footer>
+    </Wrapper>
+  </NextLink>
+);

@@ -1,9 +1,24 @@
-import { THEME_KEY } from '@const/storage';
-import gsap from 'gsap';
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import { Media } from '@components/Media';
+import { STORAGE_TOKEN, THEME, THEME_TOKEN } from '@const/theme';
+import Moon from '@svg/moon.svg';
+import Sun from '@svg/sun.svg';
+import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Svg, SvgName } from './Svg';
-import { Theme, ThemeProviderContext } from './Theme/ThemeProvider';
+
+interface ThemeToggleIconsProps {
+  theme: THEME | undefined;
+  size: number;
+}
+
+const ThemeToggleIcons: FC<ThemeToggleIconsProps> = ({ theme, size }) => (
+  <>
+    {theme === THEME.DARK ? (
+      <Moon width={size} height={size} />
+    ) : (
+      <Sun width={size} height={size} />
+    )}
+  </>
+);
 
 const Wrapper = styled.button`
   cursor: pointer;
@@ -11,76 +26,31 @@ const Wrapper = styled.button`
   background: transparent;
 `;
 
-interface SvgState {
-  source: SvgName;
-  target: SvgName;
-}
-
 export const ThemeToggle = () => {
-  const [svgs, setSvgs] = useState<SvgState>();
-
-  const sunRef = createRef<SVGSVGElement>();
-  const moonRef = createRef<SVGSVGElement>();
-  const sunPath = useRef<SVGPathElement>();
-  const moonPath = useRef<SVGPathElement>();
-  const tl = useRef<gsap.core.Timeline>();
+  const [theme, setTheme] = useState<THEME>();
 
   useEffect(() => {
-    tl.current = gsap.timeline();
+    const isDark = localStorage.getItem(STORAGE_TOKEN) === THEME.DARK;
+    const initial = isDark ? THEME.LIGHT : THEME.DARK;
 
-    return () => {
-      tl.current?.kill();
-    };
+    setTheme(initial);
   }, []);
 
-  useEffect(() => {
-    sunPath.current = sunRef.current?.firstChild as SVGPathElement;
-    moonPath.current = moonRef.current?.firstChild as SVGPathElement;
-  }, [sunRef, moonRef]);
+  function toggle() {
+    localStorage.setItem(STORAGE_TOKEN, theme as string);
+    document.documentElement.setAttribute(THEME_TOKEN, theme as string);
 
-  useEffect(() => {
-    const id = localStorage.getItem(THEME_KEY) as Theme;
-
-    setSvgs({
-      source: id === 'dark' ? 'moon' : 'sun',
-      target: id === 'dark' ? 'sun' : 'moon',
-    });
-  }, []);
-
-  function animateToggle(id: Theme) {
-    const source = svgs?.source === 'moon' ? moonPath.current : sunPath.current;
-    const target = id === 'dark' ? sunPath.current : moonPath.current;
-
-    tl.current?.to(source as SVGPathElement, { morphSVG: target });
+    setTheme(theme === THEME.DARK ? THEME.LIGHT : THEME.DARK);
   }
 
   return (
-    <>
-      {svgs && (
-        <ThemeProviderContext.Consumer>
-          {({ id, toggleTheme }) => (
-            <Wrapper
-              aria-label={`Toggle ${id} mode`}
-              onClick={() => {
-                if (tl.current?.isActive()) return;
-
-                toggleTheme();
-                animateToggle(id);
-              }}
-            >
-              <Svg
-                name={svgs.source}
-                ref={svgs.source === 'sun' ? sunRef : moonRef}
-              />
-              <Svg
-                name={svgs.target}
-                ref={svgs.target === 'moon' ? moonRef : sunRef}
-                display="none"
-              />
-            </Wrapper>
-          )}
-        </ThemeProviderContext.Consumer>
-      )}
-    </>
+    <Wrapper onClick={toggle}>
+      <Media greaterThanOrEqual="md">
+        <ThemeToggleIcons theme={theme} size={35} />
+      </Media>
+      <Media lessThan="md">
+        <ThemeToggleIcons theme={theme} size={55} />
+      </Media>
+    </Wrapper>
   );
 };

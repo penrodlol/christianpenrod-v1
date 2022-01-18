@@ -1,17 +1,10 @@
-import { FC } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const Wrapper = styled.div<DividerProps>(
-  ({ theme, gap }) => css`
-    background: ${theme.primary.base};
-    border-radius: ${theme.rounded.base};
-    height: 0.3rem;
-    margin: ${gap ? `${gap}em 0` : '0.7rem 0'};
-  `,
-);
+const Wrapper = styled.div`
+  background-color: var(--brand2);
+  border-radius: var(--radius-2);
+  height: var(--size-1);
+  margin: var(--size-3) 0;
+`;
 
-export interface DividerProps {
-  gap?: number;
-}
-
-export const Divider: FC<DividerProps> = ({ gap }) => <Wrapper gap={gap} />;
+export const Divider = () => <Wrapper />;

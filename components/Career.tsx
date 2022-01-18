@@ -1,49 +1,51 @@
-import { Occupations } from '@interfaces/occupation';
-import { FC } from 'react';
+import { occupationsState } from '@atoms/occupations';
+import { SIZE } from '@const/breakpoints';
+import { Occupation } from '@interfaces/occupation';
+import { supabase } from '@utils/supabase';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { OccupationCard } from './OccupationCard';
+import { OccupationCard } from './OccupationCard/OccupationCard';
 
 const Wrapper = styled.div`
-  max-width: ${({ theme }) => theme.breakpoint.sm};
+  max-width: ${SIZE.SM};
   margin: 0 auto;
-  --tt-key: career-wrapper;
-
-  /* prettier-ignore */
-  @keyframes career-wrapper {
-    0%, 40% { padding: 0; }
-    100% { padding: 1.5rem 0; }
-  }
+  padding: var(--size-5) 0;
 `;
 
 const Title = styled.h3`
-  margin-bottom: 1rem;
+  margin-bottom: var(--size-3);
+  color: var(--text2);
+  font-size: var(--font-size-5);
   --tt-key: carrer-title;
 
+  /* prettier-ignore */
   @keyframes carrer-title {
-    0%,
-    40% {
-      font-size: 1.4em;
-      margin-left: 1rem;
-    }
-    100% {
-      font-size: 1.7em;
-      margin-left: 3rem;
-    }
+    0%, 40% { margin-left: var(--size-3); }
+    100% { margin-left: var(--size-8); }
   }
 `;
 
 const OccupationsWrapper = styled.div`
-  max-width: ${({ theme }) => theme.breakpoint.xs};
+  max-width: ${SIZE.XS};
   margin: 0 auto;
   display: grid;
-  gap: 2rem;
+  gap: var(--size-7);
+  padding
 `;
 
-export interface CarrerProps {
-  occupations: Occupations | null;
-}
+export const Career = () => {
+  const [occupations, setOccupations] = useRecoilState(occupationsState);
 
-export const Carrer: FC<CarrerProps> = ({ occupations }) => {
+  useEffect(() => {
+    if (occupations) return;
+
+    supabase
+      .from<Occupation>('occupations')
+      .select('*, roles:occupation_roles(*)')
+      .then(({ data }) => setOccupations(data));
+  }, [setOccupations, occupations]);
+
   return (
     <Wrapper>
       <Title>Career</Title>

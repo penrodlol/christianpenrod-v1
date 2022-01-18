@@ -1,5 +1,5 @@
 import { mediaStyles } from '@components/Media';
-import { evalDarkModeHTML } from '@utils/eval-dark-mode';
+import { initThemeHTML } from '@utils/init-theme';
 import Document, {
   DocumentContext,
   Head,
@@ -47,7 +47,7 @@ class AppDocument extends Document {
           />
         </Head>
         <body>
-          <script dangerouslySetInnerHTML={{ __html: evalDarkModeHTML }} />
+          <script dangerouslySetInnerHTML={{ __html: initThemeHTML }} />
           <Main />
           <NextScript />
         </body>

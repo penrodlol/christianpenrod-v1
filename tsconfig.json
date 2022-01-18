@@ -21,6 +21,7 @@
       "@const/*": ["const/*"],
       "@interfaces/*": ["interfaces/*"],
       "@stubs/*": ["stubs/*"],
+      "@svg/*": ["public/svg/*"],
       "@utils/*": ["utils/*"]
     }
   },

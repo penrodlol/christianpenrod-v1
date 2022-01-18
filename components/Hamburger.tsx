@@ -1,78 +1,60 @@
-import { gsap } from 'gsap';
 import {
-  ButtonHTMLAttributes,
   ForwardedRef,
   forwardRef,
-  useEffect,
-  useRef,
-  useState,
+  InputHTMLAttributes,
+  PropsWithChildren,
 } from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-  cursor: pointer;
+const Wrapper = styled.button`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2.5rem;
+  height: var(--size-7);
+  background: transparent;
 `;
 
-const HamburgerItem = styled.div`
-  border-radius: ${({ theme }) => theme.rounded.base};
-  background: -webkit-linear-gradient(
-    ${({ theme }) => `47deg, ${theme.primary.base}, hsl(265, 80%, 77%)`}
-  );
-  height: 0.3rem;
-  width: 2.5rem;
+const Trigger = styled.input`
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: var(--size-7);
+  inset: 0;
+  opacity: 0;
 
-  &:not(&:last-child) {
-    margin-bottom: 0.6rem;
+  &:checked ~ {
+    #top {
+      transform: rotate(45deg);
+    }
+
+    #bottom {
+      transform: rotate(-45deg);
+    }
   }
+`;
+
+const Item = styled.span`
+  background: -webkit-linear-gradient(47deg, var(--brand1), hsl(265, 80%, 77%));
+  width: 2.5rem;
+  height: 0.35rem;
+  border-radius: var(--radius-2);
+  transform: rotate(0);
+  transition: all 0.5s var(--ease-squish-4);
+  position: relative;
+  transform-origin: 9px;
 `;
 
 const HamburgerComponent = (
-  props: ButtonHTMLAttributes<HTMLDivElement>,
-  ref: ForwardedRef<HTMLDivElement>,
-) => {
-  const [status, setStatus] = useState(false);
-  const hamburgerEl = gsap.utils.selector(ref);
-  const tl = useRef<gsap.core.Timeline>();
-
-  useEffect(() => {
-    tl.current = gsap.timeline({
-      defaults: { duration: 0.8, ease: 'elastic' },
-      paused: true,
-    });
-
-    return () => {
-      tl.current?.kill();
-    };
-  }, []);
-
-  function animate() {
-    const items = hamburgerEl('div');
-
-    // prettier-ignore
-    tl.current
-      ?.to(items[0], {
-        onStart: () => { setStatus(!status) },
-        rotate: status ? 0 : '45deg',
-        translateY: status ? 0 : '0.125rem',
-      }, 0)
-      .to(items[1], {
-          rotate: status ? 0 : '-45deg',
-          translateY: status ? 0 : '-0.125rem',
-          marginTop: status ? 0 : '-0.6rem',
-      }, 0)
-      .play(0)
-      .eventCallback('onComplete', () => {
-        tl.current?.pause().clear();
-      });
-  }
-
-  return (
-    <Wrapper id="hamburger" tabIndex={0} ref={ref} {...props} onClick={animate}>
-      {['top', 'bottom'].map((item) => (
-        <HamburgerItem key={item} />
-      ))}
-    </Wrapper>
-  );
-};
+  props: PropsWithChildren<InputHTMLAttributes<HTMLInputElement>>,
+  ref: ForwardedRef<HTMLInputElement>,
+) => (
+  <Wrapper>
+    <Trigger ref={ref} {...props} type="checkbox" />
+    <Item id="top" />
+    <Item id="bottom" />
+  </Wrapper>
+);
 
 export const Hamburger = forwardRef(HamburgerComponent);

@@ -1,57 +1,48 @@
 import { Occupation } from '@interfaces/occupation';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { getTotalTime } from './occupation-time-formatter';
 import { OccupationCardNodes } from './OccupationCardNodes';
 
-const Wrapper = styled.div(
-  ({ theme }) => css`
-    background: ${theme.background.base};
-    border-radius: ${theme.rounded.base};
-    box-shadow: ${theme.shadow.base};
-    padding: 1.25rem;
-  `,
-);
+const Wrapper = styled.div`
+  background: var(--surface2);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+  padding: var(--size-4);
+`;
 
 const Header = styled.div`
   display: grid;
   grid-auto-flow: column;
-  gap: 1rem;
+  gap: var(--size-3);
   justify-content: start;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--size-5);
 `;
 
-const LogoWrapper = styled.div(
-  ({ theme }) => css`
-    display: block;
+const LogoWrapper = styled.div`
+  display: block;
 
-    > :first-child {
-      border: solid 0.2rem ${theme.primary.base} !important;
-      box-shadow: ${theme.shadow.base};
-      border-radius: 20%;
+  > :first-child {
+    border: solid var(--size-1) var(--brand1) !important;
+    box-shadow: var(--shadow-3);
+    border-radius: var(--radius-2);
 
-      img {
-        filter: grayscale(100%) !important;
-      }
+    img {
+      filter: grayscale(100%) !important;
     }
-  `,
-);
-
-const Company = styled.h3`
-  line-height: 1.2em;
-  --tt-key: occupation-card-company;
-
-  /* prettier-ignore */
-  @keyframes occupation-card-company {
-    0%, 40% { font-size: 1.1em;}
-    100% { font-size: 1.5em; }
   }
 `;
 
+const Company = styled.h3`
+  color: var(--text2);
+  line-height: var(--font-lineheight-1);
+  font-size: var(--font-size-4);
+`;
+
 const TotalTime = styled.span`
-  color: ${({ theme }) => theme.text.faded};
-  font-size: 0.8em;
+  color: var(--text1);
+  font-size: var(--font-size-0);
 `;
 
 export interface OccupationCardProps {

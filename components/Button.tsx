@@ -4,87 +4,57 @@ import {
   forwardRef,
   PropsWithChildren,
 } from 'react';
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Svg, SvgName } from './Svg';
+import styled, { css } from 'styled-components';
 
-export type ButtonStatus = 'primary' | 'secondary' | 'cta';
-
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  status?: ButtonStatus;
-  icon?: SvgName;
-  iconSize?: number;
-}
-
-const Wrapper = styled.button<ButtonProps>(({ status, theme, icon }) => {
+const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
   let background!: string;
   let backgroundHover!: string;
-  let iconStyles!: FlattenSimpleInterpolation;
 
-  if (icon) {
-    iconStyles = css`
-      display: flex;
-      align-items: center;
-
-      &:hover:not(:active, :disabled) {
-        > svg {
-          fill: ${theme.primary.hover};
-        }
-      }
-    `;
-  } else
-    switch (status) {
-      case 'secondary':
-        background = '';
-        backgroundHover = '';
-        break;
-      case 'cta':
-        background = theme.tertiary.base;
-        backgroundHover = theme.tertiary.hover;
-        break;
-      default:
-        background = theme.basic.base;
-        backgroundHover = theme.basic.hover;
-        break;
-    }
+  if (color === 'cta') {
+    background = 'var(--guava1)';
+    backgroundHover = 'var(--guava2)';
+  } else {
+    background = 'var(--moon1)';
+    backgroundHover = 'var(--moon2)';
+  }
 
   return css`
-    border-radius: ${theme.rounded.base};
-    box-shadow: ${icon ? 0 : theme.shadow.base};
-    padding: ${icon ? 0 : '0.65rem 1.6rem'};
-    border: none;
-    cursor: pointer;
-    font-size: 1.15em;
-    font-weight: 600;
     white-space: nowrap;
-    background: ${background ?? 'transparent'};
+    text-align: center;
+    font-weight: var(--font-weight-7);
+    font-size: var(--font-size-2);
+    border-radius: var(--radius-2);
+    color: var(--text-offset);
+    padding: ${asIcon ? 0 : '0.8rem var(--size-7)'};
+    box-shadow: ${asIcon ? 'none' : 'var(--shadow-2)'};
+    background: ${asIcon ? 'transparent' : background};
 
-    ${iconStyles ?? ''};
+    &:hover {
+      background: ${asIcon ? 'transparent' : backgroundHover};
 
-    &:disabled {
-      cursor: not-allowed;
-    }
-
-    &:hover:not(:active, :disabled) {
-      background: ${backgroundHover ?? 'transparent'};
+      svg {
+        fill: var(--brand1);
+      }
     }
   `;
 });
 
+export type ButtonColor = 'basic' | 'cta';
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: ButtonColor;
+  asIcon?: boolean;
+}
+
 const ButtonComponent = (
   props: PropsWithChildren<ButtonProps>,
   ref: ForwardedRef<HTMLButtonElement>,
-) => (
-  <Wrapper {...props} ref={ref}>
-    {props.icon ? (
-      <Svg
-        name={props.icon}
-        width={props.iconSize ?? 30}
-        height={props.iconSize ?? 30}
-      />
-    ) : (
-      props.children
-    )}
-  </Wrapper>
-);
+) => {
+  return (
+    <Wrapper ref={ref} {...props}>
+      {props.children}
+    </Wrapper>
+  );
+};
 
 export const Button = forwardRef(ButtonComponent);

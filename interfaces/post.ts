@@ -6,7 +6,7 @@ export interface Post {
   description: string;
   tags: Array<string>;
   published: string;
-  readTime: number;
+  readtime: number;
   slug: string;
   source: MDXRemoteSerializeResult;
   showToc: boolean;
@@ -16,3 +16,9 @@ export interface Post {
 }
 
 export type Posts = Array<Post>;
+
+export type Slug = Pick<Post, 'slug'>;
+
+export type Slugs = Array<Slug>;
+
+export type PostWithoutSource = Omit<Post, 'source'>;

@@ -1,29 +1,34 @@
+import { SIZE } from '@const/breakpoints';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { GradientText } from './GradientText';
 
 const Wrapper = styled.div`
-  margin-left: 1rem;
+  max-width: ${SIZE.SM};
+  margin: 0 auto;
+  padding-inline: var(--size-6);
+  padding-top: var(--size-5);
 `;
 
 const Page = styled.h1`
-  line-height: 1.2em;
+  line-height: var(--font-lineheight-3);
   --tt-key: pagetitle-page;
 
   /* prettier-ignore */
   @keyframes pagetitle-page {
-    0%, 30% { font-size: 2em; }
-    100% { font-size: 2.5em; }
+    0%, 30% { font-size: var(--font-size-6); }
+    100% { font-size: var(--font-size-7); }
   }
 `;
 
 const Title = styled.h2`
+  color: var(--text2);
   --tt-key: pagetitle-title;
 
   /* prettier-ignore */
   @keyframes pagetitle-title {
-    0%, 30% { font-size: 1.3em; }
-    100% { font-size: 1.8em; }
+    0%, 30% { font-size: var(--font-size-4); }
+    100% { font-size: var(--font-size-5); }
   }
 `;
 

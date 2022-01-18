@@ -6,23 +6,23 @@ import { formatFrom, formatTo } from './occupation-time-formatter';
 const Wrapper = styled.div`
   display: grid;
   grid-auto-flow: column;
-  gap: 1rem;
+  gap: var(--size-3);
   justify-content: start;
   --tt-key: occupation-card-node-wrapper;
 
   :not(:last-child) > :last-child {
-    padding-bottom: 2rem;
+    padding-bottom: var(--size-7);
   }
 
   /* prettier-ignore */
   @keyframes occupation-card-node-wrapper {
     0%, 40% { padding: 0; }
-    100% { padding: 0 1rem; }
+    100% { padding: 0 var(--size-3); }
   }
 `;
 
 const Dot = styled.div`
-  background: ${({ theme }) => theme.tertiary.base};
+  background: var(--guava2);
   border-radius: 50%;
   height: 0.8rem;
   width: 0.8rem;
@@ -30,11 +30,11 @@ const Dot = styled.div`
 
 const EndDot = styled(Dot)`
   background: none;
-  border: solid 0.2rem ${({ theme }) => theme.tertiary.base};
+  border: solid 0.2rem var(--guava2);
 `;
 
 const Pipe = styled.div`
-  background: ${({ theme }) => theme.tertiary.base};
+  background: var(--guava2);
   height: 100%;
   width: 0.2rem;
   margin: 0 auto;
@@ -42,35 +42,30 @@ const Pipe = styled.div`
 `;
 
 const Content = styled.div`
-  transform: translateY(-0.45rem);
+  transform: translateY(-0.35rem);
 `;
 
 const Title = styled.h4`
+  color: var(--text2);
   --tt-key: occupation-card-node-title;
 
   /* prettier-ignore */
   @keyframes occupation-card-node-title {
-    0%, 40% { font-size: 1em; }
-    100% { font-size: 1.2em; }
+    0%, 40% { font-size: var(--font-size-2); }
+    100% { font-size: var(--font-size-3); }
   }
 `;
 
 const Time = styled.span`
-  color: ${({ theme }) => theme.text.faded};
+  color: var(--text1);
   display: block;
-  margin-bottom: 0.5rem;
-  --tt-key: occupation-card-node-time;
-
-  /* prettier-ignore */
-  @keyframes occupation-card-node-time {
-    0%, 40% { font-size: 0.8em; }
-    100% { font-size: 0.9em }
-  }
+  margin-bottom: var(--size-2);
+  font-size: var(--font-size-1);
 `;
 
 const Description = styled.p`
-  font-size: 0.75em;
-  line-height: 2em;
+  font-size: 0.8em;
+  line-height: var(--font-lineheight-5);
 `;
 
 export interface OccupationCardNodesProps {

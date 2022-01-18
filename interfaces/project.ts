@@ -1,19 +1,12 @@
-import { SvgName } from '@components/Svg';
-
-export type Tag = 'WEBSITE' | 'MISC';
+export type Tag = 'website' | 'misc';
 
 export interface Tool {
   id: string;
-  name: SvgName;
+  name: string;
   url: string;
 }
 
 export type Tools = Array<Tool>;
-
-export interface External {
-  hosted?: string;
-  github?: string;
-}
 
 export interface Project {
   id: string;
@@ -22,7 +15,8 @@ export interface Project {
   tools: Tools;
   tag: Tag;
   preview?: string;
-  external?: External;
+  hosted?: string;
+  github?: string;
 }
 
 export type Projects = Array<Project>;

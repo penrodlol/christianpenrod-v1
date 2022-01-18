@@ -1,3 +1,5 @@
+import ArrowUpCircle from '@svg/arrow-up-circle.svg';
+import dayjs from 'dayjs';
 import styled from 'styled-components';
 import { Button } from './Button';
 
@@ -20,11 +22,11 @@ const Wrapper = styled.footer`
 `;
 
 const Footnote = styled.div`
-  color: ${({ theme }) => theme.text.faded};
+  color: var(--text1);
 `;
 
 const Copyright = styled.span`
-  color: ${({ theme }) => theme.text.emphasis};
+  color: var(--guava1);
   font-weight: 500;
 `;
 
@@ -32,13 +34,14 @@ export const Footer = () => {
   return (
     <Wrapper>
       <Button
-        icon="arrow-circle-up"
-        iconSize={50}
+        asIcon
         aria-label="Navigate back to top of page."
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      ></Button>
+      >
+        <ArrowUpCircle width={50} height={50} />
+      </Button>
       <Footnote>
-        Christian Penrod <Copyright>&#169;2021</Copyright>
+        Christian Penrod <Copyright>&#169;{dayjs().year()}</Copyright>
       </Footnote>
     </Wrapper>
   );
