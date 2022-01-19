@@ -98,7 +98,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               <MDXRemote {...post.source} components={components} />
             </Content>
           </ContentWrapper>
-          {post.toc && (
+          {post.showToc && (
             <TableOfContentsWrapper>
               <TableOfContents toc={post.toc} />
             </TableOfContentsWrapper>
