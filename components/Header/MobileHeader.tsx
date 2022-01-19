@@ -18,6 +18,9 @@ const Overlay = styled.div`
   position: fixed;
   inset: 0;
   z-index: var(--layer-4);
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards;
+  animation-duration: 100ms;
 `;
 
 const Menu = styled.div`
