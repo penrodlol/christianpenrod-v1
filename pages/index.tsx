@@ -93,7 +93,7 @@ const Home: NextPage = () => {
           <GridBackground>
             <RecentPostsInnerWrapper>
               <RecentPostsTitle>Recent Posts</RecentPostsTitle>
-              {recents && <PostCards posts={recents} />}
+              <PostCards posts={recents} />
             </RecentPostsInnerWrapper>
           </GridBackground>
         </RecentPostsWrapper>

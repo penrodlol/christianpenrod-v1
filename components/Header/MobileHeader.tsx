@@ -5,29 +5,35 @@ import { FC } from 'react';
 import { useRefElement, useToggle } from 'rooks';
 import styled, { createGlobalStyle } from 'styled-components';
 
-const Overlay = createGlobalStyle`
+const RemoveBodyOverflow = createGlobalStyle`
   body {
-    position: fixed;
-    inset: 0;
-    z-index: var(--layer-5);
-    background: var(--overlay);
+    overflow: hidden;
+    margin-right: var(--removed-body-scroll-bar-size);
   }
+`;
+
+const Overlay = styled.div`
+  background: var(--overlay);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-4);
 `;
 
 const Menu = styled.div`
   position: fixed;
-  top: 6rem;
-  left: 2rem;
+  top: var(--size-9);
+  left: var(--size-7);
   bottom: 0;
-  margin-bottom: 3rem;
+  margin-bottom: var(--size-8);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  font-size: var(--font-size-5);
+  gap: var(--size-3);
+  font-size: var(--font-size-6);
   z-index: var(--layer-important);
 
   a {
-    color: var(--text);
+    color: var(--text2);
     text-decoration: none;
     opacity: 0;
     animation: var(--animation-fade-in) forwards,
@@ -64,6 +70,7 @@ export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
       <Hamburger ref={hamburgerRef} onClick={toggleMenu} />
       {menu && (
         <>
+          <RemoveBodyOverflow />
           <Overlay />
           <Menu>
             {routes.map((route) => (

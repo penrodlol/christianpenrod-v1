@@ -78,7 +78,7 @@ const Blog: NextPage = () => {
         <PostsWrapper>
           <GridBackground>
             <PostsInnerWrapper>
-              {all && <PostCards posts={postsFiltered || all} />}
+              <PostCards posts={postsFiltered || all} />
             </PostsInnerWrapper>
           </GridBackground>
         </PostsWrapper>

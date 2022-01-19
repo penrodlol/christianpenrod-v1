@@ -13,6 +13,7 @@ const Wrapper = styled.button`
   justify-content: space-around;
   width: 2.5rem;
   height: var(--size-7);
+  z-index: var(--layer-5);
   background: transparent;
 `;
 

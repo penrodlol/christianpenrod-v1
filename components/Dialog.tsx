@@ -7,7 +7,7 @@ import { Button, ButtonProps } from './Button';
 
 const Overlay = styled(DialogPrimitive.Overlay)`
   background: var(--overlay);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
   position: fixed;
   inset: 0;
   z-index: var(--layer-5);
@@ -51,7 +51,8 @@ const Footer = styled.div`
   align-items: center;
   justify-content: end;
   gap: var(--size-3);
-  padding: var(--size-3) var(--size-3) var(--size-5) var(--size-3);
+  padding: var(--size-3);
+  padding-bottom: var(--size-5);
 `;
 
 export interface DialogContentProps extends DialogPrimitive.DialogContentProps {
