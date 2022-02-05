@@ -31,7 +31,7 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
   }
 
   return css`
-    display: inline-block;
+    display: inline-flex;
     align-items: center;
     gap: var(--size-2);
     white-space: nowrap;
