@@ -1,13 +1,28 @@
 import { MIN } from '@const/breakpoints';
 import Image from 'next/image';
 import styled from 'styled-components';
+import { Divider } from './Divider';
+import { Media } from './Media';
 
 const Wrapper = styled.div`
   display: grid;
-  gap: var(--size-7);
+  gap: var(--size-4);
+  position: relative;
+  --tt-key: profile-wrapper;
 
   > :first-child {
     text-align: center;
+
+    > :last-child {
+      max-width: var(--size-content-2);
+      margin: 0 auto;
+    }
+  }
+
+  /* prettier-ignore */
+  @keyframes profile-wrapper {
+    0% { padding-top: var(--size-4); }
+    100% { padding-top: var(--size-8); }
   }
 
   ${MIN.SM} {
@@ -18,11 +33,14 @@ const Wrapper = styled.div`
 `;
 
 const SelfieWrapper = styled.div`
-  display: block;
+  max-width: 25rem;
+  margin: 0 auto;
+  background: var(--brand-3);
+  padding-block: var(--size-5);
+  border-radius: var(--radius-blob-1);
 
   > :first-child {
-    border: solid var(--size-1) var(--brand1) !important;
-    box-shadow: var(--shadow-3);
+    box-shadow: var(--shadow-4);
     border-radius: var(--radius-2);
 
     img {
@@ -33,20 +51,40 @@ const SelfieWrapper = styled.div`
 
 const Name = styled.span`
   display: block;
-  font-size: var(--font-size-3);
-  margin-top: var(--size-2);
+  font-size: var(--font-size-5);
+  margin-top: var(--size-3);
 `;
 
 const Position = styled.span`
-  color: var(--text1);
   display: block;
+  color: var(--text-2);
+  --tt-key: profile-position;
+
+  /* prettier-ignore */
+  @keyframes profile-position {
+    0% { font-size: var(--font-size-3); }
+    100% { font-size: var(--font-size-2); }
+  }
 `;
 
 const Bio = styled.p`
-  font-size: var(--font-size-1);
-  line-height: var(--font-lineheight-4);
-  max-width: 50ch;
+  --_profile-bio-max-width: 50ch;
+  --tt-key: profile-bio;
+
+  font-size: var(--font-size-2);
+  max-width: var(--_profile-bio-max-width);
   margin: 0 auto;
+
+  @keyframes profile-bio {
+    0% {
+      padding-top: 0;
+      line-height: var(--font-lineheight-3);
+    }
+    100% {
+      padding-top: var(--size-5);
+      line-height: var(--font-lineheight-4);
+    }
+  }
 `;
 
 export const Profile = () => (
@@ -54,6 +92,7 @@ export const Profile = () => (
     <div>
       <SelfieWrapper>
         <Image
+          id="selfie"
           src="/img/me.webp"
           alt="Selfie"
           placeholder="blur"
@@ -67,6 +106,9 @@ export const Profile = () => (
       </SelfieWrapper>
       <Name>Christian Penrod</Name>
       <Position>Full-Stack Web Developer</Position>
+      <Media lessThan="sm">
+        <Divider />
+      </Media>
     </div>
     <div>
       <Bio>
@@ -78,6 +120,11 @@ export const Profile = () => (
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eos
         reiciendis, sint, vitae distinctio accusantium, quisquam aspernatur
         dolorum quas hic aliquid eveniet.
+        <br />
+        <br />
+        Ipsa soluta cum assumenda, culpa aliquid porro corporis illo ut quod
+        facere reprehenderit quo blanditiis debitis, quisquam aspernatur dolorum
+        quas hic aliquid eveniet.
         <br />
         <br />
         Ipsa soluta cum assumenda, culpa aliquid porro corporis illo ut quod

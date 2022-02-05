@@ -3,19 +3,19 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: var(--surface-disclaimer);
+  --_disclaimer-font-size: 0.95em;
+
+  background: var(--surface-2);
   border-radius: var(--radius-2);
-  box-shadow: var(--shadow-2);
-  border-left: solid var(--size-2) var(--guava1);
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-5);
-  line-height: var(--font-lineheight-4);
+  box-shadow: var(--shadow-3);
+  border-left: solid var(--size-2) var(--guava-2);
+  font-size: var(--_disclaimer-font-size);
   letter-spacing: var(--font-letterspacing-2);
   padding: var(--size-4);
 
   svg {
     transform: translateY(0.2rem);
-    fill: var(--text2) !important;
+    fill: var(--text-2) !important;
   }
 `;
 

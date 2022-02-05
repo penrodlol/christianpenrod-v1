@@ -1,12 +1,13 @@
-import { ExternalLinkProps } from '@components/ExternalLink';
+import { Media } from '@components/Media';
 import { PageHead } from '@components/PageHead';
 import { PostHeader } from '@components/PostHeader';
 import { SpacerProps } from '@components/Spacer';
 import { TableOfContents } from '@components/TableOfContents';
-import { MAX, MIN, SIZE } from '@const/breakpoints';
-import { Post, PostWithoutSource, Slug, Slugs } from '@interfaces/post';
-import { getPostContent } from '@utils/get-post-content';
+import { MIN, SIZE } from '@const/breakpoints';
+import { Post, Slug } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
+import { readFileSync } from 'fs';
+import matter from 'gray-matter';
 import {
   GetStaticPaths,
   GetStaticProps,
@@ -14,26 +15,31 @@ import {
   NextPage,
 } from 'next';
 import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
+import { join } from 'path';
+import prism from 'remark-prism';
 import styled, { css } from 'styled-components';
 
-const Wrapper = styled.main<{ hasToc: boolean }>(
-  ({ hasToc }) => css`
+const Wrapper = styled.main<{ toc: boolean }>(({ toc }) => {
+  const tocStyles = css`
+    max-width: ${SIZE.LG};
+    gap: var(--size-9);
+    margin: 0 auto;
+    display: grid;
+    grid-auto-flow: column;
+  `;
+
+  return css`
     position: relative;
     padding-inline: var(--size-5);
     padding-top: var(--size-7);
 
     ${MIN.LG} {
-      ${hasToc &&
-      `
-        max-width: ${SIZE.LG};
-        margin: 0 auto;
-        display: grid;
-        grid-auto-flow: column;
-      `}
+      ${toc && tocStyles}
     }
-  `,
-);
+  `;
+});
 
 const ContentWrapper = styled.section`
   max-width: ${SIZE.SM};
@@ -41,22 +47,16 @@ const ContentWrapper = styled.section`
 `;
 
 const Content = styled.article`
-  max-width: var(--size-content-3);
-  max-inline-size: var(--size-content-3);
-  margin: 0 auto;
-  letter-spacing: var(--font-letterspacing-3);
-  overflow-wrap: break-word;
   --tt-key: blog-content;
 
-  p {
-    max-inline-size: unset;
-    max-width: unset;
-    font-size: var(--font-size-1);
-  }
+  max-width: var(--size-content-3);
+  margin: 0 auto;
+  font-size: var(--font-size-2);
+  overflow-wrap: break-word;
 
   @keyframes blog-content {
     0%,
-    40% {
+    50% {
       padding-block: var(--size-7);
       line-height: var(--font-lineheight-3);
     }
@@ -67,10 +67,10 @@ const Content = styled.article`
   }
 `;
 
-const TableOfContentsWrapper = styled.section`
-  ${MAX.LG} {
-    display: none;
-  }
+const TableOfContentsWrapper = styled.aside`
+  position: sticky;
+  top: var(--size-11);
+  max-width: max-content;
 `;
 
 // prettier-ignore
@@ -79,8 +79,7 @@ const components = {
   Spacer: dynamic<SpacerProps>(() => import('@components/Spacer').then((m) => m.Spacer)),
   FancyText: dynamic<unknown>(() => import('@components/FancyText').then((m) => m.FancyText)),
   Disclaimer: dynamic<unknown>(() => import('@components/Disclaimer').then((m) => m.Disclaimer)),
-  ExternalLink: dynamic<ExternalLinkProps>(() => import('@components/ExternalLink').then((m) => m.ExternalLink)),
-  Divider: dynamic<unknown>(() => import('@components/Divider').then((m) => m.Divider)),
+  Anchor: dynamic<unknown>(() => import('@components/Anchor').then((m) => m.Anchor)),
   CodeSnippet: dynamic<unknown>(() => import('@components/CodeSnippet').then((m) => m.CodeSnippet)),
 };
 
@@ -91,17 +90,19 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <>
       <PageHead page="Blog" />
       {post && (
-        <Wrapper hasToc={!!post.toc}>
+        <Wrapper toc={!!post.toc}>
           <ContentWrapper>
             <PostHeader post={post} />
             <Content>
               <MDXRemote {...post.source} components={components} />
             </Content>
           </ContentWrapper>
-          {post.showToc && (
-            <TableOfContentsWrapper>
-              <TableOfContents toc={post.toc} />
-            </TableOfContentsWrapper>
+          {post.toc && post.headers && (
+            <Media greaterThanOrEqual="lg">
+              <TableOfContentsWrapper>
+                <TableOfContents headers={post.headers} />
+              </TableOfContentsWrapper>
+            </Media>
           )}
         </Wrapper>
       )}
@@ -110,28 +111,49 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await supabase.from<Slug>('posts').select('slug');
+  const { data, error } = await supabase.from<Slug>('posts').select('slug');
+  const slugs = error || !data ? [] : data;
 
   return {
-    paths: (data as Slugs).map(({ slug }) => ({ params: { slug } })),
+    paths: slugs.map(({ slug }) => ({ params: { slug } })),
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps<{
-  post: Post;
+  post: Post | undefined;
 }> = async (ctx) => {
   const slug = ctx.params?.slug as string;
-  const { data } = await supabase
-    .from<PostWithoutSource>('posts')
-    .select('*, showToc:show_toc')
+  const { data, error } = await supabase
+    .from<Post>('posts')
+    .select('*')
     .eq('slug', slug)
     .single();
-  const { source, toc } = await getPostContent(slug, data?.showToc as boolean);
+
+  if (error || !data) return { props: { post: undefined } };
+
+  const path = join(process.cwd(), 'posts');
+  const rawSource = readFileSync(join(path, `${slug}.mdx`), 'utf-8');
+  const { content } = matter(rawSource);
+
+  const source = await serialize(content, {
+    mdxOptions: { remarkPlugins: [prism] },
+  });
+
+  const pattern = /^###*\s/;
+  let headers = !data.toc
+    ? []
+    : [
+        'Introduction',
+        ...rawSource
+          .split('\n')
+          .filter((line) => line.match(pattern))
+          .map((line) => line.replace(pattern, '')),
+      ];
 
   return {
     props: {
-      post: { ...data, source, toc } as Post,
+      post: { ...data, source, headers },
     },
   };
 };

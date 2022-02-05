@@ -1,112 +1,67 @@
-import { projectsSelector, projectsState } from '@atoms/projects';
-import { GridBackground } from '@components/GridBackground';
+import { Card } from '@components/Card';
+import { GridSurface } from '@components/GridSurface';
+import { Media } from '@components/Media';
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
-import { ProjectOverview } from '@components/ProjectOverview';
-import { MAX, MIN, SIZE } from '@const/breakpoints';
-import { Project } from '@interfaces/project';
+import { MAX, SIZE } from '@const/breakpoints';
+import { Project, Projects as _Projects } from '@interfaces/project';
 import { supabase } from '@utils/supabase';
-import type { NextPage } from 'next';
-import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 
 const WebsiteProjects = styled.section`
-  max-width: ${SIZE.LG};
-  display: grid;
+  max-width: ${SIZE.XL};
   margin: 0 auto;
-  --tt-key: projects-website-projects;
-
-  @keyframes projects-website-projects {
-    0%,
-    60% {
-      gap: var(--size-7);
-      padding-inline: var(--size-3);
-      padding-bottom: var(--size-7);
-    }
-    100% {
-      gap: var(--size-12);
-      padding-inline: var(--size-5);
-      padding-block: var(--size-9);
-    }
-  }
-`;
-
-const MiscProjectsWrapper = styled.div`
-  background: var(--surface2);
-`;
-
-const MiscProjects = styled.section`
-  max-width: ${SIZE.LG};
-  padding: var(--size-5);
-  --tt-key: projects-misc-projects;
-
-  /* prettier-ignore */
-  @keyframes projects-misc-projects {
-    0%, 40% { margin: var(--size-3) auto; }
-    100% { margin: var(--size-7) auto; }
-  }
-
-  ${MAX.LG} {
-    max-width: ${SIZE.XS};
-  }
-`;
-
-const MiscProjectsTitle = styled.h3`
-  color: var(--text2);
-  margin-bottom: var(--size-5);
-  font-size: var(--font-size-4);
-`;
-
-const MiscProjectsContent = styled.div`
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--size-8);
-  justify-content: center;
+  padding-inline: var(--size-5);
+  padding-block: var(--size-10);
 
-  ${MIN.LG} {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: 1fr;
+  ${MAX.MD} {
+    grid-auto-flow: row;
+    grid-template-columns: none;
   }
 `;
 
-const Projects: NextPage = () => {
-  const [projects, setProjects] = useRecoilState(projectsState);
-  const { website, misc } = useRecoilValue(projectsSelector);
-
-  useEffect(() => {
-    if (projects) return;
-
-    supabase
-      .from<Project>('projects')
-      .select('*, tools(*)')
-      .then(({ data }) => setProjects(data));
-  }, [projects, setProjects]);
-
+const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  projects,
+}) => {
   return (
     <>
       <PageHead page="Projects" />
       <main>
-        <GridBackground>
-          <PageTitle page="Projects" title="What has Christian done?" />
+        <GridSurface>
+          <Media greaterThanOrEqual="xs">
+            <PageTitle page="Projects" title="What has Christian done?" />
+          </Media>
           <WebsiteProjects>
-            {website?.map((project) => (
-              <ProjectOverview key={project.id} project={project} />
+            {projects?.map((project) => (
+              <Card
+                key={project.id}
+                banner="/img/devices.webp"
+                title={project.title}
+                tags={project.tags}
+                description={project.description}
+              ></Card>
             ))}
           </WebsiteProjects>
-          <MiscProjectsWrapper>
-            <MiscProjects>
-              <MiscProjectsTitle>Other Projects</MiscProjectsTitle>
-              <MiscProjectsContent>
-                {misc?.map((project) => (
-                  <ProjectOverview key={project.id} project={project} />
-                ))}
-              </MiscProjectsContent>
-            </MiscProjects>
-          </MiscProjectsWrapper>
-        </GridBackground>
+        </GridSurface>
       </main>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<{
+  projects: _Projects;
+}> = async () => {
+  const { data, error } = await supabase.from<Project>('projects').select('*');
+
+  const projects = error || !data ? [] : data;
+
+  return {
+    props: { projects },
+  };
 };
 
 export default Projects;

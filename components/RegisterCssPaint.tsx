@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 export const RegisterCssPaint = () => {
   useEffect(() => {
     if ('paintWorklet' in CSS) {
-      (CSS as any).paintWorklet.addModule('/scripts/grid-background.js');
+      (CSS as any).paintWorklet.addModule('/scripts/grid-surface.js');
     }
   }, []);
 

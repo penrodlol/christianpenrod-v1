@@ -8,11 +8,11 @@ function emToPx(size: string) {
 const AppMedia = createMedia({
   breakpoints: {
     smallest: 0,
-    xs: emToPx(SIZE.XS) + 1,
-    sm: emToPx(SIZE.SM) + 1,
-    md: emToPx(SIZE.MD) + 1,
-    lg: emToPx(SIZE.LG) + 1,
-    xl: emToPx(SIZE.XL) + 1,
+    xs: emToPx(SIZE.XS),
+    sm: emToPx(SIZE.SM),
+    md: emToPx(SIZE.MD),
+    lg: emToPx(SIZE.LG),
+    xl: emToPx(SIZE.XL),
   },
 });
 

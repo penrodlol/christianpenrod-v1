@@ -1,7 +1,6 @@
 import { SIZE } from '@const/breakpoints';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { GradientText } from './GradientText';
 
 const Wrapper = styled.div`
   max-width: ${SIZE.SM};
@@ -22,7 +21,7 @@ const Page = styled.h1`
 `;
 
 const Title = styled.h2`
-  color: var(--text2);
+  color: var(--text-2);
   --tt-key: pagetitle-title;
 
   /* prettier-ignore */
@@ -40,9 +39,7 @@ export interface PageTitleProps {
 export const PageTitle: FC<PageTitleProps> = ({ page, title }) => {
   return (
     <Wrapper>
-      <GradientText>
-        <Page>{page}</Page>
-      </GradientText>
+      <Page>{page}</Page>
       <Title>{title}</Title>
     </Wrapper>
   );

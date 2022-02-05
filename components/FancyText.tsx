@@ -2,9 +2,9 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.strong`
-  color: var(--text-emphasis);
-  font-family: var(--font-serif);
-  font-size: var(--font-size-3);
+  color: var(--brand-1);
+  font-family: var(--font-fancy);
+  font-weight: var(--font-weight-7);
 `;
 
 export const FancyText: FC = ({ children }) => {

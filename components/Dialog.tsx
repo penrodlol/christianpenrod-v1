@@ -20,7 +20,7 @@ const Overlay = styled(DialogPrimitive.Overlay)`
 const Content = styled(DialogPrimitive.Content)`
   max-width: ${SIZE.SM};
   width: 90%;
-  background: var(--surface2);
+  background: var(--surface-3);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-4);
   position: fixed;
@@ -58,7 +58,6 @@ const Header = styled.div`
 `;
 
 const Title = styled(DialogPrimitive.Title)`
-  color: var(--text2);
   font-size: var(--font-size-5);
 `;
 

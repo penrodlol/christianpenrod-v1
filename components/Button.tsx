@@ -7,39 +7,57 @@ import {
 import styled, { css } from 'styled-components';
 
 const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
+  const isBasic = color === 'basic';
+
   let background!: string;
   let backgroundHover!: string;
 
-  if (color === 'cta') {
-    background = 'var(--guava1)';
-    backgroundHover = 'var(--guava2)';
-  } else {
-    background = 'var(--moon1)';
-    backgroundHover = 'var(--moon2)';
+  switch (color) {
+    case 'cta': {
+      background = 'var(--guava-2)';
+      backgroundHover = 'var(--guava-1)';
+      break;
+    }
+    case 'basic': {
+      background = 'transparent';
+      backgroundHover = 'transparent';
+      break;
+    }
+    default: {
+      background = 'var(--brand-3)';
+      backgroundHover = 'var(--brand-4)';
+      break;
+    }
   }
 
   return css`
+    display: inline-block;
+    align-items: center;
+    gap: var(--size-2);
     white-space: nowrap;
     text-align: center;
-    font-weight: var(--font-weight-7);
+    border: none;
+    cursor: pointer;
+    font-weight: var(--font-weight-8);
     font-size: var(--font-size-2);
     border-radius: var(--radius-2);
-    color: var(--text-offset);
-    padding: ${asIcon ? 0 : '0.8rem var(--size-7)'};
-    box-shadow: ${asIcon ? 'none' : 'var(--shadow-2)'};
+    padding: ${asIcon || isBasic ? 0 : '0.8rem var(--size-7)'};
+    box-shadow: ${asIcon || isBasic ? 'none' : 'var(--shadow-3)'};
     background: ${asIcon ? 'transparent' : background};
 
-    &:hover {
+    ${isBasic && 'color: var(--text-1);'}
+
+    &:hover:not(:active) {
       background: ${asIcon ? 'transparent' : backgroundHover};
 
       svg {
-        fill: var(--brand1);
+        fill: var(--brand-1);
       }
     }
   `;
 });
 
-export type ButtonColor = 'basic' | 'cta';
+export type ButtonColor = 'default' | 'cta' | 'basic';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;

@@ -1,4 +1,4 @@
-import { MIN } from '@const/breakpoints';
+import { MAX, MIN, SIZE } from '@const/breakpoints';
 import { Post } from '@interfaces/post';
 import Calendar from '@svg/calendar.svg';
 import Clock from '@svg/clock.svg';
@@ -7,35 +7,34 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: var(--surface3);
+  margin: 0 auto;
+  background: var(--surface-1);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-4);
   display: grid;
   align-items: center;
 
+  ${MAX.LG} {
+    max-width: ${SIZE.XS};
+  }
+
   ${MIN.SM} {
     grid-auto-flow: column;
-    gap: var(--size-3);
-
-    h1 {
-      max-inline-size: var(--size-header-2) !important;
-    }
   }
 `;
 
 const Title = styled.h1`
-  color: var(--text2);
-  font-size: var(--font-size-4);
-  max-inline-size: var(--size-header-3);
   --tt-key: post-header-title;
 
   @keyframes post-header-title {
     0%,
     40% {
+      font-size: var(--font-size-4);
       padding-block: var(--size-3);
       padding-inline: var(--size-5);
     }
     100% {
+      font-size: var(--font-size-5);
       padding-block: var(--size-6);
       padding-inline: var(--size-8);
     }
@@ -43,11 +42,13 @@ const Title = styled.h1`
 `;
 
 const Stats = styled.div`
-  background: var(--surface1);
-  border-radius: var(--radius-2);
-  margin: var(--size-1);
-  display: grid;
   --tt-key: post-header-stats;
+
+  background: var(--surface-3);
+  border-radius: var(--radius-2);
+  display: grid;
+  height: calc(100% - var(--size-2));
+  margin-inline: var(--size-1);
 
   @keyframes post-header-stats {
     0%,

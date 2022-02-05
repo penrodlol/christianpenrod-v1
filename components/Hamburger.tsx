@@ -15,6 +15,7 @@ const Wrapper = styled.button`
   height: var(--size-7);
   z-index: var(--layer-5);
   background: transparent;
+  border: none;
 `;
 
 const Trigger = styled.input`
@@ -24,6 +25,7 @@ const Trigger = styled.input`
   height: var(--size-7);
   inset: 0;
   opacity: 0;
+  cursor: pointer;
 
   &:checked ~ {
     #top {
@@ -37,7 +39,7 @@ const Trigger = styled.input`
 `;
 
 const Item = styled.span`
-  background: -webkit-linear-gradient(47deg, var(--brand1), hsl(265, 80%, 77%));
+  background: var(--brand-1);
   width: 2.5rem;
   height: 0.35rem;
   border-radius: var(--radius-2);

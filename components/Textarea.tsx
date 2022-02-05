@@ -3,16 +3,22 @@ import styled, { css } from 'styled-components';
 
 const Wrapper = styled.textarea<TextareaProps>(
   ({ disableResize }) => css`
-    background: var(--surface1);
+    font-family: var(--font-serif);
+    font-weight: var(--font-weight-6);
+    background: var(--surface-1);
+    color: var(--text-1);
     border-radius: var(--radius-2);
     box-shadow: var(--shadow-2);
-    caret-color: var(--brand1);
-    border: solid 0.15rem var(--surface1);
+    caret-color: var(--brand-1);
+    border: solid 0.15rem var(--surface-1);
     resize: vertical;
     ${disableResize && 'resize: none;'}
-    padding: var(--size-2) var(--size-3);
+    padding-block: var(--size-2);
+    padding-inline: var(--size-3);
     outline: none;
-    margin: 0 1rem;
+    margin: 0 var(--size-3);
+    cursor: pointer;
+    touch-action: manipulation;
     --tt-key: textarea;
 
     /* prettier-ignore */

@@ -7,7 +7,8 @@ export interface PageHeadProps {
 }
 
 export const PageHead: FC<PageHeadProps> = (props) => {
-  const title = props.page ? `${props.page}` : 'Christian Penrod';
+  const name = 'Christian Penrod';
+  const title = props.page ? `${name} - ${props.page}` : name;
   const page = props.page || 'Home';
 
   return (

@@ -1,16 +1,16 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 export interface Post {
-  id: string;
+  id: number;
   title: string;
   description: string;
   tags: Array<string>;
   published: string;
   readtime: number;
   slug: string;
+  toc: boolean;
   source: MDXRemoteSerializeResult;
-  showToc: boolean;
-  toc: Array<string>;
+  headers?: Array<string>;
   github?: string;
   stackblitz?: string;
 }
@@ -20,5 +20,3 @@ export type Posts = Array<Post>;
 export type Slug = Pick<Post, 'slug'>;
 
 export type Slugs = Array<Slug>;
-
-export type PostWithoutSource = Omit<Post, 'source'>;

@@ -1,5 +1,4 @@
 import { Hamburger } from '@components/Hamburger';
-import { ThemeToggle } from '@components/ThemeToggle';
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { useRefElement, useToggle } from 'rooks';
@@ -8,7 +7,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 const RemoveBodyOverflow = createGlobalStyle`
   body {
     overflow: hidden;
-    margin-right: var(--removed-body-scroll-bar-size);
+    margin-right: var(--scroll-bar-size);
   }
 `;
 
@@ -86,7 +85,6 @@ export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
                 <a onClick={() => hamburgerEl?.click()}>{route}</a>
               </NextLink>
             ))}
-            <ThemeToggle />
           </Menu>
         </>
       )}

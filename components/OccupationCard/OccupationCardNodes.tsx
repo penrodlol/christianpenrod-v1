@@ -17,12 +17,12 @@ const Wrapper = styled.div`
   /* prettier-ignore */
   @keyframes occupation-card-node-wrapper {
     0%, 40% { padding: 0; }
-    100% { padding: 0 var(--size-3); }
+    100% { padding-inline: var(--size-3); }
   }
 `;
 
 const Dot = styled.div`
-  background: var(--guava2);
+  background: var(--guava-2);
   border-radius: 50%;
   height: 0.8rem;
   width: 0.8rem;
@@ -30,11 +30,11 @@ const Dot = styled.div`
 
 const EndDot = styled(Dot)`
   background: none;
-  border: solid 0.2rem var(--guava2);
+  border: solid 0.2rem var(--guava-2);
 `;
 
 const Pipe = styled.div`
-  background: var(--guava2);
+  background: var(--guava-2);
   height: 100%;
   width: 0.2rem;
   margin: 0 auto;
@@ -42,11 +42,11 @@ const Pipe = styled.div`
 `;
 
 const Content = styled.div`
-  transform: translateY(-0.35rem);
+  transform: translateY(-0.45rem);
 `;
 
 const Title = styled.h4`
-  color: var(--text2);
+  color: var(--text-1);
   --tt-key: occupation-card-node-title;
 
   /* prettier-ignore */
@@ -57,14 +57,15 @@ const Title = styled.h4`
 `;
 
 const Time = styled.span`
-  color: var(--text1);
+  color: var(--text-2);
   display: block;
   margin-bottom: var(--size-2);
   font-size: var(--font-size-1);
 `;
 
 const Description = styled.p`
-  font-size: 0.8em;
+  --_occupation-card-nodes-description-font-size: 0.9em;
+  font-size: var(--_occupation-card-nodes-description-font-size);
   line-height: var(--font-lineheight-5);
 `;
 

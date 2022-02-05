@@ -1,120 +1,37 @@
-@import '@fontsource/poppins';
-@import '@fontsource/patrick-hand-sc';
-@import 'open-props/style';
-@import 'open-props/normalize';
-
-html {
-  /* LIGHT */
-  --brand1-light: hsl(229deg, 84%, 76%);
-  --brand2-light: hsl(229deg, 68%, 69%);
-  --sunflower1-light: hsl(39deg 88% 84%);
-  --sunflower2-light: hsl(39deg 90% 81%);
-  --guava1-light: rgb(209, 184, 241);
-  --guava2-light: rgb(193, 165, 228);
-  --moon1-light: hsl(233deg 78% 88%);
-  --moon2-light: rgb(186deg, 191%, 233%);
-  --text1-light: hsl(0deg 0% 37%);
-  --text2-light: hsl(0deg, 0%, 26%);
-  --surface1-light: hsl(216deg 100% 99%);
-  --surface2-light: hsl(225deg 38% 94%);
-  --surface3-light: hsl(230deg 24% 85%);
-  --surface-disclaimer-light: var(--surface1-light);
-  --overlay-light: -webkit-linear-gradient(
-    hsl(229deg 42% 69% / 20%),
-    hsl(265deg 80% 77% / 40%)
-  );
-  --shadow-color-light: 0deg 0% 63%;
-  --code-surface-light: hsl(0deg 0% 100%);
-  --code-function-light: hsl(265deg 60% 58%);
-  --code-keyword-light: hsl(262deg 32% 63%);
-  --code-classname-light: rgb(110, 188, 233);
-  --code-string-light: hsl(0deg 0% 51%);
-  --code-builtin-light: hsl(262deg 52% 58%);
-  --grid-background-surface-light: var(--surface1-light);
-  --grid-background-color-light: hsla(229deg 68% 69% / 30%);
-  --text-emphasis-light: hsl(266deg 91% 42%);
-
-  /* DARK */
-  --brand1-dark: hsl(229deg 35% 62%);
-  --brand2-dark: hsl(229deg 42% 69%);
-  --sunflower1-dark: hsl(39deg, 73%, 83%);
-  --sunflower2-dark: hsl(39deg 100% 90%);
-  --guava1-dark: hsl(264deg 81% 84%);
-  --guava2-dark: rgb(191, 156, 240);
-  --moon1-dark: hsl(233deg 32% 73%);
-  --moon2-dark: rgb(180, 185, 218);
-  --text1-dark: hsl(0deg 0% 59%);
-  --text2-dark: hsl(0deg 0% 80%);
-  --surface1-dark: hsl(222deg 50% 8%);
-  --surface2-dark: hsl(222deg 30% 13%);
-  --surface3-dark: hsl(222deg 29% 16%);
-  --surface-disclaimer-dark: var(--surface3-dark);
-  --overlay-dark: -webkit-linear-gradient(
-    hsl(229deg 42% 69% / 20%),
-    hsl(265deg 80% 77% / 40%)
-  );
-  --shadow-color-dark: 0deg 0% 2%;
-  --code-surface-dark: hsl(222deg 69% 6%);
-  --code-function-dark: hsl(265deg 79% 85%);
-  --code-keyword-dark: hsl(238deg 84% 80%);
-  --code-classname-dark: hsl(202deg 86% 83%);
-  --code-string-dark: hsl(0deg 0% 67%);
-  --code-builtin-dark: hsl(262deg 43% 73%);
-  --grid-background-surface-dark: var(--surface3-dark);
-  --grid-background-color-dark: hsla(229deg 42% 69% / 20%);
-  --text-emphasis-dark: hsl(266deg 68% 77%);
-}
-
-@mixin theme($token) {
-  --brand1: var(--brand1-#{$token});
-  --brand2: var(--brand2-#{$token});
-  --sunflower1: var(--sunflower1-#{$token});
-  --sunflower2: var(--sunflower2-#{$token});
-  --guava1: var(--guava1-#{$token});
-  --guava2: var(--guava2-#{$token});
-  --moon1: var(--moon1-#{$token});
-  --moon2: var(--moon2-#{$token});
-  --text1: var(--text1-#{$token});
-  --text2: var(--text2-#{$token});
-  --surface1: var(--surface1-#{$token});
-  --surface2: var(--surface2-#{$token});
-  --surface3: var(--surface3-#{$token});
-  --surface-disclaimer: var(--surface-disclaimer-#{$token});
-  --overlay: var(--overlay-#{$token});
-  --shadow-color: var(--shadow-color-#{$token});
-  --code-surface: var(--code-surface-#{$token});
-  --code-function: var(--code-function-#{$token});
-  --code-keyword: var(--code-keyword-#{$token});
-  --code-classname: var(--code-classname-#{$token});
-  --code-string: var(--code-string-#{$token});
-  --code-builtin: var(--code-builtin-#{$token});
-  --grid-background-surface: var(--grid-background-surface-#{$token});
-  --grid-background-color: var(--grid-background-color-#{$token});
-  --text-emphasis: var(--text-emphasis-#{$token});
-  --shadow-strength: 25%;
-  --font-sans: 'Poppins';
-  --font-serif: 'Patrick Hand SC';
-  --text-offset: hsl(0deg 0% 8%);
-}
+@import 'open-props/fonts';
+@import 'open-props/sizes';
+@import 'open-props/zindex';
+@import 'open-props/borders';
+@import 'open-props/shadows';
+@import 'open-props/easings';
+@import 'open-props/animations';
 
 :root {
-  color-scheme: light;
-  @include theme('light');
-}
+  --font-serif: 'Nunito', sans-serif;
+  --font-fancy: 'Balsamiq Sans', cursive;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    @include theme('dark');
-  }
-}
+  --brand-1: hsl(229, 42%, 69%);
+  --brand-2: hsl(230, 26%, 59%);
+  --brand-3: hsl(230, 14%, 41%);
+  --brand-4: hsl(233, 8%, 23%);
 
-[color-scheme='light'] {
-  color-scheme: light;
-  @include theme('light');
-}
+  --text-1: hsl(0, 0%, 95%);
+  --text-2: hsl(0, 0%, 75%);
 
-[color-scheme='dark'] {
-  color-scheme: dark;
-  @include theme('dark');
+  --surface-1: rgb(59, 59, 59);
+  --surface-2: hsl(0, 0%, 18%);
+  --surface-3: hsl(0, 0%, 15%);
+
+  --guava-1: hsl(265, 62%, 90%);
+  --guava-2: hsl(266, 77%, 88%);
+
+  --overlay: -webkit-linear-gradient(
+    hsl(229deg 42% 69% / 20%),
+    hsl(265deg 80% 77% / 40%)
+  );
+
+  --shadow-color: 0deg 0% 2%;
+  --shadow-strength: 25%;
+
+  --scroll-bar-size: 0.45rem;
 }

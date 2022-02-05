@@ -1,19 +1,11 @@
-export type Tag = 'website' | 'misc';
-
-export interface Tool {
-  id: string;
-  name: string;
-  url: string;
-}
-
-export type Tools = Array<Tool>;
+export type ProjectType = 'website' | 'misc';
 
 export interface Project {
   id: string;
   title: string;
   description: string;
-  tools: Tools;
-  tag: Tag;
+  tags: Array<string>;
+  type: ProjectType;
   preview?: string;
   hosted?: string;
   github?: string;

@@ -1,50 +1,83 @@
-import { Career } from '@components/Career';
-import { GridBackground } from '@components/GridBackground';
+import { GridSurface } from '@components/GridSurface';
+import { Media } from '@components/Media';
+import { OccupationCard } from '@components/OccupationCard/OccupationCard';
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { Profile } from '@components/Profile';
+import { SectionTitle } from '@components/SectionTitle';
 import { SIZE } from '@const/breakpoints';
-import type { NextPage } from 'next';
+import { Occupation, Occupations } from '@interfaces/occupation';
+import { supabase } from '@utils/supabase';
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 
 const ProfileWrapper = styled.section`
-  max-width: ${SIZE.SM};
+  max-width: ${SIZE.MD};
   margin: 0 auto;
   padding-inline: var(--size-5);
-  padding-top var(--size-8);
 `;
 
-const CareerWrapper = styled.section`
-  border: solid var(--surface1);
-  border-width: 0.1rem 0;
+const OccupationsWrapper = styled.section`
+  max-width: ${SIZE.SM};
+  margin: 0 auto;
   padding-inline: var(--size-4);
-  padding-bottom: var(--size-6);
-  --tt-key: career-wrapper;
+  padding-bottom: var(--size-10);
+  --tt-key: occupations-wrapper;
 
   /* prettier-ignore */
-  @keyframes career-wrapper {
+  @keyframes occupations-wrapper {
     0%, 40% { margin-top: var(--size-7); }
     100% { margin-top: var(--size-10); }
   }
 `;
 
-const About: NextPage = () => {
+const OccupationsInnerWrapper = styled.div`
+  max-width: ${SIZE.XS};
+  margin: 0 auto;
+  display: grid;
+  gap: var(--size-7);
+`;
+
+const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  occupations,
+}) => {
   return (
     <>
       <PageHead page="About" />
       <main>
-        <PageTitle page="About" title="Who is Christian?" />
+        <Media greaterThanOrEqual="xs">
+          <PageTitle page="About" title="Who is Christian?" />
+        </Media>
         <ProfileWrapper>
           <Profile />
         </ProfileWrapper>
-        <GridBackground>
-          <CareerWrapper>
-            <Career />
-          </CareerWrapper>
-        </GridBackground>
+        <GridSurface>
+          <OccupationsWrapper>
+            <SectionTitle>Experience</SectionTitle>
+            <OccupationsInnerWrapper>
+              {occupations?.map((occupation) => (
+                <OccupationCard key={occupation.id} occupation={occupation} />
+              ))}
+            </OccupationsInnerWrapper>
+          </OccupationsWrapper>
+        </GridSurface>
       </main>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<{
+  occupations: Occupations;
+}> = async () => {
+  const { data, error } = await supabase
+    .from<Occupation>('occupations')
+    .select('*, roles:occupation_roles(*)');
+
+  const occupations = error || !data ? [] : data;
+
+  return {
+    props: { occupations },
+  };
 };
 
 export default About;

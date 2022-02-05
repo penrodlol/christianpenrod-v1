@@ -5,13 +5,15 @@ import styled from 'styled-components';
 import { DesktopHeader } from './DesktopHeader';
 import { MobileHeader } from './MobileHeader';
 
+const ROUTES = ['About', 'Projects', 'Blog'];
+
 const Wrapper = styled.div`
   position: sticky;
   top: 0;
   right: 0;
   left: 0;
   z-index: var(--layer-5);
-  background-color: var(--surface2);
+  background-color: var(--surface-2);
   box-shadow: var(--shadow-2);
 `;
 
@@ -27,20 +29,15 @@ const Nav = styled.nav`
 
 const Brand = styled.a`
   font-size: var(--font-size-2);
-  color: var(--text);
-  text-decoration: none;
+  color: var(--text-2);
 `;
-
-const ROUTES = ['About', 'Projects', 'Blog'];
 
 export const Header = () => {
   return (
     <Wrapper>
       <Nav>
         <NextLink href="/" passHref>
-          <Brand aria-label="Click here to navigate to home">
-            Christian Penrod
-          </Brand>
+          <Brand aria-label="Click here to navigate to home"></Brand>
         </NextLink>
         <Media greaterThanOrEqual="md">
           <DesktopHeader routes={ROUTES} />

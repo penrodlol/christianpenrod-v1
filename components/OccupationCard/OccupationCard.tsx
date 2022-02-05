@@ -6,9 +6,9 @@ import { getTotalTime } from './occupation-time-formatter';
 import { OccupationCardNodes } from './OccupationCardNodes';
 
 const Wrapper = styled.div`
-  background: var(--surface2);
+  background: var(--surface-3);
   border-radius: var(--radius-2);
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--shadow-4);
   padding: var(--size-4);
 `;
 
@@ -24,25 +24,25 @@ const LogoWrapper = styled.div`
   display: block;
 
   > :first-child {
-    border: solid var(--size-1) var(--brand1) !important;
+    border: solid var(--size-1) var(--brand-2) !important;
     box-shadow: var(--shadow-3);
     border-radius: var(--radius-2);
 
     img {
-      filter: grayscale(100%) !important;
+      filter: grayscale(100%) sepia(80%) !important;
     }
   }
 `;
 
 const Company = styled.h3`
-  color: var(--text2);
+  color: var(--text-1);
   line-height: var(--font-lineheight-1);
   font-size: var(--font-size-4);
 `;
 
 const TotalTime = styled.span`
-  color: var(--text1);
-  font-size: var(--font-size-0);
+  color: var(--text-2);
+  font-size: var(--font-size-1);
 `;
 
 export interface OccupationCardProps {

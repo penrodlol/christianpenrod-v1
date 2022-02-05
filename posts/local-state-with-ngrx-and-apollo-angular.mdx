@@ -11,29 +11,32 @@ ComponentStore & Apollo Angular.
   Apollo Angular, and NgRx. If you are unfamiliar with any of these technolgies,
   please read up on them before going futher. Here's where I learned them:
   <Spacer size={3} />
-  <ExternalLink
+  <Anchor
     href="https://graphql.org/"
+    underline="always"
     aria-label="Navigate externally to GraphQL docs."
-    underline
+    target="_blank"
   >
     GraphQL
-  </ExternalLink>
+  </Anchor>
   <Spacer size={1} />
-  <ExternalLink
+  <Anchor
     href="https://apollo-angular.com/docs/"
+    underline="always"
     aria-label="Navigate externally to Apollo Angular docs."
-    underline
+    target="_blank"
   >
     Apollo Angular
-  </ExternalLink>
+  </Anchor>
   <Spacer size={1} />
-  <ExternalLink
+  <Anchor
     href="https://ngrx.io/guide/component-store"
+    underline="always"
     aria-label="Navigate externally to NgRx ComponentStore docs."
-    underline
+    target="_blank"
   >
     NgRx ComponentStore
-  </ExternalLink>
+  </Anchor>
 </Disclaimer>
 
 <Spacer />
@@ -109,13 +112,16 @@ This can be done like so:
 
 <Disclaimer>
   Apollo Angular provides&#32;
-  <ExternalLink href="https://apollo-angular.com/docs/data/queries" underline>
+  <Anchor
+    href="https://apollo-angular.com/docs/data/queries"
+    underline="always"
+    target="_blank"
+  >
     other ways
-  </ExternalLink>
-  of performing a Query. Wrapping it within an Angular Service is only one of
-  them. Feel free to perform your Query however you find it most convenient.
-  Whether that be within the component itself or in the data store we'll later
-  create, both of which are possible via Apollo Angular.
+  </Anchor>&#32; of performing a Query. Wrapping it within an Angular Service is
+  only one of them. Feel free to perform your Query however you find it most convenient.
+  Whether that be within the component itself or in the data store we'll later create,
+  both of which are possible via Apollo Angular.
 </Disclaimer>
 
 <CodeSnippet title="villagers.gql.ts">
@@ -297,12 +303,16 @@ updating a villager's name:
 
 <Disclaimer>
   Apollo Angular provides&#32;
-  <ExternalLink href="https://apollo-angular.com/docs/data/mutations" underline>
+  <Anchor
+    underline="always"
+    href="https://apollo-angular.com/docs/data/mutations"
+    target="_blank"
+  >
     other ways
-  </ExternalLink> of performing a Mutation. Wrapping it within an Angular Service
-  is only one of them. Feel free to perform your Mutation however you find it most
-  convenient. Whether that be within the component itself or in the ComponentStore,
-  both of which are possible via Apollo Angular.
+  </Anchor>&#32;of performing a Mutation. Wrapping it within an Angular Service is
+  only one of them. Feel free to perform your Mutation however you find it most convenient.
+  Whether that be within the component itself or in the ComponentStore, both of which
+  are possible via Apollo Angular.
 </Disclaimer>
 
 <CodeSnippet title="villager-edit-name.gql.ts">

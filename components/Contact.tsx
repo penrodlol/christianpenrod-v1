@@ -122,7 +122,6 @@ export const Contact = () => {
                     aria-label="Enter contact message."
                     rows={7}
                     required
-                    disableResize
                     {...field}
                   />
                 )}

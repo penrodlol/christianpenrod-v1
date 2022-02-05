@@ -8,12 +8,12 @@ import {
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: var(--surface1);
+  background: var(--surface-1);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-2);
-  caret-color: var(--brand1);
-  border: solid 0.15rem var(--layer1);
-  padding: var(--size-2) var(--size-3);
+  caret-color: var(--brand-1);
+  padding-block: var(--size-2);
+  padding-inline: var(--size-3);
   display: grid;
   grid-template-columns: auto repeat(3, max-content);
   align-items: center;
@@ -22,14 +22,22 @@ const Wrapper = styled.div`
   svg:last-child {
     margin-left: 0.8rem;
   }
+
+  &:hover {
+    box-shadow: var(--shadow-3);
+  }
 `;
 
 const ActualInput = styled.input`
-  color: var(--text2);
+  color: var(--text-1);
+  padding-inline: var(--size-2);
+  padding-block: var(--size-1);
   background: transparent;
   border: none;
   outline: none;
   min-width: 0;
+  cursor: pointer;
+  touch-action: manipulation;
   --tt-key: input;
 
   /* prettier-ignore */
@@ -41,8 +49,8 @@ const ActualInput = styled.input`
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {
-    -webkit-text-fill-color: var(--guava1);
-    -webkit-box-shadow: 0 0 0px 1000px var(--surface1) inset;
+    -webkit-text-fill-color: var(--guava-2);
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface-1) inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 `;

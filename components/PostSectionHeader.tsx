@@ -11,20 +11,20 @@ const Wrapper = styled.h2`
 
   /* prettier-ignore */
   @keyframes post-section-header-wrapper {
-    0%, 40% { font-size: var(--font-size-4); }
-    100% { font-size: var(--size-6); }
+    0%, 40% { font-size: var(--font-size-5); }
+    100% { font-size: var(--font-size-6); }
   }
 `;
 
 const Anchor = styled.a`
-  color: var(--text-emphasis);
+  color: var(--guava-2);
 `;
 
 export const PostSectionHeader: FC = ({ children }) => {
   const id = (children?.valueOf() as string).toLowerCase().replace(/ /g, '-');
 
   return (
-    <Wrapper id={`${id}-header`}>
+    <Wrapper id={id}>
       <Anchor href={`#${id}`} aria-label={`Blog post section: ${id}`}>
         {children}
       </Anchor>

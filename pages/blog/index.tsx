@@ -1,5 +1,5 @@
-import { postsSelector, postsState } from '@atoms/posts';
-import { GridBackground } from '@components/GridBackground';
+import { GridSurface } from '@components/GridSurface';
+import { Media } from '@components/Media';
 import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { PostCards } from '@components/PostCards';
@@ -7,59 +7,43 @@ import { PostsFilter } from '@components/PostsFilter';
 import { MAX, SIZE } from '@const/breakpoints';
 import { Post, Posts } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
-import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const PostsFilterWrapper = styled.section`
   max-width: ${SIZE.SM};
   margin: var(--size-7) auto;
 
-  ${MAX.LG} {
+  ${MAX.SM} {
     max-width: ${SIZE.XS};
+  }
+
+  ${MAX.XS} {
+    position: sticky;
+    top: var(--size-9);
   }
 `;
 
-const PostsWrapper = styled.section`
-  border: solid var(--surface1);
-  border-width: 0.1rem 0;
-  position: relative;
-  z-index: var(--layer-1);
-`;
-
-const PostsInnerWrapper = styled.div`
+const PostCardsWrapper = styled.div`
   max-width: ${SIZE.XL};
   margin: 0 auto;
-
-  ${MAX.LG} {
-    max-width: ${SIZE.XS};
-  }
+  padding-block: var(--size-9);
 `;
 
-const Blog: NextPage = () => {
-  const [posts, setPosts] = useRecoilState(postsState);
-  const [postsFiltered, setPostsFiltered] = useState<Posts>();
-  const { all } = useRecoilValue(postsSelector);
-
-  useEffect(() => {
-    if (all) return;
-
-    supabase
-      .from<Post>('posts')
-      .select('*')
-      .order('published', { ascending: false })
-      .then(({ data }) => setPosts({ ...posts, all: data }));
-  }, [posts, setPosts, all]);
+const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  posts,
+}) => {
+  const [filteredPosts, setFilteredPosts] = useState<Posts>();
 
   function handleFilter(filter: string | null) {
     if (!filter) {
-      setPostsFiltered(all as Posts);
+      setFilteredPosts(undefined);
       return;
     }
 
-    setPostsFiltered(
-      all?.filter(
+    setFilteredPosts(
+      posts.filter(
         ({ title, tags }) =>
           title.toLowerCase().includes(filter) ||
           tags.some((tag) => tag.toLowerCase().includes(filter)),
@@ -71,20 +55,35 @@ const Blog: NextPage = () => {
     <>
       <PageHead page="Blog" />
       <main>
-        <PageTitle page="Blog" title="What has Christian wrote?" />
+        <Media greaterThanOrEqual="xs">
+          <PageTitle page="Blog" title="What has Christian wrote?" />
+        </Media>
         <PostsFilterWrapper>
           <PostsFilter onFilter={handleFilter} />
         </PostsFilterWrapper>
-        <PostsWrapper>
-          <GridBackground>
-            <PostsInnerWrapper>
-              <PostCards posts={postsFiltered || all} />
-            </PostsInnerWrapper>
-          </GridBackground>
-        </PostsWrapper>
+        <section>
+          <GridSurface>
+            <PostCardsWrapper>
+              <PostCards posts={filteredPosts || posts} />
+            </PostCardsWrapper>
+          </GridSurface>
+        </section>
       </main>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<{ posts: Posts }> = async () => {
+  const { data, error } = await supabase
+    .from<Post>('posts')
+    .select('*')
+    .order('published', { ascending: false });
+
+  const posts = error || !data ? [] : data;
+
+  return {
+    props: { posts },
+  };
 };
 
 export default Blog;

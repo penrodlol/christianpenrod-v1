@@ -1296,15 +1296,15 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/patrick-hand-sc@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/patrick-hand-sc/-/patrick-hand-sc-4.5.0.tgz#c82d60f631791477317519905fec5e5f5f66f092"
-  integrity sha512-1s5AsWf4e2hIkL1q9KsTqkXBesKQ3a6byjkhNy1hBAGyXDCx/TEnZXJPkvdqE9cWbDEsTHkM4cspi2m4HuryLw==
+"@fontsource/balsamiq-sans@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/balsamiq-sans/-/balsamiq-sans-4.5.1.tgz#1ba2fda0994ef5528f953eed4b715fcf37d5a81b"
+  integrity sha512-p4jwXeIFErMAMSTZN35anoQYwQrhQ3fu//fLjzwdIJezQhnKg/+nfkC7udH56OpMNHvnKHDQJbzwjA9LKHrNyA==
 
-"@fontsource/poppins@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.5.0.tgz#a419697b85864afbf8363f5c247b1e9d1f117564"
-  integrity sha512-RqgMIQqKHWNH3IUj+a0MAhlb4g5fftsXRTJ2bauefBmfM8Ja5q+qQZjKwyB/iCc+paJD320zFnLJ8G+y1ZyemQ==
+"@fontsource/nunito@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/nunito/-/nunito-4.5.1.tgz#d5399e3d2d991196ae53b25a4845c75e8a9905b4"
+  integrity sha512-24hhHYsv0zZ1+52uZ7lYvj3THwIhOcM4dJWwVLQMXDGnu6A/40BNzcu2C/kGktnjdmtQhPAV9r/VzCDpC/uUwg==
 
 "@hapi/accept@5.0.2":
   version "5.0.2"
@@ -1691,6 +1691,11 @@
     "@supabase/realtime-js" "^1.3.4"
     "@supabase/storage-js" "^1.5.0"
 
+"@svgdotjs/svg.js@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@svgdotjs/svg.js/-/svg.js-3.1.1.tgz#3cf6a59e6d8708cd76d38b26e7d682dacb2f3670"
+  integrity sha512-73FggAUBS+zuHhJOMZiAsuE5qpwA4pmWUbLuvof2g3YnWEc3QhXA3tjqZlJJukBobSA23a/avf1Vb1U1QbER1Q==
+
 "@svgr/babel-plugin-add-jsx-attribute@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-6.0.0.tgz#bd6d1ff32a31b82b601e73672a789cc41e84fe18"
@@ -1882,13 +1887,6 @@
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
     csstype "^3.0.2"
-
-"@types/uglify-js@^3.13.1":
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.13.1.tgz#5e889e9e81e94245c75b6450600e1c5ea2878aea"
-  integrity sha512-O3MmRAk6ZuAKa9CHgg0Pr0+lUOqoMLpc9AS4R8ano2auvsg7IE8syF3Xh/NPr26TWklxYcqoEEFdzLLs1fV9PQ==
-  dependencies:
-    source-map "^0.6.1"
 
 "@types/unist@*", "@types/unist@^2.0.0", "@types/unist@^2.0.2", "@types/unist@^2.0.3":
   version "2.0.6"
@@ -3787,11 +3785,6 @@ gray-matter@^4.0.3:
   resolved "https://npm.greensock.com/@gsap%2fshockingly/-/shockingly-3.8.0.tgz#be3f68364a4b90943ff3138a137b4189cca2ff86"
   integrity sha512-2Lzw+4dgLYLfV+a0EYk8zuO1jyAseh3QoubjTPVPVDEWJwe7SSrrPWpTiapExcxT6zXDojwM0v0FpoNdb6e7Tg==
 
-hamt_plus@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/hamt_plus/-/hamt_plus-1.0.2.tgz#e21c252968c7e33b20f6a1b094cd85787a265601"
-  integrity sha1-4hwlKWjH4zsg9qGwlM2FeHomVgE=
-
 has-bigints@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/has-bigints/-/has-bigints-1.0.1.tgz#64fe6acb020673e3b78db035a5af69aa9d07b113"
@@ -4934,10 +4927,10 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
   dependencies:
     wrappy "1"
 
-open-props@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/open-props/-/open-props-1.1.2.tgz#cc6d6792e490af247358c2556afaac3b26f55d87"
-  integrity sha512-o543WgZmxcU72q0eBRZs2iCVGDFmxCAzRj6V5qoNAe5+WGm3nbQNMxX4fEzeN8vOZG9/IoMTz2TOkk8Ssl2cDQ==
+open-props@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/open-props/-/open-props-1.1.6.tgz#130745532b8cd0cb94496ddc5cb0da42fd876b3f"
+  integrity sha512-Au3Ya9TRuchK4Ps0Hvxp7IAIUf0mJKGzcZzcdSamh89pLwTVGowlDQX5jQ+cbePjfdUAV18EGdvHca3dWnOQSw==
 
 optionator@^0.8.1:
   version "0.8.3"
@@ -5438,13 +5431,6 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-recoil@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/recoil/-/recoil-0.5.2.tgz#61fecce3b4dc91127a595586cf7369e2811ba024"
-  integrity sha512-Edibzpu3dbUMLy6QRg73WL8dvMl9Xqhp+kU+f2sJtXxsaXvAlxU/GcnDE8HXPkprXrhHF2e6SZozptNvjNF5fw==
-  dependencies:
-    hamt_plus "1.0.2"
-
 regenerate-unicode-properties@^9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-9.0.0.tgz#54d09c7115e1f53dc2314a974b32c1c344efe326"
@@ -5663,10 +5649,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rooks@^5.8.0:
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/rooks/-/rooks-5.8.0.tgz#eb4612975f47d89283bb4376251595766024c6da"
-  integrity sha512-NCtqne2d6IRvxBjCJRls0DUrgQP5UOGFr8WrKFlnhtIdneZBuNaPRYK6RKYI+bDQvHYxml/M1TsS87yVzcLfVQ==
+rooks@^5.9.0:
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/rooks/-/rooks-5.9.0.tgz#c8ab9de86d037bb367f4d47e4ed213022e4593dc"
+  integrity sha512-78xGNp+X/S9BknL6aayvUvbnZvaoojG3Mg9G7prH5ol63XKCICRhL4h0d5vIGY+nqLVgaf4bJqCBmwmI1b4HmA==
   dependencies:
     lodash.debounce "^4.0.8"
     raf "^3.4.1"
@@ -6120,11 +6106,6 @@ svg-parser@^2.0.2:
   resolved "https://registry.yarnpkg.com/svg-parser/-/svg-parser-2.0.4.tgz#fdc2e29e13951736140b76cb122c8ee6630eb6b5"
   integrity sha512-e4hG1hRwoOdRb37cIMSgzNsxyzKfayW6VOflrwvR+/bzrkyxY/31WkbgnQpgtrNp1SdpJvpUAGTa/ZoiPNDuRQ==
 
-svgjs@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/svgjs/-/svgjs-2.6.2.tgz#3b1ea8fbb55148bb227ec05747fc2bf89a465abe"
-  integrity sha1-Ox6o+7VRSLsifsBXR/wr+JpGWr4=
-
 svgo@^2.5.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-2.8.0.tgz#4ff80cce6710dc2795f0c7c74101e6764cfccd24"
@@ -6326,11 +6307,6 @@ typescript@4.4.4:
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
   integrity sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==
-
-uglify-js@^3.14.3:
-  version "3.14.3"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.14.3.tgz#c0f25dfea1e8e5323eccf59610be08b6043c15cf"
-  integrity sha512-mic3aOdiq01DuSVx0TseaEzMIVqebMZ0Z3vaeDhFEh9bsc24hV1TFvN74reA2vs08D0ZWfNjAcJ3UbVLaBss+g==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"

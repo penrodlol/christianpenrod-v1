@@ -1,5 +1,6 @@
-import { ThemeToggle } from '@components/ThemeToggle';
+import { Anchor } from '@components/Anchor';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import styled from 'styled-components';
 
@@ -7,29 +8,37 @@ const Wrapper = styled.div`
   display: grid;
   grid-auto-flow: column;
   align-items: center;
-  gap: 3rem;
-
-  a {
-    color: var(--text);
-    text-decoration: none;
-  }
+  gap: var(--size-8);
+  font-size: var(--font-size-2);
 `;
 
 export interface DesktopHeaderProps {
   routes: Array<string>;
 }
 
-export const DesktopHeader: FC<DesktopHeaderProps> = ({ routes }) => (
-  <Wrapper>
-    {routes.map((route) => (
-      <NextLink
-        key={route}
-        href={`/${route.toLowerCase()}`}
-        aria-label={`Navigate to ${route.toLowerCase()}`}
-      >
-        {route}
-      </NextLink>
-    ))}
-    <ThemeToggle />
-  </Wrapper>
-);
+export const DesktopHeader: FC<DesktopHeaderProps> = ({ routes }) => {
+  const router = useRouter();
+
+  return (
+    <Wrapper>
+      {routes.map((route) => (
+        <NextLink
+          key={route}
+          href={`/${route.toLowerCase()}`}
+          passHref
+          aria-label={`Navigate to ${route.toLowerCase()}`}
+        >
+          <Anchor
+            underline={
+              router.route.startsWith(`/${route.toLowerCase()}`)
+                ? 'always'
+                : 'hover'
+            }
+          >
+            {route}
+          </Anchor>
+        </NextLink>
+      ))}
+    </Wrapper>
+  );
+};

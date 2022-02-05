@@ -1,87 +1,46 @@
-import { postsSelector, postsState } from '@atoms/posts';
-import { GridBackground } from '@components/GridBackground';
-import { Hero } from '@components/Hero';
+import { GridSurface } from '@components/GridSurface';
+import { Hero } from '@components/Hero/Hero';
 import { PageHead } from '@components/PageHead';
 import { PostCards } from '@components/PostCards';
+import { SectionTitle } from '@components/SectionTitle';
 import { MAX, SIZE } from '@const/breakpoints';
-import { Post } from '@interfaces/post';
+import { Post, Posts } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
-import type { NextPage } from 'next';
-import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 
 const HeroWrapper = styled.section`
-  position: relative;
-  max-width: calc(${SIZE.XL} + var(--size-13));
+  max-width: ${SIZE.LG};
   margin: 0 auto;
-  padding-left: var(--size-6);
-  padding-right: var(--size-6);
-  overflow: hidden;
   --tt-key: hero-wrapper;
 
   @keyframes hero-wrapper {
     0%,
-    30% {
-      padding-top: var(--size-7);
-      padding-bottom: var(--size-7);
+    20% {
+      padding-block: var(--size-4);
+      padding-inline: var(--size-5);
+      margin-bottom: 0;
     }
     100% {
-      padding-top: var(--size-8);
-      padding-bottom: var(--size-10);
+      padding-top: var(--size-9);
+      padding-inline: var(--size-10);
+      margin-bottom: var(--size-10);
     }
   }
 `;
 
-const RecentPostsWrapper = styled.section`
-  border: solid var(--surface1);
-  border-width: 0.1rem 0;
-  position: relative;
-  z-index: var(--layer-1);
-`;
-
-const RecentPostsInnerWrapper = styled.div`
+const RecentPostsWrapper = styled.div`
   max-width: ${SIZE.XL};
   margin: 0 auto;
 
-  ${MAX.LG} {
+  ${MAX.MD} {
     max-width: ${SIZE.XS};
   }
 `;
 
-const RecentPostsTitle = styled.h3`
-  padding-top: var(--size-7);
-  color: var(--text2);
-  --tt-key: post-cards-title;
-
-  @keyframes post-cards-title {
-    0%,
-    40% {
-      font-size: var(--font-size-4);
-      margin-left: var(--size-5);
-    }
-    100% {
-      font-size: var(--font-size-5);
-      margin-left: var(--size-10);
-    }
-  }
-`;
-
-const Home: NextPage = () => {
-  const [posts, setPosts] = useRecoilState(postsState);
-  const { recents } = useRecoilValue(postsSelector);
-
-  useEffect(() => {
-    if (recents) return;
-
-    supabase
-      .from<Post>('posts')
-      .select('*')
-      .order('published', { ascending: false })
-      .limit(3)
-      .then(({ data }) => setPosts({ ...posts, recents: data }));
-  }, [posts, setPosts, recents]);
-
+const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  posts,
+}) => {
   return (
     <>
       <PageHead />
@@ -89,17 +48,29 @@ const Home: NextPage = () => {
         <HeroWrapper>
           <Hero />
         </HeroWrapper>
-        <RecentPostsWrapper>
-          <GridBackground>
-            <RecentPostsInnerWrapper>
-              <RecentPostsTitle>Recent Posts</RecentPostsTitle>
-              <PostCards posts={recents} />
-            </RecentPostsInnerWrapper>
-          </GridBackground>
-        </RecentPostsWrapper>
+        <GridSurface>
+          <RecentPostsWrapper>
+            <SectionTitle>Recently Published</SectionTitle>
+            <PostCards posts={posts} />
+          </RecentPostsWrapper>
+        </GridSurface>
       </main>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<{ posts: Posts }> = async () => {
+  const { data, error } = await supabase
+    .from<Post>('posts')
+    .select('*')
+    .order('published', { ascending: false })
+    .limit(3);
+
+  const posts = error || !data ? [] : data;
+
+  return {
+    props: { posts },
+  };
 };
 
 export default Home;

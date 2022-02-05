@@ -9,7 +9,7 @@ const Wrapper = styled(Button)`
     &,
     &:hover {
       fill: transparent !important;
-      stroke: var(--text1);
+      stroke: var(--text-1);
     }
   }
 `;

@@ -4,23 +4,26 @@ import styled from 'styled-components';
 import { CopyToClipboard } from './CopyToClipboard';
 
 const Wrapper = styled.div`
-  margin: var(--size-7) 0;
+  --code-surface: hsl(0deg 0% 11%);
+  --code-function: hsl(265deg 79% 85%);
+  --code-keyword: hsl(238deg 84% 80%);
+  --code-classname: hsl(255deg 65% 74%);
+  --code-string: hsl(0deg 0% 67%);
+  --code-builtin: hsl(262deg 43% 73%);
+
+  margin-block: var(--size-7);
 `;
 
 const InnerWrapper = styled.div`
   background: var(--code-surface);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-3);
-  border: solid 0.12rem var(--surface3);
-  border-top-right-radius: 0;
   position: relative;
-  font-size: var(--font-size-1);
-  letter-spacing: var(--font-letterspacing-0);
 `;
 
 const CopyToClipboardWrapper = styled.div`
   position: absolute;
-  right: 0;
+  right: -1rem;
   top: 0.2rem;
 `;
 
@@ -28,22 +31,27 @@ const Title = styled.div`
   background: var(--code-surface);
   border-top-right-radius: var(--radius-2);
   border-top-left-radius: var(--radius-2);
-  box-shadow: var(--shadow-2);
-  border: solid 0.12rem var(--surface3);
+  box-shadow: var(--shadow-3);
+  font-size: var(--font-size-1);
+  color: var(--text-2);
   border-bottom: 0;
   width: max-content;
-  font-size: 0.8rem;
-  padding: 0 0.7rem;
+  padding-inline: var(--size-2);
   margin-left: auto;
-  margin-right: 0.8rem;
+  margin-right: var(--size-3);
 `;
 
 const CodeWrapper = styled.pre`
   overflow-x: auto;
   padding: var(--size-3);
+  font-size: var(--font-size-1);
+  letter-spacing: var(--font-letterspacing-3);
+
+  * {
+    font-family: var(--font-serif);
+  }
 
   .function {
-    font-style: italic;
     color: var(--code-function);
   }
 
