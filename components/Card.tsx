@@ -18,11 +18,11 @@ const Wrapper = styled.div`
 `;
 
 const Banner = styled.div`
-  --_banner-height: var(--size-12);
-
   position: relative;
-  height: var(--_banner-height);
-  margin-bottom: var(--size-2);
+  height: var(--size-12);
+  margin-top: calc(var(--size-3) * -1);
+  margin-bottom: var(--size-3);
+  margin-inline: calc(var(--size-3) * -1);
 
   img {
     border-top-left-radius: var(--radius-2);
