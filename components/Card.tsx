@@ -1,21 +1,27 @@
 import Image from 'next/image';
 import { FC, ReactElement } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
 
-const Wrapper = styled.div`
-  background: var(--surface-3);
-  border-radius: var(--radius-2);
-  box-shadow: var(--shadow-4);
-  padding: var(--size-4);
-  cursor: pointer;
-  display: grid;
+const Wrapper = styled.div<CardProps>(({ actions }) => {
+  const hoverStyles = css`
+    &:hover {
+      box-shadow: var(--shadow-5);
+    }
+  `;
 
-  &:hover {
-    box-shadow: var(--shadow-5);
-  }
-`;
+  return css`
+    background: var(--surface-3);
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-4);
+    padding: var(--size-4);
+    cursor: pointer;
+    display: grid;
+
+    ${actions?.length !== 2 && hoverStyles}
+  `;
+});
 
 const Banner = styled.div`
   position: relative;
@@ -63,9 +69,11 @@ const Actions = styled.div`
   grid-auto-flow: column;
   gap: var(--size-2);
   align-items: center;
-  justify-content: end;
-  align-self: end;
-  margin-top: var(--size-3);
+  margin-top: var(--size-4);
+
+  > :last-child {
+    justify-self: end;
+  }
 `;
 
 export interface CardProps {
@@ -74,26 +82,18 @@ export interface CardProps {
   subheader?: string;
   tags?: Array<string>;
   banner?: string;
-  actions?: Array<ReactElement<HTMLButtonElement>>;
+  actions?: Array<ReactElement<HTMLElement>>;
 }
 
-export const Card: FC<CardProps> = ({
-  banner,
-  title,
-  subheader,
-  tags,
-  description,
-  actions,
-}) => (
-  <Wrapper>
-    {banner && (
+export const Card: FC<CardProps> = (props) => (
+  <Wrapper {...props}>
+    {props.banner && (
       <Banner>
         <Image
-          src={banner}
+          src={props.banner}
           alt="Preview"
-          priority
           placeholder="blur"
-          blurDataURL={banner}
+          blurDataURL={props.banner}
           layout="fill"
           objectFit="cover"
           quality={100}
@@ -101,18 +101,18 @@ export const Card: FC<CardProps> = ({
       </Banner>
     )}
     <div>
-      {tags && (
+      {props.tags && (
         <Tags>
-          {tags.map((tag) => (
+          {props.tags.map((tag) => (
             <Chip key={tag}>{tag}</Chip>
           ))}
         </Tags>
       )}
-      <Title>{title}</Title>
-      {subheader && <Subheader>{subheader}</Subheader>}
+      <Title>{props.title}</Title>
+      {props.subheader && <Subheader>{props.subheader}</Subheader>}
       <Divider />
     </div>
-    <Description>{description}</Description>
-    {actions && <Actions>{actions}</Actions>}
+    <Description>{props.description}</Description>
+    {props.actions && <Actions>{props.actions}</Actions>}
   </Wrapper>
 );
