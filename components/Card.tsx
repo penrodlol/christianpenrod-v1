@@ -6,6 +6,8 @@ import { Divider } from './Divider';
 
 const Wrapper = styled.div<CardProps>(({ actions }) => {
   const hoverStyles = css`
+    cursor: pointer;
+
     &:hover {
       box-shadow: var(--shadow-5);
     }
@@ -16,7 +18,6 @@ const Wrapper = styled.div<CardProps>(({ actions }) => {
     border-radius: var(--radius-2);
     box-shadow: var(--shadow-4);
     padding: var(--size-4);
-    cursor: pointer;
     display: grid;
 
     ${actions?.length !== 2 && hoverStyles}
