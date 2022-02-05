@@ -1,3 +1,4 @@
+import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
 import { Media } from '@components/Media';
@@ -5,11 +6,12 @@ import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { MAX, SIZE } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
+import ArrowRight from '@svg/arrow-right.svg';
 import { supabase } from '@utils/supabase';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 
-const WebsiteProjects = styled.section`
+const ProjectsWrapper = styled.section`
   max-width: ${SIZE.XL};
   margin: 0 auto;
   display: grid;
@@ -35,7 +37,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <Media greaterThanOrEqual="xs">
             <PageTitle page="Projects" title="What has Christian done?" />
           </Media>
-          <WebsiteProjects>
+          <ProjectsWrapper>
             {projects?.map((project) => (
               <Card
                 key={project.id}
@@ -43,9 +45,15 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 title={project.title}
                 tags={project.tags}
                 description={project.description}
+                actions={[
+                  <Button key={project.id} color="basic">
+                    Read More
+                    <ArrowRight width={25} height={25} />
+                  </Button>,
+                ]}
               ></Card>
             ))}
-          </WebsiteProjects>
+          </ProjectsWrapper>
         </GridSurface>
       </main>
     </>
