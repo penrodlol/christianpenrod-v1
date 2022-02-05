@@ -6,9 +6,9 @@ export interface Project {
   description: string;
   tags: Array<string>;
   type: ProjectType;
-  preview?: string;
-  hosted?: string;
-  github?: string;
+  hosted: string;
+  github: string;
+  preview: string;
 }
 
 export type Projects = Array<Project>;

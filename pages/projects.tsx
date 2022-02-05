@@ -1,3 +1,4 @@
+import { Anchor } from '@components/Anchor';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
@@ -7,6 +8,7 @@ import { PageTitle } from '@components/PageTitle';
 import { MAX, SIZE } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
 import ArrowRight from '@svg/arrow-right.svg';
+import Github from '@svg/github.svg';
 import { supabase } from '@utils/supabase';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
@@ -46,10 +48,25 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 tags={project.tags}
                 description={project.description}
                 actions={[
-                  <Button key={project.id} color="basic">
-                    Read More
-                    <ArrowRight width={25} height={25} />
-                  </Button>,
+                  <Anchor
+                    key={`${project.id} - github`}
+                    href={project.github}
+                    target="_blank"
+                  >
+                    <Button asIcon>
+                      <Github width={25} height={25} />
+                    </Button>
+                  </Anchor>,
+                  <Anchor
+                    key={`${project.id} - external`}
+                    href={project.hosted}
+                    target="_blank"
+                  >
+                    <Button color="basic">
+                      Check it out
+                      <ArrowRight width={25} height={25} />
+                    </Button>
+                  </Anchor>,
                 ]}
               ></Card>
             ))}
