@@ -9,7 +9,6 @@ import { Button } from './Button';
 import { Card } from './Card';
 
 const Wrapper = styled.div`
-  padding-bottom: var(--size-10);
   --tt-key: post-cards-wrapper;
 
   /* prettier-ignore */

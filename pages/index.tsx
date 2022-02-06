@@ -32,6 +32,7 @@ const HeroWrapper = styled.section`
 const RecentPostsWrapper = styled.div`
   max-width: ${SIZE.XL};
   margin: 0 auto;
+  padding-bottom: var(--size-10);
 
   ${MAX.MD} {
     max-width: ${SIZE.XS};
