@@ -25,6 +25,8 @@ const ProjectsWrapper = styled.section`
   ${MAX.MD} {
     grid-auto-flow: row;
     grid-template-columns: none;
+    max-width: ${SIZE.XS};
+    margin: 0 auto;
   }
 `;
 
@@ -43,7 +45,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             {projects?.map((project) => (
               <Card
                 key={project.id}
-                banner="/img/devices.webp"
+                banner={project.preview}
                 title={project.title}
                 tags={project.tags}
                 description={project.description}
@@ -81,8 +83,14 @@ export const getStaticProps: GetStaticProps<{
   projects: _Projects;
 }> = async () => {
   const { data, error } = await supabase.from<Project>('projects').select('*');
+  const bucket = supabase.storage.from('projects');
 
-  const projects = error || !data ? [] : data;
+  const payload = error || !data ? [] : data;
+
+  const projects: _Projects = payload.map((project) => {
+    const { data } = bucket.getPublicUrl(project.preview);
+    return { ...project, preview: data?.publicURL as string };
+  });
 
   return {
     props: { projects },

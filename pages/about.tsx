@@ -72,8 +72,14 @@ export const getStaticProps: GetStaticProps<{
   const { data, error } = await supabase
     .from<Occupation>('occupations')
     .select('*, roles:occupation_roles(*)');
+  const bucket = supabase.storage.from('career');
 
-  const occupations = error || !data ? [] : data;
+  const payload = error || !data ? [] : data;
+
+  const occupations: Occupations = payload.map((occupation) => {
+    const { data } = bucket.getPublicUrl(occupation.logo);
+    return { ...occupation, logo: data?.publicURL as string };
+  });
 
   return {
     props: { occupations },

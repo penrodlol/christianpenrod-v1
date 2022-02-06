@@ -5,7 +5,10 @@ module.exports = {
   experimental: {
     styledComponents: true,
   },
-  images: { formats: ['image/webp'] },
+  images: {
+    domains: [process.env.NEXT_PUBLIC_SUPABASE_DOMAIN],
+    formats: ['image/webp'],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
