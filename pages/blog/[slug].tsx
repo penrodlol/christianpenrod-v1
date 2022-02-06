@@ -1,5 +1,4 @@
 import { Media } from '@components/Media';
-import { PageHead } from '@components/PageHead';
 import { PostHeader } from '@components/PostHeader';
 import { SpacerProps } from '@components/Spacer';
 import { TableOfContents } from '@components/TableOfContents';
@@ -33,7 +32,6 @@ const Wrapper = styled.main<{ toc: boolean }>(({ toc }) => {
   return css`
     position: relative;
     padding-inline: var(--size-5);
-    padding-top: var(--size-7);
 
     ${MIN.LG} {
       ${toc && tocStyles}
@@ -88,7 +86,6 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
-      <PageHead page="Blog" />
       {post && (
         <Wrapper toc={!!post.toc}>
           <ContentWrapper>

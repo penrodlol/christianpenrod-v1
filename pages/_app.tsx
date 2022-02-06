@@ -1,5 +1,4 @@
-import { Footer } from '@components/Footer';
-import { Header } from '@components/Header';
+import { Layout } from '@components/layout';
 import { MediaContextProvider } from '@components/Media';
 import { RegisterCssPaint } from '@components/RegisterCssPaint';
 import { Typetura } from '@components/Typetura';
@@ -23,9 +22,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Typetura />
       <RegisterCssPaint />
       <MediaContextProvider>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </MediaContextProvider>
     </>
   );

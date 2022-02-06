@@ -1,6 +1,5 @@
 import { GridSurface } from '@components/GridSurface';
 import { Media } from '@components/Media';
-import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { PostCards } from '@components/PostCards';
 import { PostsFilter } from '@components/PostsFilter';
@@ -53,22 +52,19 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <>
-      <PageHead page="Blog" />
-      <main>
-        <Media greaterThanOrEqual="xs">
-          <PageTitle page="Blog" title="What has Christian wrote?" />
-        </Media>
-        <PostsFilterWrapper>
-          <PostsFilter onFilter={handleFilter} />
-        </PostsFilterWrapper>
-        <section>
-          <GridSurface>
-            <PostCardsWrapper>
-              <PostCards posts={filteredPosts || posts} />
-            </PostCardsWrapper>
-          </GridSurface>
-        </section>
-      </main>
+      <Media greaterThanOrEqual="xs">
+        <PageTitle page="Blog" title="What has Christian wrote?" />
+      </Media>
+      <PostsFilterWrapper>
+        <PostsFilter onFilter={handleFilter} />
+      </PostsFilterWrapper>
+      <section>
+        <GridSurface>
+          <PostCardsWrapper>
+            <PostCards posts={filteredPosts || posts} />
+          </PostCardsWrapper>
+        </GridSurface>
+      </section>
     </>
   );
 };

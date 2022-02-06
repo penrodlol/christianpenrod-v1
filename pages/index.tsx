@@ -1,6 +1,5 @@
 import { GridSurface } from '@components/GridSurface';
 import { Hero } from '@components/Hero/Hero';
-import { PageHead } from '@components/PageHead';
 import { PostCards } from '@components/PostCards';
 import { SectionTitle } from '@components/SectionTitle';
 import { MAX, SIZE } from '@const/breakpoints';
@@ -44,18 +43,15 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
-      <PageHead />
-      <main>
-        <HeroWrapper>
-          <Hero />
-        </HeroWrapper>
-        <GridSurface>
-          <RecentPostsWrapper>
-            <SectionTitle>Recently Published</SectionTitle>
-            <PostCards posts={posts} />
-          </RecentPostsWrapper>
-        </GridSurface>
-      </main>
+      <HeroWrapper>
+        <Hero />
+      </HeroWrapper>
+      <GridSurface>
+        <RecentPostsWrapper>
+          <SectionTitle>Recently Published</SectionTitle>
+          <PostCards posts={posts} />
+        </RecentPostsWrapper>
+      </GridSurface>
     </>
   );
 };

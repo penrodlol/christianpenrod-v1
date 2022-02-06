@@ -1,7 +1,6 @@
 import { GridSurface } from '@components/GridSurface';
 import { Media } from '@components/Media';
 import { OccupationCard } from '@components/OccupationCard/OccupationCard';
-import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { Profile } from '@components/Profile';
 import { SectionTitle } from '@components/SectionTitle';
@@ -43,25 +42,22 @@ const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
-      <PageHead page="About" />
-      <main>
-        <Media greaterThanOrEqual="xs">
-          <PageTitle page="About" title="Who is Christian?" />
-        </Media>
-        <ProfileWrapper>
-          <Profile />
-        </ProfileWrapper>
-        <GridSurface>
-          <OccupationsWrapper>
-            <SectionTitle>Experience</SectionTitle>
-            <OccupationsInnerWrapper>
-              {occupations?.map((occupation) => (
-                <OccupationCard key={occupation.id} occupation={occupation} />
-              ))}
-            </OccupationsInnerWrapper>
-          </OccupationsWrapper>
-        </GridSurface>
-      </main>
+      <Media greaterThanOrEqual="xs">
+        <PageTitle page="About" title="Who is Christian?" />
+      </Media>
+      <ProfileWrapper>
+        <Profile />
+      </ProfileWrapper>
+      <GridSurface>
+        <OccupationsWrapper>
+          <SectionTitle>Experience</SectionTitle>
+          <OccupationsInnerWrapper>
+            {occupations?.map((occupation) => (
+              <OccupationCard key={occupation.id} occupation={occupation} />
+            ))}
+          </OccupationsInnerWrapper>
+        </OccupationsWrapper>
+      </GridSurface>
     </>
   );
 };

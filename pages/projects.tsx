@@ -3,7 +3,6 @@ import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
 import { Media } from '@components/Media';
-import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { MAX, SIZE } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
@@ -35,46 +34,43 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
-      <PageHead page="Projects" />
-      <main>
-        <GridSurface>
-          <Media greaterThanOrEqual="xs">
-            <PageTitle page="Projects" title="What has Christian done?" />
-          </Media>
-          <ProjectsWrapper>
-            {projects?.map((project) => (
-              <Card
-                key={project.id}
-                banner={project.preview}
-                title={project.title}
-                tags={project.tags}
-                description={project.description}
-                actions={[
-                  <Anchor
-                    key={`${project.id} - github`}
-                    href={project.github}
-                    target="_blank"
-                  >
-                    <Button asIcon>
-                      <Github width={25} height={25} />
-                    </Button>
-                  </Anchor>,
-                  <Anchor
-                    key={`${project.id} - external`}
-                    href={project.hosted}
-                    target="_blank"
-                  >
-                    <Button color="basic">
-                      Check it out
-                      <ArrowRight width={25} height={25} />
-                    </Button>
-                  </Anchor>,
-                ]}
-              ></Card>
-            ))}
-          </ProjectsWrapper>
-        </GridSurface>
-      </main>
+      <GridSurface>
+        <Media greaterThanOrEqual="xs">
+          <PageTitle page="Projects" title="What has Christian done?" />
+        </Media>
+        <ProjectsWrapper>
+          {projects?.map((project) => (
+            <Card
+              key={project.id}
+              banner={project.preview}
+              title={project.title}
+              tags={project.tags}
+              description={project.description}
+              actions={[
+                <Anchor
+                  key={`${project.id} - github`}
+                  href={project.github}
+                  target="_blank"
+                >
+                  <Button asIcon>
+                    <Github width={25} height={25} />
+                  </Button>
+                </Anchor>,
+                <Anchor
+                  key={`${project.id} - external`}
+                  href={project.hosted}
+                  target="_blank"
+                >
+                  <Button color="basic">
+                    Check it out
+                    <ArrowRight width={25} height={25} />
+                  </Button>
+                </Anchor>,
+              ]}
+            ></Card>
+          ))}
+        </ProjectsWrapper>
+      </GridSurface>
     </>
   );
 };

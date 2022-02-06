@@ -6,7 +6,6 @@ const Wrapper = styled.div`
   max-width: ${SIZE.SM};
   margin: 0 auto;
   padding-inline: var(--size-6);
-  padding-top: var(--size-5);
 `;
 
 const Page = styled.h1`
