@@ -1,4 +1,5 @@
 import { Occupation } from '@interfaces/occupation';
+import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
 import styled from 'styled-components';
@@ -28,9 +29,7 @@ const LogoWrapper = styled.div`
     box-shadow: var(--shadow-3);
     border-radius: var(--radius-2);
 
-    img {
-      filter: grayscale(100%) sepia(80%) !important;
-    }
+    ${guavaHue(0.5)}
   }
 `;
 

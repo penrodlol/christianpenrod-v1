@@ -1,4 +1,4 @@
-import { MAX } from '@const/breakpoints';
+import { MAX, SIZE } from '@const/breakpoints';
 import { Posts } from '@interfaces/post';
 import ArrowRight from '@svg/arrow-right.svg';
 import dayjs from 'dayjs';
@@ -27,6 +27,8 @@ const InnerWrapper = styled.div`
   ${MAX.MD} {
     grid-auto-flow: row;
     grid-template-columns: none;
+    max-width: ${SIZE.XS};
+    margin: 0 auto;
   }
 `;
 

@@ -1,3 +1,4 @@
+import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
 import { FC, ReactElement } from 'react';
 import styled, { css } from 'styled-components';
@@ -31,9 +32,11 @@ const Banner = styled.div`
   margin-bottom: var(--size-3);
   margin-inline: calc(var(--size-3) * -1);
 
-  img {
+  > :first-child {
     border-top-left-radius: var(--radius-2);
     border-top-right-radius: var(--radius-2);
+
+    ${guavaHue(0.3)}
   }
 `;
 
@@ -97,6 +100,7 @@ export const Card: FC<CardProps> = (props) => (
           blurDataURL={props.banner}
           layout="fill"
           objectFit="cover"
+          objectPosition="top"
           quality={100}
         />
       </Banner>

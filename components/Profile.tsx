@@ -1,4 +1,5 @@
 import { MIN } from '@const/breakpoints';
+import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Divider } from './Divider';
@@ -43,9 +44,7 @@ const SelfieWrapper = styled.div`
     box-shadow: var(--shadow-4);
     border-radius: var(--radius-2);
 
-    img {
-      filter: sepia(80%) !important;
-    }
+    ${guavaHue(0.35)}
   }
 `;
 
