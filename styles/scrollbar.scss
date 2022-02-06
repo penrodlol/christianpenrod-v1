@@ -1,0 +1,16 @@
+*::-webkit-scrollbar {
+  width: var(--scroll-bar-size);
+
+  &:horizontal {
+    height: 0.4rem;
+  }
+
+  &-track {
+    box-shadow: inset 0 0 6px hsla(0, 0%, 0%, 0.3);
+  }
+
+  &-thumb {
+    background: var(--brand-3);
+    border-radius: var(--radius-2);
+  }
+}
