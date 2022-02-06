@@ -17,6 +17,10 @@ const Item = styled.a`
   color: var(--text-2);
   font-size: var(--font-size-1);
   cursor: pointer;
+
+  &:hover {
+    color: var(--text-1);
+  }
 `;
 
 function toHeader(raw: string) {
