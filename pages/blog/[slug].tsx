@@ -20,7 +20,7 @@ import { join } from 'path';
 import prism from 'remark-prism';
 import styled, { css } from 'styled-components';
 
-const Wrapper = styled.main<{ toc: boolean }>(({ toc }) => {
+const Wrapper = styled.div<{ toc: boolean }>(({ toc }) => {
   const tocStyles = css`
     max-width: ${SIZE.LG};
     gap: var(--size-9);
