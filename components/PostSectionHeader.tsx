@@ -1,13 +1,30 @@
+import Link from '@svg/link.svg';
+import HashLink from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.h2`
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--size-3);
-  pointer-events: none;
   --tt-key: post-section-header-wrapper;
+
+  position: relative;
+  margin-bottom: var(--size-3);
+  color: var(--guava-2);
+  scroll-margin-top: var(--size-10);
+
+  svg {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(var(--size-8) * -1);
+    opacity: 0;
+  }
+
+  &:hover {
+    svg {
+      animation: var(--animation-fade-in) forwards;
+    }
+  }
 
   /* prettier-ignore */
   @keyframes post-section-header-wrapper {
@@ -16,18 +33,21 @@ const Wrapper = styled.h2`
   }
 `;
 
-const Anchor = styled.a`
-  color: var(--guava-2);
-`;
-
 export const PostSectionHeader: FC = ({ children }) => {
   const id = (children?.valueOf() as string).toLowerCase().replace(/ /g, '-');
 
   return (
     <Wrapper id={id}>
-      <Anchor href={`#${id}`} aria-label={`Blog post section: ${id}`}>
-        {children}
-      </Anchor>
+      <HashLink
+        href={{ hash: id }}
+        passHref
+        aria-label={`Blog post section: ${id}`}
+      >
+        <a>
+          <Link width={35} height={35} />
+        </a>
+      </HashLink>
+      {children}
     </Wrapper>
   );
 };
