@@ -151,17 +151,6 @@ export const getStaticProps: GetStaticProps<{
           .map((line) => line.replace(pattern, '')),
       ];
 
-  supabase.storage
-    .from('posts')
-    .download('public/local-state-with-ngrx-and-apollo-angular.mdx')
-    .then((res) => {
-      if (res) {
-        res.data?.text().then((mdx) => {
-          serialize(mdx).then(console.log);
-        });
-      }
-    });
-
   return {
     props: {
       post: { ...data, source, headers },
