@@ -5,7 +5,6 @@ import { TableOfContents } from '@components/TableOfContents';
 import { MIN, SIZE } from '@const/breakpoints';
 import { Post, Slug } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
-import { readFileSync } from 'fs';
 import matter from 'gray-matter';
 import {
   GetStaticPaths,
@@ -16,7 +15,6 @@ import {
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
-import { join } from 'path';
 import prism from 'remark-prism';
 import styled, { css } from 'styled-components';
 
@@ -129,8 +127,13 @@ export const getStaticProps: GetStaticProps<{
 
   if (error || !data) return { props: { post: undefined } };
 
-  const path = join(process.cwd(), 'posts');
-  const rawSource = readFileSync(join(path, `${slug}.mdx`), 'utf-8');
+  const mdxBlob = await supabase.storage
+    .from('posts')
+    .download(`public/${data.slug}.mdx`);
+
+  if (mdxBlob.error || !mdxBlob.data) return { props: { post: undefined } };
+
+  const rawSource = await mdxBlob.data.text();
   const { content } = matter(rawSource);
 
   const source = await serialize(content, {
@@ -147,6 +150,17 @@ export const getStaticProps: GetStaticProps<{
           .filter((line) => line.match(pattern))
           .map((line) => line.replace(pattern, '')),
       ];
+
+  supabase.storage
+    .from('posts')
+    .download('public/local-state-with-ngrx-and-apollo-angular.mdx')
+    .then((res) => {
+      if (res) {
+        res.data?.text().then((mdx) => {
+          serialize(mdx).then(console.log);
+        });
+      }
+    });
 
   return {
     props: {
