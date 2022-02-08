@@ -24,8 +24,8 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
       break;
     }
     default: {
-      background = 'var(--brand-3)';
-      backgroundHover = 'var(--brand-4)';
+      background = 'var(--brand-2)';
+      backgroundHover = 'var(--brand-1)';
       break;
     }
   }

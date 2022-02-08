@@ -49,7 +49,8 @@ const Content = styled(DialogPrimitive.Content)`
 `;
 
 const Header = styled.div`
-  padding: var(--size-3);
+  padding-block: var(--size-3);
+  padding-inline: var(--size-6);
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: auto max-content;
@@ -71,7 +72,8 @@ const Footer = styled.div`
   align-items: center;
   justify-content: end;
   gap: var(--size-3);
-  padding: var(--size-3);
+  padding-inline: var(--size-6);
+  padding-top: var(--size-3);
   padding-bottom: var(--size-5);
 `;
 
@@ -102,12 +104,12 @@ export const DialogContent: FC<DialogContentProps> = ({
         <Footer>
           {props.secondary && (
             <DialogPrimitive.Close asChild>
-              <Button color="basic" {...props.secondary}>
+              <Button color="default" {...props.secondary}>
                 {props.secondary.label}
               </Button>
             </DialogPrimitive.Close>
           )}
-          <Button color="basic" {...props.primary}>
+          <Button color="default" {...props.primary}>
             {props.primary.label}
           </Button>
         </Footer>
