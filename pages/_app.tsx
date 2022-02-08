@@ -1,4 +1,4 @@
-import { Layout } from '@components/layout';
+import { Layout } from '@components/Layout';
 import { MediaContextProvider } from '@components/Media';
 import { RegisterCssPaint } from '@components/RegisterCssPaint';
 import { Typetura } from '@components/Typetura';
