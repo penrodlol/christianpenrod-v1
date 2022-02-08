@@ -17,7 +17,7 @@ const Main = styled.main`
 export const Layout: FC = ({ children }) => {
   const { asPath } = useRouter();
 
-  const page = titleCase(asPath.replace('/', ''));
+  const page = titleCase(asPath.split('/')[1]);
   const title = page ? `${NAME} - ${page}` : NAME;
 
   return (
