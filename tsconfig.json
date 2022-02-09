@@ -16,11 +16,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@atoms/*": ["atoms/*"],
       "@components/*": ["components/*"],
       "@const/*": ["const/*"],
       "@interfaces/*": ["interfaces/*"],
-      "@stubs/*": ["stubs/*"],
       "@svg/*": ["public/svg/*"],
       "@utils/*": ["utils/*"]
     }
