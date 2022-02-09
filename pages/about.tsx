@@ -39,6 +39,7 @@ const OccupationsInnerWrapper = styled.div`
 
 const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   occupations,
+  selfie,
 }) => {
   return (
     <>
@@ -46,7 +47,7 @@ const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <PageTitle page="About" title="Who is Christian?" />
       </Media>
       <ProfileWrapper>
-        <Profile />
+        <Profile selfie={selfie} />
       </ProfileWrapper>
       <GridSurface>
         <OccupationsWrapper>
@@ -64,21 +65,29 @@ const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
 export const getStaticProps: GetStaticProps<{
   occupations: Occupations;
+  selfie: string;
 }> = async () => {
   const { data, error } = await supabase
     .from<Occupation>('occupations')
     .select('*, roles:occupation_roles(*)');
-  const bucket = supabase.storage.from('career');
+  const careerBucket = supabase.storage.from('career');
+  const miscBucket = supabase.storage.from('misc');
 
   const payload = error || !data ? [] : data;
 
   const occupations: Occupations = payload.map((occupation) => {
-    const { data } = bucket.getPublicUrl(occupation.logo);
+    const { data } = careerBucket.getPublicUrl(occupation.logo);
     return { ...occupation, logo: data?.publicURL as string };
   });
 
+  const selfiePayload = miscBucket.getPublicUrl('public/selfie.webp');
+  const selfie = selfiePayload.data?.publicURL || '';
+
   return {
-    props: { occupations },
+    props: {
+      occupations,
+      selfie,
+    },
   };
 };
 

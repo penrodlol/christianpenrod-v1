@@ -1,6 +1,7 @@
 import { MIN } from '@const/breakpoints';
 import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
+import { FC } from 'react';
 import styled from 'styled-components';
 import { Divider } from './Divider';
 import { Media } from './Media';
@@ -86,16 +87,20 @@ const Bio = styled.p`
   }
 `;
 
-export const Profile = () => (
+export interface ProfileProps {
+  selfie: string;
+}
+
+export const Profile: FC<ProfileProps> = ({ selfie }) => (
   <Wrapper>
     <div>
       <SelfieWrapper>
         <Image
           id="selfie"
-          src="/img/me.webp"
+          src={selfie}
           alt="Selfie"
           placeholder="blur"
-          blurDataURL="/img/me.webp"
+          blurDataURL={selfie}
           priority
           layout="intrinsic"
           height={400}
