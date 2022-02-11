@@ -2,7 +2,6 @@ import { Anchor } from '@components/Anchor';
 import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
-import { Media } from '@components/Media';
 import { PageTitle } from '@components/PageTitle';
 import { MAX, SIZE } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
@@ -26,6 +25,7 @@ const ProjectsWrapper = styled.section`
     grid-template-columns: none;
     max-width: ${SIZE.XS};
     margin: 0 auto;
+    padding-top: var(--size-7);
   }
 `;
 
@@ -35,9 +35,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <>
       <GridSurface>
-        <Media greaterThanOrEqual="xs">
-          <PageTitle page="Projects" title="What has Christian done?" />
-        </Media>
+        <PageTitle page="Projects" title="What has Christian done?" />
         <ProjectsWrapper>
           {projects?.map((project) => (
             <Card

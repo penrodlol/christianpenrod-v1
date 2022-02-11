@@ -1,5 +1,4 @@
 import { GridSurface } from '@components/GridSurface';
-import { Media } from '@components/Media';
 import { OccupationCard } from '@components/OccupationCard/OccupationCard';
 import { PageTitle } from '@components/PageTitle';
 import { Profile } from '@components/Profile';
@@ -43,9 +42,7 @@ const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
-      <Media greaterThanOrEqual="xs">
-        <PageTitle page="About" title="Who is Christian?" />
-      </Media>
+      <PageTitle page="About" title="Who is Christian?" />
       <ProfileWrapper>
         <Profile selfie={selfie} />
       </ProfileWrapper>
