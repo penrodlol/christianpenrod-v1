@@ -22,7 +22,7 @@ const Overlay = styled.div`
   animation-duration: 100ms;
 `;
 
-const Menu = styled.div`
+const Menu = styled.ul`
   position: fixed;
   top: var(--size-9);
   left: var(--size-7);
@@ -34,7 +34,7 @@ const Menu = styled.div`
   font-size: var(--font-size-6);
   z-index: var(--layer-important);
 
-  a {
+  li {
     color: var(--text2);
     text-decoration: none;
     opacity: 0;
@@ -76,14 +76,15 @@ export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
           <Overlay />
           <Menu>
             {routes.map((route) => (
-              <NextLink
-                key={route}
-                href={`/${route.toLowerCase()}`}
-                passHref
-                aria-label={`Navigate to ${route.toLowerCase()}`}
-              >
-                <a onClick={() => hamburgerEl?.click()}>{route}</a>
-              </NextLink>
+              <li key={route}>
+                <NextLink
+                  href={`/${route.toLowerCase()}`}
+                  passHref
+                  aria-label={`Navigate to ${route.toLowerCase()}`}
+                >
+                  <a onClick={() => hamburgerEl?.click()}>{route}</a>
+                </NextLink>
+              </li>
             ))}
           </Menu>
         </>

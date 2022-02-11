@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled.ul`
   display: grid;
   grid-auto-flow: column;
   align-items: center;
@@ -22,22 +22,23 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({ routes }) => {
   return (
     <Wrapper>
       {routes.map((route) => (
-        <NextLink
-          key={route}
-          href={`/${route.toLowerCase()}`}
-          passHref
-          aria-label={`Navigate to ${route.toLowerCase()}`}
-        >
-          <Anchor
-            underline={
-              router.route.startsWith(`/${route.toLowerCase()}`)
-                ? 'always'
-                : 'hover'
-            }
+        <li key={route}>
+          <NextLink
+            href={`/${route.toLowerCase()}`}
+            passHref
+            aria-label={`Navigate to ${route.toLowerCase()}`}
           >
-            {route}
-          </Anchor>
-        </NextLink>
+            <Anchor
+              underline={
+                router.route.startsWith(`/${route.toLowerCase()}`)
+                  ? 'always'
+                  : 'hover'
+              }
+            >
+              {route}
+            </Anchor>
+          </NextLink>
+        </li>
       ))}
     </Wrapper>
   );
