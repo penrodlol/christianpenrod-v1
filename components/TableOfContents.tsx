@@ -3,11 +3,12 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import { Divider } from './Divider';
 
-const Title = styled.span`
+const Title = styled.summary`
   font-size: var(--font-size-4);
+  list-style: none;
 `;
 
-const Contents = styled.nav`
+const Contents = styled.ol`
   display: grid;
   gap: var(--size-3);
   color: var(--text-2);
@@ -49,20 +50,21 @@ export const TableOfContents: FC<TableOfContentsProps> = ({ headers }) => {
   }
 
   return (
-    <div>
+    <details open>
       <Title>Table of Contents</Title>
       <Divider />
       <Contents>
         {headers.map((item, index) => (
-          <Item
-            key={item}
-            aria-label={`Jump to '${item}' section within blog post.`}
-            onClick={() => goTo(toHeader(item))}
-          >
-            {index + 1}. {item}
-          </Item>
+          <li key={item}>
+            <Item
+              aria-label={`Jump to '${item}' section within blog post.`}
+              onClick={() => goTo(toHeader(item))}
+            >
+              {index + 1}. {item}
+            </Item>
+          </li>
         ))}
       </Contents>
-    </div>
+    </details>
   );
 };
