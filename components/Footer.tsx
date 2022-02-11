@@ -1,7 +1,4 @@
-import { Button } from '@components/Button';
-import { Divider } from '@components/Divider';
 import { SocialLinks } from '@components/SocialLinks';
-import ArrowUpCircle from '@svg/arrow-up-circle.svg';
 import dayjs from 'dayjs';
 import styled from 'styled-components';
 
@@ -51,14 +48,6 @@ const Copyright = styled.span`
 export const Footer = () => (
   <Wrapper>
     <Content>
-      <Button
-        asIcon
-        aria-label="Navigate back to top of page."
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      >
-        <ArrowUpCircle width={60} height={60} />
-      </Button>
-      <Divider />
       <SocialLinks />
       <Footnote>
         Christian Penrod <Copyright>&#169;{dayjs().year()}</Copyright>
