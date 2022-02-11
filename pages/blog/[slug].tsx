@@ -1,6 +1,7 @@
+import { Divider } from '@components/Divider';
 import { Media } from '@components/Media';
 import { PostHeader } from '@components/PostHeader';
-import { SpacerProps } from '@components/Spacer';
+import { PostsPaginator } from '@components/PostsPaginator';
 import { TableOfContents } from '@components/TableOfContents';
 import { MIN, SIZE } from '@const/breakpoints';
 import { Post, Slug } from '@interfaces/post';
@@ -72,7 +73,7 @@ const TableOfContentsWrapper = styled.aside`
 // prettier-ignore
 const components = {
   h2: dynamic<unknown>(() => import('@components/PostSectionHeader').then((m) => m.PostSectionHeader)),
-  Spacer: dynamic<SpacerProps>(() => import('@components/Spacer').then((m) => m.Spacer)),
+  Spacer: dynamic<unknown>(() => import('@components/Spacer').then((m) => m.Spacer)),
   FancyText: dynamic<unknown>(() => import('@components/FancyText').then((m) => m.FancyText)),
   Disclaimer: dynamic<unknown>(() => import('@components/Disclaimer').then((m) => m.Disclaimer)),
   Anchor: dynamic<unknown>(() => import('@components/Anchor').then((m) => m.Anchor)),
@@ -90,6 +91,11 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <PostHeader post={post} />
             <Content>
               <MDXRemote {...post.source} components={components} />
+              <Divider size={8} />
+              <PostsPaginator
+                prevPost={post.prevPost}
+                nextPost={post.nextPost}
+              />
             </Content>
           </ContentWrapper>
           {post.toc && post.headers && (
@@ -120,9 +126,9 @@ export const getStaticProps: GetStaticProps<{
 }> = async (ctx) => {
   const slug = ctx.params?.slug as string;
   const { data, error } = await supabase
-    .from<Post>('posts')
-    .select('*')
+    .rpc<Post>('get_post')
     .eq('slug', slug)
+    .select('*, prevPost:prev_post, nextPost:next_post')
     .single();
 
   if (error || !data) return { props: { post: undefined } };

@@ -6,7 +6,7 @@ const Wrapper = styled.div<SpacerProps>(
 );
 
 export interface SpacerProps {
-  size: number;
+  size?: number;
 }
 
 export const Spacer: FC<SpacerProps> = ({ size }) => (
