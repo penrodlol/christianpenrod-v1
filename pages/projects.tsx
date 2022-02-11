@@ -49,6 +49,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   key={`${project.id} - github`}
                   href={project.github}
                   target="_blank"
+                  rel="nofollow noreferrer"
                 >
                   <Button asIcon>
                     <Github width={25} height={25} />
@@ -58,6 +59,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   key={`${project.id} - external`}
                   href={project.hosted}
                   target="_blank"
+                  rel="nofollow noreferrer"
                 >
                   <Button color="basic">
                     Check it out
