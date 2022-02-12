@@ -1,8 +1,12 @@
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const Wrapper = styled.div<SpacerProps>(
-  ({ size }) => `margin: var(--size-${size || 8})`,
+const Wrapper = styled.br<SpacerProps>(
+  ({ size }) => css`
+    display: block;
+    content: '';
+    margin: var(--size-${size || 8});
+  `,
 );
 
 export interface SpacerProps {
