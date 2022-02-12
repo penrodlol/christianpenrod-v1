@@ -1,5 +1,4 @@
 import { Anchor } from '@components/Anchor';
-import { Button } from '@components/Button';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
 import { PageTitle } from '@components/PageTitle';
@@ -29,6 +28,14 @@ const ProjectsWrapper = styled.section`
   }
 `;
 
+const CheckItOut = styled.span`
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-2);
+  border-radius: var(--radius-2);
+`;
+
 const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   projects,
 }) => {
@@ -51,9 +58,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   target="_blank"
                   rel="nofollow noreferrer"
                 >
-                  <Button asIcon>
-                    <Github width={25} height={25} />
-                  </Button>
+                  <Github width={25} height={25} />
                 </Anchor>,
                 <Anchor
                   key={`${project.id} - external`}
@@ -61,10 +66,10 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   target="_blank"
                   rel="nofollow noreferrer"
                 >
-                  <Button color="basic">
+                  <CheckItOut>
                     Check it out
                     <ArrowRight width={25} height={25} />
-                  </Button>
+                  </CheckItOut>
                 </Anchor>,
               ]}
             ></Card>

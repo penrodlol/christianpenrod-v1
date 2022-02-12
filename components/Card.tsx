@@ -77,6 +77,7 @@ const Actions = styled.div`
   grid-auto-flow: column;
   gap: var(--size-2);
   align-items: center;
+  justify-content: space-between;
   margin-top: var(--size-4);
 
   > :last-child {
