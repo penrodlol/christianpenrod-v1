@@ -55,9 +55,9 @@ export const HeroMessage = () => (
     <Job>Front-End Web Developer</Job>
     <Divider />
     <Bio>
-      Developing for the web since 2015. A few areas I tend to focus on include
-      developer experience tooling, responsive web design, and occasionally some
-      attempts at teaching.
+      Developing for the web since 2015, based in Pittsburgh PA. A few areas I
+      tend to focus on include developer experience tooling, responsive web
+      design, and occasionally some attempts at teaching.
     </Bio>
     <ContactWrapper>
       <Contact />
