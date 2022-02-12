@@ -12,6 +12,10 @@ const Wrapper = styled.div<CardProps>(({ actions }) => {
     &:hover {
       box-shadow: var(--shadow-5);
     }
+
+    button {
+      pointer-events: none;
+    }
   `;
 
   return css`

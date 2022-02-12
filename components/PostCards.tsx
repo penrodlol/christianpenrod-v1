@@ -32,6 +32,8 @@ const InnerWrapper = styled.div`
 `;
 
 const CardAnchor = styled.a`
+  border-radius: var(--radius-2);
+
   > :first-child {
     height: 100%;
   }
@@ -58,7 +60,7 @@ export const PostCards: FC<PostCardsProps> = ({ posts }) => (
               tags={post.tags}
               description={post.description}
               actions={[
-                <Button key={post.id} color="basic">
+                <Button key={post.id} color="basic" disabled>
                   Read More
                   <ArrowRight width={25} height={25} />
                 </Button>,
