@@ -3,8 +3,18 @@ import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Divider } from './Divider';
-import { Media } from './Media';
+import { Divider } from '../Divider';
+import { FancyText } from '../FancyText';
+import { Media } from '../Media';
+import { Spacer } from '../Spacer';
+import {
+  AngularLink,
+  MaterialDesignLink,
+  NextjsLink,
+  NxLink,
+  StyledComponentsLink,
+  TailwindCSSLink,
+} from './ProfileLinks';
 
 const Wrapper = styled.div`
   display: grid;
@@ -52,7 +62,7 @@ const SelfieWrapper = styled.div`
 const Name = styled.span`
   display: block;
   font-size: var(--font-size-5);
-  margin-top: var(--size-3);
+  margin-top: var(--size-7);
 `;
 
 const Position = styled.span`
@@ -109,31 +119,32 @@ export const Profile: FC<ProfileProps> = ({ selfie }) => (
         />
       </SelfieWrapper>
       <Name>Christian Penrod</Name>
-      <Position>Full-Stack Web Developer</Position>
+      <Position>Front-End Web Developer</Position>
       <Media lessThan="sm">
         <Divider />
       </Media>
     </div>
     <div>
       <Bio>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa soluta cum
-        assumenda, culpa aliquid porro corporis illo ut quod facere
-        reprehenderit quo blanditiis debitis possimus ex labore sunt.
-        <br />
-        <br />
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eos
-        reiciendis, sint, vitae distinctio accusantium, quisquam aspernatur
-        dolorum quas hic aliquid eveniet.
-        <br />
-        <br />
-        Ipsa soluta cum assumenda, culpa aliquid porro corporis illo ut quod
-        facere reprehenderit quo blanditiis debitis, quisquam aspernatur dolorum
-        quas hic aliquid eveniet.
-        <br />
-        <br />
-        Ipsa soluta cum assumenda, culpa aliquid porro corporis illo ut quod
-        facere reprehenderit quo blanditiis debitis, quisquam aspernatur dolorum
-        quas hic aliquid eveniet.
+        Lets by honest, talking about yourself in third-person is difficult, but
+        here&apos;s my best attempt at it...
+        <Spacer size={3} />
+        I&apos;ve been developing for the web since 2015. One of my primary
+        interests involves <FancyText>developer experience</FancyText> (DX)
+        tooling. I&apos;ve worked in depth migrating <AngularLink /> codebases
+        to <NxLink />.
+        <Spacer size={3} />
+        Another area of interest includes{' '}
+        <FancyText>responsive web design</FancyText>. I enjoy creating
+        aesthetically pleasing, mobile friendly, accessible websites. I&apos;ve
+        worked hands-on with frameworks such as <AngularLink /> and{' '}
+        <NextjsLink />. And styling libraries including <MaterialDesignLink />,{' '}
+        <StyledComponentsLink />, and <TailwindCSSLink />.
+        <Spacer size={3} />
+        Although I&apos;m not a qualified expert, I try to{' '}
+        <FancyText>teach</FancyText> others the knowledge I&apos;ve accumulated
+        over the years. Whether that be through blog posts or just working with
+        my co-workers.
       </Bio>
     </div>
   </Wrapper>
