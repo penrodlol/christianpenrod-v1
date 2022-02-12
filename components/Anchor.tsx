@@ -9,7 +9,6 @@ import styled, { css } from 'styled-components';
 const Wrapper = styled.a<AnchorProps>(({ underline }) => {
   const underlineStyles = css`
     position: relative;
-    border-radius: var(--radius-2);
 
     &::after {
       content: '';
@@ -51,6 +50,7 @@ const Wrapper = styled.a<AnchorProps>(({ underline }) => {
     color: var(--text-1);
     text-decoration: none;
     cursor: pointer;
+    border-radius: var(--radius-2);
 
     ${underline && underlineStyles}
   `;
