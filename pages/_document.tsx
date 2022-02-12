@@ -38,7 +38,7 @@ class AppDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <style
             type="text/css"

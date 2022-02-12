@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = styled.h3`
+const Title = styled.h2`
   --tt-key: section-title-title;
 
   /* prettier-ignore */

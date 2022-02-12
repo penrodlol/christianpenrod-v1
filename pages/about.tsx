@@ -73,8 +73,8 @@ export const getStaticProps: GetStaticProps<{
   const payload = error || !data ? [] : data;
 
   const occupations: Occupations = payload.map((occupation) => {
-    const { data } = careerBucket.getPublicUrl(occupation.logo);
-    return { ...occupation, logo: data?.publicURL as string };
+    const carrerBucketPayload = careerBucket.getPublicUrl(occupation.logo);
+    return { ...occupation, logo: carrerBucketPayload?.publicURL as string };
   });
 
   const selfiePayload = miscBucket.getPublicUrl('public/selfie.webp');

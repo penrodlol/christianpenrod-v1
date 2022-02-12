@@ -102,6 +102,7 @@ export const Profile: FC<ProfileProps> = ({ selfie }) => (
           placeholder="blur"
           blurDataURL={selfie}
           layout="intrinsic"
+          objectFit="cover"
           height={400}
           width={300}
           quality={100}
