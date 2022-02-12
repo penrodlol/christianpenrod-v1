@@ -32,6 +32,7 @@ const ActualInput = styled.input`
   color: var(--text-1);
   padding-inline: var(--size-2);
   padding-block: var(--size-1);
+  border-radius: inherit;
   background: transparent;
   border: none;
   outline: none;
