@@ -52,12 +52,12 @@ const ContactWrapper = styled.div`
 export const HeroMessage = () => (
   <div>
     <Hello>Hi, I&apos;m Christian.</Hello>
-    <Job>Full-Stack Web Developer</Job>
+    <Job>Front-End Web Developer</Job>
     <Divider />
     <Bio>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa soluta cum
-      assumenda, culpa aliquid porro corporis illo ut quod facere reprehenderit
-      quo blanditiis debitis possimus ex labore sunt.
+      Developing for the web since 2015. A few areas I tend to focus on include
+      developer experience tooling, responsive web design, and occasionally some
+      attempts at teaching.
     </Bio>
     <ContactWrapper>
       <Contact />
