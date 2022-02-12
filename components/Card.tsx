@@ -12,10 +12,6 @@ const Wrapper = styled.div<CardProps>(({ actions }) => {
     &:hover {
       box-shadow: var(--shadow-5);
     }
-
-    button {
-      pointer-events: none;
-    }
   `;
 
   return css`
@@ -73,15 +69,14 @@ const Description = styled.p`
 `;
 
 const Actions = styled.div`
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
   gap: var(--size-2);
   align-items: center;
   justify-content: space-between;
   margin-top: var(--size-4);
 
   > :last-child {
-    justify-self: end;
+    margin-left: auto;
   }
 `;
 
