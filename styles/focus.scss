@@ -1,0 +1,11 @@
+:focus-visible {
+  transition: outline-offset 145ms var(--ease-2);
+
+  &:not(:active) {
+    --_outline-width: 0.2rem;
+
+    outline-offset: var(--size-1);
+    outline: solid var(--_outline-width) var(--brand-1);
+    transition-duration: 0.2s;
+  }
+}
