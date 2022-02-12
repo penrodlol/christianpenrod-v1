@@ -63,7 +63,7 @@ export const OccupationCard: FC<OccupationCardProps> = ({ occupation }) => {
             layout="intrinsic"
             height={50}
             width={50}
-            quality={100}
+            quality={50}
           />
         </LogoWrapper>
         <div>
