@@ -63,7 +63,13 @@ const Title = styled(DialogPrimitive.Title)`
 `;
 
 const Body = styled.div`
-  padding: var(--size-5);
+  --tt-key: dialog-body;
+
+  /* prettier-ignore */
+  @keyframes dialog-body {
+    0%, 40% { padding-inline: 0; }
+    100% { padding: var(--size-5); }
+  }
 `;
 
 const Footer = styled.div`
