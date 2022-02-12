@@ -6,6 +6,7 @@ module.exports = {
     styledComponents: true,
   },
   images: {
+    minimumCacheTTL: 60,
     domains: [process.env.NEXT_PUBLIC_SUPABASE_DOMAIN],
     formats: ['image/webp'],
   },
