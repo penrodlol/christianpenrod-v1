@@ -1,14 +1,17 @@
+import { Spacer } from '@components/Spacer';
 import { Role } from '@interfaces/occupation';
 import { FC } from 'react';
+import replaceWithComponent from 'react-string-replace';
 import styled from 'styled-components';
 import { formatFrom, formatTo } from './occupation-time-formatter';
 
 const Wrapper = styled.div`
+  --tt-key: occupation-card-node-wrapper;
+
   display: grid;
   grid-auto-flow: column;
   gap: var(--size-3);
   justify-content: start;
-  --tt-key: occupation-card-node-wrapper;
 
   :not(:last-child) > :last-child {
     padding-bottom: var(--size-7);
@@ -46,8 +49,9 @@ const Content = styled.div`
 `;
 
 const Title = styled.h4`
-  color: var(--text-1);
   --tt-key: occupation-card-node-title;
+
+  color: var(--text-1);
 
   /* prettier-ignore */
   @keyframes occupation-card-node-title {
@@ -65,6 +69,7 @@ const Time = styled.span`
 
 const Description = styled.p`
   --_occupation-card-nodes-description-font-size: 0.9em;
+
   font-size: var(--_occupation-card-nodes-description-font-size);
   line-height: var(--font-lineheight-5);
 `;
@@ -75,28 +80,34 @@ export interface OccupationCardNodesProps {
 
 export const OccupationCardNodes: FC<OccupationCardNodesProps> = ({
   roles,
-}) => (
-  <>
-    {roles.map((role, index) => (
-      <Wrapper key={role.id}>
-        <div>
-          {index === roles.length - 1 ? (
-            <EndDot />
-          ) : (
-            <>
-              <Dot />
-              <Pipe />
-            </>
-          )}
-        </div>
-        <Content>
-          <Title>{role.title}</Title>
-          <Time>
-            {formatFrom(role.from)} - {formatTo(role.to)}
-          </Time>
-          <Description>{role.description}</Description>
-        </Content>
-      </Wrapper>
-    ))}
-  </>
-);
+}) => {
+  return (
+    <>
+      {roles.map((role, index) => (
+        <Wrapper key={role.id}>
+          <div>
+            {index === roles.length - 1 ? (
+              <EndDot />
+            ) : (
+              <>
+                <Dot />
+                <Pipe />
+              </>
+            )}
+          </div>
+          <Content>
+            <Title>{role.title}</Title>
+            <Time>
+              {formatFrom(role.from)} - {formatTo(role.to)}
+            </Time>
+            <Description>
+              {replaceWithComponent(role.description, '---', (_, i) => (
+                <Spacer key={i} size={3} />
+              ))}
+            </Description>
+          </Content>
+        </Wrapper>
+      ))}
+    </>
+  );
+};
