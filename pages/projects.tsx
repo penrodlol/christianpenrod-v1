@@ -2,12 +2,14 @@ import { Anchor } from '@components/Anchor';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
 import { PageTitle } from '@components/PageTitle';
+import { Spacer } from '@components/Spacer';
 import { MAX, SIZE } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
 import ArrowRight from '@svg/arrow-right.svg';
 import Github from '@svg/github.svg';
 import { supabase } from '@utils/supabase';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import addSpacers from 'react-string-replace';
 import styled from 'styled-components';
 
 const ProjectsWrapper = styled.section`
@@ -19,7 +21,7 @@ const ProjectsWrapper = styled.section`
   padding-inline: var(--size-5);
   padding-block: var(--size-10);
 
-  ${MAX.MD} {
+  ${MAX.LG} {
     grid-auto-flow: row;
     grid-template-columns: none;
     max-width: ${SIZE.XS};
@@ -50,7 +52,9 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               banner={project.preview}
               title={project.title}
               tags={project.tags}
-              description={project.description}
+              description={addSpacers(project.description, '---', (_, i) => (
+                <Spacer key={i} size={3} />
+              ))}
               actions={[
                 <Anchor
                   key={`${project.id} - github`}
@@ -90,7 +94,9 @@ export const getStaticProps: GetStaticProps<{
 
   const projects: _Projects = payload.map((project) => {
     const { data } = bucket.getPublicUrl(project.preview);
-    return { ...project, preview: data?.publicURL as string };
+    const preview = data?.publicURL as string;
+
+    return { ...project, preview };
   });
 
   return {

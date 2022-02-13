@@ -1,7 +1,7 @@
 import { Spacer } from '@components/Spacer';
 import { Role } from '@interfaces/occupation';
 import { FC } from 'react';
-import replaceWithComponent from 'react-string-replace';
+import addSpacers from 'react-string-replace';
 import styled from 'styled-components';
 import { formatFrom, formatTo } from './occupation-time-formatter';
 
@@ -101,7 +101,7 @@ export const OccupationCardNodes: FC<OccupationCardNodesProps> = ({
               {formatFrom(role.from)} - {formatTo(role.to)}
             </Time>
             <Description>
-              {replaceWithComponent(role.description, '---', (_, i) => (
+              {addSpacers(role.description, '---', (_, i) => (
                 <Spacer key={i} size={3} />
               ))}
             </Description>
