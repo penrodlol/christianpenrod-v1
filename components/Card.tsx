@@ -1,6 +1,6 @@
 import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
@@ -19,7 +19,8 @@ const Wrapper = styled.div<CardProps>(({ actions }) => {
     border-radius: var(--radius-2);
     box-shadow: var(--shadow-4);
     padding: var(--size-4);
-    display: grid;
+    display: flex;
+    flex-direction: column;
 
     ${actions?.length !== 2 && hoverStyles}
   `;
@@ -73,7 +74,8 @@ const Actions = styled.div`
   gap: var(--size-2);
   align-items: center;
   justify-content: space-between;
-  margin-top: var(--size-4);
+  margin-top: auto;
+  padding-top: var(--size-4);
 
   > :last-child {
     margin-left: auto;
@@ -82,7 +84,7 @@ const Actions = styled.div`
 
 export interface CardProps {
   title: string;
-  description: string;
+  description: string | Iterable<ReactNode>;
   subheader?: string;
   tags?: Array<string>;
   banner?: string;
