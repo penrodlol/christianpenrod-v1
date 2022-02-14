@@ -1,3 +1,4 @@
+import { MOTION } from '@const/motion';
 import {
   ButtonHTMLAttributes,
   ForwardedRef,
@@ -30,6 +31,20 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
     }
   }
 
+  const hoverAnimation = css`
+    @keyframes scale-up {
+      to {
+        transform: scale(1.15);
+      }
+    }
+
+    ${MOTION.NO_PREFERENCE} {
+      animation: scale-up forwards;
+      animation-timing-function: var(--ease-squish-3);
+      animation-duration: 0.5s;
+    }
+  `;
+
   return css`
     display: inline-flex;
     align-items: center;
@@ -48,8 +63,9 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
 
     ${isBasic && 'color: var(--text-1);'}
 
-    &:hover:not(:active) {
+    &:hover {
       background: ${asIcon ? 'transparent' : backgroundHover};
+      ${!isBasic && hoverAnimation}
 
       svg {
         fill: var(--brand-1);

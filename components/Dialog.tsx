@@ -31,7 +31,7 @@ const Content = styled(DialogPrimitive.Content)`
   transform: translate(-50%, -50%);
 
   ${MOTION.NO_PREFERENCE} {
-    @keyframes scale-up {
+    @keyframes scale-in {
       from {
         transform: translate(-50%, -48%) scale(0.96);
       }
@@ -41,10 +41,14 @@ const Content = styled(DialogPrimitive.Content)`
     }
 
     opacity: 0;
-    animation: var(--animation-fade-in) forwards, scale-up;
+    animation: var(--animation-fade-in) forwards, scale-in;
     animation-timing-function: var(--ease-squish-1);
     animation-duration: 300ms;
     animation-delay: 35ms;
+
+    button {
+      animation: none !important;
+    }
   }
 `;
 
