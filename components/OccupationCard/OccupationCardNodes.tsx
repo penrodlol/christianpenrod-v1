@@ -68,10 +68,9 @@ const Time = styled.span`
 `;
 
 const Description = styled.p`
-  --_occupation-card-nodes-description-font-size: 0.9em;
-
-  font-size: var(--_occupation-card-nodes-description-font-size);
-  line-height: var(--font-lineheight-5);
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-4);
+  font-weight: var(--font-weight-6);
 `;
 
 export interface OccupationCardNodesProps {
