@@ -1,3 +1,4 @@
+import { MOTION } from '@const/motion';
 import {
   AnchorHTMLAttributes,
   ForwardedRef,
@@ -43,6 +44,10 @@ const Wrapper = styled.a<AnchorProps>(({ underline }) => {
       animation: expand forwards;
       animation-timing-function: var(--ease-squish-2);
       animation-duration: 500ms;
+
+      ${MOTION.REDUCE} {
+        animation-duration: 0ms;
+      }
     }
   `;
 
