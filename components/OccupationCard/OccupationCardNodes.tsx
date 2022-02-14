@@ -49,15 +49,8 @@ const Content = styled.div`
 `;
 
 const Title = styled.h4`
-  --tt-key: occupation-card-node-title;
-
   color: var(--text-1);
-
-  /* prettier-ignore */
-  @keyframes occupation-card-node-title {
-    0%, 40% { font-size: var(--font-size-2); }
-    100% { font-size: var(--font-size-3); }
-  }
+  font-size: var(--font-size-3);
 `;
 
 const Time = styled.span`
