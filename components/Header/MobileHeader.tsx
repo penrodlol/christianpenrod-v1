@@ -69,7 +69,11 @@ export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
 
   return (
     <>
-      <Hamburger ref={hamburgerRef} onClick={toggleMenu} />
+      <Hamburger
+        ref={hamburgerRef}
+        onClick={toggleMenu}
+        aria-label={`${menu ? 'Open' : 'Close'} navigation.`}
+      />
       {menu && (
         <>
           <RemoveBodyOverflow />
@@ -80,7 +84,7 @@ export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
                 <NextLink
                   href={`/${route.toLowerCase()}`}
                   passHref
-                  aria-label={`Navigate to ${route.toLowerCase()}`}
+                  aria-label={`Navigate internally to ${route.toLowerCase()}.`}
                 >
                   <a onClick={() => hamburgerEl?.click()}>{route}</a>
                 </NextLink>

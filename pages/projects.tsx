@@ -61,6 +61,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   href={project.github}
                   target="_blank"
                   rel="nofollow noreferrer"
+                  aria-label="Navigate externally to the project's github."
                 >
                   <Github width={25} height={25} />
                 </Anchor>,
@@ -69,6 +70,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   href={project.hosted}
                   target="_blank"
                   rel="nofollow noreferrer"
+                  aria-label="Navigate externally to the project."
                 >
                   <CheckItOut>
                     Check it out

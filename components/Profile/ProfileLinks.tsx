@@ -1,15 +1,14 @@
-import { Anchor } from '@components/Anchor';
+import { Anchor, AnchorProps } from '@components/Anchor';
 import { FC } from 'react';
 
-interface ProfileLinkProps {
-  url: string;
+interface ProfileLinkProps extends AnchorProps {
   name: string;
 }
 
-const ProfileLink: FC<ProfileLinkProps> = ({ url, name }) => (
+const ProfileLink: FC<ProfileLinkProps> = ({ name, ...props }) => (
   <Anchor
+    {...props}
     underline="hover"
-    href={url}
     target="_blank"
     rel="nofollow noreferrer"
   >
@@ -17,24 +16,50 @@ const ProfileLink: FC<ProfileLinkProps> = ({ url, name }) => (
   </Anchor>
 );
 
-export const NxLink = () => <ProfileLink name="Nx" url="https://nx.dev/" />;
+export const NxLink = () => (
+  <ProfileLink
+    name="Nx"
+    href="https://nx.dev/"
+    aria-label="Navigate externally to Nx documentation."
+  />
+);
 
 export const AngularLink = () => (
-  <ProfileLink name="Angular" url="https://angular.io/" />
+  <ProfileLink
+    name="Angular"
+    href="https://angular.io/"
+    aria-label="Navigate externally to Angular documentation."
+  />
 );
 
 export const NextjsLink = () => (
-  <ProfileLink name="Nextjs" url="https://nextjs.org/" />
+  <ProfileLink
+    name="Nextjs"
+    href="https://nextjs.org/"
+    aria-label="Navigate externally to Next.js documentation."
+  />
 );
 
 export const TailwindCSSLink = () => (
-  <ProfileLink name="tailwindcss" url="https://tailwindcss.com/" />
+  <ProfileLink
+    name="tailwindcss"
+    href="https://tailwindcss.com/"
+    aria-label="Navigate externally to tailwindcss documentation."
+  />
 );
 
 export const StyledComponentsLink = () => (
-  <ProfileLink name="styled-components" url="https://styled-components.com/" />
+  <ProfileLink
+    name="styled-components"
+    href="https://styled-components.com/"
+    aria-label="Navigate externally to styled-components documentation."
+  />
 );
 
 export const MaterialDesignLink = () => (
-  <ProfileLink name="Material Design" url="https://material.io/" />
+  <ProfileLink
+    name="Material Design"
+    href="https://material.io/"
+    aria-label="Navigate externally to Material Design documentation."
+  />
 );

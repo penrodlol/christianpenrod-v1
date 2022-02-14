@@ -26,7 +26,7 @@ export const DesktopHeader: FC<DesktopHeaderProps> = ({ routes }) => {
           <NextLink
             href={`/${route.toLowerCase()}`}
             passHref
-            aria-label={`Navigate to ${route.toLowerCase()}`}
+            aria-label={`Navigate internally to ${route.toLowerCase()}`}
           >
             <Anchor
               underline={

@@ -58,10 +58,13 @@ export const Contact = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button color="cta">Contact</Button>
+        <Button color="cta" aria-label="Open contact form.">
+          Contact
+        </Button>
       </DialogTrigger>
       <DialogContent
         title="Contact Me"
+        closeAriaLabel="Cancel email submission."
         primary={{
           label: 'Send Message',
           title: 'Send Message',
@@ -73,8 +76,7 @@ export const Contact = () => {
       >
         <Formik<ContactForm>
           initialValues={initial}
-          onSubmit={(values, actions) => {
-            console.log({ values, actions });
+          onSubmit={(_, actions) => {
             actions.setSubmitting(false);
             actions.resetForm({ values: initial });
             setOpen(false);

@@ -52,7 +52,7 @@ export const PostsPaginator: FC<PostsPaginatorProps> = ({
     <Wrapper>
       {prevPost && (
         <Link href={prevPost ? `/blog/${prevPost.slug}` : '/blog'} passHref>
-          <Item>
+          <Item aria-label={`Go to previous post: ${prevPost.title}`}>
             <Direction>
               <ArrowLeft width={30} height={30} />
               Prev
@@ -63,7 +63,10 @@ export const PostsPaginator: FC<PostsPaginatorProps> = ({
       )}
       {nextPost && (
         <Link href={nextPost ? `/blog/${nextPost.slug}` : '/blog'} passHref>
-          <Item id="next-post">
+          <Item
+            id="next-post"
+            aria-label={`Go to next post: ${nextPost.title}`}
+          >
             <Direction>
               Next
               <ArrowRight width={30} height={30} />

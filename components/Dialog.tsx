@@ -88,6 +88,7 @@ const Footer = styled.div`
 `;
 
 export interface DialogContentProps extends DialogPrimitive.DialogContentProps {
+  closeAriaLabel: string;
   primary: ButtonProps & { label: string };
   secondary?: ButtonProps & { label: string };
 }
@@ -96,6 +97,7 @@ export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
 export const DialogContent: FC<DialogContentProps> = ({
   children,
+  closeAriaLabel,
   ...props
 }) => {
   return (
@@ -105,7 +107,7 @@ export const DialogContent: FC<DialogContentProps> = ({
         <Header>
           <Title>{props.title}</Title>
           <DialogPrimitive.DialogClose asChild>
-            <Button asIcon>
+            <Button asIcon aria-label={closeAriaLabel}>
               <Close width={35} height={35} />
             </Button>
           </DialogPrimitive.DialogClose>

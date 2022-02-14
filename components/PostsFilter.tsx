@@ -28,20 +28,12 @@ export const PostsFilter: FC<PostsFilterProps> = ({ onFilter }) => {
                 placeholder="Search title or tags"
                 aria-label="Filter posts by title or tags."
                 submitIcon={
-                  <Button
-                    asIcon
-                    type="submit"
-                    aria-label="Click to search posts."
-                  >
+                  <Button asIcon type="submit" aria-label="Submit search.">
                     <Search width={20} height={20} />
                   </Button>
                 }
                 resetIcon={
-                  <Button
-                    asIcon
-                    type="reset"
-                    aria-label="Click to search posts."
-                  >
+                  <Button asIcon type="reset" aria-label="Reset search.">
                     <Close width={20} height={20} />
                   </Button>
                 }
