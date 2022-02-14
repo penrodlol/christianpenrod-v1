@@ -34,13 +34,13 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
   const hoverAnimation = css`
     @keyframes scale-up {
       to {
-        transform: scale(1.15);
+        transform: translateY(-0.125rem);
       }
     }
 
     ${MOTION.NO_PREFERENCE} {
       animation: scale-up forwards;
-      animation-timing-function: var(--ease-squish-3);
+      animation-timing-function: var(--ease-squish-5);
       animation-duration: 0.5s;
     }
   `;
@@ -65,10 +65,13 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
 
     &:hover {
       background: ${asIcon ? 'transparent' : backgroundHover};
+      box-shadow: ${asIcon || isBasic ? 'none' : 'var(--shadow-4)'};
+
       ${!isBasic && hoverAnimation}
 
       svg {
         fill: var(--brand-1);
+        filter: drop-shadow(3px 3px 5px hsl(var(--shadow-color) / 65%));
       }
     }
   `;
