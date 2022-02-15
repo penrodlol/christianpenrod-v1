@@ -1,4 +1,7 @@
-ul,
-ol {
-  list-style-type: none;
+li {
+  display: inline;
+
+  &:before {
+    content: '\200B';
+  }
 }
