@@ -1,4 +1,5 @@
 import { MOTION } from '@const/motion';
+import { hoverIcon } from '@utils/styles';
 import {
   ButtonHTMLAttributes,
   ForwardedRef,
@@ -70,8 +71,7 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
       ${!isBasic && hoverAnimation}
 
       svg {
-        fill: var(--brand-1);
-        filter: drop-shadow(3px 3px 5px hsl(var(--shadow-color) / 65%));
+        ${hoverIcon()}
       }
     }
   `;

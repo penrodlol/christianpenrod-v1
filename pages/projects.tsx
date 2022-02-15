@@ -7,6 +7,7 @@ import { MAX, SIZE } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
 import ArrowRight from '@svg/arrow-right.svg';
 import Github from '@svg/github.svg';
+import { hoverIcon } from '@utils/styles';
 import { supabase } from '@utils/supabase';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import addSpacers from 'react-string-replace';
@@ -20,6 +21,10 @@ const ProjectsWrapper = styled.section`
   gap: var(--size-8);
   padding-inline: var(--size-5);
   padding-block: var(--size-10);
+
+  svg:hover {
+    ${hoverIcon}
+  }
 
   ${MAX.LG} {
     grid-auto-flow: row;
@@ -36,6 +41,10 @@ const CheckItOut = styled.span`
   gap: var(--size-2);
   font-size: var(--font-size-2);
   border-radius: var(--radius-2);
+
+  &:hover svg {
+    ${hoverIcon()}
+  }
 `;
 
 const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({

@@ -10,3 +10,8 @@ export const guavaHue = (opacity: number) => css`
     opacity: ${opacity};
   }
 `;
+
+export const hoverIcon = () => css`
+  fill: var(--brand-1);
+  filter: drop-shadow(3px 3px 5px hsl(var(--shadow-color) / 65%));
+`;
