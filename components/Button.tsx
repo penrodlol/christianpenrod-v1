@@ -32,14 +32,14 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
   }
 
   const hoverAnimation = css`
-    @keyframes scale-up {
+    @keyframes move-up {
       to {
         transform: translateY(-0.125rem);
       }
     }
 
     ${MOTION.NO_PREFERENCE} {
-      animation: scale-up forwards;
+      animation: move-up forwards;
       animation-timing-function: var(--ease-squish-5);
       animation-duration: 0.5s;
     }
