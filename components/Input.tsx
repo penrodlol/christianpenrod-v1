@@ -19,6 +19,10 @@ const Wrapper = styled.div`
   align-items: center;
   margin: 0 var(--size-3);
 
+  button {
+    animation: none !important;
+  }
+
   svg:last-child {
     margin-left: 0.8rem;
   }
