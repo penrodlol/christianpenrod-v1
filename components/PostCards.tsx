@@ -31,6 +31,38 @@ const InnerWrapper = styled.div`
   }
 `;
 
+const NoMatches = styled.div`
+  --tt-key: post-cards-no-matches;
+
+  max-width: ${SIZE.SM};
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: var(--surface-3);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-4);
+  padding: var(--size-4);
+
+  /* prettier-ignore */
+  @keyframes post-cards-no-matches {
+    0%, 40% { height: 15rem; }
+    100% { height: 22rem; }
+  }
+
+  h4 {
+    font-size: var(--font-size-fluid-3);
+    color: var(--guava-2);
+  }
+
+  p {
+    color: var(--text-2);
+    font-size: var(--font-size-fluid-1);
+  }
+`;
+
 const CardAnchor = styled.a`
   border-radius: var(--radius-2);
 
@@ -70,5 +102,11 @@ export const PostCards: FC<PostCardsProps> = ({ posts }) => (
         </Link>
       ))}
     </InnerWrapper>
+    {posts && posts?.length === 0 && (
+      <NoMatches>
+        <h4>No Posts Found</h4>
+        <p>Try adjusting your filter.</p>
+      </NoMatches>
+    )}
   </Wrapper>
 );
