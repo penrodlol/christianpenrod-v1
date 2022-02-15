@@ -24,9 +24,16 @@ const PostsFilterWrapper = styled.section`
 `;
 
 const PostCardsWrapper = styled.div`
+  --tt-key: blog-post-cards-wrapper;
+
   max-width: ${SIZE.XL};
   margin: 0 auto;
-  padding-block: var(--size-9);
+
+  /* prettier-ignore */
+  @keyframes blog-post-cards-wrapper {
+    0%, 40% { padding-block: var(--size-7); }
+    100% { padding-block: var(--size-9); }
+  }
 `;
 
 const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
