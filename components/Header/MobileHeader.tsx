@@ -1,7 +1,6 @@
 import { Hamburger } from '@components/Hamburger';
 import NextLink from 'next/link';
-import { FC } from 'react';
-import { useRefElement, useToggle } from 'rooks';
+import { FC, useRef, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const RemoveBodyOverflow = createGlobalStyle`
@@ -64,14 +63,14 @@ export interface MobileHeaderProps {
 }
 
 export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
-  const [menu, toggleMenu] = useToggle(false);
-  const [hamburgerRef, hamburgerEl] = useRefElement<HTMLInputElement>();
+  const [menu, toggleMenu] = useState(false);
+  const hamburgerRef = useRef<HTMLInputElement>(null);
 
   return (
     <>
       <Hamburger
         ref={hamburgerRef}
-        onClick={toggleMenu}
+        onClick={() => toggleMenu(!menu)}
         aria-label={`${menu ? 'Open' : 'Close'} navigation.`}
       />
       {menu && (
@@ -86,7 +85,7 @@ export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
                   passHref
                   aria-label={`Navigate internally to ${route.toLowerCase()}.`}
                 >
-                  <a onClick={() => hamburgerEl?.click()}>{route}</a>
+                  <a onClick={() => hamburgerRef.current?.click()}>{route}</a>
                 </NextLink>
               </li>
             ))}

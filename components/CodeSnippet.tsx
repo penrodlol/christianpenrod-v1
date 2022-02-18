@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import { useRefElement } from 'rooks';
+import { FC, useRef } from 'react';
 import styled from 'styled-components';
 import { CopyToClipboard } from './CopyToClipboard';
 
@@ -78,14 +77,14 @@ export interface CodeSnippetProps {
 }
 
 export const CodeSnippet: FC<CodeSnippetProps> = ({ title, children }) => {
-  const [ref, el] = useRefElement<HTMLElement>();
+  const ref = useRef<HTMLElement>(null);
 
   return (
     <Wrapper>
       {title && <Title>{title}</Title>}
       <InnerWrapper>
         <CopyToClipboardWrapper>
-          <CopyToClipboard copyTarget={el} />
+          <CopyToClipboard copyTarget={ref.current} />
         </CopyToClipboardWrapper>
         <CodeWrapper>
           <code ref={ref}>{children}</code>

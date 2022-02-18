@@ -1,6 +1,6 @@
 import { MIN } from '@const/breakpoints';
 import { Field, FieldProps, Form, Formik } from 'formik';
-import { useToggle } from 'rooks';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from './Button';
 import { Dialog, DialogContent, DialogTrigger } from './Dialog';
@@ -53,10 +53,10 @@ const initial: ContactForm = {
 };
 
 export const Contact = () => {
-  const [open, setOpen] = useToggle(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
         <Button color="cta" aria-label="Open contact form.">
           Contact
