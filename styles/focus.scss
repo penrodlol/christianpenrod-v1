@@ -1,4 +1,4 @@
-:focus-visible {
+:where(button, a):focus-visible {
   transition: outline-offset 145ms var(--ease-2);
 
   &:not(:active) {
