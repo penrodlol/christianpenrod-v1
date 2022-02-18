@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
-const Wrapper = styled.br<SpacerProps>(
+const Wrapper = styled.span<SpacerProps>(
   ({ size }) => css`
     display: block;
-    content: '';
     margin: var(--size-${size || 8});
   `,
 );
