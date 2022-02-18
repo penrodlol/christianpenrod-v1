@@ -64,7 +64,11 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
 
     ${isBasic && 'color: var(--text-1);'}
 
-    &:hover {
+    &:not(:enabled) {
+      cursor: not-allowed;
+    }
+
+    &:hover:enabled {
       background: ${asIcon ? 'transparent' : backgroundHover};
       box-shadow: ${asIcon || isBasic ? 'none' : 'var(--shadow-4)'};
 
