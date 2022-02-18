@@ -1,4 +1,5 @@
 import { MIN } from '@const/breakpoints';
+import { Email } from '@interfaces/email';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -38,22 +39,16 @@ const Fields = styled.div`
   }
 `;
 
-interface ContactForm {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
-const initial: ContactForm = {
+const initial: Email = {
   name: '',
-  email: '',
+  from: '',
   subject: '',
   message: '',
 };
 
 export const Contact = () => {
   const [open, setOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
@@ -68,18 +63,27 @@ export const Contact = () => {
         primary={{
           label: 'Send Message',
           title: 'Send Message',
-          disabled: false,
+          disabled: submitting,
           type: 'submit',
           form: 'contact-form',
           'aria-label': 'Submit email',
         }}
       >
-        <Formik<ContactForm>
+        <Formik<Email>
           initialValues={initial}
-          onSubmit={(_, actions) => {
-            actions.setSubmitting(false);
-            actions.resetForm({ values: initial });
-            setOpen(false);
+          onSubmit={(value, actions) => {
+            actions.setSubmitting(true);
+            setSubmitting(true);
+
+            fetch('/api/contact', {
+              method: 'POST',
+              body: JSON.stringify(value),
+            }).then(({ ok }) => {
+              actions.setSubmitting(false);
+              setSubmitting(false);
+              actions.resetForm({ values: initial });
+              setOpen(false);
+            });
           }}
         >
           <Form id="contact-form">
@@ -95,7 +99,7 @@ export const Contact = () => {
                   />
                 )}
               </Field>
-              <Field name="email" required>
+              <Field name="from" required>
                 {({ field }: FieldProps) => (
                   <Input
                     placeholder="Email"
