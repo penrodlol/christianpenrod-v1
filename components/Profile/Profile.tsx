@@ -110,7 +110,7 @@ export const Profile: FC<ProfileProps> = ({ selfie }) => (
           src={selfie}
           alt="Selfie"
           placeholder="blur"
-          blurDataURL={selfie}
+          blurDataURL="img/placeholder.webp"
           layout="intrinsic"
           objectFit="cover"
           height={400}

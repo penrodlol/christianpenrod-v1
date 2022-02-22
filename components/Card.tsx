@@ -103,7 +103,7 @@ export const Card: FC<CardProps> = (props) => (
           src={props.banner}
           alt="Preview"
           placeholder="blur"
-          blurDataURL={props.banner}
+          blurDataURL="img/placeholder.webp"
           layout="fill"
           objectFit="cover"
           objectPosition="top"
