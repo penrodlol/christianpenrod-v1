@@ -3,22 +3,25 @@ import NextLink from 'next/link';
 import { FC, useRef, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
-const RemoveBodyOverflow = createGlobalStyle`
-  body {
-    overflow: hidden;
-    margin-right: var(--scroll-bar-size);
-  }
-`;
-
-const Overlay = styled.div`
+const OverlayBase = styled.div`
   background: var(--overlay);
-  backdrop-filter: blur(10px);
   position: fixed;
   inset: 0;
   z-index: var(--layer-4);
   opacity: 0;
   animation: var(--animation-fade-in) forwards;
   animation-duration: 100ms;
+`;
+
+const OverlayMisc = createGlobalStyle`
+  body {
+    overflow: hidden;
+    margin-right: var(--scroll-bar-size);
+  }
+
+  main {
+    filter: blur(10px);
+  }
 `;
 
 const Menu = styled.ul`
@@ -75,8 +78,8 @@ export const MobileHeader: FC<MobileHeaderProps> = ({ routes }) => {
       />
       {menu && (
         <>
-          <RemoveBodyOverflow />
-          <Overlay />
+          <OverlayBase />
+          <OverlayMisc />
           <Menu>
             {routes.map((route) => (
               <li key={route}>

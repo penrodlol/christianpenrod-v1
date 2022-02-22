@@ -3,18 +3,21 @@ import { MOTION } from '@const/motion';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import Close from '@svg/close.svg';
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Button, ButtonProps } from './Button';
 
-const Overlay = styled(DialogPrimitive.Overlay)`
+const OverlayBase = styled(DialogPrimitive.Overlay)`
   background: var(--overlay);
-  backdrop-filter: blur(10px);
   position: fixed;
   inset: 0;
   opacity: 0;
   z-index: var(--layer-5);
   animation: var(--animation-fade-in) forwards;
   animation-duration: 30ms;
+`;
+
+const OverlayBlur = createGlobalStyle`
+  main { filter: blur(10px); }
 `;
 
 const Content = styled(DialogPrimitive.Content)`
@@ -102,8 +105,9 @@ export const DialogContent: FC<DialogContentProps> = ({
 }) => {
   return (
     <DialogPrimitive.Portal>
-      <Overlay />
+      <OverlayBase />
       <Content {...props}>
+        <OverlayBlur />
         <Header>
           <Title>{props.title}</Title>
           <DialogPrimitive.DialogClose asChild>
