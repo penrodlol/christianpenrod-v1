@@ -1,5 +1,5 @@
+import { OVERLAY_GUAVA } from '@components/Mixins';
 import { Occupation } from '@interfaces/occupation';
-import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
 import styled from 'styled-components';
@@ -29,7 +29,7 @@ const LogoWrapper = styled.div`
     box-shadow: var(--shadow-3);
     border-radius: var(--radius-2);
 
-    ${guavaHue(0.5)}
+    ${OVERLAY_GUAVA(0.5)}
   }
 `;
 

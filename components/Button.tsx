@@ -1,5 +1,4 @@
 import { MOTION } from '@const/motion';
-import { hoverIcon } from '@utils/styles';
 import {
   ButtonHTMLAttributes,
   ForwardedRef,
@@ -7,6 +6,7 @@ import {
   PropsWithChildren,
 } from 'react';
 import styled, { css } from 'styled-components';
+import { HOVER_ICON } from './Mixins';
 
 const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
   const isBasic = color === 'basic';
@@ -75,7 +75,7 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
       ${!isBasic && hoverAnimation}
 
       svg {
-        ${hoverIcon()}
+        ${HOVER_ICON}
       }
     }
   `;

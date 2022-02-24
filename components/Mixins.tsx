@@ -1,6 +1,11 @@
 import { css } from 'styled-components';
 
-export const guavaHue = (opacity: number) => css`
+export const HOVER_ICON = css`
+  fill: var(--brand-1);
+  filter: drop-shadow(3px 3px 5px hsl(var(--shadow-color) / 65%));
+`;
+
+export const OVERLAY_GUAVA = (opacity: number) => css`
   &::after {
     content: '';
     position: absolute;
@@ -9,9 +14,4 @@ export const guavaHue = (opacity: number) => css`
     background: var(--guava-2);
     opacity: ${opacity};
   }
-`;
-
-export const hoverIcon = () => css`
-  fill: var(--brand-1);
-  filter: drop-shadow(3px 3px 5px hsl(var(--shadow-color) / 65%));
 `;

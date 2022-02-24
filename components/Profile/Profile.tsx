@@ -1,5 +1,5 @@
+import { OVERLAY_GUAVA } from '@components/Mixins';
 import { MIN } from '@const/breakpoints';
-import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -55,7 +55,7 @@ const SelfieWrapper = styled.div`
     box-shadow: var(--shadow-4);
     border-radius: var(--radius-2);
 
-    ${guavaHue(0.35)}
+    ${OVERLAY_GUAVA(0.35)}
   }
 `;
 

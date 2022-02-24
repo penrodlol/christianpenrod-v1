@@ -1,9 +1,9 @@
-import { guavaHue } from '@utils/styles';
 import Image from 'next/image';
 import { FC, ReactElement, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
+import { OVERLAY_GUAVA } from './Mixins';
 
 const Wrapper = styled.div<CardProps>(({ actions }) => {
   const hoverStyles = css`
@@ -41,7 +41,7 @@ const Banner = styled.div`
     border-top-left-radius: var(--radius-2);
     border-top-right-radius: var(--radius-2);
 
-    ${guavaHue(0.3)}
+    ${OVERLAY_GUAVA(0.3)}
   }
 `;
 

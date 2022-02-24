@@ -1,13 +1,13 @@
 import { Anchor } from '@components/Anchor';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
+import { HOVER_ICON } from '@components/Mixins';
 import { PageTitle } from '@components/PageTitle';
 import { Spacer } from '@components/Spacer';
 import { MAX } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
 import ArrowRight from '@svg/arrow-right.svg';
 import Github from '@svg/github.svg';
-import { hoverIcon } from '@utils/styles';
 import { supabase } from '@utils/supabase';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import addSpacers from 'react-string-replace';
@@ -23,7 +23,7 @@ const ProjectsWrapper = styled.section`
   padding-block: var(--size-10);
 
   svg:hover {
-    ${hoverIcon}
+    ${HOVER_ICON}
   }
 
   ${MAX.LG} {
@@ -44,7 +44,7 @@ const CheckItOut = styled.span`
   border-radius: var(--radius-2);
 
   &:hover svg {
-    ${hoverIcon()}
+    ${HOVER_ICON}
   }
 `;
 
