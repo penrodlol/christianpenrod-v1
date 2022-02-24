@@ -1,9 +1,8 @@
-import { SIZE } from '@const/breakpoints';
 import { FC } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  max-width: ${SIZE.SM};
+  max-width: var(--size-md);
   margin: 0 auto;
   padding-inline: var(--size-6);
 `;

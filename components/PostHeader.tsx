@@ -1,4 +1,4 @@
-import { MAX, MIN, SIZE } from '@const/breakpoints';
+import { MAX, MIN } from '@const/breakpoints';
 import { Post } from '@interfaces/post';
 import Calendar from '@svg/calendar.svg';
 import Clock from '@svg/clock.svg';
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   ${MAX.LG} {
-    max-width: ${SIZE.XS};
+    max-width: var(--size-md);
   }
 
   ${MIN.SM} {

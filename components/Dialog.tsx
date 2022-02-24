@@ -1,4 +1,3 @@
-import { SIZE } from '@const/breakpoints';
 import { MOTION } from '@const/motion';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import Close from '@svg/close.svg';
@@ -21,7 +20,7 @@ const OverlayBlur = createGlobalStyle`
 `;
 
 const Content = styled(DialogPrimitive.Content)`
-  max-width: ${SIZE.SM};
+  max-width: var(--size-md);
   width: 90%;
   background: var(--surface-3);
   border-radius: var(--radius-2);

@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { Divider } from './Divider';
 
 const Wrapper = styled.div`
+  --tt-key: section-title-wrapper;
+
   max-width: max-content;
   width: auto;
   padding-bottom: var(--size-6);
-  --tt-key: section-title-wrapper;
 
   > :last-child {
     margin: var(--size-2) auto;

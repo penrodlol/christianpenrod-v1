@@ -1,4 +1,4 @@
-import { MAX, SIZE } from '@const/breakpoints';
+import { MAX } from '@const/breakpoints';
 import { Posts } from '@interfaces/post';
 import ArrowRight from '@svg/arrow-right.svg';
 import dayjs from 'dayjs';
@@ -26,7 +26,7 @@ const InnerWrapper = styled.div`
   ${MAX.MD} {
     grid-auto-flow: row;
     grid-template-columns: none;
-    max-width: ${SIZE.XS};
+    max-width: var(--size-content-3);
     margin: 0 auto;
   }
 `;
@@ -34,7 +34,7 @@ const InnerWrapper = styled.div`
 const NoMatches = styled.div`
   --tt-key: post-cards-no-matches;
 
-  max-width: ${SIZE.SM};
+  max-width: var(--size-md);
   margin: 0 auto;
   display: flex;
   justify-content: center;

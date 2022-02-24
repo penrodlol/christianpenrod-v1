@@ -2,16 +2,17 @@ import { GridSurface } from '@components/GridSurface';
 import { Hero } from '@components/Hero/Hero';
 import { PostCards } from '@components/PostCards';
 import { SectionTitle } from '@components/SectionTitle';
-import { MAX, SIZE } from '@const/breakpoints';
+import { MAX } from '@const/breakpoints';
 import { Post, Posts } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 
 const HeroWrapper = styled.section`
-  max-width: ${SIZE.LG};
-  margin: 0 auto;
   --tt-key: hero-wrapper;
+
+  max-width: var(--size-xl);
+  margin: 0 auto;
 
   @keyframes hero-wrapper {
     0%,
@@ -29,12 +30,12 @@ const HeroWrapper = styled.section`
 `;
 
 const RecentPostsWrapper = styled.div`
-  max-width: ${SIZE.XL};
+  max-width: var(--size-xl);
   margin: 0 auto;
   padding-bottom: var(--size-10);
 
   ${MAX.MD} {
-    max-width: ${SIZE.XS};
+    max-width: var(--size-md);
   }
 `;
 

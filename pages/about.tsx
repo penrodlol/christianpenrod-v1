@@ -3,24 +3,25 @@ import { OccupationCard } from '@components/OccupationCard/OccupationCard';
 import { PageTitle } from '@components/PageTitle';
 import { Profile } from '@components/Profile';
 import { SectionTitle } from '@components/SectionTitle';
-import { SIZE } from '@const/breakpoints';
+import { MIN } from '@const/breakpoints';
 import { Occupation, Occupations } from '@interfaces/occupation';
 import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';
 
 const ProfileWrapper = styled.section`
-  max-width: ${SIZE.MD};
+  max-width: var(--size-lg);
   margin: 0 auto;
   padding-inline: var(--size-5);
 `;
 
 const OccupationsWrapper = styled.section`
-  max-width: ${SIZE.SM};
+  --tt-key: occupations-wrapper;
+
+  max-width: var(--size-md);
   margin: 0 auto;
   padding-inline: var(--size-4);
   padding-bottom: var(--size-10);
-  --tt-key: occupations-wrapper;
 
   /* prettier-ignore */
   @keyframes occupations-wrapper {
@@ -30,10 +31,13 @@ const OccupationsWrapper = styled.section`
 `;
 
 const OccupationsInnerWrapper = styled.div`
-  max-width: ${SIZE.XS};
-  margin: 0 auto;
   display: grid;
   gap: var(--size-7);
+
+  ${MIN.XS} {
+    max-width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 const About: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({

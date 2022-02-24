@@ -1,5 +1,4 @@
 import { Media } from '@components/Media';
-import { SIZE } from '@const/breakpoints';
 import NextLink from 'next/link';
 import styled from 'styled-components';
 import { DesktopHeader } from './DesktopHeader';
@@ -18,7 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const Nav = styled.nav`
-  max-width: ${SIZE.XL};
+  max-width: var(--size-xl);
   padding: var(--size-fluid-1) var(--size-fluid-3);
   margin: 0 auto;
   display: grid;

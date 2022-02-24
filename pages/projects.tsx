@@ -3,7 +3,7 @@ import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
 import { PageTitle } from '@components/PageTitle';
 import { Spacer } from '@components/Spacer';
-import { MAX, SIZE } from '@const/breakpoints';
+import { MAX } from '@const/breakpoints';
 import { Project, Projects as _Projects } from '@interfaces/project';
 import ArrowRight from '@svg/arrow-right.svg';
 import Github from '@svg/github.svg';
@@ -14,7 +14,7 @@ import addSpacers from 'react-string-replace';
 import styled from 'styled-components';
 
 const ProjectsWrapper = styled.section`
-  max-width: ${SIZE.XL};
+  max-width: var(--size-xl);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -29,7 +29,8 @@ const ProjectsWrapper = styled.section`
   ${MAX.LG} {
     grid-auto-flow: row;
     grid-template-columns: none;
-    max-width: ${SIZE.XS};
+    gap: var(--size-10);
+    max-width: var(--size-md);
     margin: 0 auto;
     padding-top: var(--size-7);
   }
@@ -104,8 +105,8 @@ export const getStaticProps: GetStaticProps<{
   const payload = error || !data ? [] : data;
 
   const projects: _Projects = payload.map((project) => {
-    const { data } = bucket.getPublicUrl(project.preview);
-    const preview = data?.publicURL as string;
+    const projectsBucket = bucket.getPublicUrl(project.preview);
+    const preview = projectsBucket.data?.publicURL as string;
 
     return { ...project, preview };
   });

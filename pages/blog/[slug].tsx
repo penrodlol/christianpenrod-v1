@@ -3,7 +3,7 @@ import { Media } from '@components/Media';
 import { PostHeader } from '@components/PostHeader';
 import { PostsPaginator } from '@components/PostsPaginator';
 import { TableOfContents } from '@components/TableOfContents';
-import { MIN, SIZE } from '@const/breakpoints';
+import { MIN } from '@const/breakpoints';
 import { Post, Slug } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
 import matter from 'gray-matter';
@@ -21,8 +21,8 @@ import styled, { css } from 'styled-components';
 
 const Wrapper = styled.div<{ toc: boolean }>(({ toc }) => {
   const tocStyles = css`
-    max-width: ${SIZE.LG};
-    gap: var(--size-9);
+    max-width: var(--size-xl);
+    gap: var(--size-2);
     margin: 0 auto;
     display: grid;
     grid-auto-flow: column;
@@ -39,7 +39,7 @@ const Wrapper = styled.div<{ toc: boolean }>(({ toc }) => {
 });
 
 const ContentWrapper = styled.section`
-  max-width: ${SIZE.SM};
+  max-width: var(--size-md);
   margin: 0 auto;
 `;
 

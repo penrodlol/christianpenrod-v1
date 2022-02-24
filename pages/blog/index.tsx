@@ -2,7 +2,7 @@ import { GridSurface } from '@components/GridSurface';
 import { PageTitle } from '@components/PageTitle';
 import { PostCards } from '@components/PostCards';
 import { PostsFilter } from '@components/PostsFilter';
-import { MAX, SIZE } from '@const/breakpoints';
+import { MAX } from '@const/breakpoints';
 import { Post, Posts } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
@@ -10,11 +10,11 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const PostsFilterWrapper = styled.section`
-  max-width: ${SIZE.SM};
+  max-width: var(--size-md);
   margin: var(--size-7) auto;
 
   ${MAX.SM} {
-    max-width: ${SIZE.XS};
+    max-width: var(--size-content-3);
   }
 
   ${MAX.XS} {
@@ -26,7 +26,7 @@ const PostsFilterWrapper = styled.section`
 const PostCardsWrapper = styled.div`
   --tt-key: blog-post-cards-wrapper;
 
-  max-width: ${SIZE.XL};
+  max-width: var(--size-xl);
   margin: 0 auto;
 
   /* prettier-ignore */
