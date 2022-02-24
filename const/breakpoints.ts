@@ -1,9 +1,9 @@
 export const SIZE = {
-  XS: '40em',
+  XS: '30em',
   SM: '48em',
   MD: '64em',
-  LG: '80em',
-  XL: '96em',
+  LG: '90em',
+  XL: '120em',
 };
 
 export const MIN = {

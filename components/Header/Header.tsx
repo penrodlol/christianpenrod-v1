@@ -38,10 +38,10 @@ export const Header = () => {
         <NextLink href="/" passHref>
           <Brand aria-label="Navigate internally to home"></Brand>
         </NextLink>
-        <Media greaterThanOrEqual="md">
+        <Media greaterThanOrEqual="sm">
           <DesktopHeader routes={ROUTES} />
         </Media>
-        <Media lessThan="md">
+        <Media lessThan="sm">
           <MobileHeader routes={ROUTES} />
         </Media>
       </Nav>
