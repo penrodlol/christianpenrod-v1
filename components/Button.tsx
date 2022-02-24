@@ -1,3 +1,4 @@
+import { HOVER_ICON } from '@const/mixins';
 import { MOTION } from '@const/motion';
 import {
   ButtonHTMLAttributes,
@@ -6,7 +7,6 @@ import {
   PropsWithChildren,
 } from 'react';
 import styled, { css } from 'styled-components';
-import { HOVER_ICON } from './Mixins';
 
 const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
   const isBasic = color === 'basic';

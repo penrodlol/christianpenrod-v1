@@ -1,4 +1,4 @@
-import { OVERLAY_GUAVA } from '@components/Mixins';
+import { OVERLAY_GUAVA } from '@const/mixins';
 import { Occupation } from '@interfaces/occupation';
 import Image from 'next/image';
 import { FC, useRef } from 'react';

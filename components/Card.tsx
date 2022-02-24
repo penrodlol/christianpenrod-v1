@@ -1,9 +1,9 @@
+import { OVERLAY_GUAVA } from '@const/mixins';
 import Image from 'next/image';
 import { FC, ReactElement, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
-import { OVERLAY_GUAVA } from './Mixins';
 
 const Wrapper = styled.div<CardProps>(({ actions }) => {
   const hoverStyles = css`

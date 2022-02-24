@@ -1,10 +1,10 @@
 import { Anchor } from '@components/Anchor';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
-import { HOVER_ICON } from '@components/Mixins';
 import { PageTitle } from '@components/PageTitle';
 import { Spacer } from '@components/Spacer';
 import { MAX } from '@const/breakpoints';
+import { HOVER_ICON } from '@const/mixins';
 import { Project, Projects as _Projects } from '@interfaces/project';
 import ArrowRight from '@svg/arrow-right.svg';
 import Github from '@svg/github.svg';
