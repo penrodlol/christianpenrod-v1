@@ -37,10 +37,6 @@ const RecentPostsWrapper = styled.div`
   ${MAX.MD} {
     max-width: var(--size-md);
   }
-
-  @media (--md-n-above) {
-    background: red;
-  }
 `;
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
