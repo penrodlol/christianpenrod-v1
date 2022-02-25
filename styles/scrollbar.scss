@@ -1,5 +1,5 @@
 * {
-  scrollbar-color: var(--brand-3) var(--brand-3);
+  scrollbar-color: var(--brand-3) hsla(0, 0%, 0%, 0.3);
 
   &::-webkit-scrollbar {
     width: var(--scroll-bar-size);
