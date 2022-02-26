@@ -12,8 +12,7 @@ const Wrapper = styled.div`
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-2);
   caret-color: var(--brand-1);
-  padding-block: var(--size-2);
-  padding-inline: var(--size-3);
+  padding: var(--size-2) var(--size-3);
   display: grid;
   grid-template-columns: auto repeat(3, max-content);
   align-items: center;
@@ -34,8 +33,7 @@ const Wrapper = styled.div`
 
 const ActualInput = styled.input`
   color: var(--text-1);
-  padding-inline: var(--size-2);
-  padding-block: var(--size-1);
+  padding: var(--size-1) var(--size-2);
   border-radius: inherit;
   background: transparent;
   border: none;

@@ -48,7 +48,8 @@ const SelfieWrapper = styled.div`
   max-width: 25rem;
   margin: 0 auto;
   background: var(--brand-3);
-  padding-block: var(--size-5);
+  padding-top: var(--size-5);
+  padding-bottom: var(--size-5);
   border-radius: var(--radius-blob-1);
 
   ${IMG_GRAYSCALE};

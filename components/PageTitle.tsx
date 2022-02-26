@@ -4,7 +4,8 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   max-width: var(--size-md);
   margin: 0 auto;
-  padding-inline: var(--size-6);
+  padding-left: var(--size-6);
+  padding-right: var(--size-6);
 `;
 
 const Page = styled.h1`

@@ -10,7 +10,8 @@ const Wrapper = styled.div`
   --code-string: hsl(0deg 0% 67%);
   --code-builtin: hsl(262deg 43% 73%);
 
-  margin-block: var(--size-7);
+  margin-top: var(--size-7);
+  margin-bottom: var(--size-7);
 `;
 
 const InnerWrapper = styled.div`
@@ -35,7 +36,8 @@ const Title = styled.div`
   color: var(--text-2);
   border-bottom: 0;
   width: max-content;
-  padding-inline: var(--size-2);
+  padding-left: var(--size-2);
+  padding-right: var(--size-2);
   margin-left: auto;
   margin-right: var(--size-3);
 `;

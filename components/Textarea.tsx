@@ -13,8 +13,7 @@ const Wrapper = styled.textarea<TextareaProps>(
     border: solid 0.15rem var(--surface-1);
     resize: vertical;
     ${disableResize && 'resize: none;'}
-    padding-block: var(--size-2);
-    padding-inline: var(--size-3);
+    padding: var(--size-2) var(--size-3);
     outline: none;
     margin: 0 var(--size-3);
     cursor: pointer;

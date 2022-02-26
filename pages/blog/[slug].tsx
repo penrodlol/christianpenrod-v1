@@ -30,7 +30,8 @@ const Wrapper = styled.div<{ toc: boolean }>(({ toc }) => {
 
   return css`
     position: relative;
-    padding-inline: var(--size-5);
+    padding-left: var(--size-5);
+    padding-right: var(--size-5);
 
     ${MIN.XL} {
       ${toc && tocStyles}

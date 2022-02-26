@@ -9,8 +9,7 @@ const Wrapper = styled.span`
   font-weight: var(--font-weight-8);
   letter-spacing: var(--font-letterspacing-2);
   border-radius: var(--radius-6);
-  padding-block: var(--size-1);
-  padding-inline: var(--size-2);
+  padding: var(--size-1) var(--size-2);
   width: max-content;
   white-space: nowrap;
   color: #000;

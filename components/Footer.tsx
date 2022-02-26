@@ -24,7 +24,8 @@ const Content = styled.div`
   width: max-content;
 
   > :nth-child(2) {
-    margin-block: var(--size-5);
+    margin-top: var(--size-5);
+    margin-bottom: var(--size-5);
   }
 
   > :nth-child(3) {

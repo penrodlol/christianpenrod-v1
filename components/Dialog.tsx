@@ -55,8 +55,7 @@ const Content = styled(DialogPrimitive.Content)`
 `;
 
 const Header = styled.div`
-  padding-block: var(--size-3);
-  padding-inline: var(--size-6);
+  padding: var(--size-3) var(--size-6);
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: auto max-content;
@@ -73,7 +72,7 @@ const Body = styled.div`
 
   /* prettier-ignore */
   @keyframes dialog-body {
-    0%, 40% { padding-inline: 0; }
+    0%, 40% { padding: var(--size-5) 0; }
     100% { padding: var(--size-5); }
   }
 `;
@@ -84,7 +83,8 @@ const Footer = styled.div`
   align-items: center;
   justify-content: end;
   gap: var(--size-3);
-  padding-inline: var(--size-6);
+  padding-left: var(--size-6);
+  padding-right: var(--size-6);
   padding-top: var(--size-3);
   padding-bottom: var(--size-5);
 `;

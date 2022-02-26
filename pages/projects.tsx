@@ -20,8 +20,7 @@ const ProjectsWrapper = styled.section`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--size-8);
-  padding-inline: var(--size-5);
-  padding-block: var(--size-10);
+  padding: var(--size-10) var(--size-5);
 
   svg:hover {
     ${HOVER_ICON}

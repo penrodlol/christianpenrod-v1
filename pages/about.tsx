@@ -13,7 +13,8 @@ import styled from 'styled-components';
 const ProfileWrapper = styled.section`
   max-width: var(--size-lg);
   margin: 0 auto;
-  padding-inline: var(--size-5);
+  padding-left: var(--size-5);
+  padding-right: var(--size-5);
 `;
 
 const OccupationsWrapper = styled.section`
@@ -21,7 +22,8 @@ const OccupationsWrapper = styled.section`
 
   max-width: var(--size-md);
   margin: 0 auto;
-  padding-inline: var(--size-4);
+  padding-left: var(--size-4);
+  padding-right: var(--size-4);
   padding-bottom: var(--size-10);
 
   /* prettier-ignore */
