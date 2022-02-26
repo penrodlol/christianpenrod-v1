@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { HeroMessage } from './HeroMessage';
 
 const Wrapper = styled.div`
-  ${MIN.MD} {
+  ${MIN.LG} {
     display: grid;
     grid-template-columns: 1fr 40%;
     padding-top: 5%;
@@ -24,7 +24,7 @@ const Content = styled.div`
     padding-bottom: var(--size-5);
   }
 
-  ${MIN.MD} {
+  ${MIN.LG} {
     display: grid;
     justify-items: space-between;
   }
@@ -44,7 +44,7 @@ export const Hero = () => {
         <HeroMessage />
         <SocialLinks />
       </Content>
-      <Media greaterThan="sm">
+      <Media greaterThan="md">
         <RocketWrapper>
           <Image
             src="/img/rocket.webp"

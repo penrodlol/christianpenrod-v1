@@ -37,7 +37,7 @@ const Wrapper = styled.div`
     100% { padding-top: var(--size-8); }
   }
 
-  ${MIN.SM} {
+  ${MIN.MD} {
     grid-auto-flow: column;
     grid-template-columns: 40% 1fr;
     gap: var(--size-9);

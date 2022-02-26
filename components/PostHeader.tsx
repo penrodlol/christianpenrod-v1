@@ -14,11 +14,11 @@ const Wrapper = styled.div`
   display: grid;
   align-items: center;
 
-  ${MAX.LG} {
+  ${MAX.XL} {
     max-width: var(--size-md);
   }
 
-  ${MIN.SM} {
+  ${MIN.MD} {
     grid-auto-flow: column;
   }
 `;

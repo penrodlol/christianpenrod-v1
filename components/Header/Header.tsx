@@ -37,10 +37,10 @@ export const Header = () => {
         <NextLink href="/" passHref>
           <Logo aria-label="Navigate internally to home"></Logo>
         </NextLink>
-        <Media greaterThanOrEqual="sm">
+        <Media greaterThanOrEqual="md">
           <DesktopHeader routes={ROUTES} />
         </Media>
-        <Media lessThan="sm">
+        <Media lessThan="md">
           <MobileHeader routes={ROUTES} />
         </Media>
       </Nav>

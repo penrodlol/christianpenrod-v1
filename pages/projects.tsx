@@ -26,7 +26,7 @@ const ProjectsWrapper = styled.section`
     ${HOVER_ICON}
   }
 
-  ${MAX.LG} {
+  ${MAX.XL} {
     grid-auto-flow: row;
     grid-template-columns: none;
     gap: var(--size-10);

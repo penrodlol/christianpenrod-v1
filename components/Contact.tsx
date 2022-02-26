@@ -13,7 +13,7 @@ const Fields = styled.div`
   grid-template-rows: repeat(2, [row] auto);
   grid-row-gap: var(--font-size-5);
 
-  ${MIN.SM} {
+  ${MIN.MD} {
     grid-template-columns: repeat(2, [col] 1fr);
     grid-row-gap: var(--size-4);
 

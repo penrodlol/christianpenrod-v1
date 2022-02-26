@@ -34,7 +34,7 @@ const RecentPostsWrapper = styled.div`
   margin: 0 auto;
   padding-bottom: var(--size-10);
 
-  ${MAX.MD} {
+  ${MAX.LG} {
     max-width: var(--size-content-3);
   }
 `;

@@ -29,7 +29,7 @@ const InnerWrapper = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--size-8);
 
-  ${MAX.MD} {
+  ${MAX.LG} {
     grid-auto-flow: row;
     grid-template-columns: none;
     max-width: var(--size-content-3);

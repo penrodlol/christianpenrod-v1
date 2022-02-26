@@ -1,13 +1,19 @@
 import { createMedia } from '@artsy/fresnel';
+import { SIZE } from '@const/breakpoints';
+
+function pxToNumber(size: string) {
+  return Number(`${size.replace(/px/i, '')}`);
+}
 
 const AppMedia = createMedia({
   breakpoints: {
-    smallest: 0,
-    xs: 480,
-    sm: 768,
-    md: 1024,
-    lg: 1440,
-    xl: 1920,
+    xxs: pxToNumber(SIZE.XXS),
+    xs: pxToNumber(SIZE.XS),
+    sm: pxToNumber(SIZE.SM),
+    md: pxToNumber(SIZE.MD),
+    lg: pxToNumber(SIZE.LG),
+    xl: pxToNumber(SIZE.XL),
+    xxl: pxToNumber(SIZE.XXL),
   },
 });
 

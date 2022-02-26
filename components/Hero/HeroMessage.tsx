@@ -15,9 +15,10 @@ const Hello = styled.h1`
 `;
 
 const Job = styled.span`
+  --tt-key: hero-job;
+
   color: var(--text-2);
   margin-bottom: var(--size-4);
-  --tt-key: hero-job;
 
   /* prettier-ignore */
   @keyframes hero-job {
@@ -27,12 +28,13 @@ const Job = styled.span`
 `;
 
 const Bio = styled.p`
+  --tt-key: hero-bio;
+
   font-weight: var(--font-weight-6);
   margin-top: var(--size-4);
   margin-bottom: var(--size-7);
   max-width: var(--size-content-2);
   line-height: var(--font-lineheight-3);
-  --tt-key: hero-bio;
 
   /* prettier-ignore */
   @keyframes hero-bio {
@@ -42,7 +44,7 @@ const Bio = styled.p`
 `;
 
 const ContactWrapper = styled.div`
-  ${MAX.MD} {
+  ${MAX.LG} {
     button {
       width: 100%;
     }

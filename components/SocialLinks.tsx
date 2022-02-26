@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     fill: var(--text-1);
   }
 
-  ${MAX.MD} {
+  ${MAX.LG} {
     width: 80%;
     justify-content: space-between;
     margin: 0 auto;

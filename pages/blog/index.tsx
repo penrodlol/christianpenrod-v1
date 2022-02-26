@@ -13,11 +13,11 @@ const PostsFilterWrapper = styled.section`
   max-width: var(--size-md);
   margin: var(--size-7) auto;
 
-  ${MAX.SM} {
+  ${MAX.MD} {
     max-width: var(--size-content-3);
   }
 
-  ${MAX.XS} {
+  ${MAX.SM} {
     position: sticky;
     top: var(--size-9);
   }

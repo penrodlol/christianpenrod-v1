@@ -34,7 +34,7 @@ const OccupationsInnerWrapper = styled.div`
   display: grid;
   gap: var(--size-7);
 
-  ${MIN.XS} {
+  ${MIN.SM} {
     max-width: 90%;
     margin: 0 auto;
   }
