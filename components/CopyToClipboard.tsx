@@ -6,27 +6,28 @@ import { Button } from './Button';
 
 const Wrapper = styled(Button)`
   svg {
-    &,
-    &:hover {
-      fill: transparent !important;
+    fill: transparent !important;
+    stroke: var(--text-2);
+
+    &:hover:not(:active) {
       stroke: var(--text-1);
     }
   }
 `;
 
 export interface CopyToClipboardProps {
-  copyTarget: HTMLElement | null | undefined;
+  text: string | undefined;
 }
 
-export const CopyToClipboard: FC<CopyToClipboardProps> = ({ copyTarget }) => {
+export const CopyToClipboard: FC<CopyToClipboardProps> = ({ text }) => {
   async function copyToClipboard() {
-    if (!copyTarget) return;
+    if (!text) return;
 
-    navigator.clipboard.writeText(copyTarget.innerText);
+    navigator.clipboard.writeText(text);
   }
 
   return (
-    <Wrapper asIcon>
+    <Wrapper asIcon noAnimate>
       <Clipboard
         aria-label="Copy to clipboard"
         width={27}

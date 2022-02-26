@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { CopyToClipboard } from './CopyToClipboard';
 
@@ -22,8 +22,8 @@ const InnerWrapper = styled.div`
 
 const CopyToClipboardWrapper = styled.div`
   position: absolute;
-  right: -1rem;
-  top: 0.2rem;
+  right: calc(var(--size-5) * -1);
+  top: var(--size-1);
 `;
 
 const Title = styled.div`
@@ -77,17 +77,17 @@ export interface CodeSnippetProps {
 }
 
 export const CodeSnippet: FC<CodeSnippetProps> = ({ title, children }) => {
-  const ref = useRef<HTMLElement>(null);
+  const [text, setText] = useState<string>();
 
   return (
     <Wrapper>
       {title && <Title>{title}</Title>}
       <InnerWrapper>
         <CopyToClipboardWrapper>
-          <CopyToClipboard copyTarget={ref.current} />
+          <CopyToClipboard text={text} />
         </CopyToClipboardWrapper>
         <CodeWrapper>
-          <code ref={ref}>{children}</code>
+          <code ref={(el) => setText(el?.innerText.trim())}>{children}</code>
         </CodeWrapper>
       </InnerWrapper>
     </Wrapper>
