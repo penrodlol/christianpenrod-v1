@@ -8,7 +8,7 @@ import {
 } from 'react';
 import styled, { css } from 'styled-components';
 
-const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
+const Wrapper = styled.button<ButtonProps>(({ color, asIcon, noAnimate }) => {
   const isBasic = color === 'basic';
 
   let background!: string;
@@ -72,10 +72,10 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon }) => {
       background: ${asIcon ? 'transparent' : backgroundHover};
       box-shadow: ${asIcon || isBasic ? 'none' : 'var(--shadow-4)'};
 
-      ${!isBasic && hoverAnimation}
+      ${!isBasic && !noAnimate && hoverAnimation}
 
       svg {
-        ${HOVER_ICON}
+        ${noAnimate && HOVER_ICON}
       }
     }
   `;
@@ -86,6 +86,7 @@ export type ButtonColor = 'default' | 'cta' | 'basic';
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColor;
   asIcon?: boolean;
+  noAnimate?: boolean;
 }
 
 const ButtonComponent = (
