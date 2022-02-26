@@ -16,6 +16,7 @@ const Wrapper = styled.button`
   z-index: var(--layer-5);
   background: transparent;
   border: none;
+  border-radius: var(--radius-2);
 `;
 
 const Trigger = styled.input`
