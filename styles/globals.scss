@@ -29,4 +29,5 @@ html {
 body {
   scroll-behavior: smooth;
   scrollbar-gutter: stable both-edges;
+  -webkit-font-smoothing: antialiased;
 }
