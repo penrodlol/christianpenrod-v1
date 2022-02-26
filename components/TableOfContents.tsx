@@ -5,7 +5,14 @@ import { Divider } from './Divider';
 
 const Title = styled.summary`
   font-size: var(--font-size-4);
-  list-style: none;
+
+  &::marker {
+    content: '';
+  }
+
+  &::-webkit-details-marker {
+    display: none;
+  }
 `;
 
 const Contents = styled.ol`
