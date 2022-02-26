@@ -1,15 +1,26 @@
-:where(button, a):focus-visible {
-  transition: outline-offset 145ms var(--ease-2);
-
-  &:not(:active) {
-    --_outline-width: 0.2rem;
-
+:where(button, a) {
+  &:focus {
     outline-offset: var(--size-1);
-    outline: solid var(--_outline-width) var(--brand-1);
-    transition-duration: 0.2s;
+    outline: solid 0.2rem var(--brand-1);
 
-    @media (prefers-reduced-motion: reduce) {
-      transition-duration: 0s;
+    &:not(:focus-visible) {
+      outline: none;
+    }
+  }
+
+  &:focus-visible {
+    transition: outline-offset 145ms var(--ease-2);
+
+    &:not(:active) {
+      --_outline-width: 0.2rem;
+
+      outline-offset: var(--size-1);
+      outline: solid var(--_outline-width) var(--brand-1);
+      transition-duration: 0.2s;
+
+      @media (prefers-reduced-motion: reduce) {
+        transition-duration: 0s;
+      }
     }
   }
 }
