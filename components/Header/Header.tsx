@@ -1,4 +1,5 @@
 import { Media } from '@components/Media';
+import Logo from '@svg/logo.svg';
 import NextLink from 'next/link';
 import styled from 'styled-components';
 import { DesktopHeader } from './DesktopHeader';
@@ -26,8 +27,9 @@ const Nav = styled.nav`
   justify-content: space-between;
 `;
 
-const Logo = styled.a`
+const LogoWrapper = styled.a`
   border-radius: var(--radius-2);
+  transform: translateY(0.2em);
 `;
 
 export const Header = () => {
@@ -35,7 +37,9 @@ export const Header = () => {
     <Wrapper>
       <Nav>
         <NextLink href="/" passHref>
-          <Logo aria-label="Navigate internally to home"></Logo>
+          <LogoWrapper aria-label="Navigate internally to home">
+            <Logo height={30} width={40} />
+          </LogoWrapper>
         </NextLink>
         <Media greaterThanOrEqual="md">
           <DesktopHeader routes={ROUTES} />

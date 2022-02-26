@@ -26,7 +26,7 @@ const OverlayMisc = createGlobalStyle`
 
 const Menu = styled.ul`
   position: fixed;
-  top: var(--size-9);
+  top: var(--size-10);
   left: var(--size-7);
   bottom: 0;
   margin-bottom: var(--size-8);
