@@ -7,8 +7,6 @@ const Wrapper = styled.div`
 
   background: var(--surface-2);
   background-image: paint(grid-surface);
-  max-width: var(--size-xl);
-  margin: 0 auto;
 `;
 
 export const GridSurface: FC = ({ children }) => <Wrapper>{children}</Wrapper>;
