@@ -1,8 +1,8 @@
 import { Media } from '@components/Media';
 import { SocialLinks } from '@components/SocialLinks';
 import { MIN } from '@const/breakpoints';
+import Image from 'next/image';
 import styled from 'styled-components';
-import { HeroBlob } from './HeroBlob';
 import { HeroMessage } from './HeroMessage';
 
 const Wrapper = styled.div`
@@ -30,6 +30,12 @@ const Content = styled.div`
   }
 `;
 
+const RocketWrapper = styled.div`
+  position: relative;
+  background: var(--brand-3);
+  border-radius: var(--radius-blob-1);
+`;
+
 export const Hero = () => {
   return (
     <Wrapper>
@@ -38,7 +44,17 @@ export const Hero = () => {
         <SocialLinks />
       </Content>
       <Media greaterThan="sm">
-        <HeroBlob />
+        <RocketWrapper>
+          <Image
+            src="/img/rocket.webp"
+            alt="Rocket"
+            priority
+            layout="responsive"
+            height={250}
+            width={250}
+            quality={100}
+          />
+        </RocketWrapper>
       </Media>
     </Wrapper>
   );

@@ -1,5 +1,5 @@
 import { MIN } from '@const/breakpoints';
-import { OVERLAY_GUAVA } from '@const/mixins';
+import { IMG_GRAYSCALE, OVERLAY_GUAVA } from '@const/mixins';
 import Image from 'next/image';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -50,6 +50,8 @@ const SelfieWrapper = styled.div`
   background: var(--brand-3);
   padding-block: var(--size-5);
   border-radius: var(--radius-blob-1);
+
+  ${IMG_GRAYSCALE};
 
   > :first-child {
     box-shadow: var(--shadow-4);

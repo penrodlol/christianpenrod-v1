@@ -15,3 +15,9 @@ export const OVERLAY_GUAVA = (opacity: number) => css`
     opacity: ${opacity};
   }
 `;
+
+export const IMG_GRAYSCALE = css`
+  img {
+    filter: grayscale(1) !important;
+  }
+`;

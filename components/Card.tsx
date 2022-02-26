@@ -1,4 +1,4 @@
-import { OVERLAY_GUAVA } from '@const/mixins';
+import { IMG_GRAYSCALE, OVERLAY_GUAVA } from '@const/mixins';
 import Image from 'next/image';
 import { FC, ReactElement, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
@@ -36,6 +36,8 @@ const Banner = styled.div`
   margin-top: calc(var(--size-3) * -1);
   margin-bottom: var(--size-3);
   margin-inline: calc(var(--size-3) * -1);
+
+  ${IMG_GRAYSCALE};
 
   > :first-child {
     border-top-left-radius: var(--radius-2);

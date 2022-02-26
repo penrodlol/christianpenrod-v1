@@ -1,4 +1,4 @@
-import { OVERLAY_GUAVA } from '@const/mixins';
+import { IMG_GRAYSCALE, OVERLAY_GUAVA } from '@const/mixins';
 import { Occupation } from '@interfaces/occupation';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
@@ -23,6 +23,8 @@ const Header = styled.div`
 
 const LogoWrapper = styled.div`
   display: block;
+
+  ${IMG_GRAYSCALE};
 
   > :first-child {
     border: solid var(--size-1) var(--brand-2) !important;
