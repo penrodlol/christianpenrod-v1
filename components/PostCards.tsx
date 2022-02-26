@@ -11,10 +11,16 @@ import { Card } from './Card';
 const Wrapper = styled.div`
   --tt-key: post-cards-wrapper;
 
-  /* prettier-ignore */
   @keyframes post-cards-wrapper {
-    0%, 40% { padding-inline: var(--size-5); }
-    100% { padding-inline: var(--size-9); }
+    0%,
+    40% {
+      padding-left: var(--size-5);
+      padding-right: var(--size-5);
+    }
+    100% {
+      padding-left: var(--size-9);
+      padding-right: var(--size-9);
+    }
   }
 `;
 

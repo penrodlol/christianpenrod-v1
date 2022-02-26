@@ -17,10 +17,15 @@ const Wrapper = styled.div`
     padding-bottom: var(--size-7);
   }
 
-  /* prettier-ignore */
   @keyframes occupation-card-node-wrapper {
-    0%, 40% { padding: 0; }
-    100% { padding-inline: var(--size-3); }
+    0%,
+    40% {
+      padding: 0;
+    }
+    100% {
+      padding-left: var(--size-3);
+      padding-right: var(--size-3);
+    }
   }
 `;
 

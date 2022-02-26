@@ -30,13 +30,11 @@ const Title = styled.h1`
     0%,
     40% {
       font-size: var(--font-size-4);
-      padding-block: var(--size-3);
-      padding-inline: var(--size-5);
+      padding: var(--size-3) var(--size-5);
     }
     100% {
       font-size: var(--font-size-5);
-      padding-block: var(--size-6);
-      padding-inline: var(--size-8);
+      padding: var(--size-6) var(--size-8);
     }
   }
 `;
@@ -53,14 +51,12 @@ const Stats = styled.div`
   @keyframes post-header-stats {
     0%,
     40% {
-      padding-block: var(--size-3);
-      padding-inline: var(--size-5);
+      padding: var(--size-3) var(--size-5);
       font-size: var(--font-size-1);
       gap: var(--size-3);
     }
     100% {
-      padding-block: var(--size-6);
-      padding-inline: var(--size-7);
+      padding: var(--size-6) var(--size-7);
       font-size: var(--font-size-2);
       gap: var(--size-5);
     }

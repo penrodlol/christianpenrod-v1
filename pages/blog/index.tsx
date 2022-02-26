@@ -29,10 +29,16 @@ const PostCardsWrapper = styled.div`
   max-width: var(--size-xl);
   margin: 0 auto;
 
-  /* prettier-ignore */
   @keyframes blog-post-cards-wrapper {
-    0%, 40% { padding-block: var(--size-7); }
-    100% { padding-block: var(--size-9); }
+    0%,
+    40% {
+      padding-top: var(--size-7);
+      padding-bottom: var(--size-7);
+    }
+    100% {
+      padding-top: var(--size-9);
+      padding-bottom: var(--size-9);
+    }
   }
 `;
 

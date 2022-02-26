@@ -54,11 +54,13 @@ const Content = styled.article`
   @keyframes blog-content {
     0%,
     50% {
-      padding-block: var(--size-7);
+      padding-top: var(--size-7);
+      padding-bottom: var(--size-7);
       line-height: var(--font-lineheight-3);
     }
     100% {
-      padding-block: var(--size-9);
+      padding-top: var(--size-9);
+      padding-bottom: var(--size-9);
       line-height: var(--font-lineheight-4);
     }
   }

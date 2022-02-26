@@ -17,13 +17,13 @@ const HeroWrapper = styled.section`
   @keyframes hero-wrapper {
     0%,
     20% {
-      padding-block: var(--size-4);
-      padding-inline: var(--size-5);
+      padding: var(--size-4) var(--size-5);
       margin-bottom: 0;
     }
     100% {
       padding-top: var(--size-9);
-      padding-inline: var(--size-10);
+      padding-left: var(--size-10);
+      padding-right: var(--size-10);
       margin-bottom: var(--size-10);
     }
   }
