@@ -2,7 +2,6 @@ import { Anchor } from '@components/Anchor';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
 import { PageTitle } from '@components/PageTitle';
-import { Spacer } from '@components/Spacer';
 import { MAX } from '@const/breakpoints';
 import { HOVER_ICON } from '@const/mixins';
 import { Project, Projects as _Projects } from '@interfaces/project';
@@ -10,7 +9,9 @@ import ArrowRight from '@svg/arrow-right.svg';
 import Github from '@svg/github.svg';
 import { supabase } from '@utils/supabase';
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
-import addSpacers from 'react-string-replace';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
 const ProjectsWrapper = styled.section`
@@ -48,6 +49,12 @@ const CheckItOut = styled.span`
   }
 `;
 
+// prettier-ignore
+const components = {
+  Spacer: dynamic<unknown>(() => import('@components/Spacer').then((m) => m.Spacer)),
+  Anchor: dynamic<unknown>(() => import('@components/Anchor').then((m) => m.Anchor)),
+};
+
 const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   projects,
 }) => {
@@ -62,9 +69,9 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               banner={project.preview}
               title={project.title}
               tags={project.tags}
-              description={addSpacers(project.description, '---', (_, i) => (
-                <Spacer key={i} size={3} />
-              ))}
+              description={
+                <MDXRemote {...project.description} components={components} />
+              }
               actions={[
                 <Anchor
                   key={`${project.id} - github`}
@@ -97,19 +104,26 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 };
 
 export const getStaticProps: GetStaticProps<{
-  projects: _Projects;
+  projects: _Projects<MDXRemoteSerializeResult>;
 }> = async () => {
   const { data, error } = await supabase.from<Project>('projects').select('*');
   const bucket = supabase.storage.from('projects');
 
   const payload = error || !data ? [] : data;
 
-  const projects: _Projects = payload.map((project) => {
-    const projectsBucket = bucket.getPublicUrl(project.preview);
-    const preview = projectsBucket.data?.publicURL as string;
+  const projects = await Promise.all(
+    payload.map(async (project) => {
+      const projectsBucket = bucket.getPublicUrl(project.preview);
+      const preview = projectsBucket.data?.publicURL as string;
+      const description = await serialize(project.description);
 
-    return { ...project, preview };
-  });
+      return {
+        ...project,
+        description,
+        preview,
+      } as Project<MDXRemoteSerializeResult>;
+    }),
+  );
 
   return {
     props: { projects },

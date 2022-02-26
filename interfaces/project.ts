@@ -1,9 +1,9 @@
 export type ProjectType = 'website' | 'misc';
 
-export interface Project {
+export interface Project<T = string> {
   id: string;
   title: string;
-  description: string;
+  description: T;
   tags: Array<string>;
   type: ProjectType;
   hosted: string;
@@ -11,4 +11,4 @@ export interface Project {
   preview: string;
 }
 
-export type Projects = Array<Project>;
+export type Projects<T = string> = Array<Project<T>>;

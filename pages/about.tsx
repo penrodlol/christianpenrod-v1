@@ -7,6 +7,7 @@ import { MIN } from '@const/breakpoints';
 import { Occupation, Occupations } from '@interfaces/occupation';
 import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
+import { serialize } from 'next-mdx-remote/serialize';
 import styled from 'styled-components';
 
 const ProfileWrapper = styled.section`
@@ -76,10 +77,26 @@ export const getStaticProps: GetStaticProps<{
 
   const payload = error || !data ? [] : data;
 
-  const occupations: Occupations = payload.map((occupation) => {
-    const carrerBucketPayload = careerBucket.getPublicUrl(occupation.logo);
-    return { ...occupation, logo: carrerBucketPayload?.publicURL as string };
-  });
+  const occupations: Occupations = await Promise.all(
+    payload.map(async (occupation) => {
+      const carrerBucketPayload = careerBucket.getPublicUrl(occupation.logo);
+      const roles = await Promise.all(
+        occupation.roles.map(async (role) => {
+          const description = await serialize(
+            role.description as unknown as string,
+          );
+
+          return { ...role, description };
+        }),
+      );
+
+      return {
+        ...occupation,
+        roles,
+        logo: carrerBucketPayload?.publicURL as string,
+      };
+    }),
+  );
 
   const selfiePayload = miscBucket.getPublicUrl('public/selfie.webp');
   const selfie = selfiePayload.data?.publicURL || '';

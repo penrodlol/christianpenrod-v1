@@ -1,6 +1,6 @@
 import { IMG_GRAYSCALE, OVERLAY_GUAVA } from '@const/mixins';
 import Image from 'next/image';
-import { FC, ReactElement, ReactNode } from 'react';
+import { FC, ReactElement } from 'react';
 import styled, { css } from 'styled-components';
 import { Chip } from './Chip';
 import { Divider } from './Divider';
@@ -70,7 +70,7 @@ const Tags = styled.div`
   margin-bottom: var(--size-2);
 `;
 
-const Description = styled.p`
+const Description = styled.div`
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-4);
 `;
@@ -90,7 +90,7 @@ const Actions = styled.div`
 
 export interface CardProps {
   title: string;
-  description: string | Iterable<ReactNode>;
+  description: string | ReactElement;
   subheader?: string;
   tags?: Array<string>;
   banner?: string;
@@ -125,7 +125,13 @@ export const Card: FC<CardProps> = (props) => (
       {props.subheader && <Subheader>{props.subheader}</Subheader>}
       <Divider />
     </div>
-    <Description>{props.description}</Description>
+    <Description>
+      {typeof props.description === 'string' ? (
+        <p>{props.description}</p>
+      ) : (
+        props.description
+      )}
+    </Description>
     {props.actions && <Actions>{props.actions}</Actions>}
   </Wrapper>
 );

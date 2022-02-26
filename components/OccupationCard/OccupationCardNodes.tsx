@@ -1,7 +1,7 @@
-import { Spacer } from '@components/Spacer';
 import { Role } from '@interfaces/occupation';
+import { MDXRemote } from 'next-mdx-remote';
+import dynamic from 'next/dynamic';
 import { FC } from 'react';
-import addSpacers from 'react-string-replace';
 import styled from 'styled-components';
 import { formatFrom, formatTo } from './occupation-time-formatter';
 
@@ -65,11 +65,16 @@ const Time = styled.span`
   font-size: var(--font-size-1);
 `;
 
-const Description = styled.p`
+const Description = styled.div`
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-4);
   font-weight: var(--font-weight-6);
 `;
+
+// prettier-ignore
+const components = {
+  Spacer: dynamic<unknown>(() => import('@components/Spacer').then((m) => m.Spacer)),
+};
 
 export interface OccupationCardNodesProps {
   roles: Array<Role>;
@@ -98,9 +103,7 @@ export const OccupationCardNodes: FC<OccupationCardNodesProps> = ({
               {formatFrom(role.from)} - {formatTo(role.to)}
             </Time>
             <Description>
-              {addSpacers(role.description, '---', (_, i) => (
-                <Spacer key={i} size={3} />
-              ))}
+              <MDXRemote {...role.description} components={components} />
             </Description>
           </Content>
         </Wrapper>
