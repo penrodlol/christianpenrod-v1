@@ -26,9 +26,8 @@ const Nav = styled.nav`
   justify-content: space-between;
 `;
 
-const Brand = styled.a`
-  font-size: var(--font-size-2);
-  color: var(--text-2);
+const Logo = styled.a`
+  border-radius: var(--radius-2);
 `;
 
 export const Header = () => {
@@ -36,7 +35,7 @@ export const Header = () => {
     <Wrapper>
       <Nav>
         <NextLink href="/" passHref>
-          <Brand aria-label="Navigate internally to home"></Brand>
+          <Logo aria-label="Navigate internally to home"></Logo>
         </NextLink>
         <Media greaterThanOrEqual="sm">
           <DesktopHeader routes={ROUTES} />
