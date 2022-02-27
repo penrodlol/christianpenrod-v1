@@ -112,7 +112,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             </Content>
           </ContentWrapper>
           {post.toc && post.headers && (
-            <Media greaterThanOrEqual="sm">
+            <Media greaterThanOrEqual="xl">
               <TableOfContentsWrapper>
                 <TableOfContents headers={post.headers} />
               </TableOfContentsWrapper>

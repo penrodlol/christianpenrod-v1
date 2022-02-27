@@ -1,4 +1,4 @@
-import { MAX, MIN } from '@const/breakpoints';
+import { MIN } from '@const/breakpoints';
 import { Post } from '@interfaces/post';
 import Calendar from '@svg/calendar.svg';
 import Clock from '@svg/clock.svg';
@@ -13,10 +13,6 @@ const Wrapper = styled.div`
   box-shadow: var(--shadow-4);
   display: grid;
   align-items: center;
-
-  ${MAX.XL} {
-    max-width: var(--size-md);
-  }
 
   ${MIN.MD} {
     grid-auto-flow: column;
