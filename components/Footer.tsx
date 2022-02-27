@@ -13,14 +13,14 @@ const Wrapper = styled.footer`
 
   /* prettier-ignore */
   @keyframes footer {
-    0%, 40% { padding-top: var(--size-4); }
+    0%, 40% { padding-top: var(--size-6); }
     100% { padding-top: var(--size-8); }
   }
 `;
 
 const Footnote = styled.div`
-  font-size: var(--font-size-3);
-  font-weight: var(--font-weight-6);
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-4);
 `;
 
 const Copyright = styled.span`
