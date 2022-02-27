@@ -34,7 +34,6 @@ const RocketWrapper = styled.div`
   position: relative;
   background: var(--brand-3);
   border-radius: var(--radius-blob-1);
-  transform: scaleX(-1);
 `;
 
 export const Hero = () => {
