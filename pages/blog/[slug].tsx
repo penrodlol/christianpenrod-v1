@@ -17,6 +17,7 @@ import {
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import prism from 'remark-prism';
 import styled, { css } from 'styled-components';
 
@@ -93,6 +94,17 @@ const components = {
 const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   post,
 }) => {
+  const [hits, setHits] = useState<number | null>();
+
+  useEffect(() => {
+    if (!post) return;
+
+    supabase
+      .rpc<number>('update_post_hits', { target: post.id })
+      .single()
+      .then(({ data }) => setHits(data));
+  }, [post]);
+
   return (
     <>
       {post && (
@@ -101,9 +113,11 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <PostHeader post={post} />
             <Content>
               <MDXRemote {...post.source} components={components} />
-              <HitCounterWrapper>
-                <HitCounter count={post.hits} />
-              </HitCounterWrapper>
+              {hits && (
+                <HitCounterWrapper>
+                  <HitCounter count={hits} />
+                </HitCounterWrapper>
+              )}
               <Divider size={8} />
               <PostsPaginator
                 prevPost={post.prevPost}
