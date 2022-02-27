@@ -75,7 +75,7 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon, noAnimate }) => {
       ${!isBasic && !noAnimate && hoverAnimation}
 
       svg {
-        ${noAnimate && HOVER_ICON}
+        ${!noAnimate && HOVER_ICON}
       }
     }
   `;
