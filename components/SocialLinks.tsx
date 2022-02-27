@@ -1,4 +1,3 @@
-import { MAX } from '@const/breakpoints';
 import { GITHUB, LINKEDIN, TWITTER } from '@const/socials';
 import Github from '@svg/github.svg';
 import LinkedIn from '@svg/linkedin.svg';
@@ -9,15 +8,11 @@ import { Button } from './Button';
 const Wrapper = styled.div`
   display: flex;
   gap: var(--size-8);
+  align-items: center;
+  justify-content: center;
 
   svg {
     fill: var(--text-1);
-  }
-
-  ${MAX.LG} {
-    width: 80%;
-    justify-content: space-between;
-    margin: 0 auto;
   }
 `;
 

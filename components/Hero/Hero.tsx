@@ -1,6 +1,6 @@
 import { Media } from '@components/Media';
 import { SocialLinks } from '@components/SocialLinks';
-import { MIN } from '@const/breakpoints';
+import { MAX, MIN } from '@const/breakpoints';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { HeroMessage } from './HeroMessage';
@@ -18,15 +18,24 @@ const Content = styled.div`
   margin: 0 auto;
   max-width: max-content;
 
-  > :last-child {
-    align-self: end;
-    padding-top: var(--size-7);
-    padding-bottom: var(--size-5);
-  }
-
   ${MIN.LG} {
     display: grid;
     justify-items: space-between;
+  }
+`;
+
+const SocialLinksWrapper = styled.div`
+  justify-self: start;
+  align-self: end;
+  padding-top: var(--size-7);
+  padding-bottom: var(--size-5);
+
+  ${MAX.LG} {
+    > :first-child {
+      width: 80%;
+      margin: 0 auto;
+      justify-content: space-between;
+    }
   }
 `;
 
@@ -41,7 +50,9 @@ export const Hero = () => {
     <Wrapper>
       <Content>
         <HeroMessage />
-        <SocialLinks />
+        <SocialLinksWrapper>
+          <SocialLinks />
+        </SocialLinksWrapper>
       </Content>
       <Media greaterThan="md">
         <RocketWrapper>
