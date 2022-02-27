@@ -36,6 +36,8 @@
     "@types/styled-components": "^5.1.15",
     "eslint": "7",
     "eslint-config-next": "12.0.3",
+    "flex-gap-polyfill": "^4.1.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
     "typescript": "4.4.4"
   },
   "resolutions": {
