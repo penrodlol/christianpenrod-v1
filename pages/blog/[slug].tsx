@@ -1,4 +1,5 @@
 import { Divider } from '@components/Divider';
+import { HitCounter } from '@components/HitCounter';
 import { Media } from '@components/Media';
 import { PostHeader } from '@components/PostHeader';
 import { PostsPaginator } from '@components/PostsPaginator';
@@ -67,6 +68,12 @@ const Content = styled.article`
   }
 `;
 
+const HitCounterWrapper = styled.div`
+  margin-top: var(--size-5);
+  display: flex;
+  justify-content: end;
+`;
+
 const TableOfContentsWrapper = styled.aside`
   position: sticky;
   top: var(--size-11);
@@ -94,6 +101,9 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <PostHeader post={post} />
             <Content>
               <MDXRemote {...post.source} components={components} />
+              <HitCounterWrapper>
+                <HitCounter count={post.hits} />
+              </HitCounterWrapper>
               <Divider size={8} />
               <PostsPaginator
                 prevPost={post.prevPost}
@@ -129,8 +139,7 @@ export const getStaticProps: GetStaticProps<{
 }> = async (ctx) => {
   const slug = ctx.params?.slug as string;
   const { data, error } = await supabase
-    .rpc<Post>('get_post')
-    .eq('slug', slug)
+    .rpc<Post>('get_post', { target: slug })
     .select('*, prevPost:prev_post, nextPost:next_post')
     .single();
 

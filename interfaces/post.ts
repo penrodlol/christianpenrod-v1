@@ -9,12 +9,12 @@ export interface Post {
   readtime: number;
   slug: string;
   toc: boolean;
+  hits: number;
   source: MDXRemoteSerializeResult;
   prevPost: PaginatedPost;
   nextPost: PaginatedPost;
   headers?: Array<string>;
   github?: string;
-  stackblitz?: string;
 }
 
 export type Posts = Array<Post>;
