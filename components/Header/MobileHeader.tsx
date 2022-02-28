@@ -16,7 +16,6 @@ const OverlayBase = styled.div`
 const OverlayMisc = createGlobalStyle`
   body {
     overflow: hidden;
-    margin-right: var(--scroll-bar-size);
   }
 
   main {
