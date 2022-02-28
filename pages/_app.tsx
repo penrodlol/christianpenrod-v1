@@ -7,14 +7,13 @@ import advancedFormatPlugin from 'dayjs/plugin/advancedFormat';
 import utcPlugin from 'dayjs/plugin/utc';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import type { AppProps } from 'next/app';
 import '../styles/globals.scss';
 
 dayjs.extend(advancedFormatPlugin);
 dayjs.extend(utcPlugin);
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
