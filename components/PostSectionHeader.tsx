@@ -2,6 +2,7 @@ import Link from '@svg/link.svg';
 import HashLink from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
+import { Media } from './Media';
 
 const Wrapper = styled.h2`
   --tt-key: post-section-header-wrapper;
@@ -38,15 +39,17 @@ export const PostSectionHeader: FC = ({ children }) => {
 
   return (
     <Wrapper id={id}>
-      <HashLink
-        href={{ hash: id }}
-        passHref
-        aria-label={`Blog post section: ${id}`}
-      >
-        <a>
-          <Link width={35} height={35} />
-        </a>
-      </HashLink>
+      <Media greaterThanOrEqual="md">
+        <HashLink
+          href={{ hash: id }}
+          passHref
+          aria-label={`Blog post section: ${id}`}
+        >
+          <a>
+            <Link width={35} height={35} />
+          </a>
+        </HashLink>
+      </Media>
       {children}
     </Wrapper>
   );
