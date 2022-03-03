@@ -1,18 +1,10 @@
-import gsap from 'gsap';
+import HashLink from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Divider } from './Divider';
 
-const Title = styled.summary`
+const Title = styled.h3`
   font-size: var(--font-size-4);
-
-  &::marker {
-    content: '';
-  }
-
-  &::-webkit-details-marker {
-    display: none;
-  }
 `;
 
 const Contents = styled.ol`
@@ -24,9 +16,9 @@ const Contents = styled.ol`
 const Item = styled.a`
   color: var(--text-2);
   font-size: var(--font-size-1);
-  cursor: pointer;
+  border-radius: var(--radius-2);
 
-  &:hover {
+  &:where(:hover, :focus-visible, :focus:not(:focus-visible)) {
     color: var(--text-1);
   }
 `;
@@ -40,38 +32,21 @@ export interface TableOfContentsProps {
 }
 
 export const TableOfContents: FC<TableOfContentsProps> = ({ headers }) => {
-  function goTo(id: string) {
-    const target = id === 'introduction' ? 0 : `#${id}`;
-    const tween = gsap.to(window, {
-      scrollTo: {
-        y: target,
-        offsetY: 100,
-        autoKill: true,
-      },
-      ease: 'back.inOut(0.8)',
-      duration: 1,
-      onComplete: () => {
-        tween.kill();
-      },
-    });
-  }
-
   return (
-    <details open>
+    <nav>
       <Title>Table of Contents</Title>
       <Divider />
       <Contents>
         {headers.map((item, index) => (
           <li key={item}>
-            <Item
-              aria-label={`Jump to '${item}' section within blog post.`}
-              onClick={() => goTo(toHeader(item))}
-            >
-              {index + 1}. {item}
-            </Item>
+            <HashLink href={{ hash: toHeader(item) }} passHref>
+              <Item aria-label={`Jump to '${item}' section within blog post.`}>
+                {index + 1}. {item}
+              </Item>
+            </HashLink>
           </li>
         ))}
       </Contents>
-    </details>
+    </nav>
   );
 };

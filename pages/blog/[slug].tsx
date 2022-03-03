@@ -81,6 +81,11 @@ const TableOfContentsWrapper = styled.aside`
   max-width: max-content;
 `;
 
+const HiddenIntroductionLink = styled.a`
+  position: absolute;
+  top: calc(var(--size-9) * -1);
+`;
+
 // prettier-ignore
 const components = {
   h2: dynamic<unknown>(() => import('@components/PostSectionHeader').then((m) => m.PostSectionHeader)),
@@ -132,6 +137,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               </TableOfContentsWrapper>
             </Media>
           )}
+          <HiddenIntroductionLink id="introduction" aria-hidden />
         </Wrapper>
       )}
     </>
