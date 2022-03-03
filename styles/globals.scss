@@ -27,8 +27,4 @@ html {
   background: var(--surface-3);
   scrollbar-gutter: stable;
   -webkit-font-smoothing: antialiased;
-
-  @media (prefers-reduced-motion: no-preference) {
-    scroll-behavior: smooth;
-  }
 }

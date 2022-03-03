@@ -1,7 +1,15 @@
 import HashLink from 'next/link';
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Divider } from './Divider';
+
+const SmoothScroll = createGlobalStyle`
+  html {
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+`;
 
 const Title = styled.h3`
   font-size: var(--font-size-4);
@@ -47,6 +55,7 @@ export const TableOfContents: FC<TableOfContentsProps> = ({ headers }) => {
           </li>
         ))}
       </Contents>
+      <SmoothScroll />
     </nav>
   );
 };
