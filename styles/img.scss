@@ -1,0 +1,6 @@
+img {
+  opacity: 0;
+
+  animation: var(--animation-fade-in) forwards;
+  animation-duration: 0.2s;
+}
