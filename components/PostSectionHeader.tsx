@@ -40,12 +40,8 @@ export const PostSectionHeader: FC = ({ children }) => {
   return (
     <Wrapper id={id}>
       <Media greaterThanOrEqual="md">
-        <HashLink
-          href={{ hash: id }}
-          passHref
-          aria-label={`Blog post section: ${id}`}
-        >
-          <a>
+        <HashLink href={{ hash: id }} passHref>
+          <a aria-label={`Blog post section: ${id}`}>
             <Link width={35} height={35} />
           </a>
         </HashLink>

@@ -137,7 +137,12 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               </TableOfContentsWrapper>
             </Media>
           )}
-          <HiddenIntroductionLink id="introduction" aria-hidden />
+          <HiddenIntroductionLink
+            id="introduction"
+            href="#introduction"
+            aria-hidden
+            tabIndex={-1}
+          />
         </Wrapper>
       )}
     </>
