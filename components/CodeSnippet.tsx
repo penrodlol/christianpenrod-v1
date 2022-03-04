@@ -23,7 +23,7 @@ const InnerWrapper = styled.div`
 
 const CopyToClipboardWrapper = styled.div`
   position: absolute;
-  right: calc(var(--size-5) * -1);
+  right: var(--size-2);
   top: var(--size-1);
 `;
 
