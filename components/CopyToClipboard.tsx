@@ -1,3 +1,4 @@
+import { usePrefersReducedMotion } from '@hooks/use-prefers-reduced-motion';
 import Clipboard from '@svg/clipboard.svg';
 import { FC, useState } from 'react';
 import { PlayState, Timeline, Tween } from 'react-gsap';
@@ -41,6 +42,7 @@ export interface CopyToClipboardProps {
 
 export const CopyToClipboard: FC<CopyToClipboardProps> = ({ text }) => {
   const [playState, setPlayState] = useState(PlayState.pause);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   async function copyToClipboard() {
     if (!text) return;
@@ -71,12 +73,12 @@ export const CopyToClipboard: FC<CopyToClipboardProps> = ({ text }) => {
         <Tween
           from={{ opacity: 1, transform: 'scale(1)' }}
           to={{ opacity: 0, transform: 'scale(0)' }}
-          duration={0.2}
+          duration={prefersReducedMotion ? 0.001 : 0.2}
         />
         <Tween
           from={{ opacity: 0, transform: 'scale(0)' }}
           to={{ opacity: 1, transform: 'scale(1)' }}
-          duration={0.2}
+          duration={prefersReducedMotion ? 0.001 : 0.2}
         >
           <svg
             id="check"
