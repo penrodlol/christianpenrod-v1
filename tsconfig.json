@@ -18,6 +18,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@const/*": ["const/*"],
+      "@hooks/*": ["hooks/*"],
       "@interfaces/*": ["interfaces/*"],
       "@svg/*": ["public/svg/*"],
       "@utils/*": ["utils/*"]
