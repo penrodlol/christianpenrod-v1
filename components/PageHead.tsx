@@ -2,12 +2,14 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export const PageHead = () => {
-  const { asPath } = useRouter();
+  const { asPath, route } = useRouter();
 
-  const page = asPath
-    .split('/')[1]
-    .toLowerCase()
-    .replace(/(^|\s)\S/g, (char) => char.toUpperCase());
+  const page =
+    route === '/404' &&
+    asPath
+      .split('/')[1]
+      .toLowerCase()
+      .replace(/(^|\s)\S/g, (char) => char.toUpperCase());
   const title = page ? `Christian Penrod - ${page}` : 'Christian Penrod';
   const description = `${page || 'Home'} page of christianpenrod.com.`;
 
