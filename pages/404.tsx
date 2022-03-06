@@ -1,6 +1,7 @@
 import { Button } from '@components/Button';
 import { GridSurface } from '@components/GridSurface';
 import { Media } from '@components/Media';
+import { PageHead } from '@components/PageHead';
 import { MAX } from '@const/breakpoints';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -56,32 +57,37 @@ export const Custom404 = () => {
   const router = useRouter();
 
   return (
-    <GridSurface>
-      <Wrapper>
-        <Image
-          src="/img/404.webp"
-          alt="404 Illustration"
-          priority
-          quality={100}
-          width={853}
-          height={596}
-        />
-        <Media lessThan="lg">
-          <div>
-            <Message>The page you&apos;re looking for cannot be found.</Message>
-            <BackHome>
-              <Button
-                color="cta"
-                aria-label="Navigate internally to home"
-                onClick={() => router.push('/')}
-              >
-                Back Home
-              </Button>
-            </BackHome>
-          </div>
-        </Media>
-      </Wrapper>
-    </GridSurface>
+    <>
+      <PageHead page="404" />
+      <GridSurface>
+        <Wrapper>
+          <Image
+            src="/img/404.webp"
+            alt="404 Illustration"
+            priority
+            quality={100}
+            width={853}
+            height={596}
+          />
+          <Media lessThan="lg">
+            <div>
+              <Message>
+                The page you&apos;re looking for cannot be found.
+              </Message>
+              <BackHome>
+                <Button
+                  color="cta"
+                  aria-label="Navigate internally to home"
+                  onClick={() => router.push('/')}
+                >
+                  Back Home
+                </Button>
+              </BackHome>
+            </div>
+          </Media>
+        </Wrapper>
+      </GridSurface>
+    </>
   );
 };
 

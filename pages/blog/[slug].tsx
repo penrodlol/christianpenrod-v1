@@ -1,6 +1,7 @@
 import { Divider } from '@components/Divider';
 import { HitCounter } from '@components/HitCounter';
 import { Media } from '@components/Media';
+import { PageHead } from '@components/PageHead';
 import { PostHeader } from '@components/PostHeader';
 import { PostsPaginator } from '@components/PostsPaginator';
 import { TableOfContents } from '@components/TableOfContents';
@@ -112,6 +113,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <>
+      <PageHead page={post?.title} />
       {post && (
         <Wrapper toc={!!post.toc}>
           <ContentWrapper>

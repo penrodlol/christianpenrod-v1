@@ -1,6 +1,7 @@
 import { Anchor } from '@components/Anchor';
 import { Card } from '@components/Card';
 import { GridSurface } from '@components/GridSurface';
+import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { MAX } from '@const/breakpoints';
 import { HOVER_ICON } from '@const/mixins';
@@ -59,6 +60,7 @@ const Projects: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   return (
     <>
+      <PageHead page="Projects" />
       <GridSurface>
         <PageTitle page="Projects" title="What has Christian done?" />
         <ProjectsWrapper>

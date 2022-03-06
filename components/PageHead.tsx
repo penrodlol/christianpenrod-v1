@@ -1,16 +1,13 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import { FC } from 'react';
 
-export const PageHead = () => {
-  const { asPath, route } = useRouter();
+export interface PageHeadProps {
+  page?: string;
+}
 
-  const page =
-    route === '/404' &&
-    asPath
-      .split('/')[1]
-      .toLowerCase()
-      .replace(/(^|\s)\S/g, (char) => char.toUpperCase());
-  const title = page ? `Christian Penrod - ${page}` : 'Christian Penrod';
+export const PageHead: FC<PageHeadProps> = ({ page }) => {
+  const titlePrefix = page ? `${page} | ` : '';
+  const title = `${titlePrefix}Christian Penrod`;
   const description = `${page || 'Home'} page of christianpenrod.com.`;
 
   return (

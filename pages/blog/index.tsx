@@ -1,4 +1,5 @@
 import { GridSurface } from '@components/GridSurface';
+import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { PostCards } from '@components/PostCards';
 import { PostsFilter } from '@components/PostsFilter';
@@ -64,6 +65,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <>
+      <PageHead page="Blog" />
       <PageTitle page="Blog" title="What has Christian wrote?" />
       <PostsFilterWrapper>
         <PostsFilter onFilter={handleFilter} />
