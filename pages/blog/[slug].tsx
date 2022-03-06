@@ -8,7 +8,6 @@ import { TableOfContents } from '@components/TableOfContents';
 import { MIN } from '@const/breakpoints';
 import { Post, Slug } from '@interfaces/post';
 import { supabase } from '@utils/supabase';
-import matter from 'gray-matter';
 import {
   GetStaticPaths,
   GetStaticProps,
@@ -179,9 +178,8 @@ export const getStaticProps: GetStaticProps<{
   if (mdxBlob.error || !mdxBlob.data) return { props: { post: undefined } };
 
   const rawSource = await mdxBlob.data.text();
-  const { content } = matter(rawSource);
 
-  const source = await serialize(content, {
+  const source = await serialize(rawSource, {
     mdxOptions: { remarkPlugins: [prism] },
   });
 
