@@ -37,6 +37,11 @@ import { supabase } from './supabase';
           author: [author],
           date: dayjs(post.published).toDate(),
           category: post.tags.map((tag) => ({ name: tag })),
+          content: `
+            <strong>
+              <a href="https://christianpenrod.com/blog/${post.slug}" target="_blank">Keep Reading</a>
+            </strong>
+          `,
         });
       });
 
