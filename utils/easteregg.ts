@@ -1,4 +1,4 @@
-export const logMessage = () => {
+export function logMessage() {
   console.log(
     `%cGreetings!\n%cCurious about how this site was built?\nCheck out the source code here: https://github.com/penrodlol/christianpenrod`,
     `
@@ -14,4 +14,4 @@ export const logMessage = () => {
       text-shadow: 0 0 5px rgba(0,0,0,0.2);
     `,
   );
-};
+}

@@ -7,7 +7,6 @@ const Wrapper = styled.footer`
 
   display: grid;
   gap: var(--size-5);
-  align-items: center;
   justify-content: center;
   margin-bottom: var(--size-6);
 
@@ -21,6 +20,7 @@ const Wrapper = styled.footer`
 const Footnote = styled.div`
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-4);
+  text-align: center;
 `;
 
 const Copyright = styled.span`
@@ -30,7 +30,7 @@ const Copyright = styled.span`
 
 export const Footer = () => (
   <Wrapper>
-    <SocialLinks />
+    <SocialLinks showRss />
     <Footnote>
       Christian Penrod <Copyright>&#169;{dayjs().year()}</Copyright>
     </Footnote>
