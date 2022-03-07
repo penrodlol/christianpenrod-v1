@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && yarn plugin:rss",
+    "build": "next build && yarn rss",
     "start": "next start",
     "lint": "next lint",
-    "plugin:rss": "npx node ./.next/server/plugins/rss"
+    "rss": "npx node ./.next/server/rss"
   },
   "dependencies": {
     "@artsy/fresnel": "^3.2.1",

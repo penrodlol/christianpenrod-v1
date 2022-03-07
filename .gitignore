@@ -19,6 +19,7 @@
 # misc
 .DS_Store
 *.pem
+/public/rss.xml
 
 # debug
 npm-debug.log*

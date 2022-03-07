@@ -1,8 +1,9 @@
+import { FAVICON } from '@const/favicon';
 import { Post } from '@interfaces/post';
 import dayjs from 'dayjs';
 import { Feed, FeedOptions } from 'feed';
 import { writeFileSync } from 'fs';
-import { supabase } from '../utils/supabase';
+import { supabase } from './supabase';
 
 (async () => {
   supabase
@@ -20,10 +21,12 @@ import { supabase } from '../utils/supabase';
 
       const feed = new Feed({
         id: 'https://christianpenrod.com/blog',
-        title: 'RSS Feed | Christian Penrod Blog',
+        title: 'Christian Penrod Blog',
         link: 'https://christianpenrod.com/blog',
+        description: 'Posts about front-end web development.',
         copyright: `All rights reserved ${dayjs().year()}, Christian Penrod`,
         language: 'en',
+        favicon: FAVICON,
         author,
       });
 

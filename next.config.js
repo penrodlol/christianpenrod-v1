@@ -24,7 +24,7 @@ module.exports = {
         const entries = await originalEntry();
         return {
           ...entries,
-          'plugins/rss': './plugins/rss.ts',
+          rss: './utils/rss.ts',
         };
       };
     }
