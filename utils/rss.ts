@@ -1,3 +1,4 @@
+import { FAVICON } from '@const/favicon';
 import { Post } from '@interfaces/post';
 import dayjs from 'dayjs';
 import { Feed, FeedOptions } from 'feed';
@@ -25,6 +26,7 @@ import { supabase } from './supabase';
         description: 'Posts about front-end web development.',
         copyright: `All rights reserved ${dayjs().year()}, Christian Penrod`,
         language: 'en',
+        favicon: FAVICON,
         author,
       });
 
