@@ -26,7 +26,7 @@ import { supabase } from './supabase';
         description: 'Posts about front-end web development.',
         copyright: `All rights reserved ${dayjs().year()}, Christian Penrod`,
         language: 'en',
-        favicon: FAVICON,
+        favicon: `<link href=${FAVICON} rel="icon" type="image/x-icon" />`,
         author,
       });
 
