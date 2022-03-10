@@ -18,10 +18,13 @@ export const PageHead: FC<PageHeadProps> = ({ page }) => {
       <meta name="title" content={title} />
       <meta name="description" content={description} />
 
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@penrodlol" />
-      <meta name="twitter:creator" content="@penrodlol" />
+      <meta name="twitter:title" content="@penrodlol" />
+      <meta
+        name="twitter:description"
+        content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa, maxime quos nemo, voluptatem necessitatibus expedita sapiente quibusdam, dolores saepe animi sit! Quod amet dolorum neque culpa? Cum, in dolor!"
+      />
       <meta name="twitter:image" content="/img/ideas.webp" />
+      <meta name="twitter:card" content="summary_large_image" />
 
       <link href={FAVICON} rel="icon" type="image/x-icon" />
     </Head>
