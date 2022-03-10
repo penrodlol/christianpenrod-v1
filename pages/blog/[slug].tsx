@@ -112,7 +112,11 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <>
-      <PageHead page={post?.title} />
+      <PageHead
+        page={post?.title}
+        title={post?.title}
+        description={post?.description}
+      />
       {post && (
         <Wrapper toc={!!post.toc}>
           <ContentWrapper>
