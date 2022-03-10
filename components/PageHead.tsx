@@ -18,13 +18,17 @@ export const PageHead: FC<PageHeadProps> = ({ page }) => {
       <meta name="title" content={title} />
       <meta name="description" content={description} />
 
-      <meta name="twitter:title" content="@penrodlol" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content="@penrodlol" />
+      <meta name="twitter:title" content="Christian Penrod" />
       <meta
         name="twitter:description"
-        content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ipsa, maxime quos nemo, voluptatem necessitatibus expedita sapiente quibusdam, dolores saepe animi sit! Quod amet dolorum neque culpa? Cum, in dolor!"
+        content="Developing for the web since 2015, based in Pittsburgh PA. A few areas I tend to focus on include developer experience tooling, responsive web design, and occasionally some attempts at teaching."
       />
-      <meta name="twitter:image" content="/img/ideas.webp" />
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:image"
+        content="https://christianpenrod.com/img/ideas.webp"
+      />
 
       <link href={FAVICON} rel="icon" type="image/x-icon" />
     </Head>
