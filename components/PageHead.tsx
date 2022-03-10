@@ -27,7 +27,7 @@ export const PageHead: FC<PageHeadProps> = ({ page }) => {
       />
       <meta
         name="twitter:image"
-        content="https://christianpenrod.com/img/ideas.webp"
+        content="https://christianpenrod.com/img/ideas_twitter.webp"
       />
 
       <link href={FAVICON} rel="icon" type="image/x-icon" />
