@@ -1,5 +1,5 @@
 import { Email } from '@interfaces/email';
-import { sendgrid } from '@utils/sendgrid';
+import sendgrid from '@sendgrid/mail';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -10,8 +10,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const payload: Email = JSON.parse(req.body);
 
     const message = {
-      to: process.env.NEXT_PUBLIC_SENDGRID_EMAIL as string,
-      from: process.env.NEXT_PUBLIC_SENDGRID_EMAIL as string,
+      to: process.env.SENDGRID_EMAIL as string,
+      from: process.env.SENDGRID_EMAIL as string,
       subject: payload.subject,
       html: `
         <p>Name: <strong>${payload.name}</strong></p>
@@ -21,7 +21,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       `,
     };
 
-    await sendgrid.send(message);
+    sendgrid.setApiKey(process.env.SENDGRID_KEY as string);
+    sendgrid.send(message);
 
     res.status(200).json({});
   } catch (e) {
