@@ -1,6 +1,5 @@
 import { Button } from '@components/Button';
 import { GridSurface } from '@components/GridSurface';
-import { Media } from '@components/Media';
 import { PageHead } from '@components/PageHead';
 import { MAX } from '@const/breakpoints';
 import Image from 'next/image';
@@ -12,21 +11,10 @@ const Wrapper = styled.section`
   max-width: 100%;
   min-height: 70vh;
   margin: 0 auto;
-  padding-bottom: var(--size-7);
+  padding-bottom: var(--size-10);
   padding-left: var(--size-3);
   padding-right: var(--size-3);
   text-align: center;
-
-  ${MAX.LG} {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-bottom: var(--size-10);
-  }
-
-  ${MAX.SM} {
-    gap: var(--size-5);
-  }
 `;
 
 const Message = styled.p`
@@ -69,22 +57,16 @@ export const Custom404 = () => {
             width={853}
             height={596}
           />
-          <Media lessThan="lg">
-            <div>
-              <Message>
-                The page you&apos;re looking for cannot be found.
-              </Message>
-              <BackHome>
-                <Button
-                  color="cta"
-                  aria-label="Navigate internally to home"
-                  onClick={() => router.push('/')}
-                >
-                  Back Home
-                </Button>
-              </BackHome>
-            </div>
-          </Media>
+          <Message>The page you&apos;re looking for cannot be found.</Message>
+          <BackHome>
+            <Button
+              color="cta"
+              aria-label="Navigate internally to home"
+              onClick={() => router.push('/')}
+            >
+              Back Home
+            </Button>
+          </BackHome>
         </Wrapper>
       </GridSurface>
     </>
