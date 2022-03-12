@@ -57,6 +57,7 @@ const Wrapper = styled.button<ButtonProps>(({ color, asIcon, noAnimate }) => {
     cursor: pointer;
     font-weight: var(--font-weight-8);
     font-size: var(--font-size-2);
+    font-family: var(--font-serif);
     border-radius: var(--radius-2);
     padding: ${asIcon || isBasic ? 0 : '0.8rem var(--size-7)'};
     box-shadow: ${asIcon || isBasic ? 'none' : 'var(--shadow-3)'};
