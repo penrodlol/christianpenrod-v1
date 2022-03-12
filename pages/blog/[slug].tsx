@@ -18,6 +18,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import readingTime from 'reading-time';
 import prism from 'remark-prism';
 import styled, { css } from 'styled-components';
 
@@ -187,8 +188,10 @@ export const getStaticProps: GetStaticProps<{
     mdxOptions: { remarkPlugins: [prism] },
   });
 
+  const readtime = Math.round(readingTime(rawSource).minutes);
+
   const pattern = /^###*\s/;
-  let headers = !data.toc
+  const headers = !data.toc
     ? []
     : [
         'Introduction',
@@ -200,7 +203,7 @@ export const getStaticProps: GetStaticProps<{
 
   return {
     props: {
-      post: { ...data, source, headers },
+      post: { ...data, source, headers, readtime },
     },
   };
 };
