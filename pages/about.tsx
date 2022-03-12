@@ -5,7 +5,7 @@ import { PageTitle } from '@components/PageTitle';
 import { Profile } from '@components/Profile';
 import { SectionTitle } from '@components/SectionTitle';
 import { MIN } from '@const/breakpoints';
-import { Occupation, Occupations } from '@interfaces/occupation';
+import { Occupation, Occupations } from '@models/occupation';
 import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';

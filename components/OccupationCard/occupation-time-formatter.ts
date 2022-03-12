@@ -1,4 +1,4 @@
-import { Roles } from '@interfaces/occupation';
+import { Roles } from '@models/occupation';
 import dayjs from 'dayjs';
 
 export function getTotalTime(roles: Roles) {

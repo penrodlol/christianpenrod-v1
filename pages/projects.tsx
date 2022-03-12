@@ -5,7 +5,7 @@ import { PageHead } from '@components/PageHead';
 import { PageTitle } from '@components/PageTitle';
 import { MAX } from '@const/breakpoints';
 import { HOVER_ICON } from '@const/mixins';
-import { Project, Projects as _Projects } from '@interfaces/project';
+import { Project, Projects as _Projects } from '@models/project';
 import ArrowRight from '@svg/arrow-right.svg';
 import Github from '@svg/github.svg';
 import { supabase } from '@utils/supabase';

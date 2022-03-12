@@ -19,7 +19,7 @@
       "@components/*": ["components/*"],
       "@const/*": ["const/*"],
       "@hooks/*": ["hooks/*"],
-      "@interfaces/*": ["interfaces/*"],
+      "@models/*": ["models/*"],
       "@svg/*": ["public/svg/*"],
       "@utils/*": ["utils/*"]
     }

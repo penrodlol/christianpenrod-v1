@@ -4,7 +4,7 @@ import { PageTitle } from '@components/PageTitle';
 import { PostCards } from '@components/PostCards';
 import { PostsFilter } from '@components/PostsFilter';
 import { MAX } from '@const/breakpoints';
-import { Post, Posts } from '@interfaces/post';
+import { Post, Posts } from '@models/post';
 import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { useState } from 'react';

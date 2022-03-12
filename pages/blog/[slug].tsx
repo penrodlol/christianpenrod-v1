@@ -6,7 +6,7 @@ import { PostHeader } from '@components/PostHeader';
 import { PostsPaginator } from '@components/PostsPaginator';
 import { TableOfContents } from '@components/TableOfContents';
 import { MIN } from '@const/breakpoints';
-import { Post, Slug } from '@interfaces/post';
+import { Post, Slug } from '@models/post';
 import { supabase } from '@utils/supabase';
 import {
   GetStaticPaths,

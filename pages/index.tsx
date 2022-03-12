@@ -4,7 +4,7 @@ import { PageHead } from '@components/PageHead';
 import { PostCards } from '@components/PostCards';
 import { SectionTitle } from '@components/SectionTitle';
 import { MAX } from '@const/breakpoints';
-import { Post, Posts } from '@interfaces/post';
+import { Post, Posts } from '@models/post';
 import { supabase } from '@utils/supabase';
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import styled from 'styled-components';

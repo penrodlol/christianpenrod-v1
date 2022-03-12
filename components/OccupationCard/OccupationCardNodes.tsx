@@ -1,4 +1,4 @@
-import { Role } from '@interfaces/occupation';
+import { Role } from '@models/occupation';
 import { MDXRemote } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 import { FC } from 'react';

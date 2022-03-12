@@ -1,5 +1,5 @@
 import { MAX } from '@const/breakpoints';
-import { Posts } from '@interfaces/post';
+import { Posts } from '@models/post';
 import ArrowRight from '@svg/arrow-right.svg';
 import dayjs from 'dayjs';
 import Link from 'next/link';

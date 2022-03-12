@@ -1,4 +1,4 @@
-import { PaginatedPost } from '@interfaces/post';
+import { PaginatedPost } from '@models/post';
 import ArrowLeft from '@svg/arrow-left.svg';
 import ArrowRight from '@svg/arrow-right.svg';
 import Link from 'next/link';

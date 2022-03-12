@@ -1,4 +1,4 @@
-import { Email } from '@interfaces/email';
+import { Email } from '@models/email';
 import sendgrid from '@sendgrid/mail';
 import type { NextApiRequest, NextApiResponse } from 'next';
 

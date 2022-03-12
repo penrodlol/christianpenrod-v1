@@ -1,5 +1,5 @@
 import { MIN } from '@const/breakpoints';
-import { Email } from '@interfaces/email';
+import { Email } from '@models/email';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { useState } from 'react';
 import styled from 'styled-components';

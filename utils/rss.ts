@@ -1,4 +1,4 @@
-import { Post } from '@interfaces/post';
+import { Post } from '@models/post';
 import dayjs from 'dayjs';
 import { Feed, FeedOptions } from 'feed';
 import { writeFileSync } from 'fs';

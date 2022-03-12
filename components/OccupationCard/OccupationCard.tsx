@@ -1,5 +1,5 @@
 import { IMG_GRAYSCALE, OVERLAY_GUAVA } from '@const/mixins';
-import { Occupation } from '@interfaces/occupation';
+import { Occupation } from '@models/occupation';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
 import styled from 'styled-components';

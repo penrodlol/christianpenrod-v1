@@ -1,5 +1,5 @@
 import { MIN } from '@const/breakpoints';
-import { Post } from '@interfaces/post';
+import { Post } from '@models/post';
 import Calendar from '@svg/calendar.svg';
 import Clock from '@svg/clock.svg';
 import dayjs from 'dayjs';
