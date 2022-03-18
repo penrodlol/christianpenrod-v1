@@ -76,7 +76,7 @@ export const PostHeader: FC<PostHeaderProps> = ({ post }) => {
       <Stats>
         <StatsItem>
           <Calendar width={25} height={25} />
-          {dayjs.utc(post.published).format('MMM Do, YYYY')}
+          {dayjs(post.published).format('MMM Do, YYYY')}
         </StatsItem>
         <StatsItem>
           <Clock width={25} height={25} /> {post.readtime} Minute Read

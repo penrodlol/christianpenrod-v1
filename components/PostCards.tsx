@@ -94,7 +94,7 @@ export const PostCards: FC<PostCardsProps> = ({ posts }) => (
           <CardAnchor>
             <Card
               title={post.title}
-              subheader={dayjs(post.published).format('YYYY-MM-DD')}
+              subheader={dayjs(post.published).format('MMM Do, YYYY')}
               tags={post.tags}
               description={post.description}
               actions={[
