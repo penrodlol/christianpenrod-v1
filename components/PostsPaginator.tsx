@@ -17,6 +17,10 @@ const Item = styled.a`
   flex-direction: column;
   color: var(--text-2);
 
+  &[data-has-other-direction='true'] {
+    max-width: 50%;
+  }
+
   &#next-post {
     text-align: right;
     margin-left: auto;
@@ -52,7 +56,10 @@ export const PostsPaginator: FC<PostsPaginatorProps> = ({
     <Wrapper>
       {prevPost && (
         <Link href={prevPost ? `/blog/${prevPost.slug}` : '/blog'} passHref>
-          <Item aria-label={`Go to previous post: ${prevPost.title}`}>
+          <Item
+            aria-label={`Go to previous post: ${prevPost.title}`}
+            data-has-other-direction={!!nextPost}
+          >
             <Direction>
               <ArrowLeft width={30} height={30} />
               Prev
@@ -66,6 +73,7 @@ export const PostsPaginator: FC<PostsPaginatorProps> = ({
           <Item
             id="next-post"
             aria-label={`Go to next post: ${nextPost.title}`}
+            data-has-other-direction={!!prevPost}
           >
             <Direction>
               Next
