@@ -2,7 +2,7 @@ import { Layout } from '@components/Layout';
 import { MediaContextProvider } from '@components/Media';
 import { RegisterCssPaint } from '@components/RegisterCssPaint';
 import { Typetura } from '@components/Typetura';
-import { logMessage } from '@utils/easteregg';
+import { logMessage } from '@utils/console';
 import dayjs from 'dayjs';
 import advancedFormatPlugin from 'dayjs/plugin/advancedFormat';
 import utcPlugin from 'dayjs/plugin/utc';
