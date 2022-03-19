@@ -20,6 +20,7 @@
 .DS_Store
 *.pem
 /public/rss.xml
+/public/drafts
 
 # debug
 npm-debug.log*

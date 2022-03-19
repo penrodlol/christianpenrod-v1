@@ -13,6 +13,9 @@ import '../styles/globals.scss';
 dayjs.extend(advancedFormatPlugin);
 dayjs.extend(utcPlugin);
 
+if (process.env.NEXT_PUBLIC_DEVELOPMENT === 'true')
+  require('@utils/msw').init();
+
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => logMessage(), []);
 
