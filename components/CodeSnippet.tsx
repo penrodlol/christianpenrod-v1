@@ -3,15 +3,7 @@ import styled from 'styled-components';
 import { CopyToClipboard } from './CopyToClipboard';
 
 const Wrapper = styled.div`
-  --code-surface: hsl(0deg 0% 11%);
-  --code-function: hsl(265deg 79% 85%);
-  --code-keyword: hsl(238deg 84% 80%);
-  --code-classname: hsl(255deg 65% 74%);
-  --code-string: hsl(0deg 0% 67%);
-  --code-builtin: hsl(262deg 43% 73%);
-
-  margin-top: var(--size-7);
-  margin-bottom: var(--size-7);
+  margin: var(--size-7) 0;
 `;
 
 const InnerWrapper = styled.div`
@@ -50,27 +42,6 @@ const CodeWrapper = styled.pre`
 
   * {
     font-family: var(--font-serif);
-  }
-
-  .function {
-    color: var(--code-function);
-  }
-
-  .keyword {
-    color: var(--code-keyword);
-  }
-
-  .class-name {
-    color: var(--code-classname);
-  }
-
-  .string,
-  .template-string {
-    color: var(--code-string);
-  }
-
-  .builtin {
-    color: var(--code-builtin);
   }
 `;
 

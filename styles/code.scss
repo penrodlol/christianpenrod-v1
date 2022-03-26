@@ -1,0 +1,78 @@
+:root {
+  --code-surface: hsl(0deg 0% 11%);
+
+  --code-text-1: hsl(0deg 0% 67%);
+
+  --code-brand-1: hsl(238deg 84% 80%);
+
+  --code-guava-1: hsl(265deg 79% 85%);
+  --code-guava-2: hsl(262deg 43% 73%);
+  --code-guava-3: hsl(255deg 65% 74%);
+  --code-guava-4: hsl(250deg 62% 67%);
+}
+
+.function {
+  color: var(--code-guava-1);
+}
+
+.keyword {
+  color: var(--code-brand-1);
+}
+
+.string,
+.template-string {
+  color: var(--code-text-1);
+}
+
+.language {
+  &-ts,
+  &-js {
+    .class-name {
+      color: var(--code-guava-3);
+    }
+
+    .builtin {
+      color: var(--code-guava-2);
+    }
+  }
+
+  &-scss,
+  &-css {
+    color: var(--code-guava-2);
+
+    .property,
+    .punctuation {
+      color: var(--text-1);
+    }
+
+    .selector {
+      color: var(--code-guava-1);
+    }
+
+    .number,
+    .unit {
+      color: var(--code-brand-1);
+    }
+
+    .comment {
+      color: var(--code-text-1);
+    }
+  }
+
+  &-tsx,
+  &-jsx {
+    .tag {
+      color: var(--code-guava-4);
+    }
+
+    .attr {
+      &-name {
+        color: var(--code-guava-2);
+      }
+
+      &-value {
+        color: var(--text-2);
+      }
+    }
+  }
+}
