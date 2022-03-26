@@ -75,4 +75,15 @@
       }
     }
   }
+
+  &-json {
+    .property {
+      color: var(--code-guava-1);
+    }
+
+    .number,
+    .boolean {
+      color: var(--code-brand-1);
+    }
+  }
 }
