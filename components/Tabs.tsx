@@ -56,6 +56,7 @@ const Trigger = styled(TabsPrimative.Trigger)`
   flex: 1;
   padding: var(--size-1) var(--size-3);
   position: relative;
+  text-align: center;
 
   &:first-child {
     border-top-left-radius: var(--radius-2);
