@@ -97,6 +97,7 @@ const components = {
   CodeSnippet: dynamic<unknown>(() => import('@components/CodeSnippet').then((m) => m.CodeSnippet)),
   Tabs: dynamic<any>(() => import('@components/Tabs').then((m) => m.Tabs)),
   Tab: dynamic<any>(() => import('@components/Tabs').then((m) => m.Tab)),
+  Checkbox: dynamic<any>(() => import('@components/Checkbox').then((m) => m.Checkbox)),
 };
 
 const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
