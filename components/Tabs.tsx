@@ -73,6 +73,7 @@ const Trigger = styled(TabsPrimative.Trigger)`
 
 const Content = styled(TabsPrimative.Content)`
   padding: var(--size-4);
+  font-size: var(--font-size-1);
 `;
 
 export interface TabProps extends TabsPrimative.TabsContentProps {
