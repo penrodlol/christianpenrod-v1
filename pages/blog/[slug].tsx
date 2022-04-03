@@ -95,6 +95,8 @@ const components = {
   Disclaimer: dynamic<unknown>(() => import('@components/Disclaimer').then((m) => m.Disclaimer)),
   Anchor: dynamic<unknown>(() => import('@components/Anchor').then((m) => m.Anchor)),
   CodeSnippet: dynamic<unknown>(() => import('@components/CodeSnippet').then((m) => m.CodeSnippet)),
+  Tabs: dynamic<any>(() => import('@components/Tabs').then((m) => m.Tabs)),
+  Tab: dynamic<any>(() => import('@components/Tabs').then((m) => m.Tab)),
 };
 
 const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
