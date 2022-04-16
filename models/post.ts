@@ -1,4 +1,5 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { GithubInfo } from './github-info';
 
 export interface Post {
   id: number;
@@ -14,7 +15,7 @@ export interface Post {
   prevPost: PaginatedPost;
   nextPost: PaginatedPost;
   headers?: Array<string>;
-  github?: string;
+  githubInfo?: GithubInfo;
 }
 
 export type Posts = Array<Post>;

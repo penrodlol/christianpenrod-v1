@@ -12,6 +12,7 @@
     "@artsy/fresnel": "^3.2.1",
     "@fontsource/balsamiq-sans": "^4.5.1",
     "@fontsource/nunito": "^4.5.1",
+    "@octokit/rest": "^18.12.0",
     "@radix-ui/react-checkbox": "^0.1.5",
     "@radix-ui/react-dialog": "^0.1.5",
     "@radix-ui/react-tabs": "^0.1.5",
