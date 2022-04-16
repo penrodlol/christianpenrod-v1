@@ -28,6 +28,8 @@ const CheckboxWrapper = styled(CheckboxPrimative.Root)`
   background: var(--surface-1);
   width: var(--size-4);
   height: var(--size-4);
+  min-width: var(--size-4);
+  min-height: var(--size-4);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-3);
   cursor: pointer;
