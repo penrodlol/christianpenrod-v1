@@ -14,6 +14,7 @@ const TabsList = styled(TabsPrimative.TabsList)`
   display: flex;
   flex-shrink: 0;
   box-shadow: var(--shadow-1);
+  overflow-x: auto;
 
   [data-state='active'] {
     color: var(--text-1);
@@ -75,7 +76,7 @@ const Content = styled(TabsPrimative.Content)`
   padding: var(--size-4);
   font-size: var(--font-size-1);
 
-  > :first-child {
+  [class*='CodeSnippet__Wrapper'] {
     margin: 0;
   }
 `;
