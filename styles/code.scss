@@ -24,6 +24,10 @@
   color: var(--code-text-1);
 }
 
+.comment {
+  color: var(--code-text-1);
+}
+
 .language {
   &-ts,
   &-js {
@@ -52,10 +56,6 @@
     .number,
     .unit {
       color: var(--code-brand-1);
-    }
-
-    .comment {
-      color: var(--code-text-1);
     }
   }
 
