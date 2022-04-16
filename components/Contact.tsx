@@ -78,7 +78,7 @@ export const Contact = () => {
             fetch('/api/contact', {
               method: 'POST',
               body: JSON.stringify(value),
-            }).then(({ ok }) => {
+            }).then(() => {
               actions.setSubmitting(false);
               setSubmitting(false);
               actions.resetForm({ values: initial });
