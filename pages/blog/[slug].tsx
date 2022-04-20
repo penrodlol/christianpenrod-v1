@@ -121,7 +121,10 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       .single()
       .then(({ data }) => setHits(data));
 
-    if (!post.github) return;
+    if (!post.github) {
+      setGithubInfo(null);
+      return;
+    }
 
     fetchInfo(post.github).then((info) => setGithubInfo(info));
   }, [post]);
