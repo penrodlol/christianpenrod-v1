@@ -76,8 +76,8 @@ const Content = styled(TabsPrimative.Content)`
   padding: var(--size-4);
   font-size: var(--font-size-1);
 
-  [class*='CodeSnippet__Wrapper'] {
-    margin: 0;
+  > *:not(span[size]) {
+    margin: 0 !important;
   }
 `;
 

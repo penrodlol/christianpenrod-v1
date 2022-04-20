@@ -14,17 +14,15 @@ const Wrapper = styled.div`
 `;
 
 const InnerWrapper = styled.div`
-  [class*='CodeSnippet__Wrapper'] {
-    margin: 0;
+  > *:not(span[size]) {
+    margin: 0 !important;
   }
 `;
 
 export const Disclaimer: FC = ({ children }) => {
   return (
     <Wrapper>
-      <InnerWrapper>
-        <div>{children}</div>
-      </InnerWrapper>
+      <InnerWrapper>{children}</InnerWrapper>
     </Wrapper>
   );
 };
