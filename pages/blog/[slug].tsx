@@ -1,4 +1,5 @@
 import { Divider } from '@components/Divider';
+import { GithubCard } from '@components/GithubCard';
 import { HitCounter } from '@components/HitCounter';
 import { Media } from '@components/Media';
 import { PageHead } from '@components/PageHead';
@@ -6,7 +7,9 @@ import { PostHeader } from '@components/PostHeader';
 import { PostsPaginator } from '@components/PostsPaginator';
 import { TableOfContents } from '@components/TableOfContents';
 import { MIN } from '@const/breakpoints';
+import { GithubInfo } from '@models/github-info';
 import { Post, Slug } from '@models/post';
+import { fetchInfo } from '@utils/octokit';
 import { supabase } from '@utils/supabase';
 import {
   GetStaticPaths,
@@ -70,8 +73,12 @@ const Content = styled.article`
   }
 `;
 
+const GithubCardWrapper = styled.div`
+  margin: var(--size-8) 0;
+`;
+
 const HitCounterWrapper = styled.div`
-  margin-top: var(--size-5);
+  margin-top: var(--size-7);
   display: flex;
   justify-content: end;
 `;
@@ -104,6 +111,7 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   post,
 }) => {
   const [hits, setHits] = useState<number | null>();
+  const [githubInfo, setGithubInfo] = useState<GithubInfo | null>();
 
   useEffect(() => {
     if (!post) return;
@@ -112,6 +120,10 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       .rpc<number>('update_post_hits', { target: post.id })
       .single()
       .then(({ data }) => setHits(data));
+
+    if (!post.github) return;
+
+    fetchInfo(post.github).then((info) => setGithubInfo(info));
   }, [post]);
 
   return (
@@ -127,6 +139,11 @@ const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <PostHeader post={post} />
             <Content>
               <MDXRemote {...post.source} components={components} />
+              {githubInfo && (
+                <GithubCardWrapper>
+                  <GithubCard {...githubInfo} />
+                </GithubCardWrapper>
+              )}
               {hits && (
                 <HitCounterWrapper>
                   <HitCounter count={hits} />
